@@ -43,7 +43,7 @@ SET
 -- マスタ 問い合わせ関連
 DROP TABLE IF EXISTS schools;
 
-CREATE TABLE IF EXISTS schools(
+CREATE TABLE schools(
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   school_name VARCHAR(50) NOT NULL
 );
@@ -52,14 +52,14 @@ DROP TABLE IF EXISTS prefs;
 
 CREATE TABLE prefs(
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  pref_name VARCHAR(10)
+  pref_name VARCHAR(10) NOT NULL
 );
 
 DROP TABLE IF EXISTS inquiry_options;
 
 CREATE TABLE inquiry_options(
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  option VARCHAR(50)
+  `option` VARCHAR(50)
 );
 
 -- マスタ　エージェント関連
@@ -81,7 +81,7 @@ CREATE TABLE agents(
 
 DROP TABLE IF EXISTS agent_contract;
 
---　TODO 契約に必要な情報を保持するカラムをさらに追加
+-- TODO 契約に必要な情報を保持するカラムをさらに追加
 CREATE TABLE agent_contract(
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
