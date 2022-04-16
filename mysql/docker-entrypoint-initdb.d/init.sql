@@ -4,41 +4,6 @@ CREATE SCHEMA shukatsu;
 
 USE shukatsu;
 
-DROP TABLE IF EXISTS users;
-
-CREATE TABLE users (
-  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  email VARCHAR(255) UNIQUE NOT NULL,
-  password VARCHAR(255) NOT NULL,
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
-INSERT INTO
-  users
-SET
-  email = 'test@posse-ap.com',
-  password = sha1('password');
-
-DROP TABLE IF EXISTS events;
-
-CREATE TABLE events (
-  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  title VARCHAR(255) NOT NULL,
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
-INSERT INTO
-  events
-SET
-  title = 'イベント1';
-
-INSERT INTO
-  events
-SET
-  title = 'イベント2';
-
 -- ここから新たに作るテーブル
 -- マスタ 問い合わせ関連
 DROP TABLE IF EXISTS schools;
@@ -108,6 +73,7 @@ DROP TABLE IF EXISTS accounts;
 
 CREATE TABLE accounts(
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  email VARCHAR(100) NOT NULL,
   password VARCHAR(50),
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -152,3 +118,10 @@ CREATE TABLE inquired_agents(
   student_id INT NOT NULL,
   agent_id INT NOT NULL
 );
+
+-- ダミーデータ
+
+INSERT INTO
+  accounts (email, password, name, agent_id, right_id)
+VALUES
+  ('test@test', sha1('teamdev'), '青柳仁', NULL, 2);

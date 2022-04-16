@@ -2,22 +2,30 @@
 session_start();
 require('../dbconnect.php');
 
-if (!empty($_POST)) {
-  $login = $db->prepare('SELECT * FROM users WHERE email=? AND password=?');
-  $login->execute(array(
-    $_POST['email'],
-    sha1($_POST['password'])
-  ));
-  $user = $login->fetch();
+if (isset($_SESSION['account_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
+  $_SESSION['time'] = time();
+  header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/index.php');
+}
 
-  if ($user) {
+if (!empty($_POST)) {
+  $login = $db->prepare('SELECT * FROM accounts WHERE email = :email AND password = :pw');
+  $login->execute(array(
+    ':email' => $_POST['email'],
+    ':pw' => sha1($_POST['password'])
+  ));
+  $account = $login->fetch();
+
+  if ($account) {
     $_SESSION = array();
-    $_SESSION['user_id'] = $user['id'];
+    $_SESSION['account_id'] = $account['id'];
+    $_SESSION['name'] = $account['name'];
+    $_SESSION['agent_id'] = $account['agent_id'];
+    $_SESSION['right_id'] = $account['right_id'];
     $_SESSION['time'] = time();
     header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/index.php');
     exit();
   } else {
-    $error = 'fail';
+    echo 'メールアドレスまたはパスワードが間違っています。';
   }
 }
 ?>
@@ -40,7 +48,6 @@ if (!empty($_POST)) {
       <input type="password" required name="password">
       <input type="submit" value="ログイン">
     </form>
-    <a href="/index.php">イベント一覧</a>
   </div>
 </body>
 
