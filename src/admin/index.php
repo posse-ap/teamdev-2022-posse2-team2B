@@ -1,7 +1,8 @@
 <?php
 session_start();
 require('../dbconnect.php');
-require(dirname(__FILE__) . "/parts/login-check.php");
+// require(dirname(__FILE__) . "./admin/parts/login-check.php");
+include("../admin/parts/login-check.php");
 
 // 権限判定
 if ($_SESSION['right_id'] === 2) {
@@ -27,6 +28,7 @@ if ($_SESSION['right_id'] === 2) {
 </head>
 
 <body>
+
   <div>
     <h1><?= $title; ?></h1>
     <form action="" method="POST">
