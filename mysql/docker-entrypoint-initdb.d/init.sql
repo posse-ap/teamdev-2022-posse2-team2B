@@ -69,7 +69,15 @@ DROP TABLE IF EXISTS tags;
 
 CREATE TABLE tags(
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  tag_name VARCHAR(20) NOT NULL
+  tag_name VARCHAR(20) NOT NULL,
+  tag_category_id INT NOT NULL
+);
+
+DROP TABLE IF EXISTS tag_categories;
+
+CREATE TABLE tag_categories(
+  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  tag_category_name VARCHAR(20) NOT NULL
 );
 
 DROP TABLE IF EXISTS agent_tags;
@@ -130,6 +138,38 @@ CREATE TABLE inquired_agents(
   agent_id INT NOT NULL
 );
 
+-- マスタ　データ
+INSERT INTO
+  tag_categories (tag_category_name)
+VALUES
+  ('専攻から選ぶ'),
+  ('地域から選ぶ'),
+  ('職種から選ぶ'),
+  ('イチオシ機能から選ぶ');
+
+INSERT INTO
+  tags (tag_name, tag_category_id)
+VALUES
+  ('文系', 1),
+  ('理系', 1),
+  ('その他', 1),
+  ('西日本', 2),
+  ('東日本', 2),
+  ('事務系', 3),
+  ('営業系', 3),
+  ('販売系', 3),
+  ('IT系', 3),
+  ('技術系', 3),
+  ('専門系', 3),
+  ('年収交渉の代行', 4),
+  ('コンシェルジュへの相談', 4),
+  ('スカウトサービス', 4),
+  ('書類選考免除', 4),
+  ('グローバル対応', 4),
+  ('内定後のサポート', 4),
+  ('年収査定診断', 4),
+  ('オンライン面接', 4);
+
 -- ダミーデータ
 INSERT INTO
   accounts (email, password, name, agent_id, right_id)
@@ -171,3 +211,15 @@ VALUES
     'いただきます',
     'ごちそうさま'
   );
+
+INSERT INTO
+  agent_tags (agent_id, tag_id)
+VALUES
+  (1, 1),
+  (1, 4),
+  (1, 6),
+  (1, 19),
+  (2, 2),
+  (2, 6),
+  (2, 9),
+  (2, 13);
