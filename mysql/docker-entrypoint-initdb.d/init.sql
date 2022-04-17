@@ -35,6 +35,8 @@ CREATE TABLE agents(
   agent_name VARCHAR(50) NOT NULL,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  expires_at DATETIME NOT NULL,
+  publication INT NOT NULL DEFAULT 1,
   evaluation1 INT,
   evaluation2 INT,
   evaluation3 INT,
@@ -51,9 +53,7 @@ CREATE TABLE agent_contract(
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  agent_id INT NOT NULL,
-  expires_at DATETIME NOT NULL,
-  publication INT NOT NULL DEFAULT 1
+  agent_id INT NOT NULL
 );
 
 DROP TABLE IF EXISTS tags;
@@ -122,7 +122,6 @@ CREATE TABLE inquired_agents(
 );
 
 -- ダミーデータ
-
 INSERT INTO
   accounts (email, password, name, agent_id, right_id)
 VALUES
