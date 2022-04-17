@@ -126,3 +126,39 @@ INSERT INTO
   accounts (email, password, name, agent_id, right_id)
 VALUES
   ('test@test', sha1('teamdev'), '青柳仁', NULL, 2);
+
+INSERT INTO
+  agents (
+    agent_name,
+    expires_at,
+    evaluation1,
+    evaluation2,
+    evaluation3,
+    paragraph1,
+    paragraph2,
+    paragraph3,
+    paragraph4
+  )
+VALUES
+  (
+    'sample agent 1',
+    '2022-04-30 23:59:59',
+    3,
+    2,
+    4,
+    'いってらっしゃい',
+    'いってきます',
+    'ただいま',
+    'おかえり'
+  ),
+  (
+    'sample agent 2',
+    '2022-05-31 23:59:59',
+    5,
+    3,
+    2,
+    'こんにちは',
+    'こんばんは',
+    'いただきます',
+    'ごちそうさま'
+  );
