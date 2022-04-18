@@ -2,11 +2,9 @@
   <div class="main-column-area">
     <table class="c-table">
       <tr>
-        <th>氏名</th>
-        <th>メールアドレス</th>
-        <th>パスワード</th>
-        <th>アクセス権限</th>
-        <th></th>
+        <?php foreach($page_cols as $page_col) : ?>
+          <th><?= $page_col['col']; ?></th>
+          <?php endforeach; ?>
       </tr>
       <tr>
         <td>〇〇〇〇</td>
