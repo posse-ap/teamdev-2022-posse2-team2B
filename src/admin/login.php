@@ -4,7 +4,7 @@ require('../dbconnect.php');
 
 if (isset($_SESSION['account_id']) && $_SESSION['time'] + 60 * 60 * 24 > time()) {
   $_SESSION['time'] = time();
-  header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/index.php');
+  header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/index.php?page=1');
 }
 
 if (!empty($_POST)) {
@@ -22,7 +22,7 @@ if (!empty($_POST)) {
     $_SESSION['agent_id'] = $account['agent_id'];
     $_SESSION['right_id'] = $account['right_id'];
     $_SESSION['time'] = time();
-    header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/index.php');
+    header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/index.php?page=1');
     exit();
   } else {
     echo 'メールアドレスまたはパスワードが間違っています。';
