@@ -4,6 +4,10 @@ require(dirname(__FILE__) . "/dbconnect.php");
 // 掲載期間内かつ公開設定1(公開)である全エージェント情報を取得
 $agents_stmt = $db->query("SELECT * FROM agents WHERE expires_at > NOW() && publication = 1");
 $agents = $agents_stmt->fetchAll();
+
+// 全タグカテゴリを取得
+$tag_categories_stmt = $db->query("SELECT * FROM tag_categories");
+$tag_categories = $tag_categories_stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -40,6 +44,31 @@ $agents = $agents_stmt->fetchAll();
   <?php
   endforeach;
   ?>
+
+  <!-- 検索フォーム -->
+  <form action="./result.php" method="POST">
+    <?php
+    foreach ($tag_categories as $tag_category) :
+      $tags_stmt = $db->prepare("SELECT * FROM tags WHERE tag_category_id = ?");
+      $tags_stmt->execute([$tag_category['id']]);
+      $tags = $tags_stmt->fetchAll();
+    ?>
+      <h3><?= $tag_category['tag_category_name'] ?></h3>
+      <?php
+      foreach ($tags as $tag) :
+      ?>
+        <label>
+          <input type="checkbox" name="tags[]" value="<?= $tag['id']; ?>">
+          <?= $tag['tag_name']; ?>
+        </label>
+    <?php
+      endforeach;
+    endforeach;
+    ?>
+    <p>
+      <input type="submit" value="検索" name="search">
+    </p>
+  </form>
   <!-- system end -->
 
   <?php

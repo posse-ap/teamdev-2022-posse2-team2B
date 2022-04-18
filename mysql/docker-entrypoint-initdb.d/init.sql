@@ -13,8 +13,8 @@ CREATE SCHEMA shukatsu;
 
 USE shukatsu;
 
--- ここから新たに作るテーブル
 -- マスタ 問い合わせ関連
+
 DROP TABLE IF EXISTS schools;
 
 CREATE TABLE schools(
@@ -69,7 +69,15 @@ DROP TABLE IF EXISTS tags;
 
 CREATE TABLE tags(
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  tag_name VARCHAR(20) NOT NULL
+  tag_name VARCHAR(20) NOT NULL,
+  tag_category_id INT NOT NULL
+);
+
+DROP TABLE IF EXISTS tag_categories;
+
+CREATE TABLE tag_categories(
+  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  tag_category_name VARCHAR(20) NOT NULL
 );
 
 DROP TABLE IF EXISTS agent_tags;
@@ -100,7 +108,33 @@ CREATE TABLE rights(
   right_name VARCHAR(50)
 );
 
+DROP TABLE IF EXISTS maint_pages;
+
+CREATE TABLE maint_pages(
+  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  page_name VARCHAR(20) NOT NULL,
+  page_type VARCHAR(20) NOT NULL,
+  on_nav INT NOT NULL
+);
+
+DROP TABLE IF EXISTS maint_page_rights;
+
+CREATE TABLE maint_page_rights(
+  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  page_id INT NOT NULL,
+  right_id INT NOT NULL
+);
+
+DROP TABLE IF EXISTS maint_page_cols;
+
+CREATE TABLE maint_page_cols(
+  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  maint_page_id INT NOT NULL,
+  col VARCHAR(20) NOT NULL
+);
+
 -- トランザクション
+
 DROP TABLE IF EXISTS students;
 
 CREATE TABLE students(
@@ -130,11 +164,145 @@ CREATE TABLE inquired_agents(
   agent_id INT NOT NULL
 );
 
+-- マスタ　データ
+INSERT INTO
+  rights(right_name)
+VALUES
+  ('エージェント会社担当者様'),
+  ('共同管理者'),
+  ('管理者');
+
+INSERT INTO
+  tag_categories (tag_category_name)
+VALUES
+  ('専攻から選ぶ'),
+  ('地域から選ぶ'),
+  ('職種から選ぶ'),
+  ('イチオシ機能から選ぶ');
+
+INSERT INTO
+  tags (tag_name, tag_category_id)
+VALUES
+  ('文系', 1),
+  ('理系', 1),
+  ('その他', 1),
+  ('西日本', 2),
+  ('東日本', 2),
+  ('事務系', 3),
+  ('営業系', 3),
+  ('販売系', 3),
+  ('IT系', 3),
+  ('技術系', 3),
+  ('専門系', 3),
+  ('年収交渉の代行', 4),
+  ('コンシェルジュへの相談', 4),
+  ('スカウトサービス', 4),
+  ('書類選考免除', 4),
+  ('グローバル対応', 4),
+  ('内定後のサポート', 4),
+  ('年収査定診断', 4),
+  ('オンライン面接', 4);
+
+INSERT INTO
+  maint_pages (page_name, page_type, on_nav)
+VALUES
+  ('学生情報一覧', 'list', 1),
+  ('エージェント一覧', 'list', 1),
+  ('アカウント一覧', 'list', 1),
+  ('マイアカウント', 'info', 1),
+  ('登録情報', 'info', 1),
+  ('請求情報', 'info', 1),
+  ('学生情報詳細', 'info', 0),
+  ('エージェント情報詳細', 'info', 0),
+  ('アカウント作成・変更', 'form', 0);
+
+INSERT INTO
+  maint_page_rights(page_id, right_id)
+VALUES
+  (1, 0),
+  (1, 1),
+  (1, 2),
+  (2, 1),
+  (2, 2),
+  (3, 2),
+  (4, 1),
+  (4, 2),
+  (5, 0),
+  (6, 0),
+  (7, 1),
+  (7, 2),
+  (8, 1),
+  (8, 2),
+  (9, 2);
+
+INSERT INTO
+  maint_page_cols(maint_page_id, col)
+VALUES
+  (1, '問い合わせ日時'),
+  (1, '氏名'),
+  (1, 'メールアドレス'),
+  (1, '電話番号'),
+  (1, '卒業年'),
+  (1, '詳細'),
+  (2, '会社名'),
+  (2, '担当者氏名'),
+  (2, '担当者メールアドレス'),
+  (2, '担当者電話番号'),
+  (2, '掲載期間'),
+  (3, '氏名'),
+  (3, 'メールアドレス'),
+  (3, 'パスワード'),
+  (3, 'アクセス権限'),
+  (3, '変更'),
+  (4, '氏名'),
+  (4, 'メールアドレス'),
+  (4, 'パスワード'),
+  (4, 'アクセス権限'),
+  (5, '会社名'),
+  (5, '会社所在地'),
+  (5, '会社URL'),
+  (5, '会社電話番号'),
+  (5, '代表者氏名'),
+  (5, '担当者氏名'),
+  (5, '担当者電話番号'),
+  (5, '担当者メールアドレス'),
+  (5, '通知用メールアドレス'),
+  (5, '契約期間'),
+  (5, '項目を追加'),
+  (6, '請求日'),
+  (6, '請求額'),
+  (6, '対象月'),
+  (6, 'ステータス'),
+  (7, '氏名'),
+  (7, 'メールアドレス'),
+  (7, '電話番号'),
+  (7, '住所'),
+  (7, '大学名'),
+  (7, '学部学科'),
+  (7, '卒業年'),
+  (7, '生年月日'),
+  (7, '性別'),
+  (7, '問い合わせ内容'),
+  (7, '自由記入欄'),
+  (8, '会社名'),
+  (8, '会社所在地'),
+  (8, '会社URL'),
+  (8, '会社電話番号'),
+  (8, '代表者氏名'),
+  (8, '担当者氏名'),
+  (8, '担当者電話番号'),
+  (8, '担当者メールアドレス'),
+  (8, '通知用メールアドレス'),
+  (8, '契約期間'),
+  (8, '項目を追加');
+
 -- ダミーデータ
 INSERT INTO
-  accounts (email, password, name, agent_id, right_id)
+  accounts(email, password, name, agent_id, right_id)
 VALUES
-  ('test@test', sha1('teamdev'), '青柳仁', NULL, 2);
+  ('agent@test', sha1('teamdev'), '横山', NULL, 0),
+  ('boozer@test', sha1('teamdev'), '青柳', NULL, 1),
+  ('admin@test', sha1('teamdev'), '田上', NULL, 2);
 
 INSERT INTO
   agents (
@@ -171,3 +339,66 @@ VALUES
     'いただきます',
     'ごちそうさま'
   );
+
+INSERT INTO
+  agent_tags (agent_id, tag_id)
+VALUES
+  (1, 1),
+  (1, 4),
+  (1, 6),
+  (1, 19),
+  (2, 2),
+  (2, 6),
+  (2, 9),
+  (2, 13);
+
+INSERT INTO
+  students(
+    inquiry_option_id,
+    student_name,
+    student_name_ruby,
+    email,
+    tel,
+    school_id,
+    faculty,
+    department,
+    graduate_year,
+    postal_code,
+    pref_id,
+    address,
+    building,
+    optional_comment
+  )
+VALUES
+  (
+    1,
+    '青柳仁',
+    'アオヤギジン',
+    'student@test',
+    '09012345678',
+    '999',
+    '理工学部',
+    '情報工学科',
+    '2026',
+    '1234567',
+    '99',
+    '港区南青山',
+    '',
+    '詳しく知りたいです。よろしくお願いします。'
+  ),
+  (
+  2,
+  '横山健人',
+  'ヨコヤマケント',
+  'student2@test',
+  '09034567890',
+  '888',
+  '理工学部',
+  '情報工学科',
+  '2025',
+  '1234567',
+  '99',
+  '港区南青山',
+  '',
+  '詳しく知りたいです。よろしくお願いします。'
+);
