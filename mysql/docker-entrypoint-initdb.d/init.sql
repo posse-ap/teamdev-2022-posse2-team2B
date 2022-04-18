@@ -166,6 +166,13 @@ CREATE TABLE inquired_agents(
 
 -- マスタ　データ
 INSERT INTO
+  rights(right_name)
+VALUES
+  ('エージェント会社担当者様'),
+  ('共同管理者'),
+  ('管理者');
+
+INSERT INTO
   tag_categories (tag_category_name)
 VALUES
   ('専攻から選ぶ'),
@@ -344,3 +351,54 @@ VALUES
   (2, 6),
   (2, 9),
   (2, 13);
+
+INSERT INTO
+  students(
+    inquiry_option_id,
+    student_name,
+    student_name_ruby,
+    email,
+    tel,
+    school_id,
+    faculty,
+    department,
+    graduate_year,
+    postal_code,
+    pref_id,
+    address,
+    building,
+    optional_comment
+  )
+VALUES
+  (
+    1,
+    '青柳仁',
+    'アオヤギジン',
+    'student@test',
+    '09012345678',
+    '999',
+    '理工学部',
+    '情報工学科',
+    '2026',
+    '1234567',
+    '99',
+    '港区南青山',
+    '',
+    '詳しく知りたいです。よろしくお願いします。'
+  ),
+  (
+  2,
+  '横山健人',
+  'ヨコヤマケント',
+  'student2@test',
+  '09034567890',
+  '888',
+  '理工学部',
+  '情報工学科',
+  '2025',
+  '1234567',
+  '99',
+  '港区南青山',
+  '',
+  '詳しく知りたいです。よろしくお願いします。'
+);
