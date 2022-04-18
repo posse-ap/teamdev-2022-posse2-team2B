@@ -13,8 +13,8 @@ CREATE SCHEMA shukatsu;
 
 USE shukatsu;
 
--- ここから新たに作るテーブル
 -- マスタ 問い合わせ関連
+
 DROP TABLE IF EXISTS schools;
 
 CREATE TABLE schools(
@@ -108,7 +108,25 @@ CREATE TABLE rights(
   right_name VARCHAR(50)
 );
 
+DROP TABLE IF EXISTS maint_pages;
+
+CREATE TABLE maint_pages(
+  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  page_name VARCHAR(20) NOT NULL,
+  page_type VARCHAR(20) NOT NULL,
+  on_nav INT NOT NULL
+);
+
+DROP TABLE IF EXISTS maint_page_rights;
+
+CREATE TABLE maint_page_rights(
+  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  page_id INT NOT NULL,
+  right_id INT NOT NULL
+);
+
 -- トランザクション
+
 DROP TABLE IF EXISTS students;
 
 CREATE TABLE students(
@@ -170,11 +188,45 @@ VALUES
   ('年収査定診断', 4),
   ('オンライン面接', 4);
 
+INSERT INTO
+  maint_pages (page_name, page_type, on_nav)
+VALUES
+  ('学生情報一覧', 'list', 1),
+  ('エージェント一覧', 'list', 1),
+  ('アカウント一覧', 'list', 1),
+  ('マイアカウント', 'info', 1),
+  ('登録情報', 'info', 1),
+  ('請求情報', 'info', 1),
+  ('学生情報詳細', 'info', 0),
+  ('エージェント情報詳細', 'info', 0),
+  ('アカウント作成・変更', 'form', 0);
+
+  INSERT INTO
+    maint_page_rights(page_id, right_id)
+  VALUES
+    (1, 0),
+    (1, 1),
+    (1, 2),
+    (2, 1),
+    (2, 2),
+    (3, 2),
+    (4, 1),
+    (4, 2),
+    (5, 0),
+    (6, 0),
+    (7, 1),
+    (7, 2),
+    (8, 1),
+    (8, 2),
+    (9, 2);
+
 -- ダミーデータ
 INSERT INTO
   accounts (email, password, name, agent_id, right_id)
 VALUES
-  ('test@test', sha1('teamdev'), '青柳仁', NULL, 2);
+  ('agent@test', sha1('teamdev'), '横山', NULL, 0),
+  ('boozer@test', sha1('teamdev'), '青柳', NULL, 1),
+  ('admin@test', sha1('teamdev'), '田上', NULL, 2);
 
 INSERT INTO
   agents (
