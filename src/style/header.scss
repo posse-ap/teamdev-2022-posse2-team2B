@@ -1,0 +1,39 @@
+$main-color:#52A39A;
+$index-color:white;
+// #52A39Aの中の文字のこと
+.header{
+  background-color: $main-color;
+}
+
+.page-title{
+  color: $index-color;
+
+  font-size:  32px;
+  h2{
+    text-align: center;
+  }
+}
+
+.header-nav{
+  display: none;
+  ul{
+    display: flex;
+    li{
+      color: $index-color;
+      margin:0px 8px ;
+    }
+
+  }
+}
+
+@media (min-width: 960px) {
+
+  .header{
+
+  }
+
+  .header-nav{
+    display: block;
+  }
+
+}

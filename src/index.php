@@ -13,6 +13,8 @@ $agents = $agents_stmt->fetchAll();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>トップ</title>
+  <link rel="stylesheet" href="style/header.css">
+  <link rel="stylesheet" href="style/reset.css">
 </head>
 
 <body>
@@ -39,6 +41,11 @@ $agents = $agents_stmt->fetchAll();
   endforeach;
   ?>
   <!-- system end -->
+
+  <?php
+  require(dirname(__FILE__) . "/parts/header.html");
+  ?>
+
 
 </body>
 
