@@ -34,4 +34,4 @@
       <div class="put-out-inquiry-box"><p>問い合わせBOXから出す</p></div>
       <div class="view-more-info"><p>詳しく見る ></p></div>
     </div>
-  </article>
+</article>
