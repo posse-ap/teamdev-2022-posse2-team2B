@@ -17,8 +17,9 @@ $tag_categories = $tag_categories_stmt->fetchAll();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>トップ</title>
-  <link rel="stylesheet" href="style/header.css">
+  <link rel="stylesheet" href="style/header/header.css">
   <link rel="stylesheet" href="style/reset.css">
+  <script src="https://kit.fontawesome.com/a60c81f350.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -44,6 +45,13 @@ $tag_categories = $tag_categories_stmt->fetchAll();
   <?php
   endforeach;
   ?>
+
+
+<?php
+  require(dirname(__FILE__) . "/parts/header.php");
+  ?>
+
+
 
   <!-- 検索フォーム -->
   <form action="./result.php" method="POST">
@@ -71,9 +79,6 @@ $tag_categories = $tag_categories_stmt->fetchAll();
   </form>
   <!-- system end -->
 
-  <?php
-  require(dirname(__FILE__) . "/parts/header.html");
-  ?>
 
 
 </body>
