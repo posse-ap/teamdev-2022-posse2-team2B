@@ -9,4 +9,4 @@ if (!$page_right) {
 // 権限名を取得
 $right_name_stmt = $db->prepare("SELECT right_name FROM rights WHERE id = ?");
 $right_name_stmt->execute([$pgdata['right_id']]);
-$pgdata['right_name'] = $right_name_stmt->fetch()['right_name'];
+$pgdata += array('right_name' => $right_name_stmt->fetch()['right_name']);
