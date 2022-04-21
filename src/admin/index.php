@@ -45,6 +45,7 @@ $page_cols_stmt = $db->prepare("SELECT * FROM maint_page_cols WHERE maint_page_i
 $page_cols_stmt->execute([$page_id]);
 $page_cols = $page_cols_stmt->fetchAll();
 
+// page_idによって表示するデータを変える
 include(dirname(__FILE__) . "/parts/_data-select.php");
 ?>
 
@@ -66,7 +67,7 @@ include(dirname(__FILE__) . "/parts/_data-select.php");
 
 <body>
   <?php
-  include(dirname(__FILE__) . "/parts/header.php");
+  include(dirname(__FILE__) . "/parts/_header.php");
   ?>
   <div class="container">
     <div class="area">
@@ -91,7 +92,7 @@ include(dirname(__FILE__) . "/parts/_data-select.php");
   </div>
 
   <script>
-    const nowPageId = <?= $page_id; ?>;
+  const nowPageId = <?= $page_id; ?>;
   </script>
   <script src="./script/script.js"></script>
 </body>

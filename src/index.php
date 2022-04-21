@@ -47,7 +47,7 @@ $tag_categories = $tag_categories_stmt->fetchAll();
   ?>
 
 
-<?php
+  <?php
   require(dirname(__FILE__) . "/parts/header.php");
   ?>
 
