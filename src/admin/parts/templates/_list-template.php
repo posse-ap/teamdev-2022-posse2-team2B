@@ -6,7 +6,7 @@ include(dirname(__FILE__) . '/../organisms/_header.php');
 <div class="container">
   <div class="area">
     <?php
-    include(dirname(__FILE__) . '/../molecules/_nav.php');
+    include(dirname(__FILE__) . '/../organisms/_side-bar.php');
     ?>
   </div>
   <div class="area">
@@ -18,4 +18,5 @@ include(dirname(__FILE__) . '/../organisms/_header.php');
 </div>
 
 <?php
+include(dirname(__FILE__) . '/../../script/script.js.php');
 include(dirname(__FILE__) . '/../atoms/_html-foot.php');
