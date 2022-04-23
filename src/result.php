@@ -26,9 +26,42 @@ $result_agents_stmt = $db->prepare(sprintf(
   FROM
     agents
   RIGHT JOIN agent_tags ON agents.id = agent_tags.agent_id
-  WHERE tag_id IN (%s)"
-, $in_clause));
+  WHERE tag_id IN (%s)",
+  $in_clause
+));
 $result_agents_stmt->execute($tags);
 $result_agents = $result_agents_stmt->fetchAll();
-
 print_r($result_agents);
+
+
+?>
+
+
+<ul>
+  <?php foreach ($result_agents as $result_agent) : ?>
+    <li>
+      <?= $result_agent["agent_name"] ?>
+      <button id="buttonOpen" onclick="openDB()">DBオープン</button>
+      <button id="buttonAdd" onclick='addData(<?= $result_agent["agent_id"] ?>)'>データ追加</button>
+      <form id='questionForm'>
+        <ul name='questionList' id='questionList' size=10>
+        </ul>
+      </form>
+      <input id='deleteBtn' type='button' value='問い合わせBOXから出す' />
+
+    </li>
+  <?php endforeach ?>
+</ul>
+<!-- <div id='questionBox'></div> -->
+
+
+
+<?php
+$resultAgents = json_encode($result_agent);
+?>
+<script>
+  var resultAgents = '<?= $resultAgents ?>'
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="/script/result.js"></script>
