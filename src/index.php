@@ -18,6 +18,7 @@ $tag_categories = $tag_categories_stmt->fetchAll();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>トップ</title>
   <link rel="stylesheet" href="style/header/header.css">
+  <link rel="stylesheet" href="style/user.css">
   <link rel="stylesheet" href="style/reset.css">
   <script src="https://kit.fontawesome.com/a60c81f350.js" crossorigin="anonymous"></script>
 </head>
@@ -46,10 +47,14 @@ $tag_categories = $tag_categories_stmt->fetchAll();
   endforeach;
   ?>
 
+  <?php
+  require(dirname(__FILE__) . "/parts/organisms/_header.php");
+  ?>
 
   <?php
-  require(dirname(__FILE__) . "/parts/header.php");
+  require(dirname(__FILE__) . "/parts/organisms/_agent-card.php");
   ?>
+
 
 
 
