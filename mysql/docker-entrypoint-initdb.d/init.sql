@@ -14,7 +14,6 @@ CREATE SCHEMA shukatsu;
 USE shukatsu;
 
 -- マスタ 問い合わせ関連
-
 DROP TABLE IF EXISTS schools;
 
 CREATE TABLE schools(
@@ -44,6 +43,7 @@ CREATE TABLE agents(
   agent_name VARCHAR(50) NOT NULL,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  start_at DATETIME NOT NULL,
   expires_at DATETIME NOT NULL,
   publication INT NOT NULL DEFAULT 1,
   evaluation1 INT,
@@ -52,7 +52,8 @@ CREATE TABLE agents(
   paragraph1 VARCHAR(2000),
   paragraph2 VARCHAR(2000),
   paragraph3 VARCHAR(2000),
-  paragraph4 VARCHAR(2000)
+  paragraph4 VARCHAR(2000),
+  url VARCHAR(100)
 );
 
 DROP TABLE IF EXISTS agent_contract;
@@ -62,7 +63,14 @@ CREATE TABLE agent_contract(
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  agent_id INT NOT NULL
+  agent_id INT NOT NULL,
+  address VARCHAR(100) NOT NULL,
+  tel VARCHAR(20) NOT NULL,
+  pres_name VARCHAR(20) NOT NULL,
+  pic_name VARCHAR(20) NOT NULL,
+  pic_tel VARCHAR(20) NOT NULL,
+  pic_email VARCHAR(50) NOT NULL,
+  notification_email VARCHAR(50) NOT NULL
 );
 
 DROP TABLE IF EXISTS tags;
@@ -109,7 +117,6 @@ CREATE TABLE rights(
 );
 
 -- トランザクション
-
 DROP TABLE IF EXISTS students;
 
 CREATE TABLE students(
@@ -180,6 +187,49 @@ VALUES
 
 -- ダミーデータ
 INSERT INTO
+  agent_contract(
+    agent_id,
+    address,
+    tel,
+    pres_name,
+    pic_name,
+    pic_tel,
+    pic_email,
+    notification_email
+  )
+VALUES
+  (
+    1,
+    '山口県下関市菊川町xx-xx',
+    '0831234567',
+    'ちいかわ',
+    'ウサギ',
+    '09088881111',
+    'tantouA@test',
+    'tsuuchi1@test'
+  ),
+  (
+    2,
+    '長崎県西彼杵郡時津町左底郷xx-xx',
+    '0831234567',
+    'カワウソ',
+    'ハチワレ',
+    '09088882222',
+    'tantouB@test',
+    'tsuuchi2@test'
+  ),
+  (
+    3,
+    '神奈川県横浜市港北区篠原東xx-xx',
+    '0831234567',
+    'シーサー',
+    '星',
+    '09088883333',
+    'tantouC@test',
+    'tsuuchi3@test'
+  );
+
+INSERT INTO
   accounts(email, password, name, agent_id, right_id)
 VALUES
   ('agent@test', sha1('teamdev'), '横山', NULL, 1),
@@ -189,6 +239,7 @@ VALUES
 INSERT INTO
   agents (
     agent_name,
+    start_at,
     expires_at,
     evaluation1,
     evaluation2,
@@ -196,11 +247,13 @@ INSERT INTO
     paragraph1,
     paragraph2,
     paragraph3,
-    paragraph4
+    paragraph4,
+    url
   )
 VALUES
   (
     'sample agent 1',
+    '2022-01-01 00:00:00',
     '2022-04-30 23:59:59',
     3,
     2,
@@ -208,10 +261,12 @@ VALUES
     'いってらっしゃい',
     'いってきます',
     'ただいま',
-    'おかえり'
+    'おかえり',
+    'www.agent1.com'
   ),
   (
     'sample agent 2',
+    '2022-02-01 00:00:00',
     '2022-05-31 23:59:59',
     5,
     3,
@@ -219,7 +274,21 @@ VALUES
     'こんにちは',
     'こんばんは',
     'いただきます',
-    'ごちそうさま'
+    'ごちそうさま',
+    'www.agent2.com'
+  ),
+  (
+    'sample agent 3',
+    '2021-10-01 00:00:00',
+    '2022-07-31 23:59:59',
+    2,
+    3,
+    3,
+    'ありがとう',
+    'どういたしまして',
+    'ご無沙汰しております',
+    'お騒がせしました',
+    'www.agent2.com'
   );
 
 INSERT INTO
@@ -269,18 +338,34 @@ VALUES
     '詳しく知りたいです。よろしくお願いします。'
   ),
   (
-  2,
-  '横山健人',
-  'ヨコヤマケント',
-  'student2@test',
-  '09034567890',
-  '888',
-  '理工学部',
-  '情報工学科',
-  '2025',
-  '1234567',
-  '99',
-  '港区南青山',
-  '',
-  '詳しく知りたいです。よろしくお願いします。'
-);
+    2,
+    '横山健人',
+    'ヨコヤマケント',
+    'student2@test',
+    '09034567890',
+    '888',
+    '理工学部',
+    '情報工学科',
+    '2025',
+    '1234567',
+    '99',
+    '港区南青山',
+    '',
+    '詳しく知りたいです。よろしくお願いしまっす。'
+  ),
+  (
+    2,
+    '田上黎',
+    'タノウエレイ',
+    'student3@test',
+    '09034567890',
+    '888',
+    '理工学部',
+    '情報工学科',
+    '2025',
+    '1234567',
+    '99',
+    '港区南青山',
+    '',
+    '詳しく知りたいです。よろしくお願いしまうす。'
+  );

@@ -9,6 +9,22 @@ $pgdata = array();
 $pgdata += array('right_id' => $_SESSION['right_id']);
 $pgdata += array('page_id' => 0);
 $pgdata += array('page_title' => $pages[$pgdata['page_id']]['title']);
+$pgdata += array('table_data' => [
+  'th' => ['申込日時', '氏名', 'メールアドレス', '電話番号', '卒業年', '詳細'],
+  'tr' => array()
+]);
+
+// テーブルに追加するデータ
+$trs_stmt = $db->query(
+  "SELECT
+    created_at, student_name, email, tel, graduate_year
+  FROM
+    students"
+);
+$trs = $trs_stmt->fetchAll();
+foreach ($trs as $tr) :
+  array_push($pgdata['table_data']['tr'], [$tr['created_at'], $tr['student_name'], $tr['email'], $tr['tel'], $tr['graduate_year'], '<a>詳細</a>']);
+endforeach;
 
 require(dirname(__FILE__) . "/app/right-check.php");
 require(dirname(__FILE__) . "/app/fetch-account-name.php");

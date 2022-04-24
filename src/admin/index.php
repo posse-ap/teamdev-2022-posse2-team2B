@@ -1,7 +1,7 @@
 <?php
 session_start();
 require(dirname(__FILE__) . "/../dbconnect.php");
-require(dirname(__FILE__) . "/parts/login-check.php");
+require(dirname(__FILE__) . "/app/login-check.php");
 
 // 権限判定
 $right = $_SESSION['right_id'];
