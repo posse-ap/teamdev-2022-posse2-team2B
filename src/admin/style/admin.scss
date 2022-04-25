@@ -32,4 +32,8 @@
   }
 }
 
-
+.nav {
+  &__item {
+    cursor: pointer;
+  }
+}

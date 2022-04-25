@@ -12,7 +12,7 @@ include(dirname(__FILE__) . '/../organisms/_header.php');
   <div class="area">
     <?php
     include(dirname(__FILE__) . '/../atoms/_title.php');
-    include(dirname(__FILE__) . '/../molecules/_table.php');
+    include(dirname(__FILE__) . '/../molecules/_info-table.php');
     ?>
   </div>
 </div>
