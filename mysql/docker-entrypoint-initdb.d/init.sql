@@ -14,7 +14,6 @@ CREATE SCHEMA shukatsu;
 USE shukatsu;
 
 -- マスタ 問い合わせ関連
-
 DROP TABLE IF EXISTS schools;
 
 CREATE TABLE schools(
@@ -44,6 +43,7 @@ CREATE TABLE agents(
   agent_name VARCHAR(50) NOT NULL,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  start_at DATETIME NOT NULL,
   expires_at DATETIME NOT NULL,
   publication INT NOT NULL DEFAULT 1,
   evaluation1 INT,
@@ -52,7 +52,8 @@ CREATE TABLE agents(
   paragraph1 VARCHAR(2000),
   paragraph2 VARCHAR(2000),
   paragraph3 VARCHAR(2000),
-  paragraph4 VARCHAR(2000)
+  paragraph4 VARCHAR(2000),
+  url VARCHAR(100)
 );
 
 DROP TABLE IF EXISTS agent_contract;
@@ -62,7 +63,14 @@ CREATE TABLE agent_contract(
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  agent_id INT NOT NULL
+  agent_id INT NOT NULL,
+  address VARCHAR(100) NOT NULL,
+  tel VARCHAR(20) NOT NULL,
+  pres_name VARCHAR(20) NOT NULL,
+  pic_name VARCHAR(20) NOT NULL,
+  pic_tel VARCHAR(20) NOT NULL,
+  pic_email VARCHAR(50) NOT NULL,
+  notification_email VARCHAR(50) NOT NULL
 );
 
 DROP TABLE IF EXISTS tags;
@@ -108,33 +116,7 @@ CREATE TABLE rights(
   right_name VARCHAR(50)
 );
 
-DROP TABLE IF EXISTS maint_pages;
-
-CREATE TABLE maint_pages(
-  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  page_name VARCHAR(20) NOT NULL,
-  page_type VARCHAR(20) NOT NULL,
-  on_nav INT NOT NULL
-);
-
-DROP TABLE IF EXISTS maint_page_rights;
-
-CREATE TABLE maint_page_rights(
-  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  page_id INT NOT NULL,
-  right_id INT NOT NULL
-);
-
-DROP TABLE IF EXISTS maint_page_cols;
-
-CREATE TABLE maint_page_cols(
-  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  maint_page_id INT NOT NULL,
-  col VARCHAR(20) NOT NULL
-);
-
 -- トランザクション
-
 DROP TABLE IF EXISTS students;
 
 CREATE TABLE students(
@@ -203,110 +185,61 @@ VALUES
   ('年収査定診断', 4),
   ('オンライン面接', 4);
 
-INSERT INTO
-  maint_pages (page_name, page_type, on_nav)
-VALUES
-  ('学生情報一覧', 'list', 1),
-  ('エージェント一覧', 'list', 1),
-  ('アカウント一覧', 'list', 1),
-  ('マイアカウント', 'info', 1),
-  ('登録情報', 'info', 1),
-  ('請求情報', 'info', 1),
-  ('学生情報詳細', 'info', 0),
-  ('エージェント情報詳細', 'info', 0),
-  ('アカウント作成・変更', 'form', 0);
-
-INSERT INTO
-  maint_page_rights(page_id, right_id)
-VALUES
-  (1, 0),
-  (1, 1),
-  (1, 2),
-  (2, 1),
-  (2, 2),
-  (3, 2),
-  (4, 1),
-  (4, 2),
-  (5, 0),
-  (6, 0),
-  (7, 1),
-  (7, 2),
-  (8, 1),
-  (8, 2),
-  (9, 2);
-
-INSERT INTO
-  maint_page_cols(maint_page_id, col)
-VALUES
-  (1, '問い合わせ日時'),
-  (1, '氏名'),
-  (1, 'メールアドレス'),
-  (1, '電話番号'),
-  (1, '卒業年'),
-  (1, '詳細'),
-  (2, '会社名'),
-  (2, '担当者氏名'),
-  (2, '担当者メールアドレス'),
-  (2, '担当者電話番号'),
-  (2, '掲載期間'),
-  (3, '氏名'),
-  (3, 'メールアドレス'),
-  (3, 'パスワード'),
-  (3, 'アクセス権限'),
-  (3, '変更'),
-  (4, '氏名'),
-  (4, 'メールアドレス'),
-  (4, 'パスワード'),
-  (4, 'アクセス権限'),
-  (5, '会社名'),
-  (5, '会社所在地'),
-  (5, '会社URL'),
-  (5, '会社電話番号'),
-  (5, '代表者氏名'),
-  (5, '担当者氏名'),
-  (5, '担当者電話番号'),
-  (5, '担当者メールアドレス'),
-  (5, '通知用メールアドレス'),
-  (5, '契約期間'),
-  (5, '項目を追加'),
-  (6, '請求日'),
-  (6, '請求額'),
-  (6, '対象月'),
-  (6, 'ステータス'),
-  (7, '氏名'),
-  (7, 'メールアドレス'),
-  (7, '電話番号'),
-  (7, '住所'),
-  (7, '大学名'),
-  (7, '学部学科'),
-  (7, '卒業年'),
-  (7, '生年月日'),
-  (7, '性別'),
-  (7, '問い合わせ内容'),
-  (7, '自由記入欄'),
-  (8, '会社名'),
-  (8, '会社所在地'),
-  (8, '会社URL'),
-  (8, '会社電話番号'),
-  (8, '代表者氏名'),
-  (8, '担当者氏名'),
-  (8, '担当者電話番号'),
-  (8, '担当者メールアドレス'),
-  (8, '通知用メールアドレス'),
-  (8, '契約期間'),
-  (8, '項目を追加');
-
 -- ダミーデータ
+INSERT INTO
+  agent_contract(
+    agent_id,
+    address,
+    tel,
+    pres_name,
+    pic_name,
+    pic_tel,
+    pic_email,
+    notification_email
+  )
+VALUES
+  (
+    1,
+    '山口県下関市菊川町xx-xx',
+    '0831234567',
+    'ちいかわ',
+    'ウサギ',
+    '09088881111',
+    'tantouA@test',
+    'tsuuchi1@test'
+  ),
+  (
+    2,
+    '長崎県西彼杵郡時津町左底郷xx-xx',
+    '0831234567',
+    'カワウソ',
+    'ハチワレ',
+    '09088882222',
+    'tantouB@test',
+    'tsuuchi2@test'
+  ),
+  (
+    3,
+    '神奈川県横浜市港北区篠原東xx-xx',
+    '0831234567',
+    'シーサー',
+    '星',
+    '09088883333',
+    'tantouC@test',
+    'tsuuchi3@test'
+  );
+
 INSERT INTO
   accounts(email, password, name, agent_id, right_id)
 VALUES
-  ('agent@test', sha1('teamdev'), '横山', NULL, 0),
-  ('boozer@test', sha1('teamdev'), '青柳', NULL, 1),
-  ('admin@test', sha1('teamdev'), '田上', NULL, 2);
+  ('agent@test', sha1('teamdev'), '横山', NULL, 1),
+  ('boozer@test', sha1('teamdev'), '青柳', NULL, 2),
+  ('admin@test', sha1('teamdev'), '田上', NULL, 3);
 
 INSERT INTO
   agents (
     agent_name,
+    start_at,
     expires_at,
     evaluation1,
     evaluation2,
@@ -314,11 +247,13 @@ INSERT INTO
     paragraph1,
     paragraph2,
     paragraph3,
-    paragraph4
+    paragraph4,
+    url
   )
 VALUES
   (
     'sample agent 1',
+    '2022-01-01 00:00:00',
     '2022-04-30 23:59:59',
     3,
     2,
@@ -326,10 +261,12 @@ VALUES
     'いってらっしゃい',
     'いってきます',
     'ただいま',
-    'おかえり'
+    'おかえり',
+    'www.agent1.com'
   ),
   (
     'sample agent 2',
+    '2022-02-01 00:00:00',
     '2022-05-31 23:59:59',
     5,
     3,
@@ -337,7 +274,21 @@ VALUES
     'こんにちは',
     'こんばんは',
     'いただきます',
-    'ごちそうさま'
+    'ごちそうさま',
+    'www.agent2.com'
+  ),
+  (
+    'sample agent 3',
+    '2021-10-01 00:00:00',
+    '2022-07-31 23:59:59',
+    2,
+    3,
+    3,
+    'ありがとう',
+    'どういたしまして',
+    'ご無沙汰しております',
+    'お騒がせしました',
+    'www.agent2.com'
   );
 
 INSERT INTO
@@ -387,18 +338,34 @@ VALUES
     '詳しく知りたいです。よろしくお願いします。'
   ),
   (
-  2,
-  '横山健人',
-  'ヨコヤマケント',
-  'student2@test',
-  '09034567890',
-  '888',
-  '理工学部',
-  '情報工学科',
-  '2025',
-  '1234567',
-  '99',
-  '港区南青山',
-  '',
-  '詳しく知りたいです。よろしくお願いします。'
-);
+    2,
+    '横山健人',
+    'ヨコヤマケント',
+    'student2@test',
+    '09034567890',
+    '888',
+    '理工学部',
+    '情報工学科',
+    '2025',
+    '1234567',
+    '99',
+    '港区南青山',
+    '',
+    '詳しく知りたいです。よろしくお願いしまっす。'
+  ),
+  (
+    2,
+    '田上黎',
+    'タノウエレイ',
+    'student3@test',
+    '09034567890',
+    '888',
+    '理工学部',
+    '情報工学科',
+    '2025',
+    '1234567',
+    '99',
+    '港区南青山',
+    '',
+    '詳しく知りたいです。よろしくお願いしまうす。'
+  );

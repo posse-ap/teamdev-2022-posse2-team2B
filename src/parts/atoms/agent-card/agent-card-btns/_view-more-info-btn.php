@@ -1,0 +1,1 @@
+<div class="view-more-info"><p>詳しく見る ></p></div>

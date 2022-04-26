@@ -1,0 +1,1 @@
+<div class="put-into-inquiry-box"><p>問い合わせBOXに入れる</p></div>
