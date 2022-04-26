@@ -49,9 +49,9 @@
     mb_send_mail($email, $mail_sub, $mail_body, $mail_head);
 
     $sql = 'INSERT INTO students(
-    inquiry_option_id
-    student_name
-    student_name_ruby
+    inquiry_option_id,
+    student_name,
+    student_name_ruby,
     email,
     tel,
     school_id,
@@ -62,11 +62,11 @@
     pref_id,
     address,
     building,
-    optional_comment)VALUES("' . $inquiry_option_id . '","' . $student_name . '","' . $student_name_ruby . '""' . $email . '","' . $tel . '","' . $school_id . '","' . $faculty . '","' . $department . '","' . $graduate_year . '","' . $postal_code . '","' . $pref_id . '","' . $address . '","' . $building . '","' . $optional_comment . '")';
+    optional_comment)VALUES("' . $inquiry_option_id . '","' . $student_name . '","' . $student_name_ruby . '","' . $email . '","' . $tel . '","' . $school_id . '","' . $faculty . '","' . $department . '","' . $graduate_year . '","' . $postal_code . '","' . $pref_id . '","' . $address . '","' . $building . '","' . $optional_comment . '")';
     $stmt = $db->prepare($sql);
     $stmt->execute();
 
-    $pdo = null;
+    // $pdo = null;
     ?>
     <ul>
       <li><a href="index.php">トップページに戻る</a></li>
