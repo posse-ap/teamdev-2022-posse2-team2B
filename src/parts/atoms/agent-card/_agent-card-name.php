@@ -1,3 +1,3 @@
 <div class="agent-card-agent-name">
-  <h3>DiG UP CAREER</h3>
+  <h3>エージェント名変数</h3>
 </div>

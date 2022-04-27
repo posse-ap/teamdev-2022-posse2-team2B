@@ -17,7 +17,7 @@ $tag_categories = $tag_categories_stmt->fetchAll();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>トップ</title>
-  <link rel="stylesheet" href="style/header/header.css">
+  <!-- <link rel="stylesheet" href="style/header/header.css"> -->
   <link rel="stylesheet" href="style/user.css">
   <link rel="stylesheet" href="style/reset.css">
   <script src="https://kit.fontawesome.com/a60c81f350.js" crossorigin="anonymous"></script>
@@ -51,15 +51,25 @@ $tag_categories = $tag_categories_stmt->fetchAll();
   require(dirname(__FILE__) . "/parts/organisms/_header.php");
   ?>
 
-  <?php
+  <!-- <?php
   require(dirname(__FILE__) . "/parts/organisms/_agent-card.php");
+  ?> -->
+
+
+
+
+  <!-- 検索フォームアトミックデザインのやり方でやる -->
+
+  <?php
+  require(dirname(__FILE__) . "/parts/organisms/_search-area.php");
   ?>
 
 
 
 
+
   <!-- 検索フォーム -->
-  <form action="./result.php" method="POST">
+  <!-- <form action="./result.php" method="POST">
     <?php
     foreach ($tag_categories as $tag_category) :
       $tags_stmt = $db->prepare("SELECT * FROM tags WHERE tag_category_id = ?");
@@ -81,10 +91,13 @@ $tag_categories = $tag_categories_stmt->fetchAll();
     <p>
       <input type="submit" value="検索" name="search">
     </p>
-  </form>
+  </form> -->
   <!-- system end -->
 
 
+  <?php
+  require(dirname(__FILE__) . "/parts/organisms/_agent-list-area.php");
+  ?>
 
 </body>
 

@@ -144,19 +144,21 @@ html {
   color: white;
 }
 
-section {
+.Section {
   width: 100%;
+  margin: 30px 0px;
 }
-section .section-title {
+.Section__title {
   background-color: #52A39A;
   width: 100%;
+  margin-bottom: 30px;
 }
-section .section-title p {
+.Section__title p {
   color: white;
   font-size: 2rem;
   margin-left: 2.5%;
 }
-section .section-content {
+.Section__content {
   margin: 0 auto;
   width: 95%;
 }
@@ -224,5 +226,21 @@ section .section-content {
 
 input[type=checkbox]:checked + .checkbox01::after {
   opacity: 1;
+}
+
+.Section__inner-heading {
+  margin: 10px 0px;
+  padding: 8px;
+  border-left: 3px solid #52A39A;
+}
+.Section__inner-heading p {
+  font-size: 1.5rem;
+}
+
+.Search__tag__label {
+  background: white;
+}
+.Search__tag__label:checked {
+  background: #52A39A;
 }
 /*# sourceMappingURL=user.css.map */
