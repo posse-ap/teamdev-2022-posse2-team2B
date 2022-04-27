@@ -1,4 +1,4 @@
-<table border="1">
+<table border="1" class="list_table">
   <tr>
     <?php foreach ($pgdata['table_data']['th'] as $th) : ?>
       <th><?= $th; ?></th>

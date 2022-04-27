@@ -8,8 +8,8 @@ $nav_items = array_filter($pages, function ($el) {
 });
 ?>
 
-<div class="nav-spacer"></div>
-<div class="side-bar">
+<div class="side_bar__nav">
+  <div class="side_bar__nav__spacer"></div>
   <table>
     <?php
     // $nav_items ... [ページタイトル, ページタイトル, ...]

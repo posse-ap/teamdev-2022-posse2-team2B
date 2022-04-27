@@ -18,7 +18,7 @@ $trs = $trs_stmt->fetch();
 
 $pgdata = array();
 $pgdata += array('right_id' => $_SESSION['right_id']);
-$pgdata += array('page_id' => 3);
+$pgdata += array('page_id' => 6);
 $pgdata += array('page_title' => $pages[$pgdata['page_id']]['title']);
 $pgdata += array('info_table' => [
   'tr' => [

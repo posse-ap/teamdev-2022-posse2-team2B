@@ -1,5 +1,5 @@
 <div>
   <form action="" method="POST">
-    <input type="submit" name="logout" value="ログアウト">
+    <button name="logout" class="side_bar__logout_btn">ログアウト</button>
   </form>
 </div>
