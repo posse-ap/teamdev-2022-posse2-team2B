@@ -17,7 +17,7 @@ $tag_categories = $tag_categories_stmt->fetchAll();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>トップ</title>
-  <link rel="stylesheet" href="style/header/header.css">
+  <!-- <link rel="stylesheet" href="style/header/header.css"> -->
   <link rel="stylesheet" href="style/user.css">
   <link rel="stylesheet" href="style/reset.css">
   <script src="https://kit.fontawesome.com/a60c81f350.js" crossorigin="anonymous"></script>
@@ -51,15 +51,25 @@ $tag_categories = $tag_categories_stmt->fetchAll();
   require(dirname(__FILE__) . "/parts/organisms/_header.php");
   ?>
 
-  <?php
+  <!-- <?php
   require(dirname(__FILE__) . "/parts/organisms/_agent-card.php");
+  ?> -->
+
+
+
+
+  <!-- 検索フォームアトミックデザインのやり方でやる -->
+
+  <?php
+  require(dirname(__FILE__) . "/parts/organisms/_search-area.php");
   ?>
 
 
 
 
+
   <!-- 検索フォーム -->
-  <form action="./result.php" method="POST">
+  <!-- <form action="./result.php" method="POST">
     <?php
     foreach ($tag_categories as $tag_category) :
       $tags_stmt = $db->prepare("SELECT * FROM tags WHERE tag_category_id = ?");
@@ -81,7 +91,7 @@ $tag_categories = $tag_categories_stmt->fetchAll();
     <p>
       <input type="submit" value="検索" name="search">
     </p>
-  </form>
+  </form> -->
   <!-- system end -->
 
   <!-- ボックス追加機能 -->
@@ -89,6 +99,10 @@ $tag_categories = $tag_categories_stmt->fetchAll();
   <h3>お問合せBOX</h3>
   <ul id="box"></ul>
 </p>
+
+  <?php
+  require(dirname(__FILE__) . "/parts/organisms/_agent-list-area.php");
+  ?>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.0-alpha.2/dexie.min.js" integrity="sha512-YVHSEwMLRaQHvifwu/g/7OeZPCGaBSAe44gR74njhuIBt1XBtS+NNo1hXyJ1nE3zzBV0ImktKwMxBYMwiaMVhA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="./script/box.js"></script>
