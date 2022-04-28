@@ -1,3 +1,3 @@
   <div class="submit">
-    <input type="button" value="新規作成">
+    <button id="btn" class="btn"><?= $pgdata['btn']['title']; ?></button>
   </div>
