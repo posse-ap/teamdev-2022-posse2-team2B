@@ -1,7 +1,8 @@
+<div class="Search__tag__wrapper">
+  <div class="Search__tag">
 
-<div class="Search__tag">
+    <input type="checkbox" name="searchTag" id="searchTag" value="on"><label class="Search__tag__label" for="searchTag">タグ内文字列</label></input>
 
-  <input name="name" type="checkbox" id="tag" class="Search__tag__cb">
-  <label for="tag" class="Search__tag__label">タグ文字列</label>
-  
+  </div>
+
 </div>
