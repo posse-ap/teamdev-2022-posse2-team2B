@@ -200,6 +200,7 @@ html {
 }
 .Search__tag__wrapper .Search__tag {
   margin-right: 10px;
+  margin-bottom: 10px;
 }
 .Search__tag__wrapper .Search__tag input[type=checkbox]#searchTag {
   display: none;
@@ -214,5 +215,19 @@ html {
   background: #52A39A;
   color: white;
   border: solid #52A39A;
+}
+
+.Search__btn {
+  text-align: center;
+}
+.Search__btn button {
+  background-color: #52A39A;
+  color: white;
+  padding: 10px 80px;
+  border-radius: 10px;
+  border: solid 1px #52A39A;
+}
+.Search__btn button span {
+  font-weight: bold;
 }
 /*# sourceMappingURL=user.css.map */
