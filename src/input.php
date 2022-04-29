@@ -32,15 +32,15 @@ require(dirname(__FILE__) . "/dbconnect.php");
   </head>
 
   <body>
-    <form action="check.php" method="post" id="inquiry">
-      <h2>お問い合わせメールフォーム</h2>
-      <p>このフォームはphpの練習で作成したサンプルです。</p>
-
+    <script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
+    <form action="check.php" method="post" id="inquiry"  class="h-adr">
       <table summary="お問い合わせに関する入力項目名とその入力欄">
         <tr>
           <th><label for="inquiry_option_id">お問い合わせ内容</label></th>
           <td>
             <input type="radio" name="inquiry_option_id" value="1" id="one"><label for="one">1</label>
+            <input type="radio" name="inquiry_option_id" value="2" id="one"><label for="two">2</label>
+            <input type="radio" name="inquiry_option_id" value="3" id="one"><label for="three">3</label>
           </td>
         </tr>
         <tr>
@@ -79,17 +79,19 @@ require(dirname(__FILE__) . "/dbconnect.php");
               <option value="2026">26卒</option>
             </select></td>
         </tr>
+        <!-- 自動入力に必要な項目だから消さないで -->
+        <span class="p-country-name" style="display:none;">Japan</span>
         <tr>
           <th><label for="postal_code">郵便番号</label></th>
-          <td><input type="text" name="postal_code" size="30" id="postal_code" placeholder="例1234567" required></td>
+          <td><input type="text" name="postal_code" size="8" id="postal_code" class="p-postal-code" placeholder="例)1234567" required></td>
         </tr>
         <tr>
           <th><label for="pref_id">都道府県</label></th>
-          <td><input type="text" name="pref_id" size="30" id="pref_id" placeholder="例）"></td>
+          <td><input type="text" name="pref_id" size="30" id="pref_id" placeholder="例）東京都" class="p-region"></td>
         </tr>
         <tr>
-          <th><label for="address">住所</label></th>
-          <td><input type="text" name="address" size="30" id="address" placeholder="例）東京都港区南青山" required></td>
+          <th><label for="address">市区町村・町名番地</label></th>
+          <td><input type="text" name="address" size="30" id="address" placeholder="例）東京都港区南青山" class="p-locality p-street-address p-extended-address" required></td>
         </tr>
         <tr>
           <th><label for="building">建物・部屋番号</label></th>
@@ -99,11 +101,19 @@ require(dirname(__FILE__) . "/dbconnect.php");
           <th><label for="optional_comment">お問い合わせの内容</label></th>
           <td><input type="text" name="optional_comment" size="30" id="optional_comment" placeholder="例）コメント"></td>
         </tr>
+        <script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
       </table>
+
       <div class="submit">
         <input type="submit" value="確認画面へ">
       </div>
     </form>
+    <!-- <span class="p-country-name" style="display:none;">Japan</span>
+    郵便番号：<input type="text" class="p-postal-code" size="8" maxlength="8"><br>
+    都道府県：<input type="text" class="p-region" /><br>
+    地区町村：<input type="text" class="p-locality" /><br>
+    町名番地：<input type="text" class="p-street-address p-extended-address" /> -->
+
   </body>
 
   </html>
