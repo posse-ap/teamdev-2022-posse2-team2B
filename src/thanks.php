@@ -62,9 +62,41 @@
     pref_id,
     address,
     building,
-    optional_comment)VALUES("' . $inquiry_option_id . '","' . $student_name . '","' . $student_name_ruby . '","' . $email . '","' . $tel . '","' . $school_id . '","' . $faculty . '","' . $department . '","' . $graduate_year . '","' . $postal_code . '","' . $pref_id . '","' . $address . '","' . $building . '","' . $optional_comment . '")';
+    optional_comment)
+    VALUES(
+    :inquiry_option_id,
+    :student_name,
+    :student_name_ruby,
+    :email,
+    :tel,
+    :school_id,
+    :faculty,
+    :department,
+    :graduate_year,
+    :postal_code,
+    :pref_id,
+    :building,
+    :address,
+    :optional_comment)';
     $stmt = $db->prepare($sql);
-    $stmt->execute();
+    $stmt->execute(
+      array(
+        'inquiry_option_id' => $inquiry_option_id,
+        'student_name' => $student_name,
+        'student_name_ruby' => $student_name_ruby,
+        'email' => $email,
+        'tel' => $tel,
+        'school_id' => $school_id,
+        'faculty' => $faculty,
+        'department' => $department,
+        'graduate_year' => $graduate_year,
+        'postal_code' => $postal_code,
+        'pref_id' => $pref_id,
+        'building' => $building,
+        'address' => $address,
+        'optional_comment' => $optional_comment
+      )
+    );
 
     // $pdo = null;
     ?>
