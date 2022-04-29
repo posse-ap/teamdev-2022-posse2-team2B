@@ -4,12 +4,12 @@ include(dirname(__FILE__) . '/../organisms/_header.php');
 ?>
 
 <div class="container">
-  <div class="area">
+  <div class="area area_side">
     <?php
     include(dirname(__FILE__) . '/../organisms/_side-bar.php');
     ?>
   </div>
-  <div class="area">
+  <div class="area area_main">
     <?php
     include(dirname(__FILE__) . '/../atoms/_title.php');
     include(dirname(__FILE__) . '/../molecules/_info-table.php');

@@ -20,11 +20,12 @@ $pages = array(
     'show_nav' => true,
     'right' => [3]
   ],
-  3 => [
-    'title' => 'マイアカウント',
-    'name' => 'myaccount.php',
+  3 =>
+  [
+    'title' => 'アカウント作成・変更',
+    'name' => 'account-maint.php',
     'show_nav' => true,
-    'right' => [2, 3]
+    'right' => [3]
   ],
   4 => [
     'title' => '学生情報詳細',
@@ -39,10 +40,10 @@ $pages = array(
     'right' => [2, 3]
   ],
   6 => [
-    'title' => 'アカウント作成・変更',
-    'name' => 'account-maint.php',
-    'show_nav' => false,
-    'right' => [3]
+    'title' => 'マイアカウント',
+    'name' => 'myaccount.php',
+    'show_nav' => true,
+    'right' => [2, 3]
   ],
   7 => [
     'title' => '登録情報',

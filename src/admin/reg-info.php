@@ -38,7 +38,6 @@ if ($trs) {
       '契約期間' => $trs['start_at'] . '~' . $trs['expires_at']
     ]
   ]);
-  print_r($pgdata['info_table']['tr']);
 }
 
 require(dirname(__FILE__) . "/app/right-check.php");

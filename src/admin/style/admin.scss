@@ -1,6 +1,15 @@
+// ボタン
+.btn {
+  background-color: #f3af55;
+  padding: 0.5rem 3rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 2px #aaa;
+}
+
 // ヘッダー
 .header {
   padding: 10px 40px 10px;
+  z-index: 10;
   position: fixed;
   top: 0;
   width: 100%;
@@ -21,19 +30,130 @@
 
 // エリア
 .container {
+  width: calc(100vw - 80px);
+  height: calc(100vh - 130px);
+  margin: 40px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 40px;
 }
 .area {
+  height: 100%;
+  &_side {
+    width: calc(25% - 20px);
+  }
+  &_main {
+    width: calc(75% - 20px);
+  }
   &__title {
     width: 100%;
-    font-size: 1.7rem;
+    font-size: 1.8rem;
+    height: 3rem;
+    display: flex;
   }
 }
 
-.nav {
-  &__item {
-    cursor: pointer;
+.side_bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  &__nav {
+    &__spacer {
+      height: 3rem;
+    }
+    &__item {
+      min-width: 16rem;
+      font-size: 1.4rem;
+      cursor: pointer;
+      border: solid 1px #ccc;
+      padding: 10px;
+    }
+  }
+
+  &__logout_btn {
+    background-color: #eee;
+    margin: 10px;
+    padding: 0.4rem 0.8rem;
+    border-radius: 2px;
+    box-shadow: 0 2px 2px #aaa;
+  }
+}
+
+.list_table,
+.info_table {
+  border: solid 1px #000;
+  width: 100%;
+  & tr {
+    border: solid 1px #000;
+    & th,
+    td {
+      border: solid 1px #000;
+      padding: 0.3rem 0.6rem;
+    }
+    & th {
+      font-size: 1.4rem;
+    }
+  }
+}
+
+// _acc-form.php, _change-acc-form.php
+.account_form {
+  width: 100%;
+  background-color: #eee;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  & form {
+    width: 100%;
+  }
+  &__sec {
+    display: flex;
+    width: 100%;
+    margin: 1rem 0;
+    gap: 40px;
+    align-items: center;
+    & input {
+      background-color: #fff;
+      border-radius: 4px;
+      width: 60%;
+      height: 2rem;
+      padding: 0 1rem;
+      box-shadow: 0 2px 2px #ccc;
+    }
+    &__title {
+      width: calc(40% - 20px);
+      text-align: end;
+    }
+    &__box {
+      width: calc(60% - 20px);
+      &__label {
+        position: relative;
+        &::after {
+          content: ">";
+          transform: rotate(90deg);
+          display: inline-block;
+          color: #ccc;
+          width: 1.6rem;
+          height: 1.6rem;
+          font-size: 1.4rem;
+          position: absolute;
+          right: -0.2rem;
+          top: 0.2rem;
+        }
+        &__select {
+          background-color: #fff;
+          border-radius: 4px;
+          width: 50%;
+          height: 2rem;
+          line-height: 200%;
+          padding: 0 1rem;
+          box-shadow: 0 2px 2px #ccc;
+        }
+      }
+
+    }
   }
 }
