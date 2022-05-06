@@ -1,4 +1,5 @@
 <?php
+phpinfo();
 require(dirname(__FILE__) . "/dbconnect.php");
 
 // 掲載期間内かつ公開設定1(公開)である全エージェント情報を取得
