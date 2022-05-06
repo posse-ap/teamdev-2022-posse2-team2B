@@ -17,13 +17,13 @@ $pgdata += array('table_data' => [
 // テーブルに追加するデータ
 $trs_stmt = $db->query(
   "SELECT
-    created_at, student_name, email, tel, graduate_year
+    created_at, student_name, email, tel, graduate_year,id
   FROM
     students"
 );
 $trs = $trs_stmt->fetchAll();
 foreach ($trs as $tr) :
-  array_push($pgdata['table_data']['tr'], [$tr['created_at'], $tr['student_name'], $tr['email'], $tr['tel'], $tr['graduate_year'], '<a>詳細</a>']);
+  array_push($pgdata['table_data']['tr'], [$tr['created_at'], $tr['student_name'], $tr['email'], $tr['tel'], $tr['graduate_year'], '<a href="student-info.php?id='.$tr["id"].'">詳細</a>']);
 endforeach;
 
 require(dirname(__FILE__) . "/app/right-check.php");

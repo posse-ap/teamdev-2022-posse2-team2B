@@ -12,7 +12,8 @@ include(dirname(__FILE__) . '/../organisms/_header.php');
   <div class="area area_main">
     <?php
     include(dirname(__FILE__) . '/../atoms/_title.php');
-    include(dirname(__FILE__) . '/../molecules/_info-table.php');
+    // include(dirname(__FILE__) . '/../molecules/_info-table.php');
+    include(dirname(__FILE__) . '/../molecules/_detail-table.php');
     ?>
   </div>
 </div>

@@ -32,4 +32,22 @@ if ($page_id == 1) {
     LEFT JOIN rights ON accounts.right_id = rights.id - 1"
   );
   $data = $data_stmt->fetchAll();
-}
+} elseif($right == 1 && $page_id == 4) {
+  $data_stmt = $db->query(
+    "SELECT
+    student_name,
+    email,
+    tel,
+    school_id,
+    faculty,
+    department,
+    graduate_year,
+    CONCAT(
+    pref_id,
+    address,
+    building)as fulladdress,
+    optional_comment
+    FROM
+      students"
+  );
+  $data = $data_stmt->fetchAll();}
