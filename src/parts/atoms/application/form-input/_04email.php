@@ -1,0 +1,1 @@
+<input type="e-mail" class="Application-form__input__glay-border">

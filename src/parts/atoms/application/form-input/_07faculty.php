@@ -1,0 +1,1 @@
+<input type="text" class="Application-form__input__glay-border">

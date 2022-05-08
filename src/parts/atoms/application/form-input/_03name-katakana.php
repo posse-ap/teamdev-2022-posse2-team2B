@@ -1,0 +1,1 @@
+<input pattern="[\u30A1-\u30F6]*" class="Application-form__name Application-form__input__glay-border" id="nameKanji">
