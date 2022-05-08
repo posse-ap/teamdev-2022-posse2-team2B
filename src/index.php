@@ -51,12 +51,14 @@ $tag_categories = $tag_categories_stmt->fetchAll();
   require(dirname(__FILE__) . "/parts/organisms/_header.php");
   ?>
 
-  <!-- <?php
-  require(dirname(__FILE__) . "/parts/organisms/_agent-card.php");
-  ?> -->
 
 
+<?php
 
+require(dirname(__FILE__) . "/parts/organisms/_how-to.php");
+
+
+?>
 
   <!-- 検索フォームアトミックデザインのやり方でやる -->
 
@@ -64,12 +66,12 @@ $tag_categories = $tag_categories_stmt->fetchAll();
   require(dirname(__FILE__) . "/parts/organisms/_search-area.php");
   ?>
 
-
+  
 
 
 
   <!-- 検索フォーム -->
-  <!-- <form action="./result.php" method="POST">
+  <form action="./result.php" method="POST">
     <?php
     foreach ($tag_categories as $tag_category) :
       $tags_stmt = $db->prepare("SELECT * FROM tags WHERE tag_category_id = ?");
@@ -91,7 +93,7 @@ $tag_categories = $tag_categories_stmt->fetchAll();
     <p>
       <input type="submit" value="検索" name="search">
     </p>
-  </form> -->
+  </form>
   <!-- system end -->
 
   <!-- ボックス追加機能 -->
@@ -100,9 +102,53 @@ $tag_categories = $tag_categories_stmt->fetchAll();
   <ul id="box"></ul>
 </p>
 
+
+
   <?php
+  // トップページの掲載エージェント一覧のエリア
   require(dirname(__FILE__) . "/parts/organisms/_agent-list-area.php");
   ?>
+
+
+  <?php
+  // require(dirname(__FILE__) . "/parts/organisms/_agent-list-area.php");
+  ?>
+
+  <?php
+  // 検索結果のカードが並んでいるエリア
+  require(dirname(__FILE__) . "/parts/organisms/_search-result-area.php");
+  ?>
+
+  <?php
+  // 閲覧履歴のエリア
+  require(dirname(__FILE__) . "/parts/organisms/_history-area.php");
+  ?>
+  
+  
+  <?php
+  // エージェントの詳細ページ
+  require(dirname(__FILE__) . "/parts/organisms/_agent-page.php");
+  ?>
+  
+
+  <?php
+  // 申し込みのフォームのエリア
+  require(dirname(__FILE__) . "/parts/templates/_application-page.php");
+  ?>
+
+  <?php
+  // 確認ページ
+  require(dirname(__FILE__) . "/parts/organisms/_check.php");
+  ?>
+
+  <?php
+  // 完了ページ
+  require(dirname(__FILE__) . "/parts/organisms/_finish.php");
+  ?>
+
+
+
+
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.0-alpha.2/dexie.min.js" integrity="sha512-YVHSEwMLRaQHvifwu/g/7OeZPCGaBSAe44gR74njhuIBt1XBtS+NNo1hXyJ1nE3zzBV0ImktKwMxBYMwiaMVhA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="./script/box.js"></script>

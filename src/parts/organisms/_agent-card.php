@@ -15,5 +15,3 @@
 
     include(dirname(__FILE__) . '/../atoms/agent-card/_agent-card-end.php');
     ?>
-
-
