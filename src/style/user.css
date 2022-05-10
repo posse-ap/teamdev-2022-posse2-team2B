@@ -41,20 +41,34 @@ html {
   margin: 10px 15px 15px;
 }
 
-@media (min-width: 960px) {
-  .header-inner {
-    font-size: 2.5rem;
-  }
-
-  .phone-icon {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  .header-nav {
-    display: block;
-  }
+.Section {
+  width: 100%;
+  margin: 30px 0px;
 }
+.Section__title {
+  background-color: #52A39A;
+  width: 100%;
+  margin-bottom: 30px;
+}
+.Section__title p {
+  color: white;
+  font-size: 2rem;
+  margin-left: 2.5%;
+}
+.Section__content {
+  margin: 0 auto;
+  width: 95%;
+}
+
+.Section__inner-heading {
+  margin: 30px 0px;
+  padding: 8px;
+  border-left: 3px solid #52A39A;
+}
+.Section__inner-heading p {
+  font-size: 1.5rem;
+}
+
 .How-to__cards__four {
   width: 100%;
 }
@@ -68,6 +82,44 @@ html {
 }
 .How-to__card img {
   width: 100%;
+}
+
+.Search__tag__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.Search__tag__wrapper .Search__tag {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.Search__tag__wrapper .Search__tag input[type=checkbox]#searchTag {
+  display: none;
+}
+.Search__tag__wrapper .Search__tag .Search__tag__label {
+  border: solid #CCCCCC;
+  font-size: 1rem;
+  border-radius: 5px;
+  padding: 3px 5px;
+}
+.Search__tag__wrapper .Search__tag input[type=checkbox]#searchTag:checked + label {
+  background: #52A39A;
+  color: white;
+  border: solid #52A39A;
+}
+
+.Search__btn {
+  text-align: center;
+}
+.Search__btn button {
+  background-color: #52A39A;
+  color: white;
+  padding: 10px 80px;
+  border-radius: 10px;
+  border: solid 1px #52A39A;
+}
+.Search__btn button span {
+  font-weight: bold;
 }
 
 .agent-card {
@@ -160,25 +212,6 @@ html {
   color: white;
 }
 
-.Section {
-  width: 100%;
-  margin: 30px 0px;
-}
-.Section__title {
-  background-color: #52A39A;
-  width: 100%;
-  margin-bottom: 30px;
-}
-.Section__title p {
-  color: white;
-  font-size: 2rem;
-  margin-left: 2.5%;
-}
-.Section__content {
-  margin: 0 auto;
-  width: 95%;
-}
-
 .Search-result__message {
   width: 95%;
   margin: 0px auto;
@@ -254,53 +287,6 @@ html {
 }
 .Search-result__check-all__wrapper input:checked + .Search-result__check-all__checkbox-icon:after {
   display: block;
-}
-
-.Section__inner-heading {
-  margin: 30px 0px;
-  padding: 8px;
-  border-left: 3px solid #52A39A;
-}
-.Section__inner-heading p {
-  font-size: 1.5rem;
-}
-
-.Search__tag__wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
-.Search__tag__wrapper .Search__tag {
-  margin-right: 10px;
-  margin-bottom: 10px;
-}
-.Search__tag__wrapper .Search__tag input[type=checkbox]#searchTag {
-  display: none;
-}
-.Search__tag__wrapper .Search__tag .Search__tag__label {
-  border: solid #CCCCCC;
-  font-size: 1rem;
-  border-radius: 5px;
-  padding: 3px 5px;
-}
-.Search__tag__wrapper .Search__tag input[type=checkbox]#searchTag:checked + label {
-  background: #52A39A;
-  color: white;
-  border: solid #52A39A;
-}
-
-.Search__btn {
-  text-align: center;
-}
-.Search__btn button {
-  background-color: #52A39A;
-  color: white;
-  padding: 10px 80px;
-  border-radius: 10px;
-  border: solid 1px #52A39A;
-}
-.Search__btn button span {
-  font-weight: bold;
 }
 
 .Agent-card__wrapper__mini {
@@ -446,15 +432,15 @@ html {
 .Application-form__back-button i {
   margin-right: 20px;
 }
-.Application-form__example {
-  color: #CCCCCC;
-  margin-top: 5px;
-}
 .Application-form__input__glay-border {
   border: solid #C4C4C4 2px;
   border-radius: 10px;
   width: 100%;
   margin: 0 auto;
+}
+.Application-form__example {
+  color: #CCCCCC;
+  margin-top: 5px;
 }
 .Application-form__privacy-policy {
   padding: 3%;
@@ -572,5 +558,20 @@ html {
 }
 .Finish p {
   margin: 10px 0;
+}
+
+@media (min-width: 960px) {
+  .header-inner {
+    font-size: 2.5rem;
+  }
+
+  .phone-icon {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .header-nav {
+    display: block;
+  }
 }
 /*# sourceMappingURL=user.css.map */
