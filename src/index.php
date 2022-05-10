@@ -66,7 +66,6 @@ require(dirname(__FILE__) . "/parts/organisms/_how-to.php");
   require(dirname(__FILE__) . "/parts/organisms/_search-area.php");
   ?>
 
-  
 
 
 
