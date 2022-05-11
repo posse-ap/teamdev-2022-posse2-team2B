@@ -12,8 +12,13 @@ include(dirname(__FILE__) . '/../organisms/_header.php');
   <div class="area area_main">
     <?php
     include(dirname(__FILE__) . '/../atoms/_title.php');
-    include(dirname(__FILE__) . '/../molecules/_info-table.php');
-    // include(dirname(__FILE__) . '/../molecules/_detail-table.php');
+
+    if ($pgdata['page_id'] == 4) {
+      include(dirname(__FILE__) . '/../molecules/_student-detail-table.php');
+    } else if ($pgdata['page_id'] == 5) {
+      include(dirname(__FILE__) . '/../molecules/_agent-detail-table.php');
+    }
+    //if文で、エージェント詳細画面と学生詳細画面のmoleculesを切り分ける
     ?>
   </div>
 </div>

@@ -23,8 +23,11 @@ $trs_stmt = $db->query(
 );
 $trs = $trs_stmt->fetchAll();
 foreach ($trs as $tr) :
-  array_push($pgdata['table_data']['tr'], [$tr['agent_name'], $tr['pic_name'], $tr['pic_email'], $tr['pic_tel'], $tr['start_at'] . '<br>~' . $tr['expires_at'], '<a>詳細</a>']);
+  array_push($pgdata['table_data']['tr'], [$tr['agent_name'], $tr['pic_name'], $tr['pic_email'], $tr['pic_tel'], $tr['start_at'] . '<br>~' . $tr['expires_at'], '<a href="agent-info.php?id=' . $tr["id"] . '" target="blank">詳細</a>']);
 endforeach;
+
+
+
 
 require(dirname(__FILE__) . "/app/right-check.php");
 require(dirname(__FILE__) . "/app/fetch-account-name.php");

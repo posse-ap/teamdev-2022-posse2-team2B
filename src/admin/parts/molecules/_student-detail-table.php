@@ -7,4 +7,5 @@
     </tr>
   <?php endforeach; ?>
 </table>
-<a href="../admin/student-delete.php?id=<?= $_GET["id"]; ?>">この学生情報を削除</a>
+
+<a href="../admin/student-delete.php?id=<?= $_GET["id"]; ?>" >この学生情報を削除</a>
