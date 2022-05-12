@@ -46,6 +46,7 @@ html {
   margin: 30px 0px;
 }
 .Section__title {
+  padding: 15px 0px;
   background-color: #52A39A;
   width: 100%;
   margin-bottom: 30px;
@@ -210,6 +211,81 @@ html {
 .argent-card-btns .view-more-info {
   background-color: #52A39A;
   color: white;
+}
+
+.Re-search {
+  width: 100%;
+  margin: 30px 0px;
+  width: 100%;
+}
+.Re-search__ac__parent {
+  padding: 15px 0px;
+  background-color: #52A39A;
+  font-size: 2rem;
+  position: relative;
+  cursor: pointer;
+}
+.Re-search__ac__parent p {
+  margin-left: 2.5%;
+  color: white;
+}
+.Re-search__ac__parent:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 45%;
+  right: 30px;
+  width: 20px;
+  height: 20px;
+  border-right: 5px solid white;
+  border-bottom: 5px solid white;
+  transform: translateY(-50%) rotate(45deg);
+  transition: 0.3s;
+}
+.Re-search__ac__parent.open::after {
+  transform: rotate(225deg);
+}
+.Re-search__ac__child {
+  padding: 30px 0px;
+  margin: 0 auto;
+  width: 95%;
+  display: none;
+}
+
+.Re-search-tags__ac {
+  border: solid #CCCCCC;
+  padding: 0px 30px;
+}
+.Re-search-tags__ac__parent {
+  margin: 10px 0px;
+  padding: 8px;
+  border-left: 3px solid #52A39A;
+  position: relative;
+  cursor: pointer;
+}
+.Re-search-tags__ac__parent p {
+  font-size: 1.5rem;
+}
+.Re-search-tags__ac__parent:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 45%;
+  right: 30px;
+  width: 20px;
+  height: 20px;
+  border-right: 5px solid #52A39A;
+  border-bottom: 5px solid #52A39A;
+  transform: translateY(-50%) rotate(45deg);
+  transition: 0.3s;
+}
+.Re-search-tags__ac__parent.open::after {
+  transform: rotate(225deg);
+}
+.Re-search-tags__ac__child {
+  padding: 30px 0px;
+  display: none;
+  background-color: white;
 }
 
 .Search-result__message {
@@ -573,5 +649,25 @@ html {
   .header-nav {
     display: block;
   }
+}
+.Apply-footer {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.65);
+}
+.Apply-footer__apply-btn {
+  background: #FFAB40;
+}
+.Apply-footer__apply-btn p {
+  color: white;
+}
+
+.Show-box {
+  background: #52A39A;
+  display: flex;
+  color: white;
+}
+.Show-box__icon__number {
+  background: red;
+  border-radius: 100px;
 }
 /*# sourceMappingURL=user.css.map */

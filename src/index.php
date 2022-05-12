@@ -114,6 +114,15 @@ require(dirname(__FILE__) . "/parts/organisms/_how-to.php");
   ?>
 
   <?php
+  // 再検索のエリア
+  require(dirname(__FILE__) . "/parts/organisms/_re-search.php");
+  
+  ?>
+
+
+
+
+  <?php
   // 検索結果のカードが並んでいるエリア
   require(dirname(__FILE__) . "/parts/organisms/_search-result-area.php");
   ?>
@@ -145,12 +154,21 @@ require(dirname(__FILE__) . "/parts/organisms/_how-to.php");
   require(dirname(__FILE__) . "/parts/organisms/_finish.php");
   ?>
 
+  <?php
+  // フッター申し込み
+  require(dirname(__FILE__) . "/parts/organisms/_apply-btn-footer.php");
+  ?>
 
 
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.0-alpha.2/dexie.min.js" integrity="sha512-YVHSEwMLRaQHvifwu/g/7OeZPCGaBSAe44gR74njhuIBt1XBtS+NNo1hXyJ1nE3zzBV0ImktKwMxBYMwiaMVhA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="./script/box.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="./script/accordion.js"></script>
+
+
 </body>
 
 </html>

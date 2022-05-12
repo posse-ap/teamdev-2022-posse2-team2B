@@ -54,7 +54,9 @@ $index-color:white;
   width: 100%;
   margin: 30px 0px;
 
+
   &__title{
+    padding: 15px 0px;
     background-color: $main-color;
     width: 100%;
     margin-bottom: 30px;
@@ -268,6 +270,103 @@ $index-color:white;
     color: $index-color;
   }
 }
+
+// 再検索
+.Re-search{
+  width: 100%;
+  margin: 30px 0px;
+  width: 100%;
+
+  &__ac{
+    &__parent{
+      padding: 15px 0px;
+      background-color: $main-color;
+      // margin-bottom: 30px;
+    
+      font-size:2rem;
+      position: relative;
+      cursor: pointer;
+      p{
+        margin-left: 2.5%;
+        color: $index-color;
+
+      }
+    }
+    
+    &__parent:after {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      top: 45%;
+      right: 30px;
+      width: 20px;
+      height: 20px;
+      border-right: 5px solid $index-color;
+      border-bottom: 5px solid $index-color;
+      transform: translateY(-50%) rotate(45deg);
+      transition: .3s;
+    }
+
+    &__parent.open::after{
+      transform: rotate(225deg);
+    }
+
+    &__child{
+      padding: 30px 0px;
+      margin: 0 auto;
+      width: 95%;
+      display: none;
+      // height: 1000px;
+
+    }
+
+  }
+}
+
+// 再検索のロールダウン
+.Re-search-tags__ac{
+  border: solid #CCCCCC;
+  padding:0px 30px;
+  &__parent{
+    margin: 10px 0px;
+    padding:8px;
+    border-left: 3px solid $main-color;
+    position: relative;
+    cursor: pointer;
+
+    p{
+      font-size:1.5rem;
+      // font-weight: normal;
+    }
+  }
+
+  &__parent:after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 45%;
+    right: 30px;
+    width: 20px;
+    height: 20px;
+    border-right: 5px solid $main-color;
+    border-bottom: 5px solid $main-color;
+    transform: translateY(-50%) rotate(45deg);
+    transition: .3s;
+  }
+
+  &__parent.open::after{
+    transform: rotate(225deg);
+  }
+
+  &__child{
+    padding: 30px 0px;
+    // height: 150px;
+    display: none;
+    background-color: white;
+    // text-align: center;
+  }
+}
+
 
 
 // 検索結果エリアの上の方のメッセージ
@@ -723,3 +822,37 @@ $radio-background-color: #ffffff;
   }
 
 }
+
+
+
+
+.Apply-footer{
+  display: flex;
+  background-color:rgba(0, 0, 0, 0.65);
+  &__apply-btn{
+    background: #FFAB40;
+    p{
+      color: white;
+    }
+    
+  }
+}
+
+.Show-box{
+  background: $main-color;
+  display: flex;
+  color: white;
+  &__text{
+    p{
+    }
+    
+  }
+  &__icon{
+    &__number{
+      background:red; 
+      border-radius: 100px;
+    }
+  }
+    
+  }
+  
