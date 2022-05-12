@@ -827,27 +827,45 @@ $radio-background-color: #ffffff;
 
 
 .Apply-footer{
+  height: 80px;
   display: flex;
+  justify-content: space-around;
+  align-items: center;
   background-color:rgba(0, 0, 0, 0.65);
-  &__apply-btn{
-    background: #FFAB40;
-    p{
-      color: white;
-    }
-    
+}
+
+.Apply-footer__apply-btn{
+  background: #FFAB40;
+  height: 70%;
+  border-radius: 10px;
+  padding: 0px 2%;
+  text-align: center;
+  width: 43%;
+  
+  p{
+    color: white;
   }
 }
 
 .Show-box{
+  height: 70%;
+  border-radius: 10px;
   background: $main-color;
   display: flex;
+  justify-content:center;
+  align-items: center;
   color: white;
+  text-align: center;
+  padding: 0px 2%;
+  width: 43%;
   &__text{
     p{
+
     }
     
   }
   &__icon{
+    margin-left: 5%;
     &__number{
       background:red; 
       border-radius: 100px;

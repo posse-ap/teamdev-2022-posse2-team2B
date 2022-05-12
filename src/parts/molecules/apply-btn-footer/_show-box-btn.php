@@ -1,7 +1,7 @@
 <div class="Show-box">
   <div class="Show-box__text">
     <p>
-      お問い合わせBOX
+      お問い合わせ<br>BOX
     </p>  
   </div>
   <div class="Show-box__icon">
