@@ -14,7 +14,8 @@ function showBox() {
       box.innerHTML = '';
       agents.forEach(agent => {
         const li = document.createElement('li');
-        li.innerHTML = `エージェントID: ${agent['id']}<br>追加日時: ${agent['created_at']}`;
+        li.innerHTML = `<p>エージェントID: ${agent['id']}<br>追加日時: ${agent['created_at']}</p>
+          <div onclick="deleteBox(${agent['id']})">削除</div>`;
         box.insertAdjacentElement('beforeend', li);
       });
     });
