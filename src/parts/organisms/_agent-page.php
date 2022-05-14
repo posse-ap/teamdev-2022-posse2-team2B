@@ -1,7 +1,7 @@
 <?php
 
 // セクションの開始
-require(dirname(__FILE__) . "/../atoms/section/_section-start.php");
+a_section_start('エージェント詳細');
 ?>
 
 <div>
@@ -52,7 +52,7 @@ require(dirname(__FILE__) . "/../molecules/section/agent-page/agent-page-heading
 
 
 // セクションの終わり
-require(dirname(__FILE__) . "/../atoms/section/_section-end.php");
+a_section_end();
 
 ?>
 

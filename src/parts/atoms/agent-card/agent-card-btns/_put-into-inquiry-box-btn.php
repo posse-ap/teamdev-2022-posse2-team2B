@@ -1,1 +1,1 @@
-<div class="put-into-inquiry-box"><p>問い合わせBOXに入れる</p></div>
+<div class="put-into-inquiry-box" onclick="putBox(<?= $agent_id; ?>)"><p>問い合わせBOXに入れる</p></div>

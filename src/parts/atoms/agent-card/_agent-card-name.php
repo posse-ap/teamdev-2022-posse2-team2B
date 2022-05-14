@@ -1,3 +1,3 @@
 <div class="agent-card-agent-name">
-  <h3>エージェント名変数</h3>
+  <h3><?= $agent_name; ?></h3>
 </div>
