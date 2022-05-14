@@ -843,12 +843,6 @@ function a_header_start()
     a_section_end();
   }
 
-  function t_form($agents)
-  {
-    o_box($agents);
-    o_form();
-  }
-
   function a_check_message()
   {
 ?>
