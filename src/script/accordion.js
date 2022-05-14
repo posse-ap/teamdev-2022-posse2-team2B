@@ -21,7 +21,7 @@ $(function () {
     $(this).toggleClass("open");
     //クリックされていないac-parentのopenクラスを取る
     $('.Re-search-tags__ac__parent').not(this).removeClass('open');
-
+    
     // 一つ開くと他は閉じるように
     $('.Re-search-tags__ac__parent').not($(this)).next('.Re-search-tags__ac__child').slideUp();
   });

@@ -6,6 +6,9 @@ $main-color:#52A39A;
 $index-color:white;
 // #52A39Aの中の文字のこと
 
+body{
+padding-bottom: 80px;
+}
 
 // ヘッダー
 .header{
@@ -59,7 +62,7 @@ $index-color:white;
     padding: 15px 0px;
     background-color: $main-color;
     width: 100%;
-    margin-bottom: 30px;
+    // margin-bottom: 30px;
   
     p{
       color: $index-color;
@@ -71,6 +74,8 @@ $index-color:white;
   &__content{
     margin: 0 auto;
     width: 95%;
+    padding: 30px 0px;
+
   }
 }
 
@@ -463,13 +468,16 @@ $index-color:white;
   margin: 0 auto;
   margin-top: 30px;
   margin-bottom: 30px;
-  padding: 15px 15px;
+  padding: 2% 2%;
   width: 95%;
   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+
+
 
   .agent-card-image{
-    width: 100%;
-    margin-bottom:15px;
+    width: 25%;
 
     img{
       width: 100%;
@@ -477,11 +485,12 @@ $index-color:white;
   }
 
   .agent-card-agent-name{
+    width: 75%;
     color: $main-color;
-    font-weight:bold;
-    font-size: 1.5em;
     h3{
       text-align: center;
+      font-weight:bold;
+      font-size: 1.35rem;
     }
   }
 }
@@ -489,19 +498,27 @@ $index-color:white;
 
 
 // エージェント詳細ページ
-.Agent-page__last-update{
-  display: flex;
-  justify-content: flex-end; 
-}
-.agent-card-image{
-  width: 100%;
-  margin-bottom:20px;
 
-  img{
-    width: 100%;
+  .Agent-page__last-update{
+    display: flex;
+    justify-content: flex-end; 
   }
-}
 
+
+  .Agent-page__image{
+
+    .agent-card-image{
+      width: 100%;
+      margin-bottom:20px;
+      
+      img{
+        width: 100%;
+      }
+    }
+
+  }
+
+  
 // エージェント詳細ページの追加ボタン
 .Agent-page__inquiry-btn{
   width: 65%;
@@ -656,6 +673,7 @@ $radio-background-color: #ffffff;
     border-radius:10px;
     width: 100%;
     margin: 0 auto;
+    padding: 3%;
   }
 
   &__example{
@@ -664,7 +682,7 @@ $radio-background-color: #ffffff;
   }
   
   &__privacy-policy{
-    padding: 3%;
+    // padding: 3%;
   }
   
   // プライバシーのチェックボックスは長いので、べつのところに
@@ -808,25 +826,27 @@ $radio-background-color: #ffffff;
 }
 
 
-// レスポンシブ対応
-@media (min-width: 960px) {
-  .header-inner{
-    font-size:2.5rem;
-  }
-  .phone-icon{
-    opacity: 0;
-    pointer-events: none;
-  }
-  .header-nav{
-    display: block;
-  }
+
+
+.Box-and-apply-footer{
+  width: 100%;
+  position: fixed; /* フッターを固定する */
+  bottom: 0; /* 上部から配置の基準位置を決める */
+  left: 0; /* 左から配置の基準位置を決める */
+  z-index:10;
+  background: white;
+
 
 }
 
+.Box-mobile {
+  display:none;
 
 
+}
 
 .Apply-footer{
+  width: 100%;
   height: 80px;
   display: flex;
   justify-content: space-around;
@@ -872,5 +892,157 @@ $radio-background-color: #ffffff;
     }
   }
     
-  }
+}
   
+
+
+
+
+  // レスポンシブ対応
+  @media (min-width: 960px) {
+    .header-inner{
+      font-size:2.5rem;
+    }
+    .phone-icon{
+      opacity: 0;
+      pointer-events: none;
+    }
+    .header-nav{
+      display: block;
+    }
+  
+
+    .Section{
+      max-width: 1000px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+
+
+    }
+
+    .How-to{
+      &__cards{
+        &__four{
+          // width: 100%;
+          display: flex;
+        }
+    
+        &__two{
+          display:flex;
+          justify-content:space-around;
+          margin: 5% 0;
+        }
+    
+      }
+      &__card{
+        width: 45%;
+    
+        img{
+          width: 100%;
+        }
+      }
+
+
+
+    }
+
+
+
+
+
+
+    
+    .agent-card{
+
+
+    }
+
+
+    .argent-card-btns{
+      display: flex;
+      justify-content: space-around;
+
+      div{
+        margin: 0 5%;
+
+
+        p{
+
+        }
+      }
+    
+      .put-into-inquiry-box{
+        background-color:#FFAB40;
+        color: white;
+      }
+      .put-out-of-inquiry-box{
+        background-color: white;
+        color: #FFAB40;
+
+        display: none;
+        
+
+
+      }
+      
+      .view-more-info{
+        background-color: $main-color;
+        color: $index-color;
+      }
+
+
+
+
+
+    }
+
+    
+// 確認ページ
+.Check{
+  width: 95%;
+  max-width: 1000px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  margin: 0;
+  padding: 30px 0px;
+
+
+  &__message-text{
+    // width: 95%;
+    // margin: 30px auto;
+    p{
+      // font-size:1rem;
+    }
+  }
+
+  &__info{
+    width: 95%;
+    // margin: 0 auto;
+    // background: #F4F4F4;
+    // border: solid #CCCCCC;
+
+    &__line{
+      // display: flex;
+      // flex-direction: column;
+      // justify-content: center;
+    }
+
+    &__item{
+      // margin:10px 30px;
+      // font-weight: bold;
+    }
+
+    &__writing{
+      // margin:10px 30px;
+      // color:#5F5F5F;
+    }
+  }
+}
+    
+
+    
+
+    
+    .Box-and-apply-footer {
+      display: none;
+    }
+
+  }

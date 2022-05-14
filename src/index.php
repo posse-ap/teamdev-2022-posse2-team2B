@@ -167,6 +167,7 @@ require(dirname(__FILE__) . "/parts/organisms/_how-to.php");
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="./script/accordion.js"></script>
+  <script src="./script/show-box-mobile.js"></script>
 
 
 </body>
