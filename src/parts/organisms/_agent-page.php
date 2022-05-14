@@ -13,12 +13,20 @@ a_section_start('エージェント詳細');
 // 最終更新日
 require(dirname(__FILE__) . "/../atoms/section/agent-page/_last-update.php");
 
+?>
+<div class="Agent-page__image">
 
+  <?php
 // エージェントの画像
 require(dirname(__FILE__) . "/../atoms/agent-card/_agent-card-img.php");
 
 // 画像切り替えボタンみたいなやつ
 
+?>
+</div>
+
+
+<?php
 
 
 // ★評価表
