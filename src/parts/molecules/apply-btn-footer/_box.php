@@ -4,7 +4,8 @@
 
   <?php
 
-  require(dirname(__FILE__) . "/../../atoms/section/_section-start.php");
+  // require(dirname(__FILE__) . "/../../atoms/section/_section-start.php");
+  a_section_start('問い合わせBOX');
 
 
 
@@ -14,7 +15,7 @@
 
 
 
-  require(dirname(__FILE__) . "/../../atoms/section/_section-end.php");
+a_section_end();
   ?>
 
 </div>

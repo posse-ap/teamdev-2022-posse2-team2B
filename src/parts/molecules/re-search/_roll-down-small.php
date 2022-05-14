@@ -4,10 +4,11 @@
   </div>
   <div class="Re-search-tags__ac__child">
   <?php
-  
-    require(dirname(__FILE__) . "/../../atoms/section/search-area/search-cb.php");
-  
+
+    // require(dirname(__FILE__) . "/../../atoms/section/search-area/search-cb.php");
+
   ?>
+  <div>ここにタグが入る</div>
   </div>
 
 </div>

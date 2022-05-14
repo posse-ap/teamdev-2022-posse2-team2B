@@ -91,7 +91,6 @@ $tag_categories = $tag_categories_stmt->fetchAll();
   <?php
   // require(dirname(__FILE__) . "/parts/organisms/_agent-list-area.php");
   ?>
-
   <?php
   // 再検索のエリア
   require(dirname(__FILE__) . "/parts/organisms/_re-search.php");
@@ -111,33 +110,34 @@ $tag_categories = $tag_categories_stmt->fetchAll();
   require(dirname(__FILE__) . "/parts/organisms/_history-area.php");
   ?>
 
-
-  <?php
+<?php
   // エージェントの詳細ページ
   require(dirname(__FILE__) . "/parts/organisms/_agent-page.php");
   ?>
 
 
-  <?php
+<?php
   // 申し込みのフォームのエリア
   require(dirname(__FILE__) . "/parts/templates/_application-page.php");
   ?>
 
-  <?php
+<?php
   // 確認ページ
   require(dirname(__FILE__) . "/parts/organisms/_check.php");
   ?>
 
-  <?php
+<?php
   // 完了ページ
   require(dirname(__FILE__) . "/parts/organisms/_finish.php");
   ?>
 
-  <?php
+<?php
   // フッター申し込み
   require(dirname(__FILE__) . "/parts/organisms/_apply-btn-footer.php");
   ?>
 
+<!-- 検索エリアのタグクリック時の動作 -->
+<script src="./script/search.js"></script>
 
 
   <!-- IndexedDBのライブラリ -->
@@ -151,8 +151,6 @@ $tag_categories = $tag_categories_stmt->fetchAll();
   <script src="./script/accordion.js"></script>
   <!-- スマホ版 画面下固定BOX関連ボタン -->
   <script src="./script/show-box-mobile.js"></script>
-  <!-- 検索エリアのタグクリック時の動作 -->
-  <script src="./script/search.js"></script>
 </body>
 
 </html>
