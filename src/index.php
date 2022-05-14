@@ -25,54 +25,11 @@ $tag_categories = $tag_categories_stmt->fetchAll();
 </head>
 
 <body>
-  <!-- system -->
   <?php
-  // エージェントごとに項目を取得
-  foreach ($agents as $agent) :
-    $agent_name = $agent['agent_name'];
-    $created_at = $agent['created_at'];
-    $updated_at = $agent['updated_at'];
-    $expires_at = $agent['expires_at'];
-    $publication = $agent['publication'];
-    $eval1 = $agent['evaluation1'];
-    $eval2 = $agent['evaluation2'];
-    $eval3 = $agent['evaluation3'];
-    $para1 = $agent['paragraph1'];
-    $para2 = $agent['paragraph2'];
-    $para3 = $agent['paragraph3'];
-    $para4 = $agent['paragraph4'];
-    $agent_info = sprintf('エージェント会社名:%s, 作成日時:%s, 最終更新日時:%s, 掲載終了日時:%s, 公開設定:%d, [評価項目1]:%d, [評価項目2]:%d, [評価項目3]:%d, [文章1]:%s, [文章2]:%s, [文章3]:%s, [文章4]:%s', $agent_name, $created_at, $updated_at, $expires_at, $publication, $eval1, $eval2, $eval3, $para1, $para2, $para3, $para4);
+  o_header();
+  o_howto();
+  o_search_area($tag_categories);
   ?>
-    <!-- <p><?= $agent_info; ?></p> -->
-  <?php
-  endforeach;
-  ?>
-
-  <?php
-  require(dirname(__FILE__) . "/parts/organisms/_header.php");
-  ?>
-
-
-
-  <?php
-
-  require(dirname(__FILE__) . "/parts/organisms/_how-to.php");
-
-
-  ?>
-
-  <!-- 検索フォームアトミックデザインのやり方でやる -->
-  <form action="./result.php" method="POST">
-    <?php
-    o_search_area($tag_categories);
-    ?>
-  </form>
-
-
-
-
-  <!-- 検索フォーム -->
-  <!-- system end -->
 
   <!-- ボックス追加機能 -->
   <p>
@@ -80,64 +37,35 @@ $tag_categories = $tag_categories_stmt->fetchAll();
   <ul id="box"></ul>
   </p>
 
-
-
   <?php
   // トップページの掲載エージェント一覧のエリア
-  require(dirname(__FILE__) . "/parts/organisms/_agent-list-area.php");
-  ?>
+  o_agent_list($agents);
 
-
-  <?php
-  // require(dirname(__FILE__) . "/parts/organisms/_agent-list-area.php");
-  ?>
-  <?php
   // 再検索のエリア
-  require(dirname(__FILE__) . "/parts/organisms/_re-search.php");
+  o_re_search();
 
-  ?>
-
-
-
-
-  <?php
   // 検索結果のカードが並んでいるエリア
-  require(dirname(__FILE__) . "/parts/organisms/_search-result-area.php");
-  ?>
+  o_result($agents);
 
-  <?php
   // 閲覧履歴のエリア
-  require(dirname(__FILE__) . "/parts/organisms/_history-area.php");
-  ?>
+  o_history($agents);
 
-<?php
   // エージェントの詳細ページ
-  require(dirname(__FILE__) . "/parts/organisms/_agent-page.php");
-  ?>
+  o_agent_detail(2);
 
-
-<?php
-  // 申し込みのフォームのエリア
+  // 問い合わせフォームのエリア
   require(dirname(__FILE__) . "/parts/templates/_application-page.php");
-  ?>
 
-<?php
   // 確認ページ
   require(dirname(__FILE__) . "/parts/organisms/_check.php");
-  ?>
 
-<?php
   // 完了ページ
   require(dirname(__FILE__) . "/parts/organisms/_finish.php");
-  ?>
 
-<?php
   // フッター申し込み
   require(dirname(__FILE__) . "/parts/organisms/_apply-btn-footer.php");
   ?>
 
-<!-- 検索エリアのタグクリック時の動作 -->
-<script src="./script/search.js"></script>
 
 
   <!-- IndexedDBのライブラリ -->
@@ -151,6 +79,8 @@ $tag_categories = $tag_categories_stmt->fetchAll();
   <script src="./script/accordion.js"></script>
   <!-- スマホ版 画面下固定BOX関連ボタン -->
   <script src="./script/show-box-mobile.js"></script>
+  <!-- 検索エリアのタグクリック時の動作 -->
+  <script src="./script/search.js"></script>
 </body>
 
 </html>

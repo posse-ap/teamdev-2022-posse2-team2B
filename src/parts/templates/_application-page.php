@@ -1,5 +1,5 @@
 <?php
-  require(dirname(__FILE__) . "/../organisms/_application-page-box.php");
+o_box($agents);
   require(dirname(__FILE__) . "/../organisms/_application-area.php");
-  
+
 ?>
