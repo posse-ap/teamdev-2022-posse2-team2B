@@ -14,7 +14,7 @@ $pgdata += array('right_id' => $_SESSION['right_id']);
 $pgdata += array('page_id' => 5);
 $pgdata += array('page_title' => $pages[$pgdata['page_id']]['title']);
 $pgdata += array('table_data' => [
-  'th' => ['会社名', '会社所在地', '会社URL', '会社電話番号', '代表者氏名', '担当者氏名', '担当者電話番号', '担当者メールアドレス', '通知用メールアドレス','契約期間']
+  'th' => ['会社名', '会社所在地', '会社URL', '会社電話番号', '代表者氏名', '担当者氏名', '担当者電話番号', '担当者メールアドレス', '通知用メールアドレス','契約開始','契約終了']
 ]);
 
 $agent_id = $_GET['id'];
@@ -22,11 +22,25 @@ $agent_id = $_GET['id'];
 // テーブルに追加するデータ
 $trs_stmt = $db->query(
   "SELECT
-  *
+      agents.agent_name,
+      agent_contract.address,
+      agents.url,
+      agent_contract.tel,
+      agent_contract.pres_name,
+      agent_contract.pic_name,
+      agent_contract.pic_tel,
+      agent_contract.pic_email,
+      agent_contract.notification_email,
+      agents.start_at,
+      agents.expires_at
     FROM
       agent_contract
-      WHERE
-      id = $agent_id
+    LEFT JOIN
+      agents
+    ON
+      agent_contract.agent_id=agents.id
+    WHERE
+      agent_contract.id = $agent_id
       "
 );
 $trs = $trs_stmt->fetch(PDO::FETCH_ASSOC);
