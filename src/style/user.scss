@@ -264,14 +264,18 @@ padding-bottom: 80px;
   .put-into-inquiry-box{
     background-color:#FFAB40;
     color: white;
+    border: solid 0.5px #FFAB40;
+    display: block;
   }
   .put-out-of-inquiry-box{
     background-color: white;
+    border: solid 0.5px #FFAB40;
     color: #FFAB40;
+    display: none;
   }
-
   .view-more-info{
     background-color: $main-color;
+    border: solid 0.5px $main-color;
     color: $index-color;
   }
 }
@@ -911,6 +915,10 @@ $radio-background-color: #ffffff;
       display: block;
     }
 
+    .Page__container__center{
+      margin: 0 auto;
+      max-width:1000px
+    }
 
     .Section{
       max-width: 1000px;

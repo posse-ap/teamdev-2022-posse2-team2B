@@ -8,17 +8,29 @@ a_html_head($pgdata['page_title']);
 // ヘッダー
 o_header();
 
-// 問い合わせまでの流れエリア
-o_howto();
+?>
 
-// 検索エリア
-o_search_area($pgdata['tag_categories']);
+<div class="Page__container__center">
 
-// トップページの掲載エージェント一覧のエリア
-o_agent_list($pgdata['agents']);
+  <?php
 
-// 閲覧履歴のエリア
-o_history($agents);
+  // 問い合わせまでの流れエリア
+  o_howto();
+
+  // 検索エリア
+  o_search_area($pgdata['tag_categories']);
+
+  // トップページの掲載エージェント一覧のエリア
+  o_agent_list($pgdata['agents']);
+
+  // 閲覧履歴のエリア
+  o_history($agents);
+
+  ?>
+
+</div>
+
+<?php
 
 // 追従ボタン（まとめて問い合わせ、BOXを見る）
 o_foot($pgdata['agents']);

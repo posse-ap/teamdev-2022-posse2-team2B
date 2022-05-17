@@ -1,3 +1,6 @@
+let put_out_of_box = document.getElementById('put_out_of_box');
+let put_into_box = document.getElementById('put_into_box');
+
 // ボックス追加機能
 // データベース作成
 var db = new Dexie('craftDB');
@@ -28,12 +31,18 @@ function putBox(agentId) {
     created_at: new Date()
   });
   showBox();
+  // ↓表示変更
+  put_into_box.style.display = 'none';
+  put_out_of_box.style.display = 'block';
 }
 
 // エージェントをボックスから削除
 function deleteBox(agentId) {
   db.agents.delete(agentId);
   showBox();
+  // ↓表示変更
+  put_into_box.style.display = 'block';
+  put_out_of_box.style.display = 'none';
 }
 
 // ロード時も再表示
