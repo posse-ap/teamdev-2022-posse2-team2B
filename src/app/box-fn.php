@@ -8,4 +8,8 @@ include(dirname(__FILE__) . '/../parts/parts.php');
 
 $func = $_POST['func'];
 $arg = json_decode($_POST['arg'], true);
-echo $func($arg);
+$html = '';
+foreach($arg as $agent) {
+  $html .= $func($agent);
+}
+echo $html;
