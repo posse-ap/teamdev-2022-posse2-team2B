@@ -1,7 +1,10 @@
-let put_out_of_box = document.getElementById('put_out_of_box');
-let put_into_box = document.getElementById('put_into_box');
+//// ボックス追加機能 ////
 
-// ボックス追加機能
+// お問い合わせBOXのul要素
+const box = document.getElementById('box');
+// お問い合わせBOXアイコンのバッジ(BOX内のエージェント数を表示)
+const boxBadge = document.getElementById('boxBadge');
+
 // データベース作成
 var db = new Dexie('craftDB');
 db.version(1).stores({
@@ -16,20 +19,41 @@ db.version(2).stores({
 function showBox() {
   db.agents
     .toArray()
-    .then((agents) => {
-      const box = document.getElementById('box');
-      box.innerHTML = '';
+    .then(function (agents) {
+      // agentsが空の場合
+      if (agents.length === 0) {
+        box.innerText = 'エージェントが入っていません。';
+        boxBadge.innerText = agents.length;
+        return;
+      }
+      // BOX内のHTML 初期化
+      let html = '';
+      // IndexedDB内の各エージェントに対して、順番にAjaxでPHPのパーツのHTMLを出力する関数を実行
       agents.forEach(agent => {
-  //       const li = document.createElement('li');
-  //       li.innerHTML = `  <div onclick="deleteBox(${agent['id']})"></div>
-  // <p>エージェントID: ${agent['id']}<br>追加日時: ${agent['created_at']}</p>`;
-  //       box.insertAdjacentElement('beforeend', li);
+        // agent(IndexedDB内のエージェント情報をJSON形式に変換)
+        agent = JSON.stringify(agent);
+        // POST通信を行い、/app/func-js.phpに関数名(m_box_item)と引数(agent)が送信され、/parts/parts.phpの該当する関数が実行される
         $.ajax({
           type: 'post',
-          url: './app/func-js.php',
-          data: { 'func': 'm_box_item', 'args': agent },
-          dataType: 'json',
+          url: 'http://localhost:80/app/func-js.php',
+          data: { 'func': 'm_box_item', 'arg': agent },
+          dataType: 'html',
+        }).done(function (response) {
+          // 通信成功時
+          // responseにエージェントカードのHTMLが返却される
+          html += response;
+        }).fail(function (errorThrown) {
+          // 通信失敗時
+          console.log('Connection error.\n' + errorThrown);
         });
+      });
+      // Ajax完了時
+      $(document).ajaxStop(function () {
+        if (html !== '') {
+          // BOX内のHTMLを更新
+          box.innerHTML = html;
+          boxBadge.innerText = agents.length;
+        }
       });
     });
 }
@@ -41,19 +65,15 @@ function putBox(agentId, agentName) {
     agent_name: agentName,
     created_at: new Date()
   });
+  // 再表示
   showBox();
-  // ↓表示変更
-  put_into_box.style.display = 'none';
-  put_out_of_box.style.display = 'block';
 }
 
 // エージェントをボックスから削除
 function deleteBox(agentId) {
   db.agents.delete(agentId);
+  // 再表示
   showBox();
-  // ↓表示変更
-  put_into_box.style.display = 'block';
-  put_out_of_box.style.display = 'none';
 }
 
 // ロード時も再表示
