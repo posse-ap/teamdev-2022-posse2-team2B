@@ -1,6 +1,7 @@
 <?php
 
 require(dirname(__FILE__) . "/dbconnect.php");
+require(dirname(__FILE__) . '/app/functions.php');
 
 if (!isset($_POST['search'])) {
   header('Location: http://' . $_SERVER['HTTP_HOST'] . '/index.php');

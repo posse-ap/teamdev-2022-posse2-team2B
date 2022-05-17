@@ -1,6 +1,7 @@
 <?php
 
 require(dirname(__FILE__) . "/dbconnect.php");
+require(dirname(__FILE__) . '/app/functions.php');
 
 // 掲載期間内かつ公開設定1(公開)である全エージェント情報を取得
 $agents_stmt = $db->query("SELECT * FROM agents WHERE expires_at > NOW() && publication = 1");
