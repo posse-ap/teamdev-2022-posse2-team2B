@@ -4,7 +4,8 @@ function f_select_agent($agent_id) {
   global $db;
   $agent = $db->prepare("SELECT * FROM agents WHERE id = ?");
   $agent->execute([$agent_id]);
-  $agent = $agent->fetchAll();
+  $agent = $agent->fetch();
+  return $agent;
 }
 
 function a_html_head($title)
@@ -220,7 +221,6 @@ function a_header_start()
   {
     a_section_start('問い合わせまでの流れ', false);
 ?>
-  <div>↓使い方の流れのパーツです！</div>
   <div class="How-to">
     <div class="How-to__cards__four">
       <div class="How-to__cards__two">
@@ -396,7 +396,8 @@ function a_header_start()
     $agent = f_select_agent($agent_id);
     $agent_name = $agent['agent_name'];
 ?>
-  <div class="put-into-inquiry-box" onclick="putBox(<?= $agent_id; ?>, <?= $agent_name; ?>)">
+
+  <div id="put_into_box" class="put-into-inquiry-box" onclick="putBox(<?= $agent_id; ?>, '<?= $agent_name; ?>')">
     <p>問い合わせBOXに入れる</p>
   </div>
 <?php
@@ -405,7 +406,7 @@ function a_header_start()
   function a_agent_deletebox_btn($agent_id)
   {
 ?>
-  <div class="put-out-of-inquiry-box" onclick="deleteBox(<?= $agent_id; ?>)">
+  <div id="put_out_of_box" class="put-out-of-inquiry-box" onclick="deleteBox(<?= $agent_id; ?>)">
     <p>問い合わせBOXから出す</p>
   </div>
 <?php
@@ -569,11 +570,6 @@ function a_header_start()
   function o_result($agents)
   {
     a_section_start('検索結果', false);
-?>
-  <div>
-    これは検索結果画面です
-  </div>
-<?php
     m_result_head();
     o_agent_list($agents, true);
     a_section_end();
@@ -595,11 +591,6 @@ function a_header_start()
   function o_history($agents)
   {
     a_section_start('閲覧履歴', false);
-?>
-  <div>
-    これは閲覧履歴エリアです
-  </div>
-  <?php
     foreach ($agents as $agent) {
       m_agent_small($agent);
     }
@@ -607,11 +598,11 @@ function a_header_start()
   }
 
   // エージェント詳細　最終更新
-  function a_agent_detail_updated()
+  function a_agent_detail_updated($last_updated)
   {
   ?>
   <div class="Agent-page__last-update">
-    <p>yyyy年mm月dd日</p>
+    <p>最終更新日:<?= $last_updated; ?></p>
   </div>
 <?php
   }
@@ -636,17 +627,12 @@ function a_header_start()
   }
 
   // エージェント詳細　全体
-  function o_agent_detail($agent_id)
+  function o_agent_detail($agent_id, $agent_name,$last_updated)
   {
     // セクションの開始
-    a_section_start('エージェント詳細', false);
-?>
-  <div>
-    これはエージェントの詳細ページです
-  </div>
-  <?php
+    a_section_start($agent_name, false);
     // 最終更新日
-    a_agent_detail_updated();
+    a_agent_detail_updated($last_updated);
   ?>
   <div class="Agent-page__image">
     <?php
@@ -700,9 +686,6 @@ function a_header_start()
   {
     a_section_start('問い合わせBOX', false);
 ?>
-  <div>
-    ↓これはお問い合わせフォームのページのボックスの中身見せてるところです！
-  </div>
   <ul id="box"></ul>
   <?php
     foreach ($agents as $agent) {
@@ -777,9 +760,6 @@ function a_header_start()
     a_form_backbtn();
 ?>
   <div class="Application-form">
-    <div>
-      これは、申し込みフォームです↓↓↓
-    </div>
     <?php
     // お問い合わせ内容 ラジオボタン
     m_heading_required('お問い合せ内容');
