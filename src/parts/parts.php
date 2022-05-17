@@ -409,7 +409,7 @@ function a_header_start()
 ?>
   <a href="./detail.php?id=<?= $agent_id; ?>" class="view-more-info argent-card-btn">
     <!-- <div class="view-more-info"> -->
-      <p>詳しく見る ></p>
+    <p>詳しく見る ></p>
     <!-- </div> -->
   </a>
 <?php
@@ -932,6 +932,15 @@ function a_header_start()
   </div>
 <?
   }
+  // PC版ようのメッセージ
+  function a_foot_message()
+  {
+?>
+  <div class="Apply-footer__message__pc">
+    <p>問い合わせBOXのN社に</p>
+  </div>
+<?php
+  }
 
   function m_foot_inquirybtn()
   {
@@ -956,7 +965,8 @@ function a_header_start()
     <div class="Show-box__icon">
       <div class="Show-box__icon__number">
         <p>
-          7
+          N
+          <!-- ここと、function a_foot_message()のところおなじようになるはず！ -->
         </p>
       </div>
 
@@ -978,6 +988,7 @@ function a_header_start()
 
     <div class="Apply-footer">
       <?php
+      a_foot_message();
       m_foot_inquirybtn();
       m_foot_showboxbtn();
       ?>
