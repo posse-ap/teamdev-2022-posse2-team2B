@@ -665,30 +665,27 @@ function a_header_start()
 <?php
   }
 
-  function a_box_deletebtn()
+  function a_box_deletebtn($agent_id)
   {
 ?>
   <div class="Application__box__trash">
-    <i class="fa-solid fa-trash-can"></i>
+    <i class="fa-solid fa-trash-can" onclick="deleteBox(<?= $agent_id; ?>)"></i>
   </div>
 <?php
   }
 
   function m_box_item($agent)
   {
-    a_box_deletebtn();
+    a_box_deletebtn($agent['id']);
     m_agent_small($agent);
   }
 
-  function o_box($agents)
+  function o_box()
   {
     a_section_start('問い合わせBOX', false);
 ?>
   <ul id="box"></ul>
   <?php
-    foreach ($agents as $agent) {
-      m_box_item($agent);
-    }
     a_section_end();
   }
 
@@ -955,8 +952,8 @@ function a_header_start()
     </div>
     <div class="Show-box__icon">
       <div class="Show-box__icon__number">
-        <p>
-          7
+        <p id="boxBadge">
+
         </p>
       </div>
 
@@ -972,7 +969,7 @@ function a_header_start()
   <div class="Box-and-apply-footer">
     <div class="Box-mobile" id="box_mobile">
       <?php
-      o_box($agents);
+      o_box();
       ?>
     </div>
 
