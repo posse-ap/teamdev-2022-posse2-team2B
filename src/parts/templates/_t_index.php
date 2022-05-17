@@ -13,8 +13,6 @@ o_header();
 <div class="Page__container__center">
 
   <?php
-// トップページの掲載エージェント一覧のエリア
-o_agent_list($pgdata['agents'], false);
 
   // 問い合わせまでの流れエリア
   o_howto();

@@ -4,7 +4,8 @@ function f_select_agent($agent_id) {
   global $db;
   $agent = $db->prepare("SELECT * FROM agents WHERE id = ?");
   $agent->execute([$agent_id]);
-  $agent = $agent->fetchAll();
+  $agent = $agent->fetch();
+  return $agent;
 }
 
 function a_html_head($title)
@@ -396,7 +397,7 @@ function a_header_start()
     $agent_name = $agent['agent_name'];
 ?>
 
-  <div id="put_into_box" class="put-into-inquiry-box" onclick="putBox(<?= $agent_id; ?>, <?= $agent_name; ?>)">
+  <div id="put_into_box" class="put-into-inquiry-box" onclick="putBox(<?= $agent_id; ?>, '<?= $agent_name; ?>')">
     <p>問い合わせBOXに入れる</p>
   </div>
 <?php
@@ -597,11 +598,11 @@ function a_header_start()
   }
 
   // エージェント詳細　最終更新
-  function a_agent_detail_updated()
+  function a_agent_detail_updated($last_updated)
   {
   ?>
   <div class="Agent-page__last-update">
-    <p>yyyy年mm月dd日</p>
+    <p>最終更新日:<?= $last_updated; ?></p>
   </div>
 <?php
   }
@@ -626,12 +627,12 @@ function a_header_start()
   }
 
   // エージェント詳細　全体
-  function o_agent_detail($agent_id)
+  function o_agent_detail($agent_id, $agent_name,$last_updated)
   {
     // セクションの開始
-    a_section_start('エージェント詳細', false);
+    a_section_start($agent_name, false);
     // 最終更新日
-    a_agent_detail_updated();
+    a_agent_detail_updated($last_updated);
   ?>
   <div class="Agent-page__image">
     <?php
@@ -685,9 +686,6 @@ function a_header_start()
   {
     a_section_start('問い合わせBOX', false);
 ?>
-  <div>
-    ↓これはお問い合わせフォームのページのボックスの中身見せてるところです！
-  </div>
   <ul id="box"></ul>
   <?php
     foreach ($agents as $agent) {
