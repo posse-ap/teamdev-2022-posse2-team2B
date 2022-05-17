@@ -1,4 +1,12 @@
 <?php
+
+function f_select_agent($agent_id) {
+  global $db;
+  $agent = $db->prepare("SELECT * FROM agents WHERE id = ?");
+  $agent->execute([$agent_id]);
+  $agent = $agent->fetchAll();
+}
+
 function a_html_head($title)
 {
 ?>
@@ -127,19 +135,20 @@ function a_header_start()
   }
 
   // セクション開始部分 a_section_end()とセットで使う
-  function a_section_start($section_title)
+  function a_section_start($section_title, $disable_title)
   {
 ?>
   <section class="Section">
-    <div class="Section__title">
-      <p>
-        <?php if (isset($section_title)) {
-          echo $section_title;
-        } else {
-          echo '$section_titleを定義してください';
-        } ?>
-      </p>
-    </div>
+    <?php if (isset($section_title) && !$disable_title) {
+    ?>
+      <div class="Section__title">
+        <p>
+          <?= $section_title; ?>
+        </p>
+      </div>
+    <?php
+    }
+    ?>
     <div class="Section__content">
     <?php
   }
@@ -209,7 +218,7 @@ function a_header_start()
   // 使い方エリア
   function o_howto()
   {
-    a_section_start('問い合わせまでの流れ');
+    a_section_start('問い合わせまでの流れ', false);
 ?>
   <div class="How-to">
     <div class="How-to__cards__four">
@@ -273,7 +282,7 @@ function a_header_start()
 ?>
   <form action="./result.php" method="POST">
     <?php
-    a_section_start('条件絞り込み');
+    a_section_start('条件絞り込み', false);
 
     ?>
     <div>
@@ -383,8 +392,11 @@ function a_header_start()
   // エージェントカード BOX追加ボタン
   function a_agent_putbox_btn($agent_id)
   {
+    $agent = f_select_agent($agent_id);
+    $agent_name = $agent['agent_name'];
 ?>
-  <div id="put_into_box" class="put-into-inquiry-box" onclick="putBox(<?= $agent_id; ?>)">
+
+  <div id="put_into_box" class="put-into-inquiry-box" onclick="putBox(<?= $agent_id; ?>, <?= $agent_name; ?>)">
     <p>問い合わせBOXに入れる</p>
   </div>
 <?php
@@ -439,9 +451,9 @@ function a_header_start()
   }
 
   // エージェントリスト
-  function o_agent_list($agents)
+  function o_agent_list($agents, $disable_title)
   {
-    a_section_start('掲載エージェント一覧');
+    a_section_start('掲載エージェント一覧', $disable_title);
 
     global $db;
     foreach ($agents as $agent) {
@@ -556,9 +568,9 @@ function a_header_start()
 
   function o_result($agents)
   {
-    a_section_start('検索結果');
+    a_section_start('検索結果', false);
     m_result_head();
-    o_agent_list($agents);
+    o_agent_list($agents, true);
     a_section_end();
   }
 
@@ -577,7 +589,7 @@ function a_header_start()
 
   function o_history($agents)
   {
-    a_section_start('閲覧履歴');
+    a_section_start('閲覧履歴', false);
     foreach ($agents as $agent) {
       m_agent_small($agent);
     }
@@ -617,8 +629,7 @@ function a_header_start()
   function o_agent_detail($agent_id)
   {
     // セクションの開始
-    a_section_start('エージェント詳細');
-
+    a_section_start('エージェント詳細', false);
     // 最終更新日
     a_agent_detail_updated();
   ?>
@@ -672,11 +683,12 @@ function a_header_start()
 
   function o_box($agents)
   {
-    a_section_start('問い合わせBOX');
+    a_section_start('問い合わせBOX', false);
 ?>
   <div>
     ↓これはお問い合わせフォームのページのボックスの中身見せてるところです！
   </div>
+  <ul id="box"></ul>
   <?php
     foreach ($agents as $agent) {
       m_box_item($agent);
@@ -744,7 +756,7 @@ function a_header_start()
 
   function o_form()
   {
-    a_section_start('問い合わせフォーム');
+    a_section_start('問い合わせフォーム', false);
 
     // 戻るボタン
     a_form_backbtn();
