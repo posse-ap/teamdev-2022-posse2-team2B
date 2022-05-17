@@ -8,19 +8,53 @@ a_html_head($pgdata['page_title']);
 // ヘッダー
 o_header();
 
-// 再検索のエリア
-o_re_search();
+?>
+<div class="Page__container">
 
-// 検索結果のカードが並んでいるエリア
-o_result($pgdata['result_agents']);
+  <div class="Page__right">
 
-// 閲覧履歴のエリア
-o_history($pgdata['result_agents']);
+    <?php
+    // 再検索のエリア PC,SP共通
+    o_re_search();
+    ?>
+    <div class="Page__right__pc">
 
+      <?php
+      // お問い合わせBOX PC用
+      o_box($agents);
+
+      // 閲覧履歴のエリア PC用
+      o_history($pgdata['result_agents']);
+
+      ?>
+
+    </div>
+
+  </div>
+
+  <div class="Page__left">
+    <?php
+    // 検索結果のカードが並んでいるエリア PC,SP共通
+    o_result($pgdata['result_agents']);
+    ?>
+    <div class="Page__left__sp">
+      <?php
+      // 閲覧履歴のエリア SP用
+      o_history($pgdata['result_agents']);
+      ?>
+
+    </div>
+  </div>
+  <?php
+
+  ?>
+</div>
+<?php
 // 追従ボタン（まとめて問い合わせ、BOXを見る）
 o_foot($pgdata['result_agents']);
-
 ?>
+
+
 
 <!-- IndexedDBのライブラリ -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.0-alpha.2/dexie.min.js" integrity="sha512-YVHSEwMLRaQHvifwu/g/7OeZPCGaBSAe44gR74njhuIBt1XBtS+NNo1hXyJ1nE3zzBV0ImktKwMxBYMwiaMVhA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

@@ -247,9 +247,10 @@ padding-bottom: 80px;
 // エージェントカードの下の方のボタンの部分
 // BEM未対応
 .argent-card-btns{
+  display: flex;
+  flex-direction: column;
   width: 100%;
-
-  div{
+  .argent-card-btn{
     width: 100%;
     box-shadow: 0 2px 4px rgba(0,0,0,0.3);
     border-radius:3px;
@@ -277,6 +278,7 @@ padding-bottom: 80px;
     background-color: $main-color;
     border: solid 0.5px $main-color;
     color: $index-color;
+    display: block;
   }
 }
 
@@ -576,6 +578,7 @@ padding-bottom: 80px;
     display: flex;
     align-items: center;
     background: #FFAB40;
+    color: white;
     height: 30px;
     margin-left:30px;
   }
@@ -902,8 +905,53 @@ $radio-background-color: #ffffff;
 
 
 
+// レイアウト関連
+.Page {
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+  &__right{
+    &__pc{
+      display:none;
+    }
+  }
+  &__left{
+    &__sp{
+    }
+  }
+
+}
+
   // レスポンシブ対応
   @media (min-width: 960px) {
+    body{
+      // background-color:;
+    }
+    
+    // レイアウト関連
+    .Page {
+      &__container {
+        margin: 0 auto;
+        flex-direction: row-reverse;
+        justify-content:space-around;
+        max-width: 1500px;
+      }
+      &__right{
+        width: 30%;
+        &__pc{
+          display: block;
+        }
+      }
+      &__left{
+        width: 60%;
+        &__sp{
+          display: none;
+        }
+      }
+    }
+
+    
     .header-inner{
       font-size:2.5rem;
     }
@@ -917,11 +965,11 @@ $radio-background-color: #ffffff;
 
     .Page__container__center{
       margin: 0 auto;
-      max-width:1000px
+      max-width:1500px
     }
 
     .Section{
-      max-width: 1000px;
+      // max-width: 1500px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 
 
@@ -949,8 +997,6 @@ $radio-background-color: #ffffff;
         }
       }
 
-
-
     }
 
 
@@ -966,16 +1012,11 @@ $radio-background-color: #ffffff;
 
 
     .argent-card-btns{
-      display: flex;
+      flex-direction: row;
       justify-content: space-around;
 
-      div{
+      .argent-card-btn{
         margin: 0 5%;
-
-
-        p{
-
-        }
       }
 
       .put-into-inquiry-box{
@@ -985,29 +1026,31 @@ $radio-background-color: #ffffff;
       .put-out-of-inquiry-box{
         background-color: white;
         color: #FFAB40;
-
         display: none;
-
-
-
       }
 
       .view-more-info{
         background-color: $main-color;
         color: $index-color;
       }
-
-
-
-
-
     }
+
+// 再検索
+.Re-search{
+  // max-width: 1500px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+
+}
+
+
+
+
 
 
 // 確認ページ
 .Check{
   width: 95%;
-  max-width: 1000px;
+  // max-width: 1500px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
   margin: 0;
   padding: 30px 0px;
