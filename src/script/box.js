@@ -51,7 +51,7 @@ function showBox() {
         function () {
           // BOX内のHTMLを更新
           box.innerHTML = html;
-          boxBadge.innerText = agents.length;ƒ
+          boxBadge.innerText = agents.length;
         }
       );
     });
