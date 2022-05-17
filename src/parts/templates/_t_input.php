@@ -9,7 +9,7 @@ a_html_head($pgdata['page_title']);
 o_header();
 
 // BOX
-o_box($agents);
+o_box();
 
 // 問い合わせフォームのエリア
 o_form();
