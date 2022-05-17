@@ -43,7 +43,7 @@ function showBox() {
         html = response;
       }).fail(function (errorThrown) {
         // 通信失敗時
-        console.log('Connection error.\n' + errorThrown);
+          alert('問い合わせBOXへの追加に失敗しました。');
       });
 
       // Ajax完了時
