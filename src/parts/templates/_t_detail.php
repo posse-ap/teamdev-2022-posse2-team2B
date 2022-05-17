@@ -9,7 +9,7 @@ a_html_head($pgdata['page_title']);
 o_header();
 
 // エージェントの詳細ページ
-o_agent_detail($pgdata['id'],$pgdata['agent_name'],'yyyy/mm/dd');
+o_agent_detail($pgdata['id'],$pgdata['agent_name'],$pgdata['updated_at'], $pgdata['agent_picture'], f_set_evals($pgdata['id']), $pgdata['paragraphs']);
 
 // 追従ボタン（まとめて問い合わせ、BOXを見る）
 o_foot([$pgdata['agent']]);

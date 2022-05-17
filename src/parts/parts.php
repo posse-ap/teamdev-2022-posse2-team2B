@@ -1,13 +1,5 @@
 <?php
 
-function f_select_agent($agent_id) {
-  global $db;
-  $agent = $db->prepare("SELECT * FROM agents WHERE id = ?");
-  $agent->execute([$agent_id]);
-  $agent = $agent->fetch();
-  return $agent;
-}
-
 function a_html_head($title)
 {
 ?>
@@ -351,29 +343,29 @@ function a_header_start()
   }
 
   // エージェントカード　評価　テーブル列
-  function a_agent_eval_tr()
+  function a_agent_eval_tr($eval)
   {
 ?>
   <tr>
     <td>
-      <p>評価項目の変数</p>
+      <p><?= $eval['title']; ?></p>
     </td>
     <td class="star-evaluation">
-      <p>★の数の変数</p>
+      <p><?= str_repeat('★', $eval['star']); ?></p>
     </td>
   </tr>
 <?php
   }
 
   // エージェントカード　評価　テーブル
-  function m_agent_eval()
+  function m_agent_eval($evals)
   {
 ?>
   <div class="agent-card-star-evaluation-table">
     <table>
       <?php
-      a_agent_eval_tr();
-      a_agent_eval_tr();
+      foreach ($evals as $eval)
+        a_agent_eval_tr($eval);
       ?>
     </table>
   </div>
@@ -412,12 +404,14 @@ function a_header_start()
 <?php
   }
 
-  function a_agent_detail_btn()
+  function a_agent_detail_btn($agent_id)
   {
 ?>
-  <div class="view-more-info">
-    <p>詳しく見る ></p>
-  </div>
+  <a href="./detail.php?id=<?= $agent_id; ?>">
+    <div class="view-more-info">
+      <p>詳しく見る ></p>
+    </div>
+  </a>
 <?php
   }
 
@@ -428,14 +422,14 @@ function a_header_start()
     <?php
     a_agent_putbox_btn($agent_id);
     a_agent_deletebox_btn($agent_id);
-    a_agent_detail_btn();
+    a_agent_detail_btn($agent_id);
     ?>
   </div>
 <?php
   }
 
   // エージェントカード全体
-  function o_agent_card($agent_id, $agent_name, $agent_intro, $tags)
+  function o_agent_card($agent_id, $agent_name, $agent_intro, $tags, $evals)
   {
 ?>
   <article class="agent-card">
@@ -443,7 +437,7 @@ function a_header_start()
     a_agent_name($agent_name);
     a_agent_img('/pictures/agent1.jpg');
     m_agent_tags($tags);
-    m_agent_eval();
+    m_agent_eval($evals);
     a_agent_intro($agent_intro);
     m_agent_btns($agent_id);
     ?>
@@ -462,7 +456,8 @@ function a_header_start()
       $tags_stmt->execute([$agent['id']]);
       $tags = $tags_stmt->fetchAll();
 
-      o_agent_card($agent['id'], $agent['agent_name'], $agent['paragraph1'], $tags);
+      $evals = f_set_evals($agent['id']);
+      o_agent_card($agent['id'], $agent['agent_name'], $agent['paragraph1'], $tags, $evals);
     }
 
     a_section_end();
@@ -600,7 +595,7 @@ function a_header_start()
   // エージェント詳細　最終更新
   function a_agent_detail_updated($last_updated)
   {
-  ?>
+?>
   <div class="Agent-page__last-update">
     <p>最終更新日:<?= $last_updated; ?></p>
   </div>
@@ -608,43 +603,43 @@ function a_header_start()
   }
 
   // エージェント詳細 説明文
-  function a_agent_detail_text()
+  function a_agent_detail_text($text)
   {
 ?>
   <div class="Agent-page__text">
     <p>
-      これがひとつの見出しに対しての文章になります。テキストだよ。こんにちは。やるか、やるか。これは紹介文になりますよ～。
+      <?= $text; ?>
     </p>
   </div>
 <?php
   }
 
   // エージェント詳細　説明パラグラフ（見出し＋説明文）
-  function m_agent_detail_para()
+  function m_agent_detail_para($title, $text)
   {
-    a_heading_in_section('小見出し');
-    a_agent_detail_text();
+    a_heading_in_section($title);
+    a_agent_detail_text($text);
   }
 
   // エージェント詳細　全体
-  function o_agent_detail($agent_id, $agent_name,$last_updated)
+  function o_agent_detail($agent_id, $agent_name, $updated_at, $agent_picture, $evals, $paragraphs)
   {
     // セクションの開始
     a_section_start($agent_name, false);
     // 最終更新日
-    a_agent_detail_updated($last_updated);
-  ?>
+    a_agent_detail_updated($updated_at);
+?>
   <div class="Agent-page__image">
     <?php
     // エージェントの画像
-    a_agent_img('/pictures/agent1.jpg');
+    a_agent_img($agent_picture);
 
     // 画像切り替えボタンみたいなやつ
     ?>
   </div>
   <?php
     // ★評価表
-    m_agent_eval();
+    m_agent_eval($evals);
   ?>
   <div class="Agent-page__inquiry-btn">
     <?php
@@ -658,8 +653,11 @@ function a_header_start()
 
   <?php
     // 小見出しと紹介文
-    m_agent_detail_para();
-
+    foreach ($paragraphs as $paragraph) {
+      $title = $paragraph['title'];
+      $text = $paragraph['text'];
+      m_agent_detail_para($title, $text);
+    }
     // セクションの終わり
     a_section_end();
   ?>
