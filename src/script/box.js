@@ -41,7 +41,7 @@ function showBox() {
         // 通信成功時
         // responseにエージェントカードのHTMLが返却される
         html = response;
-      }).fail(function (errorThrown) {
+      }).fail(function () {
         // 通信失敗時
           alert('問い合わせBOXへの追加に失敗しました。');
       });
