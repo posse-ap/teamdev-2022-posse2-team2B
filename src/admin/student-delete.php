@@ -23,7 +23,8 @@ try {
     "DELETE FROM students WHERE id=$student_id;"
   );
   $db->commit();
-  echo "学生情報の削除に成功しました。管理画面に戻ってリロードしてください。";
+  header('Location:/admin/students.php');
+  // echo "学生情報の削除に成功しました。管理画面に戻ってリロードしてください。";
 } catch (\Throwable $th) {
   //throw $th;
   $db->rollBack();

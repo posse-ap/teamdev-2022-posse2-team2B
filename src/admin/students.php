@@ -23,7 +23,7 @@ $trs_stmt = $db->query(
 );
 $trs = $trs_stmt->fetchAll();
 foreach ($trs as $tr) :
-  array_push($pgdata['table_data']['tr'], [$tr['created_at'], $tr['student_name'], $tr['email'], $tr['tel'], $tr['graduate_year'], '<a href="student-info.php?id='.$tr["id"]. '" target="blank">詳細</a>']);
+  array_push($pgdata['table_data']['tr'], [$tr['created_at'], $tr['student_name'], $tr['email'], $tr['tel'], $tr['graduate_year'], '<a href="student-info.php?id='.$tr["id"]. '" target="" class="link">詳細</a>']);
 endforeach;
 
 require(dirname(__FILE__) . "/app/right-check.php");

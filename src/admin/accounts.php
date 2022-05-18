@@ -24,8 +24,14 @@ $trs_stmt = $db->query(
 );
 $trs = $trs_stmt->fetchAll();
 foreach ($trs as $tr) :
-  array_push($pgdata['table_data']['tr'], [$tr['name'], $tr['email'], $tr['right_name'], '<a href="./account-maint.php?account_id=' . $tr['account_id'] . '">変更</a>']);
+  array_push($pgdata['table_data']['tr'], [$tr['name'], $tr['email'], $tr['right_name'], '<a href="./account-maint.php?account_id=' . $tr['account_id'] . '" class="link">変更</a>']);
 endforeach;
+
+
+?>
+
+
+<?php
 
 require(dirname(__FILE__) . "/app/right-check.php");
 require(dirname(__FILE__) . "/app/fetch-account-name.php");

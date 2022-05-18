@@ -8,4 +8,9 @@
   <?php endforeach; ?>
 </table>
 
-<a href="../admin/student-delete.php?id=<?= $_GET["id"]; ?>" >この学生情報を削除</a>
+<?php
+if ($pgdata['page_id'] == 4) {
+  include(dirname(__FILE__) . '/../atoms/_deletebtn.php');
+} elseif ($pgdata['page_id'] == 7) {
+  include(dirname(__FILE__) . '/../atoms/_changebtn.php');
+}

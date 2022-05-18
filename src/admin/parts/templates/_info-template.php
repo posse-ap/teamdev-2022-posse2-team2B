@@ -13,7 +13,9 @@ include(dirname(__FILE__) . '/../organisms/_header.php');
     <?php
     include(dirname(__FILE__) . '/../atoms/_title.php');
     include(dirname(__FILE__) . '/../molecules/_info-table.php');
-    // include(dirname(__FILE__) . '/../molecules/_detail-table.php');
+    if ($pgdata['page_id'] == 6) {
+      echo '<a href="./account-maint.php" class="btn detail-btn">変更</a>';
+    }
     ?>
   </div>
 </div>
