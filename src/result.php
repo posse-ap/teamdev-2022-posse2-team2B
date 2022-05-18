@@ -1,5 +1,7 @@
 <?php
+
 require(dirname(__FILE__) . "/dbconnect.php");
+require(dirname(__FILE__) . '/app/functions.php');
 
 if (!isset($_POST['search'])) {
   header('Location: http://' . $_SERVER['HTTP_HOST'] . '/index.php');
@@ -13,7 +15,7 @@ $in_clause = substr(str_repeat(',?', count($tags)), 1);
 
 $result_agents_stmt = $db->prepare(sprintf(
   "SELECT
-    DISTINCT(agents.id) AS agent_id,
+    DISTINCT(agents.id) AS id,
     agent_name,
     expires_at,
     evaluation1,
@@ -31,44 +33,9 @@ $result_agents_stmt = $db->prepare(sprintf(
 ));
 $result_agents_stmt->execute($tags);
 $result_agents = $result_agents_stmt->fetchAll();
-print_r($result_agents);
 
+$pgdata = array();
+$pgdata += array('page_title' => '検索結果');
+$pgdata += array('result_agents' => $result_agents);
 
-?>
-
-
-<ul>
-  <?php foreach ($result_agents as $result_agent) : ?>
-    <li>
-      <?= $result_agent["agent_name"] ?>
-      <button id="buttonOpen" onclick="openDB()">DBオープン</button>
-      <button id="buttonAdd" onclick='addData(<?= $result_agent["agent_id"] ?>)'>データ追加</button>
-      <form id='questionForm'>
-        <ul name='questionList' id='questionList' size=10>
-        </ul>
-      </form>
-      <input id='deleteBtn' type='button' value='問い合わせBOXから出す' />
-
-    </li>
-  <?php endforeach ?>
-</ul>
-<!-- <div id='questionBox'></div> -->
-
-
-
-<?php
-$resultAgents = json_encode($result_agent);
-?>
-<script>
-  var resultAgents = '<?= $resultAgents ?>'
-</script>
-
-<!-- ボックス追加機能 -->
-<p>
-  <h3>お問合せBOX</h3>
-  <ul id="box"></ul>
-</p>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> -->
-<!-- <script src="/script/result.js"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.0-alpha.2/dexie.min.js" integrity="sha512-YVHSEwMLRaQHvifwu/g/7OeZPCGaBSAe44gR74njhuIBt1XBtS+NNo1hXyJ1nE3zzBV0ImktKwMxBYMwiaMVhA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="./script/box.js"></script>
+include(dirname(__FILE__) . '/parts/templates/_t_result.php');

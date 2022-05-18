@@ -1,4 +1,5 @@
 <?php
+
 function a_html_head($title)
 {
 ?>
@@ -127,19 +128,20 @@ function a_header_start()
   }
 
   // セクション開始部分 a_section_end()とセットで使う
-  function a_section_start($section_title)
+  function a_section_start($section_title, $disable_title)
   {
 ?>
   <section class="Section">
-    <div class="Section__title">
-      <p>
-        <?php if (isset($section_title)) {
-          echo $section_title;
-        } else {
-          echo '$section_titleを定義してください';
-        } ?>
-      </p>
-    </div>
+    <?php if (isset($section_title) && !$disable_title) {
+    ?>
+      <div class="Section__title">
+        <p>
+          <?= $section_title; ?>
+        </p>
+      </div>
+    <?php
+    }
+    ?>
     <div class="Section__content">
     <?php
   }
@@ -209,9 +211,8 @@ function a_header_start()
   // 使い方エリア
   function o_howto()
   {
-    a_section_start('問い合わせまでの流れ');
+    a_section_start('問い合わせまでの流れ', false);
 ?>
-  <div>↓使い方の流れのパーツです！</div>
   <div class="How-to">
     <div class="How-to__cards__four">
       <div class="How-to__cards__two">
@@ -274,7 +275,7 @@ function a_header_start()
 ?>
   <form action="./result.php" method="POST">
     <?php
-    a_section_start('条件絞り込み');
+    a_section_start('条件絞り込み', false);
 
     ?>
     <div>
@@ -342,29 +343,29 @@ function a_header_start()
   }
 
   // エージェントカード　評価　テーブル列
-  function a_agent_eval_tr()
+  function a_agent_eval_tr($eval)
   {
 ?>
   <tr>
     <td>
-      <p>評価項目の変数</p>
+      <p><?= $eval['title']; ?></p>
     </td>
     <td class="star-evaluation">
-      <p>★の数の変数</p>
+      <p><?= str_repeat('★', $eval['star']); ?></p>
     </td>
   </tr>
 <?php
   }
 
   // エージェントカード　評価　テーブル
-  function m_agent_eval()
+  function m_agent_eval($evals)
   {
 ?>
   <div class="agent-card-star-evaluation-table">
     <table>
       <?php
-      a_agent_eval_tr();
-      a_agent_eval_tr();
+      foreach ($evals as $eval)
+        a_agent_eval_tr($eval);
       ?>
     </table>
   </div>
@@ -384,8 +385,11 @@ function a_header_start()
   // エージェントカード BOX追加ボタン
   function a_agent_putbox_btn($agent_id)
   {
+    $agent = f_select_agent($agent_id);
+    $agent_name = $agent['agent_name'];
 ?>
-  <div class="put-into-inquiry-box" onclick="putBox(<?= $agent_id; ?>)">
+
+  <div id="put_into_box" class="put-into-inquiry-box" onclick="putBox(<?= $agent_id; ?>, '<?= $agent_name; ?>')">
     <p>問い合わせBOXに入れる</p>
   </div>
 <?php
@@ -394,18 +398,20 @@ function a_header_start()
   function a_agent_deletebox_btn($agent_id)
   {
 ?>
-  <div class="put-out-of-inquiry-box" onclick="deleteBox(<?= $agent_id; ?>)">
+  <div id="put_out_of_box" class="put-out-of-inquiry-box" onclick="deleteBox(<?= $agent_id; ?>)">
     <p>問い合わせBOXから出す</p>
   </div>
 <?php
   }
 
-  function a_agent_detail_btn()
+  function a_agent_detail_btn($agent_id)
   {
 ?>
-  <div class="view-more-info">
-    <p>詳しく見る ></p>
-  </div>
+  <a href="./detail.php?id=<?= $agent_id; ?>">
+    <div class="view-more-info">
+      <p>詳しく見る ></p>
+    </div>
+  </a>
 <?php
   }
 
@@ -416,14 +422,14 @@ function a_header_start()
     <?php
     a_agent_putbox_btn($agent_id);
     a_agent_deletebox_btn($agent_id);
-    a_agent_detail_btn();
+    a_agent_detail_btn($agent_id);
     ?>
   </div>
 <?php
   }
 
   // エージェントカード全体
-  function o_agent_card($agent_id, $agent_name, $agent_intro, $tags)
+  function o_agent_card($agent_id, $agent_name, $agent_intro, $tags, $evals)
   {
 ?>
   <article class="agent-card">
@@ -431,7 +437,7 @@ function a_header_start()
     a_agent_name($agent_name);
     a_agent_img('/pictures/agent1.jpg');
     m_agent_tags($tags);
-    m_agent_eval();
+    m_agent_eval($evals);
     a_agent_intro($agent_intro);
     m_agent_btns($agent_id);
     ?>
@@ -440,9 +446,9 @@ function a_header_start()
   }
 
   // エージェントリスト
-  function o_agent_list($agents)
+  function o_agent_list($agents, $disable_title)
   {
-    a_section_start('掲載エージェント一覧');
+    a_section_start('掲載エージェント一覧', $disable_title);
 
     global $db;
     foreach ($agents as $agent) {
@@ -450,7 +456,8 @@ function a_header_start()
       $tags_stmt->execute([$agent['id']]);
       $tags = $tags_stmt->fetchAll();
 
-      o_agent_card($agent['id'], $agent['agent_name'], $agent['paragraph1'], $tags);
+      $evals = f_set_evals($agent['id']);
+      o_agent_card($agent['id'], $agent['agent_name'], $agent['paragraph1'], $tags, $evals);
     }
 
     a_section_end();
@@ -557,14 +564,9 @@ function a_header_start()
 
   function o_result($agents)
   {
-    a_section_start('検索結果');
-?>
-  <div>
-    これは検索結果画面です
-  </div>
-<?php
+    a_section_start('検索結果', false);
     m_result_head();
-    o_agent_list($agents);
+    o_agent_list($agents, true);
     a_section_end();
   }
 
@@ -583,12 +585,7 @@ function a_header_start()
 
   function o_history($agents)
   {
-    a_section_start('閲覧履歴');
-?>
-  <div>
-    これは閲覧履歴エリアです
-  </div>
-  <?php
+    a_section_start('閲覧履歴', false);
     foreach ($agents as $agent) {
       m_agent_small($agent);
     }
@@ -596,58 +593,53 @@ function a_header_start()
   }
 
   // エージェント詳細　最終更新
-  function a_agent_detail_updated()
+  function a_agent_detail_updated($last_updated)
   {
-  ?>
+?>
   <div class="Agent-page__last-update">
-    <p>yyyy年mm月dd日</p>
+    <p>最終更新日:<?= $last_updated; ?></p>
   </div>
 <?php
   }
 
   // エージェント詳細 説明文
-  function a_agent_detail_text()
+  function a_agent_detail_text($text)
   {
 ?>
   <div class="Agent-page__text">
     <p>
-      これがひとつの見出しに対しての文章になります。テキストだよ。こんにちは。やるか、やるか。これは紹介文になりますよ～。
+      <?= $text; ?>
     </p>
   </div>
 <?php
   }
 
   // エージェント詳細　説明パラグラフ（見出し＋説明文）
-  function m_agent_detail_para()
+  function m_agent_detail_para($title, $text)
   {
-    a_heading_in_section('小見出し');
-    a_agent_detail_text();
+    a_heading_in_section($title);
+    a_agent_detail_text($text);
   }
 
   // エージェント詳細　全体
-  function o_agent_detail($agent_id)
+  function o_agent_detail($agent_id, $agent_name, $updated_at, $agent_picture, $evals, $paragraphs)
   {
     // セクションの開始
-    a_section_start('エージェント詳細');
-?>
-  <div>
-    これはエージェントの詳細ページです
-  </div>
-  <?php
+    a_section_start($agent_name, false);
     // 最終更新日
-    a_agent_detail_updated();
-  ?>
+    a_agent_detail_updated($updated_at);
+?>
   <div class="Agent-page__image">
     <?php
     // エージェントの画像
-    a_agent_img('/pictures/agent1.jpg');
+    a_agent_img($agent_picture);
 
     // 画像切り替えボタンみたいなやつ
     ?>
   </div>
   <?php
     // ★評価表
-    m_agent_eval();
+    m_agent_eval($evals);
   ?>
   <div class="Agent-page__inquiry-btn">
     <?php
@@ -661,8 +653,11 @@ function a_header_start()
 
   <?php
     // 小見出しと紹介文
-    m_agent_detail_para();
-
+    foreach ($paragraphs as $paragraph) {
+      $title = $paragraph['title'];
+      $text = $paragraph['text'];
+      m_agent_detail_para($title, $text);
+    }
     // セクションの終わり
     a_section_end();
   ?>
@@ -670,32 +665,27 @@ function a_header_start()
 <?php
   }
 
-  function a_box_deletebtn()
+  function a_box_deletebtn($agent_id)
   {
 ?>
   <div class="Application__box__trash">
-    <i class="fa-solid fa-trash-can"></i>
+    <i class="fa-solid fa-trash-can" onclick="deleteBox(<?= $agent_id; ?>)"></i>
   </div>
 <?php
   }
 
   function m_box_item($agent)
   {
-    a_box_deletebtn();
+    a_box_deletebtn($agent['id']);
     m_agent_small($agent);
   }
 
-  function o_box($agents)
+  function o_box()
   {
-    a_section_start('問い合わせBOX');
+    a_section_start('問い合わせBOX', false);
 ?>
-  <div>
-    ↓これはお問い合わせフォームのページのボックスの中身見せてるところです！
-  </div>
+  <ul id="box"></ul>
   <?php
-    foreach ($agents as $agent) {
-      m_box_item($agent);
-    }
     a_section_end();
   }
 
@@ -759,15 +749,12 @@ function a_header_start()
 
   function o_form()
   {
-    a_section_start('問い合わせフォーム');
+    a_section_start('問い合わせフォーム', false);
 
     // 戻るボタン
     a_form_backbtn();
 ?>
   <div class="Application-form">
-    <div>
-      これは、申し込みフォームです↓↓↓
-    </div>
     <?php
     // お問い合わせ内容 ラジオボタン
     m_heading_required('お問い合せ内容');
@@ -965,8 +952,8 @@ function a_header_start()
     </div>
     <div class="Show-box__icon">
       <div class="Show-box__icon__number">
-        <p>
-          7
+        <p id="boxBadge">
+
         </p>
       </div>
 
@@ -982,7 +969,7 @@ function a_header_start()
   <div class="Box-and-apply-footer">
     <div class="Box-mobile" id="box_mobile">
       <?php
-      o_box($agents);
+      o_box();
       ?>
     </div>
 
