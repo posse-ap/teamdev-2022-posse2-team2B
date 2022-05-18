@@ -1,4 +1,5 @@
 <?php
+
 require(dirname(__FILE__) . "/dbconnect.php");
 require(dirname(__FILE__) . '/app/functions.php');
 
