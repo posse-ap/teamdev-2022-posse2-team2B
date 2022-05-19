@@ -10,7 +10,7 @@
     <div class="account_form__sec">
       <h3 class="account_form__sec__title">メールアドレス</h3>
       <div class="account_form__sec__box">
-        <input type=" email" name="email" required>
+        <input type="email" name="email" required>
       </div>
     </div>
 
