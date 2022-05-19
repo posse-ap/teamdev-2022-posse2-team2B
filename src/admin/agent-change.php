@@ -5,10 +5,6 @@ require(dirname(__FILE__) . "/app/dbconnect.php"); //データベース接続
 require(dirname(__FILE__) . "/app/login-check.php"); //ログイン判定 未ログインの場合ログインページに遷移
 require(dirname(__FILE__) . "/app/_ctrl-pages.php"); //管理画面の全ページの情報を保持
 
-
-
-
-
 $pgdata = array();
 $pgdata += array('right_id' => $_SESSION['right_id']);
 $pgdata += array('page_id' => 5);
@@ -18,7 +14,6 @@ $pgdata += array('table_data' => [
 ]);
 
 $agent_id = $_GET['id'];
-
 
 try {
 
