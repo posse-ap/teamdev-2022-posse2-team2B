@@ -50,4 +50,5 @@ if ($page_id == 1) {
     FROM
       students"
   );
-  $data = $data_stmt->fetchAll();}
+  $data = $data_stmt->fetchAll();
+}
