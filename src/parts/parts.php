@@ -937,7 +937,7 @@ function a_header_start()
   {
 ?>
   <div class="Apply-footer__message__pc">
-    <p>問い合わせBOXのN社に</p>
+    <p>問い合わせBOXのNNN社に</p>
   </div>
 <?php
   }
@@ -947,7 +947,7 @@ function a_header_start()
 ?>
   <button class="Apply-footer__apply-btn">
     <p>
-      まとめて<br>問い合わせる
+      まとめて<br class="New-line__sp">問い合わせる
     </p>
   </button>
 <?php
@@ -987,11 +987,13 @@ function a_header_start()
     </div>
 
     <div class="Apply-footer">
-      <?php
-      a_foot_message();
-      m_foot_inquirybtn();
-      m_foot_showboxbtn();
-      ?>
+      <div class="Apply-footer_inner">
+        <?php
+        a_foot_message();
+        m_foot_inquirybtn();
+        m_foot_showboxbtn();
+        ?>
+      </div>
     </div>
   </div>
 <?php
