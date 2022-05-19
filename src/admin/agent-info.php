@@ -36,8 +36,7 @@ $trs_stmt = $db->query(
     ON
       agent_contract.agent_id=agents.id
     WHERE
-      agent_contract.id = $agent_id
-      "
+      agent_contract.id = $agent_id"
 );
 $trs = $trs_stmt->fetch(PDO::FETCH_ASSOC);
 $pgdata['table_data']['tr'] = $trs;
