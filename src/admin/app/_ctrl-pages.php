@@ -35,7 +35,7 @@ $pages = array(
   ],
   5 => [
     'title' => 'エージェント情報詳細',
-    'name' => 'agent-ino.php',
+    'name' => 'agent-info.php',
     'show_nav' => false,
     'right' => [2, 3]
   ],

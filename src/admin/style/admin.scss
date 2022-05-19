@@ -1,6 +1,10 @@
+
+html,body {font-family: serif;}
+
 // ボタン
+$btn: #f3af55;
 .btn {
-  background-color: #f3af55;
+  background-color:$btn;
   padding: 0.5rem 3rem;
   border-radius: 4px;
   box-shadow: 0 2px 2px #aaa;
@@ -156,4 +160,15 @@
 
     }
   }
+}
+
+
+
+
+a{
+  color: blue;
+  text-decoration:underline;
+}
+body {
+font-family: "Arial", "メイリオ";
 }
