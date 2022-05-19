@@ -26,9 +26,6 @@ foreach ($trs as $tr) :
   array_push($pgdata['table_data']['tr'], [$tr['agent_name'], $tr['pic_name'], $tr['pic_email'], $tr['pic_tel'], $tr['start_at'] . '<br>~' . $tr['expires_at'], '<a href="agent-info.php?id=' . $tr["id"] . '" target="" class="link">詳細</a>']);
 endforeach;
 
-
-
-
 require(dirname(__FILE__) . "/app/right-check.php");
 require(dirname(__FILE__) . "/app/fetch-account-name.php");
 
