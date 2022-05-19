@@ -389,7 +389,7 @@ function a_header_start()
     $agent_name = $agent['agent_name'];
 ?>
 
-  <div id="put_into_box" class="put-into-inquiry-box argent-card-btn js-put-btn<?= $agent_id; ?>" onclick="putBox(<?= $agent_id; ?>, '<?= $agent_name; ?>')">
+  <div id="put_into_box" class="put-into-inquiry-box argent-card-btn js-put-btn js-put-btn<?= $agent_id; ?>" onclick="putBox(<?= $agent_id; ?>, '<?= $agent_name; ?>')">
     <p>問い合わせBOXに入れる</p>
   </div>
 <?php
@@ -398,7 +398,7 @@ function a_header_start()
   function a_agent_deletebox_btn($agent_id)
   {
 ?>
-  <div id="put_out_of_box" class="put-out-of-inquiry-box argent-card-btn js-delete-btn<?= $agent_id; ?>" onclick="deleteBox(<?= $agent_id; ?>)">
+  <div id="put_out_of_box" class="put-out-of-inquiry-box argent-card-btn js-delete-btn js-delete-btn<?= $agent_id; ?>" onclick="deleteBox(<?= $agent_id; ?>)">
     <p>問い合わせBOXから出す</p>
   </div>
 <?php
@@ -971,7 +971,7 @@ function a_header_start()
 <?php
   }
 
-  function o_foot($agents)
+  function o_foot()
   {
 ?>
   <div class="Box-and-apply-footer">

@@ -1,6 +1,23 @@
 //// ボタン表示切り替え ////
-function  () {
-
+function changeBtnDisp(agents) {
+  // 全てのボタンの要素を取得し、表示を初期化
+  document.querySelectorAll('.js-put-btn').forEach(putBtn => {
+    putBtn.style.display = 'block';
+  });
+  document.querySelectorAll('.js-delete-btn').forEach(deleteBtn => {
+    deleteBtn.style.display = 'none';
+  })
+  // 問い合わせBOX内にあるエージェントの「入れる」ボタンを非表示、「出すボタン」を表示
+  agents.forEach(agent => {
+    const agentId = agent.id;
+    // ボタンの要素を取得し、表示を変更
+    document.querySelectorAll(`.js-put-btn${agentId}`).forEach(putBtn => {
+      putBtn.style.display = 'none';
+    });
+    document.querySelectorAll(`.js-delete-btn${agentId}`).forEach(deleteBtn => {
+      deleteBtn.style.display = 'block';
+    });
+  });
 }
 
 //// ボックス追加機能 ////
@@ -29,6 +46,7 @@ function showBox() {
       if (agents.length === 0) {
         box.innerText = 'エージェントが入っていません。';
         boxBadge.innerText = agents.length;
+        changeBtnDisp(agents);
         return;
       }
       // BOX内のHTML 初期化
@@ -48,7 +66,7 @@ function showBox() {
         html = response;
       }).fail(function () {
         // 通信失敗時
-          alert('問い合わせBOXへの追加に失敗しました。');
+        alert('問い合わせBOXへの追加に失敗しました。');
       });
 
       // Ajax完了時
@@ -57,6 +75,7 @@ function showBox() {
           // BOX内のHTMLを更新
           box.innerHTML = html;
           boxBadge.innerText = agents.length;
+          changeBtnDisp(agents);
         }
       );
     });
