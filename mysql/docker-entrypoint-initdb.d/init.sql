@@ -232,7 +232,7 @@ VALUES
 INSERT INTO
   accounts(email, password, name, agent_id, right_id)
 VALUES
-  ('agent@test', sha1('teamdev'), '横山', NULL, 1),
+  ('agent@test', sha1('teamdev'), '株式会社〇〇エージェント横山', 1, 1),
   ('boozer@test', sha1('teamdev'), '青柳', NULL, 2),
   ('admin@test', sha1('teamdev'), '田上', NULL, 3);
 

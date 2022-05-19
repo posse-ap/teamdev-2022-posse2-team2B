@@ -15,31 +15,21 @@ $pgdata += array('table_data' => [
 
 $student_id = $_GET['id'];
 
-// テーブルに追加するデータ
-$trs_stmt = $db->query(
-  "SELECT
-    student_name,
-    email,
-    tel,
-    CONCAT(
-    pref_id,
-    address,
-    building)as fulladdress,
-    school_id,
-    faculty,
-    department,
-    graduate_year,
-    inquiry_option_id,
-    optional_comment
-    FROM
-      students
-      WHERE
-      id = $student_id"
-);
-$trs = $trs_stmt->fetch(PDO::FETCH_ASSOC);
-$pgdata['table_data']['tr'] = $trs;
 
-require(dirname(__FILE__) . "/app/right-check.php");
-require(dirname(__FILE__) . "/app/fetch-account-name.php");
+try {
+  $db->beginTransaction();
+  // テーブルに追加するデータ
+  $db->query(
+    "DELETE FROM students WHERE id=$student_id;"
+  );
+  $db->commit();
+  header('Location:/admin/students.php');
+  // echo "学生情報の削除に成功しました。管理画面に戻ってリロードしてください。";
+} catch (\Throwable $th) {
+  //throw $th;
+  $db->rollBack();
+  echo "失敗".$th->getMessage();
+}
+?>
 
-include(dirname(__FILE__) . "/parts/templates/_detail-template.php");
+<a href="../admin/student-info.php"></a>
