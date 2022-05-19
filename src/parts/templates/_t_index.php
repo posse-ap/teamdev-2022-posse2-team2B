@@ -35,6 +35,9 @@ o_header();
 // 追従ボタン（まとめて問い合わせ、BOXを見る）
 o_foot($pgdata['agents']);
 
+// フッター
+o_footer()
+
 ?>
 
 <!-- IndexedDBのライブラリ -->
