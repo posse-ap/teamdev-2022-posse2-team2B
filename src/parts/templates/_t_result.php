@@ -21,7 +21,7 @@ o_header();
 
       <?php
       // お問い合わせBOX PC用
-      o_box($agents);
+      o_box();
 
       // 閲覧履歴のエリア PC用
       o_history($pgdata['result_agents']);
@@ -51,7 +51,7 @@ o_header();
 </div>
 <?php
 // 追従ボタン（まとめて問い合わせ、BOXを見る）
-o_foot($pgdata['result_agents']);
+o_foot();
 ?>
 
 
