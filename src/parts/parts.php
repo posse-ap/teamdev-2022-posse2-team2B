@@ -47,7 +47,7 @@ function a_header_start()
     <?php
   }
 
-  // ヘッダー　ページタイトル
+  // ヘッダー ページタイトル
   function a_header_title()
   {
     ?>
@@ -389,7 +389,7 @@ function a_header_start()
     $agent_name = $agent['agent_name'];
 ?>
 
-  <div id="put_into_box" class="put-into-inquiry-box" onclick="putBox(<?= $agent_id; ?>, '<?= $agent_name; ?>')">
+  <div id="put_into_box" class="put-into-inquiry-box argent-card-btn js-put-btn js-put-btn<?= $agent_id; ?>" onclick="putBox(<?= $agent_id; ?>, '<?= $agent_name; ?>')">
     <p>問い合わせBOXに入れる</p>
   </div>
 <?php
@@ -398,7 +398,7 @@ function a_header_start()
   function a_agent_deletebox_btn($agent_id)
   {
 ?>
-  <div id="put_out_of_box" class="put-out-of-inquiry-box" onclick="deleteBox(<?= $agent_id; ?>)">
+  <div id="put_out_of_box" class="put-out-of-inquiry-box argent-card-btn js-delete-btn js-delete-btn<?= $agent_id; ?>" onclick="deleteBox(<?= $agent_id; ?>)">
     <p>問い合わせBOXから出す</p>
   </div>
 <?php
@@ -407,10 +407,10 @@ function a_header_start()
   function a_agent_detail_btn($agent_id)
   {
 ?>
-  <a href="./detail.php?id=<?= $agent_id; ?>">
-    <div class="view-more-info">
-      <p>詳しく見る ></p>
-    </div>
+  <a href="./detail.php?id=<?= $agent_id; ?>" class="view-more-info argent-card-btn">
+    <!-- <div class="view-more-info"> -->
+    <p>詳しく見る ></p>
+    <!-- </div> -->
   </a>
 <?php
   }
@@ -685,13 +685,13 @@ function a_header_start()
     a_section_start('問い合わせBOX', false);
 ?>
   <ul id="box"></ul>
-  <?php
+<?php
     a_section_end();
   }
 
   function a_form_backbtn()
   {
-  ?>
+?>
   <div class="Application-form__back-button">
     <i class="fa-solid fa-angle-left"></i>
     <p>戻るやら、いろいろ</p>
@@ -929,13 +929,22 @@ function a_header_start()
   </div>
 <?
   }
+  // PC版ようのメッセージ
+  function a_foot_message()
+  {
+?>
+  <div class="Apply-footer__message__pc">
+    <p>問い合わせBOXのNNN社に</p>
+  </div>
+<?php
+  }
 
   function m_foot_inquirybtn()
   {
 ?>
   <button class="Apply-footer__apply-btn">
     <p>
-      まとめて<br>問い合わせる
+      まとめて<br class="New-line__sp">問い合わせる
     </p>
   </button>
 <?php
@@ -953,7 +962,6 @@ function a_header_start()
     <div class="Show-box__icon">
       <div class="Show-box__icon__number">
         <p id="boxBadge">
-
         </p>
       </div>
 
@@ -963,7 +971,7 @@ function a_header_start()
 <?php
   }
 
-  function o_foot($agents)
+  function o_foot()
   {
 ?>
   <div class="Box-and-apply-footer">
@@ -974,12 +982,28 @@ function a_header_start()
     </div>
 
     <div class="Apply-footer">
+      <div class="Apply-footer_inner">
+        <?php
+        a_foot_message();
+        m_foot_inquirybtn();
+        m_foot_showboxbtn();
+        ?>
+      </div>
+    </div>
+  </div>
+<?php
+  }
+
+  function o_footer()
+  {
+?>
+  <div class="Footer">
+    <div class="Footer__inner">
       <?php
-      m_foot_inquirybtn();
-      m_foot_showboxbtn();
+      a_header_title();
+      a_header_nav();
       ?>
     </div>
   </div>
 <?php
   }
-?>

@@ -247,9 +247,10 @@ padding-bottom: 80px;
 // エージェントカードの下の方のボタンの部分
 // BEM未対応
 .argent-card-btns{
+  display: flex;
+  flex-direction: column;
   width: 100%;
-
-  div{
+  .argent-card-btn{
     width: 100%;
     box-shadow: 0 2px 4px rgba(0,0,0,0.3);
     border-radius:3px;
@@ -261,23 +262,25 @@ padding-bottom: 80px;
     }
   }
 
-  .put-into-inquiry-box{
-    background-color:#FFAB40;
-    color: white;
-    border: solid 0.5px #FFAB40;
-    display: block;
-  }
-  .put-out-of-inquiry-box{
-    background-color: white;
-    border: solid 0.5px #FFAB40;
-    color: #FFAB40;
-    display: none;
-  }
-  .view-more-info{
-    background-color: $main-color;
-    border: solid 0.5px $main-color;
-    color: $index-color;
-  }
+}
+
+.put-into-inquiry-box{
+  background-color:#FFAB40;
+  color: white;
+  border: solid 0.5px #FFAB40;
+  display: block;
+}
+.put-out-of-inquiry-box{
+  background-color: white;
+  border: solid 0.5px #FFAB40;
+  color: #FFAB40;
+  display: none;
+}
+.view-more-info{
+  background-color: $main-color;
+  border: solid 0.5px $main-color;
+  color: $index-color;
+  display: block;
 }
 
 // 再検索
@@ -538,15 +541,6 @@ padding-bottom: 80px;
       text-align: center;
     }
   }
-
-  .put-into-inquiry-box{
-    background-color:#FFAB40;
-    color: white;
-  }
-  .put-out-of-inquiry-box{
-    background-color: white;
-    color: #FFAB40;
-  }
 }
 
 
@@ -576,6 +570,7 @@ padding-bottom: 80px;
     display: flex;
     align-items: center;
     background: #FFAB40;
+    color: white;
     height: 30px;
     margin-left:30px;
   }
@@ -829,14 +824,12 @@ $radio-background-color: #ffffff;
   }
 }
 
-
-
-
+// 追従ボタン
 .Box-and-apply-footer{
   width: 100%;
-  position: fixed; /* フッターを固定する */
-  bottom: 0; /* 上部から配置の基準位置を決める */
-  left: 0; /* 左から配置の基準位置を決める */
+  position: fixed;
+  bottom: 0;
+  left: 0;
   z-index:10;
   background: white;
 
@@ -845,17 +838,28 @@ $radio-background-color: #ffffff;
 
 .Box-mobile {
   display:none;
-
-
 }
 
 .Apply-footer{
   width: 100%;
   height: 80px;
+  background-color:rgba(0, 0, 0, 0.65);
+}
+
+
+.Apply-footer_inner{
+  max-width: 1500px;
+  margin: 0 auto;
+  width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color:rgba(0, 0, 0, 0.65);
+  height: 80px;
+}
+
+
+.Apply-footer__message__pc{
+  display: none;
 }
 
 .Apply-footer__apply-btn{
@@ -865,7 +869,7 @@ $radio-background-color: #ffffff;
   padding: 0px 2%;
   text-align: center;
   width: 43%;
-
+  
   p{
     color: white;
   }
@@ -895,15 +899,94 @@ $radio-background-color: #ffffff;
       border-radius: 100px;
     }
   }
-
 }
 
+// フッター
+.Footer{
+  background-color:$main-color;
+  &__inner{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: $index-color ;
+    padding: 10px 30px;
 
+  }
+}
 
+.page-title{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.header-nav{
+  display:none;
+  padding: 10px 75px;
+}
+
+.header-nav-list{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  li{
+    color: $index-color;
+    font-family :Helvetica;
+    padding:10px 15px 15px ;
+
+    a{
+      font-size: 1rem;
+      margin:10px 15px 15px;
+    }
+  }
+}
+
+// レイアウト関連
+.Page {
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+  &__right{
+    &__pc{
+      display:none;
+    }
+  }
+  &__left{
+    &__sp{
+    }
+  }
+}
 
   // レスポンシブ対応
   @media (min-width: 960px) {
+
+    
+    // レイアウト関連
+    .Page {
+      &__container {
+        margin: 0 auto;
+        flex-direction: row-reverse;
+        justify-content:space-around;
+        max-width: 1500px;
+      }
+      &__right{
+        width: 30%;
+        &__pc{
+          display: block;
+        }
+      }
+      &__left{
+        width: 60%;
+        &__sp{
+          display: none;
+        }
+      }
+    }
+
+    
     .header-inner{
       font-size:2.5rem;
     }
@@ -917,20 +1000,16 @@ $radio-background-color: #ffffff;
 
     .Page__container__center{
       margin: 0 auto;
-      max-width:1000px
+      max-width:1500px
     }
 
     .Section{
-      max-width: 1000px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-
-
     }
 
     .How-to{
       &__cards{
         &__four{
-          // width: 100%;
           display: flex;
         }
 
@@ -939,8 +1018,8 @@ $radio-background-color: #ffffff;
           justify-content:space-around;
           margin: 5% 0;
         }
-
       }
+
       &__card{
         width: 45%;
 
@@ -948,70 +1027,44 @@ $radio-background-color: #ffffff;
           width: 100%;
         }
       }
-
-
-
     }
-
-
-
-
-
-
-
-    .agent-card{
-
-
-    }
-
 
     .argent-card-btns{
-      display: flex;
+      flex-direction: row;
       justify-content: space-around;
 
-      div{
+      .argent-card-btn{
         margin: 0 5%;
-
-
-        p{
-
-        }
       }
 
-      .put-into-inquiry-box{
-        background-color:#FFAB40;
-        color: white;
-      }
-      .put-out-of-inquiry-box{
-        background-color: white;
-        color: #FFAB40;
-
-        display: none;
-
-
-
-      }
+      // .put-into-inquiry-box{
+      //   background-color:#FFAB40;
+      //   color: white;
+      // }
+      // .put-out-of-inquiry-box{
+      //   background-color: white;
+      //   color: #FFAB40;
+      //   display: none;
+      // }
 
       .view-more-info{
         background-color: $main-color;
         color: $index-color;
       }
-
-
-
-
-
     }
 
+// 再検索
+.Re-search{
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
 
 // 確認ページ
 .Check{
   width: 95%;
-  max-width: 1000px;
+  // max-width: 1500px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
   margin: 0;
   padding: 30px 0px;
-
 
   &__message-text{
     // width: 95%;
@@ -1045,12 +1098,28 @@ $radio-background-color: #ffffff;
   }
 }
 
-
-
-
-
-    .Box-and-apply-footer {
-      display: none;
+    .Box-mobile {
+      display:none;
     }
 
+    .Apply-footer__message__pc{
+      display: block;
+      color: white;
+      font-size: 1.5em;
+      width: 43%;
+      text-align: center;
+    }
+    
+    .Apply-footer__apply-btn{    
+      p{
+        font-size: 1.5em;
+        .New-line__sp{
+          display: none;
+        }
+      }
+    }
+    
+    .Show-box{
+      display:none;
+    }
   }
