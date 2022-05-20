@@ -699,12 +699,12 @@ function a_header_start()
 <?php
   }
 
-  function a_form_send()
+  function a_form_send($title)
   {
 ?>
   <div class="Application-form__submit-btn__wrapper">
     <div class="Application-form__submit-btn">
-      <input type="submit" value="確認画面へとか！">
+      <input type="submit" value="<?= $title; ?>">
     </div>
   </div>
 <?php
@@ -932,7 +932,7 @@ function a_header_start()
     a_form_agree();
 
     //送信ボタン
-    a_form_send();
+    a_form_send('確認画面に進む');
     ?>
   </div>
 <?php
@@ -989,7 +989,7 @@ function a_header_start()
     a_form_backbtn('戻る');
     a_check_message();
     m_check_data();
-    a_form_send();
+    a_form_send('送信する');
     ?>
   </div>
 <?php
@@ -1033,7 +1033,7 @@ function a_header_start()
       ?>
     </div>
     <?php
-    a_form_send();
+    a_form_send('テキスト');
     ?>
   </div>
 <?
