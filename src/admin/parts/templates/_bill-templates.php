@@ -13,6 +13,7 @@ include(dirname(__FILE__) . '/../organisms/_header.php');
     <?php
     include(dirname(__FILE__) . '/../atoms/_title.php');
     include(dirname(__FILE__) . '/../molecules/_table.php');
+    //ここに、「今月の請求情報」のmoleculesのファイルを挿入
     ?>
   </div>
 </div>
