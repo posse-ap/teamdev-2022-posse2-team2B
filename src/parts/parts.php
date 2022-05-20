@@ -942,7 +942,7 @@ function a_header_start()
   function m_foot_inquirybtn()
   {
 ?>
-  <button class="Apply-footer__apply-btn">
+  <button class="Apply-footer__apply-btn" onclick="inquiryBtn()">
     <p>
       まとめて<br class="New-line__sp">問い合わせる
     </p>

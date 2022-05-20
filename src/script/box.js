@@ -103,3 +103,17 @@ function deleteBox(agentId) {
 window.onload = () => {
   showBox();
 }
+
+function inquiryBtn() {
+  let length;
+  db.agents
+    .toArray()
+    .then(function (agents) {
+      length = agents.length;
+      if (length !== 0) {
+        location.href = 'input.php';
+      } else {
+        alert('問い合わせBOXの中身が空です。次に進むには、問い合わせBOXにエージェントを1件以上追加してください。');
+      }
+    });
+}
