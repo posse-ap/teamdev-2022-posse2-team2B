@@ -31,8 +31,7 @@ function escNull(el) {
 }
 
 // お問い合わせBOXのul要素
-let box = document.getElementById('box');
-box = escNull(box);
+let boxes = document.querySelectorAll('.js-box');
 // お問い合わせBOXアイコンのバッジ(BOX内のエージェント数を表示)
 let boxBadge = document.getElementById('boxBadge');
 boxBadge = escNull(boxBadge);
@@ -55,7 +54,9 @@ function showBox() {
     .then(function (agents) {
       // agentsが空の場合
       if (agents.length === 0) {
-        box.innerText = 'エージェントが入っていません。';
+        boxes.forEach(box => {
+          box.innerText = 'エージェントが入っていません。';
+        });
         boxBadge.innerText = agents.length;
         changeBtnDisp(agents);
         return;
@@ -84,7 +85,9 @@ function showBox() {
       $.when(postAgent).done(
         function () {
           // BOX内のHTMLを更新
-          box.innerHTML = html;
+          boxes.forEach(box => {
+            box.innerHTML = html;
+          });
           boxBadge.innerText = agents.length;
           changeBtnDisp(agents);
         }

@@ -684,17 +684,17 @@ function a_header_start()
   {
     a_section_start('問い合わせBOX', false);
 ?>
-  <ul id="box"></ul>
+  <ul class="js-box"></ul>
 <?php
     a_section_end();
   }
 
-  function a_form_backbtn()
+  function a_form_backbtn($text)
   {
 ?>
   <div class="Application-form__back-button">
     <i class="fa-solid fa-angle-left"></i>
-    <p>戻るやら、いろいろ</p>
+    <p><?= $text; ?></p>
   </div>
 <?php
   }
@@ -752,7 +752,7 @@ function a_header_start()
     a_section_start('問い合わせフォーム', false);
 
     // 戻るボタン
-    a_form_backbtn();
+    a_form_backbtn('戻る');
 ?>
   <div class="Application-form">
     <?php
@@ -877,7 +877,7 @@ function a_header_start()
 ?>
   <div class="Check">
     <?php
-    a_form_backbtn();
+    a_form_backbtn('戻る');
     a_check_message();
     m_check_data();
     a_form_send();
