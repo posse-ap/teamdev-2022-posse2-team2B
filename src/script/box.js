@@ -22,10 +22,21 @@ function changeBtnDisp(agents) {
 
 //// ボックス追加機能 ////
 
+function escNull(el) {
+  if (el == null) {
+    return document.createElement('div');
+  } else {
+    return el;
+  }
+}
+
 // お問い合わせBOXのul要素
-const box = document.getElementById('box');
+let box = document.getElementById('box');
+box = escNull(box);
 // お問い合わせBOXアイコンのバッジ(BOX内のエージェント数を表示)
-const boxBadge = document.getElementById('boxBadge');
+let boxBadge = document.getElementById('boxBadge');
+boxBadge = escNull(boxBadge);
+
 
 // データベース作成
 var db = new Dexie('craftDB');
