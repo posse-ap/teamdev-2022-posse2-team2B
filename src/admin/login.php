@@ -69,8 +69,9 @@ if (!empty($_POST)) {
             <label>パスワード<input type="password" required name="password" class="login__input"></label>
             <br>
             <div class="submit login__btn btn">
-              <input type="submit" value="ログイン" >
+              <input type="submit" value="ログイン">
             </div>
+            <a href="mailto:admin@test?cc=boozer@test&amp;subject=%E3%83%91%E3%82%B9%E3%83%AF%E3%83%BC%E3%83%89%E9%96%8B%E7%A4%BA%E4%BE%9D%E9%A0%BC&amp;body=%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E4%BC%9A%E7%A4%BE%E3%82%84%E5%90%91%E3%81%91%E3%81%AE%E3%83%91%E3%82%B9%E3%83%AF%E3%83%BC%E3%83%89%E3%82%92%E5%BF%98%E3%82%8C%E3%81%9F%E3%81%AE%E3%81%A7%E3%80%81%E9%96%8B%E7%A4%BA%E3%82%92%E3%81%8A%E9%A1%98%E3%81%84%E3%81%97%E3%81%BE%E3%81%99%E3%80%82" class="forgot-password">パスワードをお忘れの方</a>
           </form>
         </div>
       </div>
