@@ -13,9 +13,6 @@ include(dirname(__FILE__) . '/../organisms/_header.php');
     <?php
     include(dirname(__FILE__) . '/../atoms/_title.php');
     include(dirname(__FILE__) . '/../molecules/_table.php');
-    if ($pgdata['page_id'] == 2) {
-      echo '<a href="./account-maint.php" class="btn detail-btn">新規作成</a>';
-    }
     ?>
   </div>
 </div>

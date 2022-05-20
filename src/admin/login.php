@@ -60,17 +60,19 @@ if (!empty($_POST)) {
   ?>
   <main>
     <div class="wrapper">
-      <div class="container">
+      <div class="login__container">
         <h1 class="login__title">管理者ログイン</h1>
-        <form action=" /admin/login.php" method="POST" class=form-wrapper>
-          <label>メールアドレス<input type="email" name="email" required></label>
-          <br>
-          <label>パスワード<input type="password" required name="password"></label>
-          <br>
-          <div class="submit">
-            <input type="submit" value="ログイン" class="btn">
-          </div>
-        </form>
+        <div class="login__form">
+          <form action=" /admin/login.php" method="POST" class="form-wrapper">
+            <label>メールアドレス<input type="email" name="email" class="login__input" required></label>
+            <br>
+            <label>パスワード<input type="password" required name="password" class="login__input"></label>
+            <br>
+            <div class="submit login__btn btn">
+              <input type="submit" value="ログイン" >
+            </div>
+          </form>
+        </div>
       </div>
     </div>
 </body>

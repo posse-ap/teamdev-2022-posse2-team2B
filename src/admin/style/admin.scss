@@ -1,10 +1,13 @@
-
-html,body {font-family: serif;}
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,500;1,900&family=Zen+Kaku+Gothic+New&display=swap");
+html,
+body {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+}
 
 // ボタン
 $btn: #f3af55;
 .btn {
-  background-color:$btn;
+  background-color: $btn;
   padding: 0.5rem 3rem;
   border-radius: 4px;
   box-shadow: 0 2px 2px #aaa;
@@ -81,6 +84,7 @@ $btn: #f3af55;
     padding: 0.4rem 0.8rem;
     border-radius: 2px;
     box-shadow: 0 2px 2px #aaa;
+    cursor: pointer;
   }
 }
 
@@ -157,18 +161,64 @@ $btn: #f3af55;
           box-shadow: 0 2px 2px #ccc;
         }
       }
-
     }
   }
 }
 
-
-
-
-a{
-  color: blue;
-  text-decoration:underline;
+.login__container {
+  width: calc(100vw - 80px);
+  height: calc(100vh - 130px);
+  margin: 40px;
+  justify-content: flex-start;
+  gap: 40px;
 }
-body {
-font-family: "Arial", "メイリオ";
+
+.login__form {
+  width: 100%;
+  background-color: #eee;
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login__form label {
+  font-size: 1.5rem;
+}
+.form-wrapper {
+  padding: 10px;
+}
+
+.login__input {
+  background-color: #fff;
+  border-radius: 4px;
+
+  height: 2rem;
+  padding: 0 1rem;
+  box-shadow: 0 2px 2px #ccc;
+  display: block;
+}
+
+.login__title {
+  width: 100%;
+  font-size: 1.8rem;
+  margin: 1%;
+}
+
+.login__btn{
+  display: flex;
+  justify-content: center;
+}
+
+
+.link {
+  color: blue;
+  text-decoration: underline;
+}
+
+.detail-btn{
+  position:absolute;
+  left:50%;
+  top:auto;
+  margin:1%;
 }
