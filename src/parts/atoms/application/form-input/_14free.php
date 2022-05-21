@@ -1,1 +1,0 @@
-<textarea name="" id="" cols="30" rows="10" class="Application-form__input__glay-border"></textarea>
