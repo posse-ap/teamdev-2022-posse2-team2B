@@ -11,5 +11,8 @@ o_header();
 // 確認ページ
 o_check();
 
+// フッター
+o_footer();
+
 // HTMLおわり
 a_html_foot();

@@ -11,5 +11,8 @@ o_header();
 // 完了ページ
 o_thanks();
 
+// フッター
+o_footer();
+
 // HTMLおわり
 a_html_foot();

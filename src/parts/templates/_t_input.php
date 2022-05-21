@@ -26,6 +26,11 @@ o_header();
   </div>
 </div>
 
+<?php
+// フッター
+o_footer();
+?>
+
 <!-- IndexedDBのライブラリ -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.0-alpha.2/dexie.min.js" integrity="sha512-YVHSEwMLRaQHvifwu/g/7OeZPCGaBSAe44gR74njhuIBt1XBtS+NNo1hXyJ1nE3zzBV0ImktKwMxBYMwiaMVhA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- jQuery -->

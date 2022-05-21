@@ -40,10 +40,11 @@ o_header();
 
 <?php
 
-
 // 追従ボタン（まとめて問い合わせ、BOXを見る）
 o_foot([$pgdata['agent']]);
 
+// フッター
+o_footer();
 ?>
 
 <!-- IndexedDBのライブラリ -->
