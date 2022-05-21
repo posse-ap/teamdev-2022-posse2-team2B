@@ -183,8 +183,10 @@ $btn: #f3af55;
 }
 
 .login__form label {
-  font-size: 1.5rem;
+  font-size: 2rem;
+  margin:0 auto;
 }
+
 .form-wrapper {
   padding: 10px;
 }
@@ -192,11 +194,11 @@ $btn: #f3af55;
 .login__input {
   background-color: #fff;
   border-radius: 4px;
-
   height: 2rem;
   padding: 0 1rem;
   box-shadow: 0 2px 2px #ccc;
   display: block;
+  width: 100%;
 }
 
 .login__title {
@@ -205,10 +207,15 @@ $btn: #f3af55;
   margin: 1%;
 }
 
-.login__btn{
+.login__btn {
   display: flex;
   justify-content: center;
+  margin: 0 auto;
+  width:200px;
 }
+
+
+
 
 
 .link {
@@ -216,9 +223,19 @@ $btn: #f3af55;
   text-decoration: underline;
 }
 
-.detail-btn{
-  position:absolute;
-  left:50%;
-  top:auto;
-  margin:1%;
+.detail-btn {
+  position: absolute;
+  left: 50%;
+  top: auto;
+  margin: 1%;
 }
+
+.forgot-password {
+  color: #888;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  font-size: 1rem;
+}
+
