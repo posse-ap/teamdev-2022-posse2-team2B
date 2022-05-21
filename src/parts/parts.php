@@ -869,7 +869,7 @@ function a_header_start()
     // 戻るボタン
     a_form_backbtn('戻る');
 ?>
-  <div class="Application-form">
+  <form class="Application-form h-adr" method="POST">
     <?php
     // お問い合わせ内容 ラジオボタン
     m_heading_required('お問い合せ内容');
@@ -908,15 +908,19 @@ function a_header_start()
     a_select_gradu_year();
 
     // 住所
+    ?>
+    <span class="p-country-name" style="display:none;">Japan</span>
+    <?php
     m_heading_required('住所');
     //   郵便番号
     a_label('郵便番号', '');
-    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）2220022']);
+    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border p-postal-code', 'size' => '8', 'placeholder' => '例）2220022']);
     //   都道府県
-    a_select_pref();
+    a_label('都道府県', '');
+    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border p-region', 'placeholder' => '例）東京都']);
     //   市区町村番地
     a_label('市区町村番地', '');
-    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）港区白金台']);
+    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border p-locality p-street-address p-extended-address', 'placeholder' => '例）港区白金台']);
     //   建物名・部屋番号
     a_label('建物名・部屋番号', '');
     a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）就活マンション１０５']);
@@ -934,7 +938,7 @@ function a_header_start()
     //送信ボタン
     a_form_send('確認画面に進む');
     ?>
-  </div>
+  </form>
 <?php
     a_section_end();
   }

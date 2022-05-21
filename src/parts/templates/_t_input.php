@@ -24,6 +24,8 @@ o_form();
 <script src="./script/box.js"></script>
 <!-- 検索エリアのタグクリック時の動作 -->
 <script src="./script/search.js"></script>
+<!-- 住所自動入力 -->
+<script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
 
 <?php
 
