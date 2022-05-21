@@ -850,7 +850,7 @@ $radio-background-color: #ffffff;
 
 
 .Apply-footer_inner{
-  max-width: 1500px;
+  max-width: 1000px;
   margin: 0 auto;
   width: 100%;
   display: flex;
@@ -986,7 +986,7 @@ $radio-background-color: #ffffff;
         margin: 0 auto;
         flex-direction: row-reverse;
         justify-content:space-around;
-        max-width: 1500px;
+        max-width: 1000px;
       }
       &__right{
         width: 30%;
@@ -1016,7 +1016,7 @@ $radio-background-color: #ffffff;
 
     .Page__container__center{
       margin: 0 auto;
-      max-width:1500px
+      max-width: 1000px
     }
 
     .Section{
@@ -1077,7 +1077,7 @@ $radio-background-color: #ffffff;
 // 確認ページ
 .Check{
   width: 95%;
-  // max-width: 1500px;
+  // max-width: 1000px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
   margin: 0;
   padding: 30px 0px;
