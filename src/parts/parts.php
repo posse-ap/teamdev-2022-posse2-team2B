@@ -684,29 +684,145 @@ function a_header_start()
   {
     a_section_start('問い合わせBOX', false);
 ?>
-  <ul id="box"></ul>
+  <ul class="js-box"></ul>
 <?php
     a_section_end();
   }
 
-  function a_form_backbtn()
+  function a_form_backbtn($text)
   {
 ?>
   <div class="Application-form__back-button">
     <i class="fa-solid fa-angle-left"></i>
-    <p>戻るやら、いろいろ</p>
+    <p><?= $text; ?></p>
   </div>
 <?php
   }
 
-  function a_form_send()
+  function a_form_send($title)
   {
 ?>
   <div class="Application-form__submit-btn__wrapper">
     <div class="Application-form__submit-btn">
-      <input type="submit" value="確認画面へとか！">
+      <input type="submit" value="<?= $title; ?>">
     </div>
   </div>
+<?php
+  }
+
+  function a_form_radio_btn($index, $title)
+  {
+?>
+  <div class="Application-form__radio">
+    <input id="app_radio_<?= $index; ?>" name="radio" type="radio">
+    <label for="app_radio_<?= $index; ?>" class="Application-form__radio__label"><?= $title; ?></label>
+  </div>
+<?php
+  }
+
+  function m_form_radio()
+  {
+    a_form_radio_btn(1, '1');
+    a_form_radio_btn(2, '2');
+    a_form_radio_btn(3, '3');
+  }
+
+  // $attributes = [attribute => value, attribute => value, ...]
+  function a_input($attributes)
+  {
+    $html = '';
+    foreach ($attributes as $key => $value) {
+      $html .= $key . '="' . $value . '" ';
+    }
+    $html = trim($html);
+?>
+  <input <?= $html; ?>>
+<?php
+  }
+
+  function a_select_gradu_year()
+  {
+?>
+  <select name="graduation-year" id="graduationYear" class="Application-form__input__glay-border">
+    <option hidden>選択してください</option>
+    <option value="2022">22卒</option>
+    <option value="2023">23卒</option>
+    <option value="2024">24卒</option>
+    <option value="2025">25卒</option>
+    <option value="other">その他</option>
+  </select>
+<?php
+  }
+
+  function a_label($title, $for)
+  {
+?>
+  <label for="<?= $for; ?>"><?= $title; ?></label>
+  <br>
+<?php
+  }
+
+  function a_select_pref()
+  {
+?>
+  <p>都道府県</p>
+  <select name="prefectureId" class="Application-form__input__glay-border">
+    <option value="" hidden>選択してください</option>
+    <option value="1">北海道</option>
+    <option value="2">青森県</option>
+    <option value="3">岩手県</option>
+    <option value="4">宮城県</option>
+    <option value="5">秋田県</option>
+    <option value="6">山形県</option>
+    <option value="7">福島県</option>
+    <option value="8">茨城県</option>
+    <option value="9">栃木県</option>
+    <option value="10">群馬県</option>
+    <option value="11">埼玉県</option>
+    <option value="12">千葉県</option>
+    <option value="13">東京都</option>
+    <option value="14">神奈川県</option>
+    <option value="15">新潟県</option>
+    <option value="16">富山県</option>
+    <option value="17">石川県</option>
+    <option value="18">福井県</option>
+    <option value="19">山梨県</option>
+    <option value="20">長野県</option>
+    <option value="21">岐阜県</option>
+    <option value="22">静岡県</option>
+    <option value="23">愛知県</option>
+    <option value="24">三重県</option>
+    <option value="25">滋賀県</option>
+    <option value="26">京都府</option>
+    <option value="27">大阪府</option>
+    <option value="28">兵庫県</option>
+    <option value="29">奈良県</option>
+    <option value="30">和歌山県</option>
+    <option value="31">鳥取県</option>
+    <option value="32">島根県</option>
+    <option value="33">岡山県</option>
+    <option value="34">広島県</option>
+    <option value="35">山口県</option>
+    <option value="36">徳島県</option>
+    <option value="37">香川県</option>
+    <option value="38">愛媛県</option>
+    <option value="39">高知県</option>
+    <option value="40">福岡県</option>
+    <option value="41">佐賀県</option>
+    <option value="42">長崎県</option>
+    <option value="43">熊本県</option>
+    <option value="44">大分県</option>
+    <option value="45">宮崎県</option>
+    <option value="46">鹿児島県</option>
+    <option value="47">沖縄県</option>
+  </select>
+<?php
+  }
+
+  function a_free_textbox()
+  {
+?>
+  <textarea name="" id="" cols="30" rows="10" class="Application-form__input__glay-border" placeholder="例）面談までの流れを詳しく教えてください。"></textarea>
 <?php
   }
 
@@ -716,7 +832,6 @@ function a_header_start()
   <div class="Application-form__input__glay-border Application-form__privacy-cb">
     <label for="privacyPolicyCheckbox" class="Application-form__privacy-cb__wrapper">
       同意する
-
       <input type="checkbox" id="privacyPolicyCheckbox" class="Application-form__privacy-cb__checkbox">
       <span class="Application-form__privacy-cb__checkbox-icon"></span>
     </label>
@@ -752,68 +867,62 @@ function a_header_start()
     a_section_start('問い合わせフォーム', false);
 
     // 戻るボタン
-    a_form_backbtn();
+    a_form_backbtn('戻る');
 ?>
   <div class="Application-form">
     <?php
     // お問い合わせ内容 ラジオボタン
     m_heading_required('お問い合せ内容');
-    require(dirname(__FILE__) . "/atoms/application/form-input/_01inquiry-content.php");
+    m_form_radio();
 
     // 名前
     m_heading_required('名前');
-    require(dirname(__FILE__) . "/atoms/application/form-input/_02name.php");
-    require(dirname(__FILE__) . "/atoms/application/form-input/_example.php");
+    a_input(['pattern' => '[^\x20-\x7E]*', 'class' => 'Application-form__name Application-form__input__glay-border', 'placeholder' => '例）就活太郎']);
 
     // 名前（フリガナ）
     m_heading_required('名前(フリガナ)');
-    require(dirname(__FILE__) . "/atoms/application/form-input/_03name-katakana.php");
-    require(dirname(__FILE__) . "/atoms/application/form-input/_example.php");
+    a_input(['pattern' => '[\u30A1-\u30F6]*', 'class' => 'Application-form__name Application-form__input__glay-border', 'placeholder' => '例）シュウカツタロウ']);
 
     // メールアドレス
     m_heading_required('メールアドレス');
-    require(dirname(__FILE__) . "/atoms/application/form-input/_04email.php");
-    require(dirname(__FILE__) . "/atoms/application/form-input/_example.php");
+    a_input(['type' => 'email', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）shukatsu.taro123@example.com']);
 
     // 電話番号（半角ハイフンなし）
     m_heading_required('電話番号(ハイフンなし)');
-    require(dirname(__FILE__) . "/atoms/application/form-input/_05tel.php");
-    require(dirname(__FILE__) . "/atoms/application/form-input/_example.php");
+    a_input(['type' => 'tel', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）09012345678']);
 
     // 大学名
     m_heading_required('大学名');
-    require(dirname(__FILE__) . "/atoms/application/form-input/_06university.php");
-    require(dirname(__FILE__) . "/atoms/application/form-input/_example.php");
+    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）就活義塾大学']);
 
     // 学部名
     m_heading_required('学部名');
-    require(dirname(__FILE__) . "/atoms/application/form-input/_07faculty.php");
-    require(dirname(__FILE__) . "/atoms/application/form-input/_example.php");
+    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）文学部']);
 
     // 学科名
     m_heading_required('学科名');
-    require(dirname(__FILE__) . "/atoms/application/form-input/_08department.php");
-    require(dirname(__FILE__) . "/atoms/application/form-input/_example.php");
+    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）人間科学科']);
 
     // 卒業年
     m_heading_required('卒業年');
-    require(dirname(__FILE__) . "/atoms/application/form-input/_09graduation-year.php");
-    require(dirname(__FILE__) . "/atoms/application/form-input/_example.php");
+    a_select_gradu_year();
 
     // 住所
     m_heading_required('住所');
     //   郵便番号
-    require(dirname(__FILE__) . "/atoms/application/form-input/_10mail-number.php");
-    require(dirname(__FILE__) . "/atoms/application/form-input/_example.php");
+    a_label('郵便番号', '');
+    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）2220022']);
     //   都道府県
-    require(dirname(__FILE__) . "/atoms/application/form-input/_11prefecture.php");
+    a_select_pref();
     //   市区町村番地
-    require(dirname(__FILE__) . "/atoms/application/form-input/_12city.php");
+    a_label('市区町村番地', '');
+    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）港区白金台']);
     //   建物名・部屋番号
-    require(dirname(__FILE__) . "/atoms/application/form-input/_13building.php");
+    a_label('建物名・部屋番号', '');
+    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）就活マンション１０５']);
     // 自由記述欄
     a_heading('自由記述欄');
-    require(dirname(__FILE__) . "/atoms/application/form-input/_14free.php");
+    a_free_textbox();
 
     // プライバシーポリシーの文章
     m_heading_required('プライバシーポリシー');
@@ -823,7 +932,7 @@ function a_header_start()
     a_form_agree();
 
     //送信ボタン
-    a_form_send();
+    a_form_send('確認画面に進む');
     ?>
   </div>
 <?php
@@ -877,10 +986,10 @@ function a_header_start()
 ?>
   <div class="Check">
     <?php
-    a_form_backbtn();
+    a_form_backbtn('戻る');
     a_check_message();
     m_check_data();
-    a_form_send();
+    a_form_send('送信する');
     ?>
   </div>
 <?php
@@ -924,7 +1033,7 @@ function a_header_start()
       ?>
     </div>
     <?php
-    a_form_send();
+    a_form_send('テキスト');
     ?>
   </div>
 <?
@@ -942,7 +1051,7 @@ function a_header_start()
   function m_foot_inquirybtn()
   {
 ?>
-  <button class="Apply-footer__apply-btn">
+  <button class="Apply-footer__apply-btn" onclick="inquiryBtn()">
     <p>
       まとめて<br class="New-line__sp">問い合わせる
     </p>

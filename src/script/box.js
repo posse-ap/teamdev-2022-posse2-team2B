@@ -22,10 +22,20 @@ function changeBtnDisp(agents) {
 
 //// ボックス追加機能 ////
 
+function escNull(el) {
+  if (el == null) {
+    return document.createElement('div');
+  } else {
+    return el;
+  }
+}
+
 // お問い合わせBOXのul要素
-const box = document.getElementById('box');
+let boxes = document.querySelectorAll('.js-box');
 // お問い合わせBOXアイコンのバッジ(BOX内のエージェント数を表示)
-const boxBadge = document.getElementById('boxBadge');
+let boxBadge = document.getElementById('boxBadge');
+boxBadge = escNull(boxBadge);
+
 
 // データベース作成
 var db = new Dexie('craftDB');
@@ -44,7 +54,9 @@ function showBox() {
     .then(function (agents) {
       // agentsが空の場合
       if (agents.length === 0) {
-        box.innerText = 'エージェントが入っていません。';
+        boxes.forEach(box => {
+          box.innerText = 'エージェントが入っていません。';
+        });
         boxBadge.innerText = agents.length;
         changeBtnDisp(agents);
         return;
@@ -73,7 +85,9 @@ function showBox() {
       $.when(postAgent).done(
         function () {
           // BOX内のHTMLを更新
-          box.innerHTML = html;
+          boxes.forEach(box => {
+            box.innerHTML = html;
+          });
           boxBadge.innerText = agents.length;
           changeBtnDisp(agents);
         }
@@ -102,4 +116,18 @@ function deleteBox(agentId) {
 // ロード時も再表示
 window.onload = () => {
   showBox();
+}
+
+function inquiryBtn() {
+  let length;
+  db.agents
+    .toArray()
+    .then(function (agents) {
+      length = agents.length;
+      if (length !== 0) {
+        location.href = 'input.php';
+      } else {
+        alert('問い合わせBOXの中身が空です。次に進むには、問い合わせBOXにエージェントを1件以上追加してください。');
+      }
+    });
 }
