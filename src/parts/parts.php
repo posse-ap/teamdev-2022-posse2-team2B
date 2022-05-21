@@ -658,10 +658,24 @@ function a_header_start()
       $text = $paragraph['text'];
       m_agent_detail_para($title, $text);
     }
+    ?>
+
+  <div class="Agent-page__inquiry-btn">
+    <?php
+    // 問い合わせボックスに追加ボタン
+    a_agent_putbox_btn($agent_id);
+
+    // 問い合わせボックスから出すボタン
+    a_agent_deletebox_btn($agent_id);
+    ?>
+  </div>
+
+
+  <?php
     // セクションの終わり
     a_section_end();
   ?>
-  <!-- このあとには、閲覧履歴がくる。テンプレートつくる時にはひっぱってこよう！ -->
+
 <?php
   }
 
@@ -669,8 +683,8 @@ function a_header_start()
   {
 ?>
   <div class="Application__box__trash">
+    </div>
     <i class="fa-solid fa-trash-can" onclick="deleteBox(<?= $agent_id; ?>)"></i>
-  </div>
 <?php
   }
 
@@ -994,6 +1008,19 @@ function a_header_start()
 <?php
   }
 
+
+
+  function a_footer_copyright()
+  {
+?>
+  <small class="Footer__copyright">
+    &copy; 2022 株式会社boozer All rights reserved
+  </small>
+<?php
+  }
+
+
+
   function o_footer()
   {
 ?>
@@ -1002,6 +1029,7 @@ function a_header_start()
       <?php
       a_header_title();
       a_header_nav();
+      a_footer_copyright();
       ?>
     </div>
   </div>

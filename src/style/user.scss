@@ -21,35 +21,35 @@ padding-bottom: 80px;
   justify-content: space-between;
   font-size: 1.5rem;
   color: $index-color ;
+  .page-title{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
-.page-title{
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .header-nav{
   display:none;
   padding: 10px 75px;
-}
-
-.header-nav-list{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  li{
-    color: $index-color;
-    font-family :Helvetica;
-    padding:10px 15px 15px ;
-
-    a{
-      font-size: 1rem;
-      margin:10px 15px 15px;
+  &-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    li{
+      color: $index-color;
+      font-family :Helvetica;
+      padding:10px 15px 15px ;
+  
+      a{
+        font-size: 1rem;
+        margin:10px 15px 15px;
+      }
     }
   }
 }
+
 
 // Section
 // 緑長方形の見出しで囲われた部分をSectionと名付けた。
@@ -529,7 +529,7 @@ padding-bottom: 80px;
 // エージェント詳細ページの追加ボタン
 .Agent-page__inquiry-btn{
   width: 65%;
-  margin: 0 auto;
+  margin: 30px auto;
   div{
     width: 100%;
     box-shadow: 0 2px 4px rgba(0,0,0,0.3);
@@ -900,49 +900,54 @@ $radio-background-color: #ffffff;
     }
   }
 }
-
 // フッター
-.Footer{
-  background-color:$main-color;
-  &__inner{
+.Footer {
+  padding: 50px 0px;
+  background-color: $main-color;
+
+  &__inner {
     display: flex;
     flex-direction: column;
     justify-content: center;
     font-size: 1.5rem;
-    color: $index-color ;
+    color: $index-color;
     padding: 10px 30px;
 
-  }
-}
-
-.page-title{
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.header-nav{
-  display:none;
-  padding: 10px 75px;
-}
-
-.header-nav-list{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  li{
-    color: $index-color;
-    font-family :Helvetica;
-    padding:10px 15px 15px ;
-
-    a{
-      font-size: 1rem;
-      margin:10px 15px 15px;
+    .page-title {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
     }
+
+    .header-nav {
+      display: block;
+      padding: 10px 75px;
+
+      &-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        li {
+          color: $index-color;
+          font-family: Helvetica;
+          padding: 10px 15px 15px;
+
+          a {
+            font-size: 1rem;
+            margin: 10px 15px 15px;
+          }
+        }
+      }
+    }
+
+  }
+  &__copyright{
+    text-align: center;
   }
 }
-
 // レイアウト関連
 .Page {
   &__container {
@@ -959,6 +964,7 @@ $radio-background-color: #ffffff;
     }
   }
 }
+
 
   // レスポンシブ対応
   @media (min-width: 960px) {
@@ -1098,7 +1104,7 @@ $radio-background-color: #ffffff;
   }
 }
 
-    .Box-mobile {
+    .Box-mobile{
       display:none;
     }
 

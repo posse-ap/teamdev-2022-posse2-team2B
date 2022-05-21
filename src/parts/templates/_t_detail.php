@@ -7,9 +7,39 @@ a_html_head($pgdata['page_title']);
 
 // ヘッダー
 o_header();
+?>
 
-// エージェントの詳細ページ
-o_agent_detail($pgdata['id'],$pgdata['agent_name'],$pgdata['updated_at'], $pgdata['agent_picture'], f_set_evals($pgdata['id']), $pgdata['paragraphs']);
+<div class="Page__container">
+  <div class="Page__right">
+    <?php
+    ?>
+    <div class="Page__right__pc">
+      <?php
+      // お問い合わせボックス PC
+      o_box();
+      // 閲覧履歴 PC用
+      o_history([]);
+      ?>
+    </div>
+    <?php
+    ?>
+  </div>
+  <div class="Page__left">
+    <?php
+    // エージェントの詳細ページ のメインコンテンツ
+    o_agent_detail($pgdata['id'], $pgdata['agent_name'], $pgdata['updated_at'], $pgdata['agent_picture'], f_set_evals($pgdata['id']), $pgdata['paragraphs']);
+    ?>
+    <div class="Page__left__sp">
+      <?php
+      // 閲覧履歴のエリア SP用
+      o_history([]);
+      ?>
+    </div>
+  </div>
+</div>
+
+<?php
+
 
 // 追従ボタン（まとめて問い合わせ、BOXを見る）
 o_foot([$pgdata['agent']]);
