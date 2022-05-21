@@ -8,13 +8,23 @@ a_html_head($pgdata['page_title']);
 // ヘッダー
 o_header();
 
-// BOX
-o_box();
-
-// 問い合わせフォームのエリア
-o_form();
-
 ?>
+
+<!-- メインコンテンツ -->
+<div class="Page__container">
+  <div class="Page__right">
+    <?php
+    // BOX
+    o_box();
+    ?>
+  </div>
+  <div class="Page__left">
+    <?php
+    // 問い合わせフォームのエリア
+    o_form();
+    ?>
+  </div>
+</div>
 
 <!-- IndexedDBのライブラリ -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.0-alpha.2/dexie.min.js" integrity="sha512-YVHSEwMLRaQHvifwu/g/7OeZPCGaBSAe44gR74njhuIBt1XBtS+NNo1hXyJ1nE3zzBV0ImktKwMxBYMwiaMVhA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
