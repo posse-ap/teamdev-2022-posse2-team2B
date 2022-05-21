@@ -658,7 +658,7 @@ function a_header_start()
       $text = $paragraph['text'];
       m_agent_detail_para($title, $text);
     }
-    ?>
+  ?>
 
   <div class="Agent-page__inquiry-btn">
     <?php
@@ -683,8 +683,8 @@ function a_header_start()
   {
 ?>
   <div class="Application__box__trash">
-    </div>
     <i class="fa-solid fa-trash-can" onclick="deleteBox(<?= $agent_id; ?>)"></i>
+  </div>
 <?php
   }
 
