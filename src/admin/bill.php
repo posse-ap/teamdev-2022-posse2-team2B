@@ -10,21 +10,32 @@ $pgdata += array('right_id' => $_SESSION['right_id']);
 $pgdata += array('page_id' => 8);
 $pgdata += array('page_title' => $pages[$pgdata['page_id']]['title']);
 $pgdata += array('table_data' => [
-  'th' => ['請求日', '請求額', '対象月', 'ステータス'],
+  'th' => ['請求日', '請求額', '対象月',],
   'tr' => array()
 ]);
-
+$agent_id = $_SESSION['agent_id'];
 $trs_stmt = $db->query(
-  "SELECT
-    *
-  FROM
-    agents
-  LEFT JOIN agent_contract ON agents.id = agent_contract.agent_id"
+  "SELECT DATE_FORMAT(inquired_agents.created_at, '%Y-%m') as `created_at`,
+  COUNT(*) as count
+FROM
+    inquired_agents
+    LEFT JOIN
+students
+    ON
+      inquired_agents.student_id=students.id
+WHERE
+    inquired_agents.agent_id = $agent_id
+GROUP BY DATE_FORMAT(created_at, '%Y-%m');"
 );
 $trs = $trs_stmt->fetchAll();
+$sum_count = 0;
 foreach ($trs as $tr) :
-  array_push($pgdata['table_data']['tr'], [$tr['agent_name'], $tr['pic_name'], $tr['pic_email'], $tr['pic_tel']]);
+  $sum_count += $tr['count'];
+  array_push($pgdata['table_data']['tr'], [$tr[''], $tr['count'] * 10000, $tr['created_at']]);
 endforeach;
+print_r("sumCount=" . $sum_count);
+print_r("<br>sumCost=" . $sum_count * 10000);
+
 
 require(dirname(__FILE__) . "/app/right-check.php");
 require(dirname(__FILE__) . "/app/fetch-account-name.php");
