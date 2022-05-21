@@ -1061,7 +1061,7 @@ function a_header_start()
   {
 ?>
   <div class="Apply-footer__message__pc">
-    <p>問い合わせBOXのNNN社に</p>
+    <p>問い合わせBOXの<span id="inBoxPc" class="Apply-footer__message__in-box"></span>社に</p>
   </div>
 <?php
   }
