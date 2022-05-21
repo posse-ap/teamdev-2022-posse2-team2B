@@ -7,7 +7,7 @@ $index-color:white;
 // #52A39Aの中の文字のこと
 
 body{
-padding-bottom: 80px;
+// padding-bottom: 80px;
 }
 
 // ヘッダー
@@ -909,7 +909,8 @@ $radio-background-color: #ffffff;
 }
 // フッター
 .Footer {
-  padding: 50px 0px;
+  padding-top: 50px;
+  padding-bottom: 100px;
   background-color: $main-color;
 
   &__inner {
