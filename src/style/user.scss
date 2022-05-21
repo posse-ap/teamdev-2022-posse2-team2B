@@ -1,5 +1,5 @@
 html{
-  font-size: 18px;
+  font-size: 14px;
 }
 
 $main-color:#52A39A;
@@ -179,7 +179,7 @@ body{
     font-weight:bold;
 
     h3{
-      text-align: center;
+      // text-align: center;
     }
   }
 
@@ -202,13 +202,28 @@ body{
       border-radius:5px;
       margin-right:10px;
       margin-bottom: 10px;
-      padding: 3px 5px;
+      padding: 8px 12px;
     }
   }
 
   .argent-card-info-text{
     // border: solid;
     margin-bottom:20px;
+  }
+}
+
+.Agent-card__top{
+  &__sp{
+    display:block;
+  }
+  &__left{
+    display:block;
+  }
+  &__right{
+    display: block;
+    &-pc{
+      display: none;
+    }
   }
 }
 
@@ -1044,6 +1059,33 @@ $radio-background-color: #ffffff;
         }
       }
     }
+
+    .Agent-card__top{
+      display: flex;
+
+      &__sp{
+        display:none;
+      }
+      &__left{
+        width:45%;
+      }
+      &__right{
+        padding-left: 50px;
+        width:55%;
+        .agent-card-tags-area{
+          .agent-card-tag{
+            font-size:1.5rem;
+          }
+        }
+        &-pc{
+          display: block;
+          .agent-card-agent-name{
+            font-size: 3rem;
+          }
+        }
+      }
+    }
+
 
     .argent-card-btns{
       flex-direction: row;

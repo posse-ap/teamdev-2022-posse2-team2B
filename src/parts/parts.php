@@ -433,10 +433,31 @@ function a_header_start()
   {
 ?>
   <article class="agent-card">
+    <div class="Agent-card__top">
+      <div class="Agent-card__top__sp">
+        <?php
+        a_agent_name($agent_name);
+        ?>
+      </div>
+      <div class="Agent-card__top__left">
+        <?php
+        a_agent_img('/pictures/agent1.jpg');
+        ?>
+      </div>
+      <div class="Agent-card__top__right">
+        <div class="Agent-card__top__right-pc">
+          <?php
+          a_agent_name($agent_name);
+          ?>
+        </div>
+        <?php
+        m_agent_tags($tags);
+        ?>
+      </div>
+    </div>
     <?php
-    a_agent_name($agent_name);
-    a_agent_img('/pictures/agent1.jpg');
-    m_agent_tags($tags);
+    // a_agent_img('/pictures/agent1.jpg');
+    // m_agent_tags($tags);
     m_agent_eval($evals);
     a_agent_intro($agent_intro);
     m_agent_btns($agent_id);

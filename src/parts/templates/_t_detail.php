@@ -39,7 +39,7 @@ o_header();
 </div>
 
 <?php
-
+w
 // 追従ボタン（まとめて問い合わせ、BOXを見る）
 o_foot([$pgdata['agent']]);
 
