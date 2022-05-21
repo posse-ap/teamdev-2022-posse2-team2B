@@ -15,7 +15,7 @@ o_header();
     ?>
     <div class="Page__right__pc">
       <?php
-      // お問い合わせボックス PC
+      // お問い合わせボックス PC用
       o_box();
       // 閲覧履歴 PC用
       o_history([]);
