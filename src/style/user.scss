@@ -1231,31 +1231,37 @@ $radio-background-color: #ffffff;
       }
     }
 
-    .Agent-card__top{
-      display: flex;
 
-      &__sp{
-        display:none;
+    .Agent-card__top {
+      display: flex;
+  
+      &__sp {
+        display: none;
       }
-      &__left{
-        width:45%;
+      &__left {
+        width: 45%;
       }
-      &__right{
+      &__right {
         padding-left: 50px;
-        width:55%;
-        .agent-card-tags-area{
-          .agent-card-tag{
-            font-size:1.5rem;
+        width: 55%;
+        .agent-card-tags-area {
+          .agent-card-tag {
+            font-size: 1.5rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            padding: 4px 8px;
           }
         }
-        &-pc{
+        &-pc {
           display: block;
-          .agent-card-agent-name{
-            font-size: 3rem;
+          .agent-card-agent-name {
+            font-size: 2rem;
+            margin-bottom: 10px;
           }
         }
       }
     }
+  
 
 
     .argent-card-btns{
