@@ -127,14 +127,12 @@ CREATE TABLE students(
   student_name_ruby VARCHAR(50) NOT NULL,
   email VARCHAR(50) NOT NULL,
   tel VARCHAR(11) NOT NULL,
-  school_id INT NOT NULL,
+  univ VARCHAR(50) NOT NULL,
   faculty VARCHAR(50),
   department VARCHAR(50),
   graduate_year INT NOT NULL,
   postal_code VARCHAR(7),
-  pref_id INT NOT NULL,
-  address VARCHAR(50),
-  building VARCHAR(50),
+  address VARCHAR(200),
   optional_comment VARCHAR(1000)
 );
 

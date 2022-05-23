@@ -34,7 +34,7 @@ $pgdata += array('send_data' => array(
   ['name' => 'student_name_ruby', 'value' => $_POST['inq_nameruby']],
   ['name' => 'email', 'value' => $_POST['inq_email']],
   ['name' => 'tel', 'value' => $_POST['inq_tel']],
-  ['name' => 'inq_univ', 'value' => $_POST['inq_univ']],
+  ['name' => 'univ', 'value' => $_POST['inq_univ']],
   ['name' => 'faculty', 'value' => $_POST['inq_faculty']],
   ['name' => 'department', 'value' => $_POST['inq_department']],
   ['name' => 'graduate_year', 'value' => $_POST['inq_graduation']],

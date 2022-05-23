@@ -54,9 +54,9 @@ function f_register_student($student)
   global $db;
   $insert_stmt = $db->prepare(
     "INSERT INTO
-      students (inquiry_option_id, student_name, student_name_ruby, email, tel, school_id, faculty, department, graduate_year, postal_code, pref_id, address, optional_comment)
+      students (inquiry_option_id, student_name, student_name_ruby, email, tel, univ, faculty, department, graduate_year, postal_code, address, optional_comment)
     VALUES
-      (:inquiry_option_id, :student_name, :student_name_ruby, :email, :tel, :school_id, :faculty, :department, :graduate_year, :postal_code, :pref_id, :address, :optional_comment)"
+      (:inquiry_option_id, :student_name, :student_name_ruby, :email, :tel, :univ, :faculty, :department, :graduate_year, :postal_code, :address, :optional_comment)"
   );
   $insert_stmt->execute([
     ':inquiry_option_id' => $student['inquiry_option_id'],
@@ -64,12 +64,11 @@ function f_register_student($student)
     ':student_name_ruby' => $student['student_name_ruby'],
     ':email' => $student['email'],
     ':tel' => $student['tel'],
-    ':school_id' => '100', //要修正
+    ':univ' => $student['univ'],
     ':faculty' => $student['faculty'],
     ':department' => $student['department'],
     ':graduate_year' => $student['graduate_year'],
     ':postal_code' => $student['postal_code'],
-    ':pref_id' => '10', //要修正
     ':address' => $student['address'],
     ':optional_comment' => $student['optional_comment']
   ]);
