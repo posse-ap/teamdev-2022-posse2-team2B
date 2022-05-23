@@ -84,6 +84,19 @@ document.querySelectorAll('.js-zen-input').forEach(el => {
   };
 });
 
+// 全角から半角に変換
+function zen2han(str) {
+  return str.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function (s) {
+    return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+  });
+}
+
+document.querySelectorAll('.js-han-input').forEach(el => {
+  el.onblur = () => {
+    el.value = zen2han(el.value);
+  };
+});
+
 // input.php->check.php
 function formSend() {
   const inqForm = document.getElementById('inqForm');

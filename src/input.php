@@ -8,7 +8,7 @@ if(!isset($_POST['inq_agents'])) {
 }
 
 $pgdata = array();
-$pgdata += array('page_title' => 'トップ');
+$pgdata += array('page_title' => '問い合わせフォーム');
 $pgdata += array('inq_agents' => $_POST['inq_agents']);
 
 // ここからHTML

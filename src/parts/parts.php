@@ -727,10 +727,12 @@ function a_header_start()
   function a_form_backbtn($text)
   {
 ?>
-  <div class="Application-form__back-button">
-    <i class="fa-solid fa-angle-left"></i>
-    <p><?= $text; ?></p>
-  </div>
+  <a href="#" onclick="javascript:window.history.back(-1);return false;">
+    <div class="Application-form__back-button">
+      <i class="fa-solid fa-angle-left"></i>
+      <p><?= $text; ?></p>
+    </div>
+  </a>
 <?php
   }
 
@@ -738,7 +740,7 @@ function a_header_start()
   {
 ?>
   <div class="Application-form__submit-btn__wrapper">
-    <div class="Application-form__submit-btn" onclick="<?=$onclick; ?>">
+    <div class="Application-form__submit-btn" onclick="<?= $onclick; ?>">
       <div><?= $title; ?></div>
     </div>
   </div>
@@ -851,6 +853,15 @@ function a_header_start()
   <form class="Application-form h-adr" method="POST" action="check.php" id="inqForm">
     <?php
     // 問い合わせ先エージェント
+    a_heading('問い合わせ先エージェント');
+
+    $inq_agents_array = explode(',', $inq_agents);
+    foreach ($inq_agents_array as $agent_id) {
+      $agent = f_select_agent($agent_id);
+    ?>
+      <p><?= $agent['agent_name']; ?></p>
+    <?php
+    }
     a_input(['type' => 'hidden', 'name' => 'inq_agents', 'value' => $inq_agents]);
 
     // お問い合わせ内容 ラジオボタン
@@ -867,11 +878,11 @@ function a_header_start()
 
     // メールアドレス
     m_heading_required('メールアドレス');
-    a_input(['type' => 'email', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）shukatsu.taro123@example.com', 'name' => 'inq_email', 'id' => 'inqEmail']);
+    a_input(['type' => 'email', 'class' => 'Application-form__input__glay-border js-han-input', 'placeholder' => '例）shukatsu.taro123@example.com', 'name' => 'inq_email', 'id' => 'inqEmail']);
 
     // 電話番号（半角ハイフンなし）
     m_heading_required('電話番号(ハイフンなし)');
-    a_input(['type' => 'tel', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）09012345678', 'name' => 'inq_tel', 'id' => 'inqTel']);
+    a_input(['type' => 'tel', 'class' => 'Application-form__input__glay-border js-han-input', 'placeholder' => '例）09012345678', 'name' => 'inq_tel', 'id' => 'inqTel']);
 
     // 大学名
     m_heading_required('大学名');
@@ -896,7 +907,7 @@ function a_header_start()
     m_heading_required('住所');
     //   郵便番号
     a_label('郵便番号', '');
-    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border p-postal-code', 'size' => '8', 'placeholder' => '例）2220022', 'name' => 'inq_postalcode', 'id' => 'inqPostalcode']);
+    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border p-postal-code js-han-input', 'size' => '8', 'placeholder' => '例）2220022', 'name' => 'inq_postalcode', 'id' => 'inqPostalcode']);
     //   都道府県
     a_label('都道府県', '');
     a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border p-region js-zen-input', 'placeholder' => '例）東京都', 'name' => 'inq_pref', 'id' => 'inqPref']);
@@ -954,16 +965,17 @@ function a_header_start()
   }
 
   // check.phpからthanks.phpにデータ送信するためのフォーム
-  function m_check_form($data) {
-    ?>
-<form action="thanks.php" method="POST" id="checkForm">
-  <?php
-  foreach($data as $item) {
-  a_input(['type' => 'hidden', 'name' => $item['name'], 'value' => $item['value']]);
-  }
-  ?>
-</form>
+  function m_check_form($data)
+  {
+?>
+  <form action="thanks.php" method="POST" id="checkForm">
     <?php
+    foreach ($data as $item) {
+      a_input(['type' => 'hidden', 'name' => $item['name'], 'value' => $item['value']]);
+    }
+    ?>
+  </form>
+<?php
   }
 
   function o_check($disp_data, $send_data)
