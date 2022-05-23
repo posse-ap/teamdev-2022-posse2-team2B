@@ -1,97 +1,33 @@
-<!DOCTYPE html>
-<html lang="ja">
+<?php
+require(dirname(__FILE__) . "/dbconnect.php");
+require(dirname(__FILE__) . '/app/functions.php');
 
-<head>
-  <meta charset="UTF-8">
-  <title>確認画面</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+if(!isset($_POST['inq_agents'])) {
+  echo 'エラー';
+  exit();
+}
 
-<body>
-  <div id="inquiry">
-    <h2>確認画面</h2>
-    <?php
-    $inquiry_option_id  = $_POST['inquiry_option_id'];
-    $student_name = $_POST['student_name'];
-    $student_name_ruby = $_POST['student_name_ruby'];
-    $email = $_POST['email'];
-    $tel = $_POST['tel'];
-    $school_id = $_POST['school_id'];
-    $faculty = $_POST['faculty'];
-    $department = $_POST['department'];
-    $graduate_year = $_POST['graduate_year'];
-    $postal_code = $_POST['postal_code'];
-    $pref_id = $_POST['pref_id'];
-    $address = $_POST['address'];
-    $building = $_POST['building'];
-    $optional_comment = $_POST['optional_comment'];
+$agent_names = $db->prepare("SELECT agent_name FROM agents WHERE id IN (?)");
+$agent_names->execute([$_POST['inq_agents']]);
+$agent_names = $agent_names->fetchAll();
+$agent_names = array_map(function ($v) {
+  return $v['agent_name'];
+}, $agent_names);
 
+$pgdata = array();
+$pgdata += array('page_title' => '確認画面');
+$pgdata += array('input_data' => array(
+  ['name' => 'お問い合せ先エージェント', 'value' => nl2br(implode("\n", $agent_names))],
+  ['name' => 'お問い合せ内容', 'value' => $_POST['inq_radio']],
+  ['name' => '名前(フリガナ)', 'value' => $_POST['inq_name'] . '(' . $_POST['inq_nameruby'] . ')'],
+  ['name' => 'メールアドレス', 'value' => $_POST['inq_email']],
+  ['name' => '電話番号', 'value' => $_POST['inq_tel']],
+  ['name' => '大学情報', 'value' => sprintf(nl2br("大学名: %s\n学部・学科: %s %s"), $_POST['inq_univ'], $_POST['inq_faculty'], $_POST['inq_department'])],
+  ['name' => '卒業年', 'value' => $_POST['inq_graduation']],
+  ['name' => '住所', 'value' => sprintf(nl2br("〒%s-%s\n%s %s %s"), substr($_POST['inq_postalcode'], 0, 3), substr($_POST['inq_postalcode'], 3, 4), $_POST['inq_pref'], $_POST['inq_address'], $_POST['inq_bldg'])],
+  ['name' => '自由記述欄', 'value' => $_POST['inq_free']],
+  ['name' => 'プライバシーポリシーへの同意', 'value' => $_POST['inq_agree']]
+));
 
-    $inquiry_option_id  = htmlspecialchars( $inquiry_option_id);
-    $student_name =htmlspecialchars($student_name);
-    $student_name_ruby =htmlspecialchars($student_name_ruby);
-    $email =htmlspecialchars($email);
-    $tel =htmlspecialchars($tel);
-    $school_id =htmlspecialchars($school_id);
-    $faculty =htmlspecialchars($faculty);
-    $department =htmlspecialchars($department);
-    $graduate_year =htmlspecialchars($graduate_year);
-    $postal_code =htmlspecialchars($postal_code);
-    // $pref_id =htmlspecialchars($pref_id);
-    $address =htmlspecialchars($address);
-    $building =htmlspecialchars($building);
-    $optional_comment =htmlspecialchars($optional_comment);
-
-    echo '<ul>' . "\n";
-    echo '<li>';
-    if ($student_name == '') {
-      echo 'お名前が入力されていません。<br>' . "\n";
-    } else {
-      echo 'お名前：' . $student_name . '<br>' . "\n";
-    }
-    echo '</li>' . "\n";
-    echo '<li>';
-    if ($email == '') {
-      echo 'メールアドレスが、入力されていません。<br>' . "\n";
-    } else {
-      echo 'メールアドレス：' . $email . '<br>' . "\n";
-    }
-    echo '</li>' . "\n";
-
-
-
-    if ($student_name == '' || $email == '' ) {
-      echo '<p>未記入の項目があります。「<span class="deco">戻る</span>」ボタンをクリックしてください。</p>' . "\n";
-      echo '<div class="submit">' . "\n";
-      echo '<form>' . "\n";
-      echo '<input type="button" onClick="history.back()" value="戻る">' . "\n";
-      echo '</form>' . "\n";
-      echo '</div>' . "\n";
-    } else {
-      echo '<p>以上の内容を送信します。よろしければ「<span class="deco">送信</span>」ボタンを、修正する場合は「<span class="deco">戻る</span>」ボタンをクリックしてください。</p>' . "\n";
-      echo '<div class="submit">' . "\n";
-      echo '<form action="thanks.php" method="post">' . "\n";
-      echo '<input type="hidden" name="inquiry_option_id" value="' . $inquiry_option_id . '">';
-      echo '<input type="hidden" name="student_name" value="' . $student_name . '">';
-      echo '<input type="hidden" name="student_name_ruby" value="' . $student_name_ruby . '">';
-      echo '<input type="hidden" name="email" value="' . $email . '">';
-      echo '<input type="hidden" name="tel" value="' . $tel . '">';
-      echo '<input type="hidden" name="school_id" value="' . $school_id . '">';
-      echo '<input type="hidden" name="faculty" value="' . $faculty . '">';
-      echo '<input type="hidden" name="department" value="' . $department . '">';
-      echo '<input type="hidden" name="graduate_year" value="' . $graduate_year . '">';
-      echo '<input type="hidden" name="postal_code" value="' . $postal_code . '">';
-      echo '<input type="hidden" name="pref_id" value="' . $pref_id . '">';
-      echo '<input type="hidden" name="address" value="' . $address . '">';
-      echo '<input type="hidden" name="building" value="' . $building . '">';
-      echo '<input type="hidden" name="optional_comment" value="' . $optional_comment . '">';
-      echo '<input type="button" onClick="history.back()" value="戻る">' . "\n";
-      echo '<input type="submit" value="送信">' . "\n";
-      echo '</form>' . "\n";
-      echo '</div>' . "\n";
-    }
-    ?>
-  </div>
-</body>
-
-</html>
+// ここからHTML
+include(dirname(__FILE__) . '/parts/templates/_t_check.php');

@@ -39,13 +39,19 @@ function regexpCheck() {
 }
 
 function formSend() {
-  const form = document.getElementById('inqForm');
+  const inqForm = document.getElementById('inqForm');
   const agree = document.getElementById('inqAgree').checked;
   const falseCount = regexpCheck().length;
 
   if (falseCount === 0 && agree) {
-    form.submit();
+    inqForm.submit();
   } else {
     alert('入力内容に誤りがあります。');
+    regexpCheck();
+    // キーを離した時に正規表現チェック
+    window.onkeyup = () => {
+      regexpCheck();
+    }
   }
+
 }

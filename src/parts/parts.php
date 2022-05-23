@@ -714,7 +714,7 @@ function a_header_start()
   {
 ?>
   <div class="Application-form__radio">
-    <input id="app_radio_<?= $index; ?>" name="inq_radio" type="radio">
+    <input id="app_radio_<?= $index; ?>" name="inq_radio" type="radio" value="<?= $index; ?>">
     <label for="app_radio_<?= $index; ?>" class="Application-form__radio__label"><?= $title; ?></label>
   </div>
 <?php
@@ -743,7 +743,7 @@ function a_header_start()
   function a_select_gradu_year()
   {
 ?>
-  <select name="inq_graduation" id="inqGraduation" class="Application-form__input__glay-border" onblur="regexpCheck()">
+  <select name="inq_graduation" id="inqGraduation" class="Application-form__input__glay-border">
     <option value="" hidden>選択してください</option>
     <option value="2022">22卒</option>
     <option value="2023">23卒</option>
@@ -775,7 +775,7 @@ function a_header_start()
   <div class="Application-form__input__glay-border Application-form__privacy-cb">
     <label for="inqAgree" class="Application-form__privacy-cb__wrapper">
       同意する
-      <input type="checkbox" id="inqAgree" class="Application-form__privacy-cb__checkbox">
+      <input type="checkbox" name="inq_agree" value="同意する" id="inqAgree" class="Application-form__privacy-cb__checkbox">
       <span class="Application-form__privacy-cb__checkbox-icon"></span>
     </label>
 
@@ -805,7 +805,8 @@ function a_header_start()
 <?php
   }
 
-  function o_form()
+  // 問い合わせフォーム $inq_agents = 'agent_id,agent_id,...' (カンマ区切り文字列)
+  function o_form($inq_agents)
   {
     a_section_start('問い合わせフォーム', false);
 
@@ -814,37 +815,40 @@ function a_header_start()
 ?>
   <form class="Application-form h-adr" method="POST" action="check.php" id="inqForm">
     <?php
+    // 問い合わせ先エージェント
+    a_input(['type' => 'hidden', 'name' => 'inq_agents', 'value' => $inq_agents]);
+
     // お問い合わせ内容 ラジオボタン
     m_heading_required('お問い合せ内容');
     m_form_radio();
 
     // 名前
     m_heading_required('名前');
-    a_input(['pattern' => '[^\x20-\x7E]*', 'class' => 'Application-form__name Application-form__input__glay-border', 'placeholder' => '例）就活太郎', 'name' => 'inq_name', 'id' => 'inqName', 'onblur' => 'regexpCheck()']);
+    a_input(['pattern' => '[^\x20-\x7E]*', 'class' => 'Application-form__name Application-form__input__glay-border', 'placeholder' => '例）就活太郎', 'name' => 'inq_name', 'id' => 'inqName']);
 
     // 名前（フリガナ）
     m_heading_required('名前(フリガナ)');
-    a_input(['pattern' => '[\u30A1-\u30F6]*', 'class' => 'Application-form__name Application-form__input__glay-border', 'placeholder' => '例）シュウカツタロウ', 'name' => 'inq_nameruby', 'id' => 'inqNameruby', 'onblur' => 'regexpCheck()']);
+    a_input(['pattern' => '[\u30A1-\u30F6]*', 'class' => 'Application-form__name Application-form__input__glay-border', 'placeholder' => '例）シュウカツタロウ', 'name' => 'inq_nameruby', 'id' => 'inqNameruby']);
 
     // メールアドレス
     m_heading_required('メールアドレス');
-    a_input(['type' => 'email', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）shukatsu.taro123@example.com', 'name' => 'inq_email', 'id' => 'inqEmail', 'onblur' => 'regexpCheck()']);
+    a_input(['type' => 'email', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）shukatsu.taro123@example.com', 'name' => 'inq_email', 'id' => 'inqEmail']);
 
     // 電話番号（半角ハイフンなし）
     m_heading_required('電話番号(ハイフンなし)');
-    a_input(['type' => 'tel', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）09012345678', 'name' => 'inq_tel', 'id' => 'inqTel', 'onblur' => 'regexpCheck()']);
+    a_input(['type' => 'tel', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）09012345678', 'name' => 'inq_tel', 'id' => 'inqTel']);
 
     // 大学名
     m_heading_required('大学名');
-    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）就活義塾大学', 'name' => 'inq_univ', 'id' => 'inqUniv', 'onblur' => 'regexpCheck()']);
+    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）就活義塾大学', 'name' => 'inq_univ', 'id' => 'inqUniv']);
 
     // 学部名
     m_heading_required('学部名');
-    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）文学部', 'name' => 'inq_faculty', 'id' => 'inqFaculty', 'onblur' => 'regexpCheck()']);
+    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）文学部', 'name' => 'inq_faculty', 'id' => 'inqFaculty']);
 
     // 学科名
     m_heading_required('学科名');
-    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）人間科学科', 'name' => 'inq_department', 'id' => 'inqDepartment', 'onblur' => 'regexpCheck()']);
+    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）人間科学科', 'name' => 'inq_department', 'id' => 'inqDepartment']);
 
     // 卒業年
     m_heading_required('卒業年');
@@ -896,46 +900,32 @@ function a_header_start()
 <?php
   }
 
-  function m_check_data()
+  function m_check_data($data)
   {
 ?>
   <div class="Check__info">
-    <div class="Check__info__line">
-      <p class="Check__info__item">
-        項目
-      </p>
-      <p class="Check__info__writing">
-        入力された情報
-      </p>
-    </div>
-    <div class="Check__info__line">
-      <p class="Check__info__item">
-        住所
-      </p>
-      <p class="Check__info__writing">
-        神奈川県横浜市港北区日吉4-1-1慶応義塾大学日吉キャンパス
-      </p>
-    </div>
-    <div class="Check__info__line">
-      <p class="Check__info__item">
-        自由記述
-      </p>
-      <p class="Check__info__writing">
-        こんにちは。しつもんないようはーーーーー、これこれです。
-      </p>
-    </div>
+    <?php
+    foreach ($data as $item) :
+    ?>
+      <div class="Check__info__line">
+        <p class="Check__info__item"><?= $item['name']; ?></p>
+        <p class="Check__info__writing"><?= $item['value']; ?></p>
+      </div>
+    <?php
+    endforeach;
+    ?>
   </div>
 <?php
   }
 
-  function o_check()
+  function o_check($data)
   {
 ?>
   <div class="Check">
     <?php
     a_form_backbtn('戻る');
     a_check_message();
-    m_check_data();
+    m_check_data($data);
     a_form_send('送信する');
     ?>
   </div>

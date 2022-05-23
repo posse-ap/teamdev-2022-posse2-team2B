@@ -9,7 +9,7 @@ a_html_head($pgdata['page_title']);
 o_header();
 
 // 確認ページ
-o_check();
+o_check($pgdata['input_data']);
 
 // HTMLおわり
 a_html_foot();

@@ -12,7 +12,7 @@ o_header();
 o_box();
 
 // 問い合わせフォームのエリア
-o_form();
+o_form($pgdata['inq_agents']);
 
 ?>
 

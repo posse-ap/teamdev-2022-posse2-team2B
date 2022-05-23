@@ -125,7 +125,22 @@ function inquiryBtn() {
     .then(function (agents) {
       length = agents.length;
       if (length !== 0) {
-        location.href = 'input.php';
+        // agentsからagent_idだけの配列を作る
+        const agentIdArray = new Array();
+        agents.forEach(agent => {
+          agentIdArray.push(agent.id);
+        });
+        // 問い合わせBOXの中身を送信
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = 'input.php';
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'inq_agents';
+        input.value = agentIdArray.join(',');
+        form.appendChild(input);
+        document.body.appendChild(form);
+        form.submit();
       } else {
         alert('問い合わせBOXの中身が空です。次に進むには、問い合わせBOXにエージェントを1件以上追加してください。');
       }
