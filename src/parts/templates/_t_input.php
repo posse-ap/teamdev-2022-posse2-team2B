@@ -12,7 +12,7 @@ o_header();
 o_box();
 
 // 問い合わせフォームのエリア
-o_form();
+o_form($pgdata['inq_agents']);
 
 ?>
 
@@ -26,6 +26,8 @@ o_form();
 <script src="./script/search.js"></script>
 <!-- 住所自動入力 -->
 <script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
+<!-- フォーム送信前のチェック -->
+<script src="./script/form-send.js"></script>
 
 <?php
 

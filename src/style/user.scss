@@ -675,6 +675,10 @@ $radio-background-color: #ffffff;
     padding: 3%;
   }
 
+  &__input__false-js {
+    border: 2px solid red;
+  }
+
   &__example{
     color: #CCCCCC;
     margin-top: 5px;
@@ -701,14 +705,12 @@ $radio-background-color: #ffffff;
     background: $main-color;
     height: 50px;
     border-radius: 15px;
-    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    input[type="submit"]{
-      position: absolute;
+    input[type="submit"], div{
       color: white;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%,-50%);
     }
   }
 }
@@ -869,7 +871,7 @@ $radio-background-color: #ffffff;
   padding: 0px 2%;
   text-align: center;
   width: 43%;
-  
+
   p{
     color: white;
   }
@@ -963,7 +965,7 @@ $radio-background-color: #ffffff;
   // レスポンシブ対応
   @media (min-width: 960px) {
 
-    
+
     // レイアウト関連
     .Page {
       &__container {
@@ -986,7 +988,7 @@ $radio-background-color: #ffffff;
       }
     }
 
-    
+
     .header-inner{
       font-size:2.5rem;
     }
@@ -1109,8 +1111,8 @@ $radio-background-color: #ffffff;
       width: 43%;
       text-align: center;
     }
-    
-    .Apply-footer__apply-btn{    
+
+    .Apply-footer__apply-btn{
       p{
         font-size: 1.5em;
         .New-line__sp{
@@ -1118,7 +1120,7 @@ $radio-background-color: #ffffff;
         }
       }
     }
-    
+
     .Show-box{
       display:none;
     }

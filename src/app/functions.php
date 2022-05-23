@@ -21,7 +21,8 @@ function f_set_evals($agent_id)
 }
 
 // IDで指定したエージェントの情報を取得
-function f_select_agent_detail($agent_id) {
+function f_select_agent_detail($agent_id)
+{
   global $db;
   $agent_stmt = $db->prepare(
     "SELECT
@@ -46,4 +47,30 @@ function f_select_agent_detail($agent_id) {
   $agent_stmt->execute([$agent_id]);
   $agent = $agent_stmt->fetch();
   return $agent;
+}
+
+function f_register_student($student)
+{
+  global $db;
+  $insert_stmt = $db->prepare(
+    "INSERT INTO
+      students (inquiry_option_id, student_name, student_name_ruby, email, tel, school_id, faculty, department, graduate_year, postal_code, pref_id, address, optional_comment)
+    VALUES
+      (:inquiry_option_id, :student_name, :student_name_ruby, :email, :tel, :school_id, :faculty, :department, :graduate_year, :postal_code, :pref_id, :address, :optional_comment)"
+  );
+  $insert_stmt->execute([
+    ':inquiry_option_id' => $student['inquiry_option_id'],
+    ':student_name' => $student['student_name'],
+    ':student_name_ruby' => $student['student_name_ruby'],
+    ':email' => $student['email'],
+    ':tel' => $student['tel'],
+    ':school_id' => '100', //要修正
+    ':faculty' => $student['faculty'],
+    ':department' => $student['department'],
+    ':graduate_year' => $student['graduate_year'],
+    ':postal_code' => $student['postal_code'],
+    ':pref_id' => '10', //要修正
+    ':address' => $student['address'],
+    ':optional_comment' => $student['optional_comment']
+  ]);
 }
