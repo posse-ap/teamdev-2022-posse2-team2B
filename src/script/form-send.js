@@ -38,6 +38,7 @@ function regexpCheck() {
   return falseInputIdArray;
 }
 
+// input.php->check.php
 function formSend() {
   const inqForm = document.getElementById('inqForm');
   const agree = document.getElementById('inqAgree').checked;
@@ -53,5 +54,10 @@ function formSend() {
       regexpCheck();
     }
   }
+}
 
+// check.php->thanks.php
+function confirmBtn() {
+  const checkForm = document.getElementById('checkForm');
+  checkForm.submit();
 }

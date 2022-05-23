@@ -16,7 +16,7 @@ $agent_names = array_map(function ($v) {
 
 $pgdata = array();
 $pgdata += array('page_title' => '確認画面');
-$pgdata += array('input_data' => array(
+$pgdata += array('disp_data' => array(
   ['name' => 'お問い合せ先エージェント', 'value' => nl2br(implode("\n", $agent_names))],
   ['name' => 'お問い合せ内容', 'value' => $_POST['inq_radio']],
   ['name' => '名前(フリガナ)', 'value' => $_POST['inq_name'] . '(' . $_POST['inq_nameruby'] . ')'],
@@ -27,6 +27,20 @@ $pgdata += array('input_data' => array(
   ['name' => '住所', 'value' => sprintf(nl2br("〒%s-%s\n%s %s %s"), substr($_POST['inq_postalcode'], 0, 3), substr($_POST['inq_postalcode'], 3, 4), $_POST['inq_pref'], $_POST['inq_address'], $_POST['inq_bldg'])],
   ['name' => '自由記述欄', 'value' => $_POST['inq_free']],
   ['name' => 'プライバシーポリシーへの同意', 'value' => $_POST['inq_agree']]
+));
+$pgdata += array('send_data' => array(
+  ['name' => 'inquiry_option_id', 'value' => $_POST['inq_radio']],
+  ['name' => 'student_name', 'value' => $_POST['inq_name']],
+  ['name' => 'student_name_ruby', 'value' => $_POST['inq_nameruby']],
+  ['name' => 'email', 'value' => $_POST['inq_email']],
+  ['name' => 'tel', 'value' => $_POST['inq_tel']],
+  ['name' => 'inq_univ', 'value' => $_POST['inq_univ']],
+  ['name' => 'faculty', 'value' => $_POST['inq_faculty']],
+  ['name' => 'department', 'value' => $_POST['inq_department']],
+  ['name' => 'graduate_year', 'value' => $_POST['inq_graduation']],
+  ['name' => 'postal_code', 'value' => $_POST['inq_postalcode']],
+  ['name' => 'address', 'value' => $_POST['inq_pref'] . $_POST['inq_address'] . $_POST['inq_bldg']],
+  ['name' => 'optional_comment', 'value' => $_POST['inq_free']]
 ));
 
 // ここからHTML

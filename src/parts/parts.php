@@ -699,11 +699,11 @@ function a_header_start()
 <?php
   }
 
-  function a_form_send($title)
+  function a_form_send($title, $onclick)
   {
 ?>
   <div class="Application-form__submit-btn__wrapper">
-    <div class="Application-form__submit-btn" onclick="formSend()">
+    <div class="Application-form__submit-btn" onclick="<?=$onclick; ?>">
       <div><?= $title; ?></div>
     </div>
   </div>
@@ -883,7 +883,7 @@ function a_header_start()
     a_form_agree();
 
     //送信ボタン
-    a_form_send('確認画面に進む');
+    a_form_send('確認画面に進む', 'formSend()');
     ?>
   </form>
 <?php
@@ -918,15 +918,29 @@ function a_header_start()
 <?php
   }
 
-  function o_check($data)
+  // check.phpからthanks.phpにデータ送信するためのフォーム
+  function m_check_form($data) {
+    ?>
+<form action="thanks.php" method="POST" id="checkForm">
+  <?php
+  foreach($data as $item) {
+  a_input(['type' => 'hidden', 'name' => $item['name'], 'value' => $item['value']]);
+  }
+  ?>
+</form>
+    <?php
+  }
+
+  function o_check($disp_data, $send_data)
   {
 ?>
   <div class="Check">
     <?php
     a_form_backbtn('戻る');
     a_check_message();
-    m_check_data($data);
-    a_form_send('送信する');
+    m_check_data($disp_data);
+    m_check_form($send_data);
+    a_form_send('送信する', 'confirmBtn()');
     ?>
   </div>
 <?php
@@ -970,7 +984,7 @@ function a_header_start()
       ?>
     </div>
     <?php
-    a_form_send('テキスト');
+    a_form_send('テキスト', '');
     ?>
   </div>
 <?
