@@ -753,12 +753,12 @@ function a_header_start()
 <?php
   }
 
-  function a_form_send($title)
+  function a_form_send($title, $onclick)
   {
 ?>
   <div class="Application-form__submit-btn__wrapper">
-    <div class="Application-form__submit-btn">
-      <input type="submit" value="<?= $title; ?>">
+    <div class="Application-form__submit-btn" onclick="<?=$onclick; ?>">
+      <div><?= $title; ?></div>
     </div>
   </div>
 <?php
@@ -768,7 +768,7 @@ function a_header_start()
   {
 ?>
   <div class="Application-form__radio">
-    <input id="app_radio_<?= $index; ?>" name="radio" type="radio">
+    <input id="app_radio_<?= $index; ?>" name="inq_radio" type="radio" value="<?= $index; ?>">
     <label for="app_radio_<?= $index; ?>" class="Application-form__radio__label"><?= $title; ?></label>
   </div>
 <?php
@@ -797,8 +797,8 @@ function a_header_start()
   function a_select_gradu_year()
   {
 ?>
-  <select name="graduation-year" id="graduationYear" class="Application-form__input__glay-border">
-    <option hidden>選択してください</option>
+  <select name="inq_graduation" id="inqGraduation" class="Application-form__input__glay-border">
+    <option value="" hidden>選択してください</option>
     <option value="2022">22卒</option>
     <option value="2023">23卒</option>
     <option value="2024">24卒</option>
@@ -816,67 +816,10 @@ function a_header_start()
 <?php
   }
 
-  function a_select_pref()
-  {
-?>
-  <p>都道府県</p>
-  <select name="prefectureId" class="Application-form__input__glay-border">
-    <option value="" hidden>選択してください</option>
-    <option value="1">北海道</option>
-    <option value="2">青森県</option>
-    <option value="3">岩手県</option>
-    <option value="4">宮城県</option>
-    <option value="5">秋田県</option>
-    <option value="6">山形県</option>
-    <option value="7">福島県</option>
-    <option value="8">茨城県</option>
-    <option value="9">栃木県</option>
-    <option value="10">群馬県</option>
-    <option value="11">埼玉県</option>
-    <option value="12">千葉県</option>
-    <option value="13">東京都</option>
-    <option value="14">神奈川県</option>
-    <option value="15">新潟県</option>
-    <option value="16">富山県</option>
-    <option value="17">石川県</option>
-    <option value="18">福井県</option>
-    <option value="19">山梨県</option>
-    <option value="20">長野県</option>
-    <option value="21">岐阜県</option>
-    <option value="22">静岡県</option>
-    <option value="23">愛知県</option>
-    <option value="24">三重県</option>
-    <option value="25">滋賀県</option>
-    <option value="26">京都府</option>
-    <option value="27">大阪府</option>
-    <option value="28">兵庫県</option>
-    <option value="29">奈良県</option>
-    <option value="30">和歌山県</option>
-    <option value="31">鳥取県</option>
-    <option value="32">島根県</option>
-    <option value="33">岡山県</option>
-    <option value="34">広島県</option>
-    <option value="35">山口県</option>
-    <option value="36">徳島県</option>
-    <option value="37">香川県</option>
-    <option value="38">愛媛県</option>
-    <option value="39">高知県</option>
-    <option value="40">福岡県</option>
-    <option value="41">佐賀県</option>
-    <option value="42">長崎県</option>
-    <option value="43">熊本県</option>
-    <option value="44">大分県</option>
-    <option value="45">宮崎県</option>
-    <option value="46">鹿児島県</option>
-    <option value="47">沖縄県</option>
-  </select>
-<?php
-  }
-
   function a_free_textbox()
   {
 ?>
-  <textarea name="" id="" cols="30" rows="10" class="Application-form__input__glay-border" placeholder="例）面談までの流れを詳しく教えてください。"></textarea>
+  <textarea name="inq_free" id="inqFree" cols="30" rows="10" class="Application-form__input__glay-border" placeholder="例）面談までの流れを詳しく教えてください。"></textarea>
 <?php
   }
 
@@ -884,9 +827,9 @@ function a_header_start()
   {
 ?>
   <div class="Application-form__input__glay-border Application-form__privacy-cb">
-    <label for="privacyPolicyCheckbox" class="Application-form__privacy-cb__wrapper">
+    <label for="inqAgree" class="Application-form__privacy-cb__wrapper">
       同意する
-      <input type="checkbox" id="privacyPolicyCheckbox" class="Application-form__privacy-cb__checkbox">
+      <input type="checkbox" name="inq_agree" value="同意する" id="inqAgree" class="Application-form__privacy-cb__checkbox">
       <span class="Application-form__privacy-cb__checkbox-icon"></span>
     </label>
 
@@ -916,46 +859,50 @@ function a_header_start()
 <?php
   }
 
-  function o_form()
+  // 問い合わせフォーム $inq_agents = 'agent_id,agent_id,...' (カンマ区切り文字列)
+  function o_form($inq_agents)
   {
     a_section_start('問い合わせフォーム', false);
 
     // 戻るボタン
     a_form_backbtn('戻る');
 ?>
-  <form class="Application-form h-adr" method="POST">
+  <form class="Application-form h-adr" method="POST" action="check.php" id="inqForm">
     <?php
+    // 問い合わせ先エージェント
+    a_input(['type' => 'hidden', 'name' => 'inq_agents', 'value' => $inq_agents]);
+
     // お問い合わせ内容 ラジオボタン
     m_heading_required('お問い合せ内容');
     m_form_radio();
 
     // 名前
     m_heading_required('名前');
-    a_input(['pattern' => '[^\x20-\x7E]*', 'class' => 'Application-form__name Application-form__input__glay-border', 'placeholder' => '例）就活太郎']);
+    a_input(['pattern' => '[^\x20-\x7E]*', 'class' => 'Application-form__name Application-form__input__glay-border', 'placeholder' => '例）就活太郎', 'name' => 'inq_name', 'id' => 'inqName']);
 
     // 名前（フリガナ）
     m_heading_required('名前(フリガナ)');
-    a_input(['pattern' => '[\u30A1-\u30F6]*', 'class' => 'Application-form__name Application-form__input__glay-border', 'placeholder' => '例）シュウカツタロウ']);
+    a_input(['pattern' => '[\u30A1-\u30F6]*', 'class' => 'Application-form__name Application-form__input__glay-border', 'placeholder' => '例）シュウカツタロウ', 'name' => 'inq_nameruby', 'id' => 'inqNameruby']);
 
     // メールアドレス
     m_heading_required('メールアドレス');
-    a_input(['type' => 'email', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）shukatsu.taro123@example.com']);
+    a_input(['type' => 'email', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）shukatsu.taro123@example.com', 'name' => 'inq_email', 'id' => 'inqEmail']);
 
     // 電話番号（半角ハイフンなし）
     m_heading_required('電話番号(ハイフンなし)');
-    a_input(['type' => 'tel', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）09012345678']);
+    a_input(['type' => 'tel', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）09012345678', 'name' => 'inq_tel', 'id' => 'inqTel']);
 
     // 大学名
     m_heading_required('大学名');
-    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）就活義塾大学']);
+    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）就活義塾大学', 'name' => 'inq_univ', 'id' => 'inqUniv']);
 
     // 学部名
     m_heading_required('学部名');
-    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）文学部']);
+    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）文学部', 'name' => 'inq_faculty', 'id' => 'inqFaculty']);
 
     // 学科名
     m_heading_required('学科名');
-    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）人間科学科']);
+    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）人間科学科', 'name' => 'inq_department', 'id' => 'inqDepartment']);
 
     // 卒業年
     m_heading_required('卒業年');
@@ -968,16 +915,16 @@ function a_header_start()
     m_heading_required('住所');
     //   郵便番号
     a_label('郵便番号', '');
-    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border p-postal-code', 'size' => '8', 'placeholder' => '例）2220022']);
+    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border p-postal-code', 'size' => '8', 'placeholder' => '例）2220022', 'name' => 'inq_postalcode', 'id' => 'inqPostalcode']);
     //   都道府県
     a_label('都道府県', '');
-    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border p-region', 'placeholder' => '例）東京都']);
+    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border p-region', 'placeholder' => '例）東京都', 'name' => 'inq_pref', 'id' => 'inqPref']);
     //   市区町村番地
     a_label('市区町村番地', '');
-    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border p-locality p-street-address p-extended-address', 'placeholder' => '例）港区白金台']);
+    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border p-locality p-street-address p-extended-address', 'placeholder' => '例）港区白金台', 'name' => 'inq_address', 'id' => 'inqAddress']);
     //   建物名・部屋番号
     a_label('建物名・部屋番号', '');
-    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）就活マンション１０５']);
+    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）就活マンション１０５', 'name' => 'inq_bldg', 'id' => 'inqBldg']);
     // 自由記述欄
     a_heading('自由記述欄');
     a_free_textbox();
@@ -990,7 +937,7 @@ function a_header_start()
     a_form_agree();
 
     //送信ボタン
-    a_form_send('確認画面に進む');
+    a_form_send('確認画面に進む', 'formSend()');
     ?>
   </form>
 <?php
@@ -1007,47 +954,47 @@ function a_header_start()
 <?php
   }
 
-  function m_check_data()
+  function m_check_data($data)
   {
 ?>
   <div class="Check__info">
-    <div class="Check__info__line">
-      <p class="Check__info__item">
-        項目
-      </p>
-      <p class="Check__info__writing">
-        入力された情報
-      </p>
-    </div>
-    <div class="Check__info__line">
-      <p class="Check__info__item">
-        住所
-      </p>
-      <p class="Check__info__writing">
-        神奈川県横浜市港北区日吉4-1-1慶応義塾大学日吉キャンパス
-      </p>
-    </div>
-    <div class="Check__info__line">
-      <p class="Check__info__item">
-        自由記述
-      </p>
-      <p class="Check__info__writing">
-        こんにちは。しつもんないようはーーーーー、これこれです。
-      </p>
-    </div>
+    <?php
+    foreach ($data as $item) :
+    ?>
+      <div class="Check__info__line">
+        <p class="Check__info__item"><?= $item['name']; ?></p>
+        <p class="Check__info__writing"><?= $item['value']; ?></p>
+      </div>
+    <?php
+    endforeach;
+    ?>
   </div>
 <?php
   }
 
-  function o_check()
+  // check.phpからthanks.phpにデータ送信するためのフォーム
+  function m_check_form($data) {
+    ?>
+<form action="thanks.php" method="POST" id="checkForm">
+  <?php
+  foreach($data as $item) {
+  a_input(['type' => 'hidden', 'name' => $item['name'], 'value' => $item['value']]);
+  }
+  ?>
+</form>
+    <?php
+  }
+
+  function o_check($disp_data, $send_data)
   {
 ?>
   <div class="Check">
     <?php
     a_form_backbtn('戻る');
     a_check_message();
-    m_check_data();
-    a_form_send('送信する');
+    m_check_data($disp_data);
+    m_check_form($send_data);
+    a_form_send('送信する', 'confirmBtn()');
     ?>
   </div>
 <?php
@@ -1091,7 +1038,7 @@ function a_header_start()
       ?>
     </div>
     <?php
-    a_form_send('テキスト');
+    a_form_send('テキスト', '');
     ?>
   </div>
 <?

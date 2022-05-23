@@ -20,8 +20,9 @@ o_header();
   </div>
   <div class="Page__left">
     <?php
-    // 問い合わせフォームのエリア
-    o_form();
+
+// 問い合わせフォームのエリア
+o_form($pgdata['inq_agents']);
     ?>
   </div>
 </div>
@@ -41,6 +42,8 @@ o_footer();
 <script src="./script/search.js"></script>
 <!-- 住所自動入力 -->
 <script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
+<!-- フォーム送信前のチェック -->
+<script src="./script/form-send.js"></script>
 
 <?php
 
