@@ -36,7 +36,7 @@ o_header();
 o_foot($pgdata['agents']);
 
 // フッター
-o_footer()
+o_footer();
 
 ?>
 
