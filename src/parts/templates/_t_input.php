@@ -8,12 +8,28 @@ a_html_head($pgdata['page_title']);
 // ヘッダー
 o_header();
 
-// BOX
-o_box();
+?>
+
+<!-- メインコンテンツ -->
+<div class="Page__container">
+  <div class="Page__right">
+    <?php
+    // BOX
+    o_box();
+    ?>
+  </div>
+  <div class="Page__left">
+    <?php
 
 // 問い合わせフォームのエリア
 o_form($pgdata['inq_agents']);
+    ?>
+  </div>
+</div>
 
+<?php
+// フッター
+o_footer();
 ?>
 
 <!-- IndexedDBのライブラリ -->

@@ -15,5 +15,8 @@ o_check($pgdata['disp_data'], $pgdata['send_data']);
 <script src="./script/form-send.js"></script>
 <?php
 
+// フッター
+o_footer();
+
 // HTMLおわり
 a_html_foot();
