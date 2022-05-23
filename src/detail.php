@@ -19,10 +19,13 @@ $pgdata += array('agent_name' => $agent['agent_name']);
 $pgdata += array('updated_at' => date('Y年m月d日', strtotime($agent['updated_at'])));
 $pgdata += array('agent_picture' => '/pictures/agent1.jpg'); //最終的には画像パスをDBに保存してそこから取得したい
 $pgdata += array('paragraphs' => array(
-  ['title' => 'タイトル１', 'text' => $agent['paragraph1']],
-  ['title' => 'タイトル２', 'text' => $agent['paragraph2']],
-  ['title' => 'タイトル３', 'text' => $agent['paragraph3']],
-  ['title' => 'タイトル４', 'text' => $agent['paragraph4']],
+  ['title' => 'こんな就活生にピッタリ', 'text' => $agent['paragraph1']],
+  ['title' => '他にはない強み', 'text' => $agent['paragraph2']],
+  ['title' => '得意な業種・職種', 'text' => $agent['paragraph3']],
+  ['title' => '就活生へのサポート', 'text' => $agent['paragraph4']],
+  ['title' => 'エージェント設定のトピック', 'text' => $agent['paragraph5']],
+  ['title' => '最後に', 'text' => $agent['paragraph6']],
+  ['title' => '管理人からのコメント', 'text' => $agent['paragraph7']],
 ));
 
 // ここからHTML

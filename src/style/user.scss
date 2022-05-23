@@ -1,282 +1,286 @@
-html{
-  font-size: 18px;
+html {
+  font-size: 14px;
 }
 
-$main-color:#52A39A;
-$index-color:white;
+$main-color: #52a39a;
+$index-color: white;
 // #52A39Aの中の文字のこと
 
-body{
-padding-bottom: 80px;
+body {
+  // padding-bottom: 80px;
 }
 
 // ヘッダー
-.header{
+.header {
   background-color: $main-color;
 }
 
-.header-inner{
+.header-inner {
   padding: 10px 30px;
   display: flex;
   justify-content: space-between;
   font-size: 1.5rem;
-  color: $index-color ;
+  color: $index-color;
+  .page-title {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
-.page-title{
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.header-nav{
-  display:none;
+.header-nav {
+  display: none;
   padding: 10px 75px;
-}
+  &-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    li {
+      color: $index-color;
+      font-family: Helvetica;
+      padding: 10px 15px 15px;
 
-.header-nav-list{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  li{
-    color: $index-color;
-    font-family :Helvetica;
-    padding:10px 15px 15px ;
-
-    a{
-      font-size: 1rem;
-      margin:10px 15px 15px;
+      a {
+        font-size: 1rem;
+        margin: 10px 15px 15px;
+      }
     }
   }
 }
 
 // Section
 // 緑長方形の見出しで囲われた部分をSectionと名付けた。
-.Section{
+.Section {
   width: 100%;
   margin: 30px 0px;
 
-
-  &__title{
+  &__title {
     padding: 15px 0px;
     background-color: $main-color;
     width: 100%;
     // margin-bottom: 30px;
 
-    p{
+    p {
       color: $index-color;
-      font-size:2rem;
+      font-size: 2rem;
       margin-left: 2.5%;
     }
   }
 
-  &__content{
+  &__content {
     margin: 0 auto;
     width: 95%;
     padding: 30px 0px;
-
   }
 }
 
 // Sectionの中の小さい小見出し
-.Section__inner-heading{
+.Section__inner-heading {
   margin: 30px 0px;
-  padding:8px;
+  padding: 8px;
   border-left: 3px solid $main-color;
 
-  p{
-    font-size:1.5rem;
+  p {
+    font-size: 1.5rem;
   }
 }
 
 // トップページの「使い方の流れ」
-.How-to{
-  &__cards{
-    &__four{
+.How-to {
+  &__cards {
+    &__four {
       width: 100%;
     }
 
-    &__two{
-      display:flex;
-      justify-content:space-around;
+    &__two {
+      display: flex;
+      justify-content: space-around;
       margin: 5% 0;
     }
-
   }
-  &__card{
+  &__card {
     width: 45%;
 
-    img{
+    img {
       width: 100%;
     }
   }
 }
 
+// トップページの検索エリア
+// 条件選択のためのタグ
+.Search__tag__wrapper {
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+
+  .Search__tag {
+    margin-right: 10px;
+    margin-bottom: 10px;
+
+    &__input {
+      display: none;
+    }
+
+    &__label {
+      border: solid #cccccc;
+      font-size: 1rem;
+      border-radius: 5px;
+      padding: 3px 5px;
+
+      &-checked {
+        background: $main-color;
+        color: white;
+        border: solid $main-color;
+      }
+    }
+  }
+}
 
 // トップページの検索エリア
-  // 条件選択のためのタグ
-  .Search__tag__wrapper{
-    display:inline-flex;
-    flex-wrap: wrap;
-    margin-bottom:20px;
+//検索ボタン
+.Search__btn {
+  text-align: center;
+  button {
+    background-color: $main-color;
+    color: white;
+    padding: 10px 80px;
+    border-radius: 10px;
+    border: solid 1px $main-color;
 
-    .Search__tag{
-      margin-right:10px;
-      margin-bottom:10px;
-
-      &__input{
-        display:none;
-      }
-
-      &__label{
-        border: solid #CCCCCC;
-        font-size: 1rem;
-        border-radius:5px;
-        padding: 3px 5px;
-
-        &-checked {
-          background:$main-color;
-          color:white;
-          border: solid $main-color;
-        }
-      }
+    span {
+      font-weight: bold;
     }
   }
-
-  // トップページの検索エリア
-    //検索ボタン
-  .Search__btn{
-    text-align:center;
-    button{
-      background-color:$main-color;
-      color: white;
-      padding:10px 80px;
-      border-radius: 10px;
-      border: solid 1px $main-color;
-
-      span{
-        font-weight: bold;
-      }
-    }
-  }
-
+}
 
 // エージェント情報が乗っているカード
 // BEM未対応
-.agent-card{
+.agent-card {
   margin: 0 auto;
   margin-top: 30px;
   margin-bottom: 30px;
   padding: 30px 15px;
   width: 95%;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 
-  .agent-card-agent-name{
+  .agent-card-agent-name {
     font-size: 2rem;
     color: $main-color;
-    margin-bottom:20px;
-    font-weight:bold;
+    margin-bottom: 20px;
+    font-weight: bold;
 
-    h3{
-      text-align: center;
+    h3 {
+      // text-align: center;
     }
   }
 
-  .agent-card-image{
+  .agent-card-image {
     width: 100%;
-    margin-bottom:20px;
+    margin-bottom: 20px;
 
-    img{
+    img {
       width: 100%;
     }
   }
 
-  .agent-card-tags-area{
-    display:flex;
+  .agent-card-tags-area {
+    display: flex;
     flex-wrap: wrap;
-    margin-bottom:20px;
+    margin-bottom: 20px;
 
-    .agent-card-tag{
-      border: solid #CCCCCC;
-      border-radius:5px;
-      margin-right:10px;
+    .agent-card-tag {
+      border: solid #cccccc;
+      border-radius: 5px;
+      margin-right: 10px;
       margin-bottom: 10px;
-      padding: 3px 5px;
+      padding: 8px 12px;
     }
   }
 
-  .argent-card-info-text{
+  .argent-card-info-text {
     // border: solid;
-    margin-bottom:20px;
+    margin-bottom: 20px;
   }
 }
 
+.Agent-card__top {
+  &__sp {
+    display: block;
+  }
+  &__left {
+    display: block;
+  }
+  &__right {
+    display: block;
+    &-pc {
+      display: none;
+    }
+  }
+}
 
 // エージェントカードの星評価
 // BEM未対応
-.agent-card-star-evaluation-table{
-
-  margin-bottom:20px;
-  table{
+.agent-card-star-evaluation-table {
+  margin-bottom: 20px;
+  table {
     border-collapse: collapse;
     width: 100%;
-    border:solid 1px #CCCCCC;
+    border: solid 1px #cccccc;
 
-    tr{
-      border:solid 1px #CCCCCC;
+    tr {
+      border: solid 1px #cccccc;
 
-      td{
-        border:solid 1px #CCCCCC;
-        font-size:1.2rem;
+      td {
+        border: solid 1px #cccccc;
+        font-size: 1.2rem;
         color: black;
-        padding:5px;
+        padding: 5px;
 
-        p{
-          text-align:center;
-        };
+        p {
+          text-align: center;
+        }
       }
-      .star-evaluation{
+      .star-evaluation {
         color: $main-color;
       }
     }
   }
 }
 
-
 // エージェントカードの下の方のボタンの部分
 // BEM未対応
-.argent-card-btns{
+.argent-card-btns {
   display: flex;
   flex-direction: column;
   width: 100%;
-  .argent-card-btn{
+  .argent-card-btn {
     width: 100%;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    border-radius:3px;
-    margin-bottom:20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+    margin-bottom: 20px;
     padding: 15px 0px;
 
-    p{
+    p {
       text-align: center;
     }
   }
-
 }
 
-.put-into-inquiry-box{
-  background-color:#FFAB40;
+.put-into-inquiry-box {
+  background-color: #ffab40;
   color: white;
-  border: solid 0.5px #FFAB40;
+  border: solid 0.5px #ffab40;
   display: block;
 }
-.put-out-of-inquiry-box{
+.put-out-of-inquiry-box {
   background-color: white;
-  border: solid 0.5px #FFAB40;
-  color: #FFAB40;
+  border: solid 0.5px #ffab40;
+  color: #ffab40;
   display: none;
 }
-.view-more-info{
+.view-more-info {
   background-color: $main-color;
   border: solid 0.5px $main-color;
   color: $index-color;
@@ -284,24 +288,23 @@ padding-bottom: 80px;
 }
 
 // 再検索
-.Re-search{
+.Re-search {
   width: 100%;
   margin: 30px 0px;
   width: 100%;
 
-  &__ac{
-    &__parent{
+  &__ac {
+    &__parent {
       padding: 15px 0px;
       background-color: $main-color;
       // margin-bottom: 30px;
 
-      font-size:2rem;
+      font-size: 2rem;
       position: relative;
       cursor: pointer;
-      p{
+      p {
         margin-left: 2.5%;
         color: $index-color;
-
       }
     }
 
@@ -316,38 +319,36 @@ padding-bottom: 80px;
       border-right: 5px solid $index-color;
       border-bottom: 5px solid $index-color;
       transform: translateY(-50%) rotate(45deg);
-      transition: .3s;
+      transition: 0.3s;
     }
 
-    &__parent.open::after{
+    &__parent.open::after {
       transform: rotate(225deg);
     }
 
-    &__child{
+    &__child {
       padding: 30px 0px;
       margin: 0 auto;
       width: 95%;
       display: none;
       // height: 1000px;
-
     }
-
   }
 }
 
 // 再検索のロールダウン
-.Re-search-tags__ac{
-  border: solid #CCCCCC;
-  padding:0px 30px;
-  &__parent{
+.Re-search-tags__ac {
+  border: solid #cccccc;
+  padding: 0px 30px;
+  &__parent {
     margin: 10px 0px;
-    padding:8px;
+    padding: 8px;
     border-left: 3px solid $main-color;
     position: relative;
     cursor: pointer;
 
-    p{
-      font-size:1.5rem;
+    p {
+      font-size: 1.5rem;
       // font-weight: normal;
     }
   }
@@ -363,14 +364,14 @@ padding-bottom: 80px;
     border-right: 5px solid $main-color;
     border-bottom: 5px solid $main-color;
     transform: translateY(-50%) rotate(45deg);
-    transition: .3s;
+    transition: 0.3s;
   }
 
-  &__parent.open::after{
+  &__parent.open::after {
     transform: rotate(225deg);
   }
 
-  &__child{
+  &__child {
     padding: 30px 0px;
     // height: 150px;
     display: none;
@@ -379,218 +380,205 @@ padding-bottom: 80px;
   }
 }
 
-
-
 // 検索結果エリアの上の方のメッセージ
-  // 表示件数やタグなど
-.Search-result__message{
+// 表示件数やタグなど
+.Search-result__message {
   width: 95%;
   margin: 0px auto;
 
-    &__number{
-      margin-top: 30px;
-      margin-bottom: 30px;
-    }
-    &__figure{
-      color: $main-color;
-      font-size: 2rem;
-    }
-    &__tags{
-      display:flex;
-      flex-wrap: wrap;
-      margin-bottom:20px;
+  &__number {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  &__figure {
+    color: $main-color;
+    font-size: 2rem;
+  }
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
 
-      .Search-result__message__tag{
-        border: solid #CCCCCC;
-        border-radius:5px;
-        margin-right:10px;
-        margin-bottom: 10px;
-        padding: 3px 5px;
-      }
-    }
-    &__check-all{
-      margin-top: 30px;
-      display: flex;
+    .Search-result__message__tag {
+      border: solid #cccccc;
+      border-radius: 5px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      padding: 3px 5px;
     }
   }
+  &__check-all {
+    margin-top: 30px;
+    display: flex;
+  }
+}
 
 // 検索結果エリアの上の方のメッセージ
-  // 「すべて問い合わせボックスにいれる」
-.Search-result__check-all{
-  &__wrapper{
+// 「すべて問い合わせボックスにいれる」
+.Search-result__check-all {
+  &__wrapper {
     display: block;
     position: relative;
     padding-left: 30px;
     margin-bottom: 12px;
     cursor: pointer;
     user-select: none;
-    font-size:1.25rem;
+    font-size: 1.25rem;
   }
 
-    &__wrapper{
-      input{
-        display: none;
-      }
-    }
-
-    &__wrapper &__checkbox-icon{
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 20px;
-      width: 20px;
-      border: solid #C4C4C4;
-      border-radius: 8px;
-      background: white;
-      box-sizing: border-box;
-    }
-
-    &__wrapper &__checkbox-icon:after{
-      content: "";
-      position: absolute;
+  &__wrapper {
+    input {
       display: none;
-      left: 6px;
-      top: 2px;
-      width: 5px;
-      height: 10px;
-      border: 2px solid #FFF;
-      border-radius: 8px;
-      border-width: 0 2px 2px 0;
-      transform: rotate(45deg);
     }
+  }
 
-    &__wrapper input:checked + &__checkbox-icon{
-      background-color: $main-color;
-      border: solid $main-color;
-      border-radius: 8px;
-    }
+  &__wrapper &__checkbox-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    border: solid #c4c4c4;
+    border-radius: 8px;
+    background: white;
+    box-sizing: border-box;
+  }
 
-    &__wrapper input:checked + &__checkbox-icon:after {
-      display: block;
-    }
+  &__wrapper &__checkbox-icon:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  &__wrapper input:checked + &__checkbox-icon {
+    background-color: $main-color;
+    border: solid $main-color;
+    border-radius: 8px;
+  }
+
+  &__wrapper input:checked + &__checkbox-icon:after {
+    display: block;
+  }
 }
 
 // 閲覧履歴やお問い合わせボックスに表示させるための小さいエージェントのカード
-.Agent-card__wrapper__mini{
+.Agent-card__wrapper__mini {
   margin: 0 auto;
   margin-top: 30px;
   margin-bottom: 30px;
   padding: 2% 2%;
   width: 95%;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
 
-
-
-  .agent-card-image{
+  .agent-card-image {
     width: 25%;
 
-    img{
+    img {
       width: 100%;
     }
   }
 
-  .agent-card-agent-name{
+  .agent-card-agent-name {
     width: 75%;
     color: $main-color;
-    h3{
+    h3 {
       text-align: center;
-      font-weight:bold;
+      font-weight: bold;
       font-size: 1.35rem;
     }
   }
 }
 
-
-
 // エージェント詳細ページ
 
-  .Agent-page__last-update{
-    display: flex;
-    justify-content: flex-end;
-  }
+.Agent-page__last-update {
+  display: flex;
+  justify-content: flex-end;
+}
 
+.Agent-page__image {
+  .agent-card-image {
+    width: 100%;
+    margin-bottom: 20px;
 
-  .Agent-page__image{
-
-    .agent-card-image{
+    img {
       width: 100%;
-      margin-bottom:20px;
-
-      img{
-        width: 100%;
-      }
     }
-
   }
-
+}
 
 // エージェント詳細ページの追加ボタン
-.Agent-page__inquiry-btn{
+.Agent-page__inquiry-btn {
   width: 65%;
-  margin: 0 auto;
-  div{
+  margin: 30px auto;
+  div {
     width: 100%;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    border-radius:3px;
-    margin-bottom:20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+    margin-bottom: 20px;
     padding: 15px 0px;
 
-    p{
+    p {
       text-align: center;
     }
   }
 }
 
-
-
-
 // 申し込みフォームのページ
 // セクション内の小見出し
-  // ↓検索画面でネストにしていたので、外に出すためにもう一回別のクラスをつけて持ってきた。
-.Small-heading{
-  &__heading{
+// ↓検索画面でネストにしていたので、外に出すためにもう一回別のクラスをつけて持ってきた。
+.Small-heading {
+  &__heading {
     margin: 30px 0px;
-    padding:8px;
+    padding: 8px;
     border-left: 3px solid $main-color;
 
-    p{
-      font-size:1.25rem;
+    p {
+      font-size: 1.25rem;
     }
   }
   // セクション内の小見出しに、必須マーク付けるために
-  &__heading-essential{
+  &__heading-essential {
     display: flex;
     align-items: center;
   }
 
   // 必須マーク
-  &__essential-mark{
+  &__essential-mark {
     display: flex;
     align-items: center;
-    background: #FFAB40;
+    background: #ffab40;
     color: white;
     height: 30px;
-    margin-left:30px;
+    margin-left: 30px;
+    padding: 18px 9px;
+    border-radius: 10px;
   }
 }
 
-
 // 申し込みフォームのページ
-  // ボックスの部分
+// ボックスの部分
 .Application {
-  &__box__trash{
+  &__box__trash {
     width: 95%;
     margin: 0 auto;
-    font-size:1.5rem;
+    font-size: 1.5rem;
     display: flex;
     justify-content: flex-end;
-    i{
-      transform: translate(0,100%);
+    i {
+      transform: translate(0, 100%);
     }
   }
-
 }
 
 // フォーム１個目のラジオボタン
@@ -602,10 +590,10 @@ $radio-background-color: #ffffff;
     opacity: 0;
     + .Application-form__radio__label {
       &:before {
-        content: '';
+        content: "";
         background: $radio-background-color;
         border-radius: 100%;
-        border: 1px solid #C4C4C4;
+        border: 1px solid #c4c4c4;
         display: inline-block;
         width: 1.4em;
         height: 1.4em;
@@ -638,8 +626,8 @@ $radio-background-color: #ffffff;
       + .Application-form__radio__label {
         &:before {
           box-shadow: inset 0 0 0 4px $radio-background-color;
-          border-color: #C4C4C4;
-          background: #C4C4C4;
+          border-color: #c4c4c4;
+          background: #c4c4c4;
         }
       }
     }
@@ -654,22 +642,22 @@ $radio-background-color: #ffffff;
 }
 
 // 申し込みフォーム
-.Application-form{
+.Application-form {
   width: 95%;
   margin: 0 auto;
 
-  &__back-button{
-    display:flex;
+  &__back-button {
+    display: flex;
     color: $main-color;
-    font-size:1.5rem;
-    i{
+    font-size: 1.5rem;
+    i {
       margin-right: 20px;
     }
   }
 
-  &__input__glay-border{
-    border: solid #C4C4C4 2px;
-    border-radius:10px;
+  &__input__glay-border {
+    border: solid #c4c4c4 2px;
+    border-radius: 10px;
     width: 100%;
     margin: 0 auto;
     padding: 3%;
@@ -679,27 +667,27 @@ $radio-background-color: #ffffff;
     border: 2px solid red;
   }
 
-  &__example{
-    color: #CCCCCC;
+  &__example {
+    color: #cccccc;
     margin-top: 5px;
   }
 
-  &__privacy-policy{
+  &__privacy-policy {
     // padding: 3%;
   }
 
   // プライバシーのチェックボックスは長いので、べつのところに
 
-  &__privacy-message{
+  &__privacy-message {
     color: rgba(0, 0, 0, 0.65);
     margin-top: 10px;
   }
 
-  &__submit-btn__wrapper{
+  &__submit-btn__wrapper {
     width: 100%;
   }
 
-  &__submit-btn{
+  &__submit-btn {
     width: 60%;
     margin: 40px auto;
     background: $main-color;
@@ -709,7 +697,8 @@ $radio-background-color: #ffffff;
     justify-content: center;
     align-items: center;
 
-    input[type="submit"], div{
+    input[type="submit"],
+    div {
       color: white;
     }
   }
@@ -717,411 +706,438 @@ $radio-background-color: #ffffff;
 
 // 申し込みフォーム
 // プライバシーポリシーに同意するのチェックボックス
-.Application-form__privacy-cb{
+.Application-form__privacy-cb {
   margin-top: 5px;
   padding: 2%;
 
-  &__wrapper{
+  &__wrapper {
     display: block;
     position: relative;
     padding-left: 30px;
     cursor: pointer;
     user-select: none;
-    font-size:1.25rem;
+    font-size: 1.25rem;
   }
 
-    &__wrapper{
-      input{
-        display: none;
-      }
-    }
-
-    &__wrapper &__checkbox-icon{
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 20px;
-      width: 20px;
-      border: solid #C4C4C4;
-      border-radius: 8px;
-      background: white;
-      box-sizing: border-box;
-    }
-
-    &__wrapper &__checkbox-icon:after{
-      content: "";
-      position: absolute;
+  &__wrapper {
+    input {
       display: none;
-      left: 6px;
-      top: 2px;
-      width: 5px;
-      height: 10px;
-      border: 2px solid #FFF;
-      border-radius: 8px;
-      border-width: 0 2px 2px 0;
-      transform: rotate(45deg);
     }
+  }
 
-    &__wrapper input:checked + &__checkbox-icon{
-      background-color: $main-color;
-      border: solid $main-color;
-      border-radius: 8px;
-    }
+  &__wrapper &__checkbox-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    border: solid #c4c4c4;
+    border-radius: 8px;
+    background: white;
+    box-sizing: border-box;
+  }
 
-    &__wrapper input:checked + &__checkbox-icon:after {
-      display: block;
-    }
+  &__wrapper &__checkbox-icon:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
 
+  &__wrapper input:checked + &__checkbox-icon {
+    background-color: $main-color;
+    border: solid $main-color;
+    border-radius: 8px;
+  }
+
+  &__wrapper input:checked + &__checkbox-icon:after {
+    display: block;
+  }
 }
 
-
 // 確認ページ
-.Check{
+.Check {
   width: 95%;
   margin: 0 auto;
 
-  &__message-text{
+  &__message-text {
     width: 95%;
     margin: 30px auto;
-    p{
-      font-size:1rem;
+    p {
+      font-size: 1rem;
     }
   }
 
-  &__info{
+  &__info {
     margin: 0 auto;
-    background: #F4F4F4;
-    border: solid #CCCCCC;
+    background: #f4f4f4;
+    border: solid #cccccc;
 
-    &__line{
+    &__line {
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
 
-    &__item{
-      margin:10px 30px;
+    &__item {
+      margin: 10px 30px;
       font-weight: bold;
     }
 
-    &__writing{
-      margin:10px 30px;
-      color:#5F5F5F;
+    &__writing {
+      margin: 10px 30px;
+      color: #5f5f5f;
     }
   }
 }
 
 // 完了ページ
-.Finish{
-  &__message{
-    box-shadow:0 0 10px #fff, 0 0 10px #ccc, 0 0 1px #aaa;
+.Finish {
+  &__message {
+    box-shadow: 0 0 10px #fff, 0 0 10px #ccc, 0 0 1px #aaa;
     padding: 20px;
     width: 95%;
     margin: 0 auto;
     font-size: 1.25rem;
   }
 
-  p{
-    margin:10px 0;
+  p {
+    margin: 10px 0;
   }
 }
 
 // 追従ボタン
-.Box-and-apply-footer{
+.Box-and-apply-footer {
   width: 100%;
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index:10;
+  z-index: 10;
   background: white;
-
-
 }
 
 .Box-mobile {
-  display:none;
+  display: none;
 }
 
-.Apply-footer{
+.Apply-footer {
   width: 100%;
-  height: 80px;
-  background-color:rgba(0, 0, 0, 0.65);
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.65);
 }
 
-
-.Apply-footer_inner{
-  max-width: 1500px;
+.Apply-footer_inner {
+  max-width: 1000px;
   margin: 0 auto;
   width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 80px;
+  height: 50px;
 }
 
-
-.Apply-footer__message__pc{
+.Apply-footer__message__pc {
   display: none;
 }
 
-.Apply-footer__apply-btn{
-  background: #FFAB40;
+.Apply-footer__message__in-box {
+  padding: 0px 20px;
+  color: #ffab40;
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+
+.Apply-footer__apply-btn {
+  background: #ffab40;
   height: 70%;
   border-radius: 10px;
   padding: 0px 2%;
   text-align: center;
   width: 43%;
 
-  p{
+  p {
     color: white;
   }
 }
 
-.Show-box{
+.Show-box {
   height: 70%;
   border-radius: 10px;
   background: $main-color;
   display: flex;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
   color: white;
   text-align: center;
   padding: 0px 2%;
   width: 43%;
-  &__text{
-    p{
-
+  &__text {
+    p {
     }
-
   }
-  &__icon{
+  &__icon {
     margin-left: 5%;
-    &__number{
-      background:red;
+    &__number {
+      background: red;
       border-radius: 100px;
     }
   }
 }
-
 // フッター
-.Footer{
-  background-color:$main-color;
-  &__inner{
+.Footer {
+  padding-top: 50px;
+  padding-bottom: 100px;
+  background-color: $main-color;
+
+  &__inner {
     display: flex;
     flex-direction: column;
     justify-content: center;
     font-size: 1.5rem;
-    color: $index-color ;
+    color: $index-color;
     padding: 10px 30px;
 
-  }
-}
+    .page-title {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+    }
 
-.page-title{
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    .header-nav {
+      display: block;
+      padding: 10px 75px;
 
-.header-nav{
-  display:none;
-  padding: 10px 75px;
-}
+      &-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
 
-.header-nav-list{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  li{
-    color: $index-color;
-    font-family :Helvetica;
-    padding:10px 15px 15px ;
+        li {
+          color: $index-color;
+          font-family: Helvetica;
+          padding: 10px 15px 15px;
 
-    a{
-      font-size: 1rem;
-      margin:10px 15px 15px;
+          a {
+            font-size: 1rem;
+            margin: 10px 15px 15px;
+          }
+        }
+      }
     }
   }
+  &__copyright {
+    text-align: center;
+  }
 }
-
 // レイアウト関連
 .Page {
   &__container {
     display: flex;
     flex-direction: column;
   }
-  &__right{
-    &__pc{
-      display:none;
+  &__right {
+    &__pc {
+      display: none;
     }
   }
-  &__left{
-    &__sp{
+  &__left {
+    &__sp {
     }
   }
 }
 
-  // レスポンシブ対応
-  @media (min-width: 960px) {
-
-
-    // レイアウト関連
-    .Page {
-      &__container {
-        margin: 0 auto;
-        flex-direction: row-reverse;
-        justify-content:space-around;
-        max-width: 1500px;
-      }
-      &__right{
-        width: 30%;
-        &__pc{
-          display: block;
-        }
-      }
-      &__left{
-        width: 60%;
-        &__sp{
-          display: none;
-        }
-      }
-    }
-
-
-    .header-inner{
-      font-size:2.5rem;
-    }
-    .phone-icon{
-      opacity: 0;
-      pointer-events: none;
-    }
-    .header-nav{
-      display: block;
-    }
-
-    .Page__container__center{
+// レスポンシブ対応
+@media (min-width: 960px) {
+  // レイアウト関連
+  .Page {
+    &__container {
       margin: 0 auto;
-      max-width:1500px
-    }
-
-    .Section{
-      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    }
-
-    .How-to{
-      &__cards{
-        &__four{
-          display: flex;
-        }
-
-        &__two{
-          display:flex;
-          justify-content:space-around;
-          margin: 5% 0;
-        }
-      }
-
-      &__card{
-        width: 45%;
-
-        img{
-          width: 100%;
-        }
-      }
-    }
-
-    .argent-card-btns{
-      flex-direction: row;
+      flex-direction: row-reverse;
       justify-content: space-around;
-
-      .argent-card-btn{
-        margin: 0 5%;
-      }
-
-      // .put-into-inquiry-box{
-      //   background-color:#FFAB40;
-      //   color: white;
-      // }
-      // .put-out-of-inquiry-box{
-      //   background-color: white;
-      //   color: #FFAB40;
-      //   display: none;
-      // }
-
-      .view-more-info{
-        background-color: $main-color;
-        color: $index-color;
+      max-width: 1000px;
+    }
+    &__right {
+      width: 30%;
+      &__pc {
+        display: block;
       }
     }
-
-// 再検索
-.Re-search{
-  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
-
-// 確認ページ
-.Check{
-  width: 95%;
-  // max-width: 1500px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-  margin: 0;
-  padding: 30px 0px;
-
-  &__message-text{
-    // width: 95%;
-    // margin: 30px auto;
-    p{
-      // font-size:1rem;
+    &__left {
+      width: 60%;
+      &__sp {
+        display: none;
+      }
     }
   }
 
-  &__info{
-    width: 95%;
-    // margin: 0 auto;
-    // background: #F4F4F4;
-    // border: solid #CCCCCC;
+  .header-inner {
+    font-size: 2.5rem;
+  }
+  .phone-icon {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .header-nav {
+    display: block;
+  }
 
-    &__line{
-      // display: flex;
-      // flex-direction: column;
-      // justify-content: center;
+  .Page__container__center {
+    margin: 0 auto;
+    max-width: 1000px;
+  }
+
+  .Section {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .How-to {
+    &__cards {
+      &__four {
+        display: flex;
+      }
+
+      &__two {
+        display: flex;
+        justify-content: space-around;
+        margin: 5% 0;
+      }
     }
 
-    &__item{
-      // margin:10px 30px;
-      // font-weight: bold;
-    }
+    &__card {
+      width: 45%;
 
-    &__writing{
-      // margin:10px 30px;
-      // color:#5F5F5F;
+      img {
+        width: 100%;
+      }
     }
   }
-}
 
-    .Box-mobile {
-      display:none;
+  .Agent-card__top {
+    display: flex;
+
+    &__sp {
+      display: none;
     }
-
-    .Apply-footer__message__pc{
-      display: block;
-      color: white;
-      font-size: 1.5em;
-      width: 43%;
-      text-align: center;
+    &__left {
+      width: 45%;
     }
-
-    .Apply-footer__apply-btn{
-      p{
-        font-size: 1.5em;
-        .New-line__sp{
-          display: none;
+    &__right {
+      padding-left: 50px;
+      width: 55%;
+      .agent-card-tags-area {
+        .agent-card-tag {
+          font-size: 1.5rem;
+        }
+      }
+      &-pc {
+        display: block;
+        .agent-card-agent-name {
+          font-size: 3rem;
         }
       }
     }
+  }
 
-    .Show-box{
-      display:none;
+  .argent-card-btns {
+    flex-direction: row;
+    justify-content: space-around;
+
+    .argent-card-btn {
+      margin: 0 5%;
+    }
+
+    // .put-into-inquiry-box{
+    //   background-color:#FFAB40;
+    //   color: white;
+    // }
+    // .put-out-of-inquiry-box{
+    //   background-color: white;
+    //   color: #FFAB40;
+    //   display: none;
+    // }
+
+    .view-more-info {
+      background-color: $main-color;
+      color: $index-color;
     }
   }
+
+  // 再検索
+  .Re-search {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  // 確認ページ
+  .Check {
+    width: 95%;
+    // max-width: 1000px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    margin: 0;
+    padding: 30px 0px;
+
+    &__message-text {
+      // width: 95%;
+      // margin: 30px auto;
+      p {
+        // font-size:1rem;
+      }
+    }
+
+    &__info {
+      width: 95%;
+      // margin: 0 auto;
+      // background: #F4F4F4;
+      // border: solid #CCCCCC;
+
+      &__line {
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: center;
+      }
+
+      &__item {
+        // margin:10px 30px;
+        // font-weight: bold;
+      }
+
+      &__writing {
+        // margin:10px 30px;
+        // color:#5F5F5F;
+      }
+    }
+  }
+
+  .Box-mobile {
+    display: none;
+  }
+
+  .Apply-footer__message__pc {
+    display: block;
+    color: white;
+    font-size: 1.5em;
+    width: 43%;
+    text-align: center;
+  }
+
+  .Apply-footer__apply-btn {
+    p {
+      font-size: 1.5em;
+      .New-line__sp {
+        display: none;
+      }
+    }
+  }
+
+  .Show-box {
+    display: none;
+  }
+}

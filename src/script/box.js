@@ -34,7 +34,10 @@ function escNull(el) {
 let boxes = document.querySelectorAll('.js-box');
 // お問い合わせBOXアイコンのバッジ(BOX内のエージェント数を表示)
 let boxBadge = document.getElementById('boxBadge');
+let inBoxPc = document.getElementById('inBoxPc');
 boxBadge = escNull(boxBadge);
+inBoxPc = escNull(inBoxPc);
+
 
 
 // データベース作成
@@ -58,6 +61,7 @@ function showBox() {
           box.innerText = 'エージェントが入っていません。';
         });
         boxBadge.innerText = agents.length;
+        inBoxPc.innerText = agents.length;
         changeBtnDisp(agents);
         return;
       }
@@ -89,6 +93,7 @@ function showBox() {
             box.innerHTML = html;
           });
           boxBadge.innerText = agents.length;
+          inBoxPc.innerText = agents.length;
           changeBtnDisp(agents);
         }
       );
