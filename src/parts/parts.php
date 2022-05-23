@@ -859,11 +859,11 @@ function a_header_start()
 
     // 名前
     m_heading_required('名前');
-    a_input(['pattern' => '[^\x20-\x7E]*', 'class' => 'Application-form__name Application-form__input__glay-border', 'placeholder' => '例）就活太郎', 'name' => 'inq_name', 'id' => 'inqName']);
+    a_input(['pattern' => '[^\x20-\x7E]*', 'class' => 'Application-form__name Application-form__input__glay-border js-zen-input', 'placeholder' => '例）就活太郎', 'name' => 'inq_name', 'id' => 'inqName']);
 
     // 名前（フリガナ）
     m_heading_required('名前(フリガナ)');
-    a_input(['pattern' => '[\u30A1-\u30F6]*', 'class' => 'Application-form__name Application-form__input__glay-border', 'placeholder' => '例）シュウカツタロウ', 'name' => 'inq_nameruby', 'id' => 'inqNameruby']);
+    a_input(['pattern' => '[\u30A1-\u30F6]*', 'class' => 'Application-form__name Application-form__input__glay-border js-zen-input', 'placeholder' => '例）シュウカツタロウ', 'name' => 'inq_nameruby', 'id' => 'inqNameruby']);
 
     // メールアドレス
     m_heading_required('メールアドレス');
@@ -875,15 +875,15 @@ function a_header_start()
 
     // 大学名
     m_heading_required('大学名');
-    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）就活義塾大学', 'name' => 'inq_univ', 'id' => 'inqUniv']);
+    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border js-zen-input', 'placeholder' => '例）就活義塾大学', 'name' => 'inq_univ', 'id' => 'inqUniv']);
 
     // 学部名
     m_heading_required('学部名');
-    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）文学部', 'name' => 'inq_faculty', 'id' => 'inqFaculty']);
+    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border js-zen-input', 'placeholder' => '例）文学部', 'name' => 'inq_faculty', 'id' => 'inqFaculty']);
 
     // 学科名
     m_heading_required('学科名');
-    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）人間科学科', 'name' => 'inq_department', 'id' => 'inqDepartment']);
+    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border js-zen-input', 'placeholder' => '例）人間科学科', 'name' => 'inq_department', 'id' => 'inqDepartment']);
 
     // 卒業年
     m_heading_required('卒業年');
@@ -899,13 +899,13 @@ function a_header_start()
     a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border p-postal-code', 'size' => '8', 'placeholder' => '例）2220022', 'name' => 'inq_postalcode', 'id' => 'inqPostalcode']);
     //   都道府県
     a_label('都道府県', '');
-    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border p-region', 'placeholder' => '例）東京都', 'name' => 'inq_pref', 'id' => 'inqPref']);
+    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border p-region js-zen-input', 'placeholder' => '例）東京都', 'name' => 'inq_pref', 'id' => 'inqPref']);
     //   市区町村番地
     a_label('市区町村番地', '');
-    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border p-locality p-street-address p-extended-address', 'placeholder' => '例）港区白金台', 'name' => 'inq_address', 'id' => 'inqAddress']);
+    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border p-locality p-street-address p-extended-address js-zen-input', 'placeholder' => '例）港区白金台', 'name' => 'inq_address', 'id' => 'inqAddress']);
     //   建物名・部屋番号
     a_label('建物名・部屋番号', '');
-    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border', 'placeholder' => '例）就活マンション１０５', 'name' => 'inq_bldg', 'id' => 'inqBldg']);
+    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border js-zen-input', 'placeholder' => '例）就活マンション１０５', 'name' => 'inq_bldg', 'id' => 'inqBldg']);
     // 自由記述欄
     a_heading('自由記述欄');
     a_free_textbox();
