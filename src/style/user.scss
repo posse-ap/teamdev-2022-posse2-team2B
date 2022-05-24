@@ -74,7 +74,7 @@ body {
   display: none;
 
   display: flex;
-  // justify-content:center;
+  justify-content:center;
   align-items: center;
 
   .nav-items {
@@ -179,7 +179,8 @@ body {
     // display: flex;
     // justify-content: end;
     width: 100%;
-    
+    flex-wrap: wrap;
+
   }
 
   .header-nav{
@@ -973,6 +974,7 @@ $radio-background-color: #ffffff;
 
 // 完了ページ
 .Finish {
+  margin-top: 30px;
   &__message {
     box-shadow: 0 0 10px #fff, 0 0 10px #ccc, 0 0 1px #aaa;
     padding: 20px;
@@ -1360,12 +1362,16 @@ $radio-background-color: #ffffff;
 
   // 確認ページ
   .Check {
+    margin: 30px auto;
     width: 95%;
-    // max-width: 1000px;
+    max-width: 1000px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    margin: 0;
     padding: 30px 0px;
-
+    
+    .Application-form__back-button{
+      width: 95%;
+      margin:0 auto;
+    }
     &__message-text {
       // width: 95%;
       // margin: 30px auto;
@@ -1398,6 +1404,13 @@ $radio-background-color: #ffffff;
     }
   }
 
+
+  .Finish{
+    max-width: 1000px;
+    margin: 30px auto;
+  }
+
+
   .Box-mobile {
     display: none;
   }
@@ -1422,6 +1435,7 @@ $radio-background-color: #ffffff;
   .Show-box {
     display: none;
   }
+
 }
 
 
