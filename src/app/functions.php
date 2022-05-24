@@ -54,14 +54,16 @@ function f_register_student($student)
   global $db;
   $insert_stmt = $db->prepare(
     "INSERT INTO
-      students (inquiry_option_id, student_name, student_name_ruby, email, tel, univ, faculty, department, graduate_year, postal_code, address, optional_comment)
+      students (inquiry_option_id, student_name, student_name_ruby,birthday, sex email, tel, univ, faculty, department, graduate_year, postal_code, address, optional_comment)
     VALUES
-      (:inquiry_option_id, :student_name, :student_name_ruby, :email, :tel, :univ, :faculty, :department, :graduate_year, :postal_code, :address, :optional_comment)"
+      (:inquiry_option_id, :student_name, :student_name_ruby, :birthday, :sex, :email, :tel, :univ, :faculty, :department, :graduate_year, :postal_code, :address, :optional_comment)"
   );
   $insert_stmt->execute([
     ':inquiry_option_id' => $student['inquiry_option_id'],
     ':student_name' => $student['student_name'],
     ':student_name_ruby' => $student['student_name_ruby'],
+    ':birthday' => $student['birthday'],
+    ':sex' => $student['sex'],
     ':email' => $student['email'],
     ':tel' => $student['tel'],
     ':univ' => $student['univ'],
@@ -72,4 +74,13 @@ function f_register_student($student)
     ':address' => $student['address'],
     ':optional_comment' => $student['optional_comment']
   ]);
+}
+
+function f_attributes_str($attributes) {
+  $html = '';
+  foreach ($attributes as $key => $value) {
+    $html .= $key . '="' . $value . '" ';
+  }
+  $html = trim($html);
+  return $html;
 }

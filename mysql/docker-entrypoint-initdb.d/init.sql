@@ -125,6 +125,8 @@ CREATE TABLE students(
   inquiry_option_id INT NOT NULL,
   student_name VARCHAR(50) NOT NULL,
   student_name_ruby VARCHAR(50) NOT NULL,
+  birthday DATE NOT NULL,
+  sex INT NOT NULL,
   email VARCHAR(50) NOT NULL,
   tel VARCHAR(11) NOT NULL,
   univ VARCHAR(50) NOT NULL,

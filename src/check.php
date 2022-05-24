@@ -32,6 +32,8 @@ $pgdata += array('send_data' => array(
   ['name' => 'inquiry_option_id', 'value' => $_POST['inq_radio']],
   ['name' => 'student_name', 'value' => $_POST['inq_name']],
   ['name' => 'student_name_ruby', 'value' => $_POST['inq_nameruby']],
+  ['name' => 'birthday', 'value' => $_POST['inq_birthday']],
+  ['name' => 'sex', 'value' => $_POST['inq_sex']],
   ['name' => 'email', 'value' => $_POST['inq_email']],
   ['name' => 'tel', 'value' => $_POST['inq_tel']],
   ['name' => 'univ', 'value' => $_POST['inq_univ']],

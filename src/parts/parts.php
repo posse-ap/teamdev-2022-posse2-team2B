@@ -767,13 +767,28 @@ function a_header_start()
   // $attributes = [attribute => value, attribute => value, ...]
   function a_input($attributes)
   {
-    $html = '';
-    foreach ($attributes as $key => $value) {
-      $html .= $key . '="' . $value . '" ';
-    }
-    $html = trim($html);
+    $att = f_attributes_str($attributes);
 ?>
-  <input <?= $html; ?>>
+  <input <?= $att; ?>>
+<?php
+  }
+
+  // $attributes = [attribute => value, attribute => value, ...]
+  // $options = [[attributes => [attribute => value, ...], text => 'text'], ...]
+  function a_select($attributes, $options)
+  {
+    $att = f_attributes_str($attributes);
+?>
+  <select <?= $att; ?>>
+    <?php
+    foreach ($options as $option) :
+      $option_att = f_attributes_str($option['attributes']);
+    ?>
+      <option <?= $option_att; ?>><?= $option['text']; ?></option>
+    <?php
+    endforeach;
+    ?>
+  </select>
 <?php
   }
 
@@ -870,11 +885,19 @@ function a_header_start()
 
     // 名前
     m_heading_required('名前');
-    a_input(['pattern' => '[^\x20-\x7E]*', 'class' => 'Application-form__name Application-form__input__glay-border js-zen-input', 'placeholder' => '例）就活太郎', 'name' => 'inq_name', 'id' => 'inqName']);
+    a_input(['class' => 'Application-form__name Application-form__input__glay-border js-zen-input', 'placeholder' => '例）就活太郎', 'name' => 'inq_name', 'id' => 'inqName']);
 
     // 名前（フリガナ）
     m_heading_required('名前(フリガナ)');
-    a_input(['pattern' => '[\u30A1-\u30F6]*', 'class' => 'Application-form__name Application-form__input__glay-border js-zen-input', 'placeholder' => '例）シュウカツタロウ', 'name' => 'inq_nameruby', 'id' => 'inqNameruby']);
+    a_input(['class' => 'Application-form__name Application-form__input__glay-border js-zen-input', 'placeholder' => '例）シュウカツタロウ', 'name' => 'inq_nameruby', 'id' => 'inqNameruby']);
+
+    // 生年月日
+    m_heading_required('生年月日');
+    a_input(['type' => 'date', 'class' => 'Application-form__input__glay-border', 'name' => 'inq_birthday']);
+
+    // 性別
+    m_heading_required('性別');
+    a_select(['name' => 'inq_sex', 'class' => 'Application-form__input__glay-border'], [['attributes' => ['hidden' => ''], 'text' => '選択してください'], ['attributes' => ['value' => '0'], 'text' => '男性'], ['attributes' => ['value' => '1'], 'text' => '女性'], ['attributes' => ['value' => '2'], 'text' => 'その他'], ['attributes' => ['value' => '3'], 'text' => '無回答']]);
 
     // メールアドレス
     m_heading_required('メールアドレス');
