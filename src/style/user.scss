@@ -16,7 +16,7 @@ body {
 .header{
   background-color: $main-color;
   position: relative;
-}
+}//適用
 
 .header-inner {
   padding: 10px 30px;
@@ -31,7 +31,7 @@ body {
     justify-content: center;
     align-items: center;
   }
-}
+}//適用 命名変
 
 .header-nav {
   display: none;
@@ -1305,31 +1305,7 @@ $radio-background-color: #ffffff;
     }
   }
 
-  .Agent-card__top {
-    display: flex;
 
-    &__sp {
-      display: none;
-    }
-    &__left {
-      width: 45%;
-    }
-    &__right {
-      padding-left: 50px;
-      width: 55%;
-      .agent-card-tags-area {
-        .agent-card-tag {
-          font-size: 1.5rem;
-        }
-      }
-      &-pc {
-        display: block;
-        .agent-card-agent-name {
-          font-size: 3rem;
-        }
-      }
-    }
-  }
 
   .argent-card-btns {
     flex-direction: row;
