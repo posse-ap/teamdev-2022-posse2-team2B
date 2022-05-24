@@ -31,7 +31,7 @@ $pages = array(
     'title' => '学生情報詳細',
     'name' => 'student-info.php',
     'show_nav' => false,
-    'right' => [2, 3]
+    'right' => [1, 2, 3]
   ],
   5 => [
     'title' => 'エージェント情報詳細',

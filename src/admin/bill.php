@@ -35,8 +35,6 @@ foreach ($trs as $tr) :
 endforeach;
 print_r("sumCount=" . $sum_count);
 print_r("<br>sumCost=" . $sum_count * 10000);
-echo("sumCount=" . $sum_count);
-echo("<br>sumCost=" . $sum_count * 10000);
 
 
 require(dirname(__FILE__) . "/app/right-check.php");

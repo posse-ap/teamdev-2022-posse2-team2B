@@ -21,7 +21,6 @@ if (!empty($_POST)) {
     $_SESSION['name'] = $account['name'];
     $_SESSION['agent_id'] = $account['agent_id'];
     $_SESSION['right_id'] = $account['right_id'];
-    $_SESSION['agent_id'] = $account['agent_id'];
     $_SESSION['time'] = time();
     header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/students.php');
     exit();
