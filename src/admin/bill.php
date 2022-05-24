@@ -31,10 +31,12 @@ $trs = $trs_stmt->fetchAll();
 $sum_count = 0;
 foreach ($trs as $tr) :
   $sum_count += $tr['count'];
-  array_push($pgdata['table_data']['tr'], ['翌月10日', $tr['count'] * 10000, $tr['created_at']]);
+  $seikyu = $tr['created_at'] . '-10';
+  $date = new DateTime($seikyu);
+  $date->modify('+1 months');
+
+  array_push($pgdata['table_data']['tr'], [$date->format('Y-m-d'), $tr['count'] * 10000, $tr['created_at']]);
 endforeach;
-print_r("sumCount=" . $sum_count);
-print_r("<br>sumCost=" . $sum_count * 10000);
 
 
 require(dirname(__FILE__) . "/app/right-check.php");

@@ -10,7 +10,7 @@ $pgdata += array('right_id' => $_SESSION['right_id']);
 $pgdata += array('page_id' => 4,);
 $pgdata += array('page_title' => $pages[$pgdata['page_id']]['title']);
 $pgdata += array('table_data' => [
-  'th' => ['氏名', 'メールアドレス', '電話番号', '住所', '大学名', '学部', '学科', '卒業年', '問い合わせ内容', '自由記述欄']
+  'th' => ['氏名', '氏名（フリガナ）','生年月日','メールアドレス', '電話番号', '住所', '大学名', '学部', '学科', '卒業年', '問い合わせ内容', '自由記述欄']
 ]);
 
 $student_id = $_GET['id'];
@@ -19,13 +19,12 @@ $student_id = $_GET['id'];
 $trs_stmt = $db->query(
   "SELECT
     student_name,
+    student_name_ruby,
+    birthday,
     email,
     tel,
-    CONCAT(
-    pref_id,
     address,
-    building)as fulladdress,
-    school_id,
+    univ,
     faculty,
     department,
     graduate_year,
