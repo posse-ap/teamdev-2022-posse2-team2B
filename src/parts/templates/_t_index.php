@@ -50,6 +50,8 @@ o_footer();
 <script src="./script/show-box-mobile.js"></script>
 <!-- 検索エリアのタグクリック時の動作 -->
 <script src="./script/search.js"></script>
+<!-- ハンバーガーメニュー -->
+<script src="./script/nav.js"></script>
 
 <?php
 
