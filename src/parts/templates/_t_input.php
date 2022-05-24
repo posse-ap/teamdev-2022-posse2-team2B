@@ -15,7 +15,7 @@ o_header();
   <div class="Page__right">
     <?php
     // BOX
-    o_box();
+    // o_box();
     ?>
   </div>
   <div class="Page__left">
