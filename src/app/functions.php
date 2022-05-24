@@ -54,7 +54,7 @@ function f_register_student($student)
   global $db;
   $insert_stmt = $db->prepare(
     "INSERT INTO
-      students (inquiry_option_id, student_name, student_name_ruby,birthday, sex email, tel, univ, faculty, department, graduate_year, postal_code, address, optional_comment)
+      students (inquiry_option_id, student_name, student_name_ruby, birthday, sex, email, tel, univ, faculty, department, graduate_year, postal_code, address, optional_comment)
     VALUES
       (:inquiry_option_id, :student_name, :student_name_ruby, :birthday, :sex, :email, :tel, :univ, :faculty, :department, :graduate_year, :postal_code, :address, :optional_comment)"
   );
@@ -83,4 +83,15 @@ function f_attributes_str($attributes) {
   }
   $html = trim($html);
   return $html;
+}
+
+function f_date_format_hyphen2kanji($date_str) {
+  $date_array = explode('-', $date_str);
+  $kanji_date_str = sprintf('%s年%s月%s日', ...$date_array);
+  return $kanji_date_str;
+}
+
+function f_sex_num2kanji($num) {
+  $sex_array = array('男性', '女性', 'その他', '無回答');
+  return $sex_array[$num];
 }

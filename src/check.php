@@ -20,6 +20,8 @@ $pgdata += array('disp_data' => array(
   ['name' => 'お問い合せ先エージェント', 'value' => nl2br(implode("\n", $agent_names))],
   ['name' => 'お問い合せ内容', 'value' => $_POST['inq_radio']],
   ['name' => '名前(フリガナ)', 'value' => $_POST['inq_name'] . '(' . $_POST['inq_nameruby'] . ')'],
+  ['name' => '生年月日', 'value' => f_date_format_hyphen2kanji($_POST['inq_birthday'])],
+  ['name' => '性別', 'value' => f_sex_num2kanji($_POST['inq_sex'])],
   ['name' => 'メールアドレス', 'value' => $_POST['inq_email']],
   ['name' => '電話番号', 'value' => $_POST['inq_tel']],
   ['name' => '大学情報', 'value' => sprintf(nl2br("大学名: %s\n学部・学科: %s %s"), $_POST['inq_univ'], $_POST['inq_faculty'], $_POST['inq_department'])],
