@@ -32,9 +32,11 @@ $sum_count = 0;
 foreach ($trs as $tr) :
   $sum_count += $tr['count'];
   array_push($pgdata['table_data']['tr'], ['翌月10日', $tr['count'] * 10000, $tr['created_at']]);
-  print_r("sumCount=" . $sum_count);
-  print_r("<br>sumCost=" . $sum_count * 10000);
 endforeach;
+print_r("sumCount=" . $sum_count);
+print_r("<br>sumCost=" . $sum_count * 10000);
+echo("sumCount=" . $sum_count);
+echo("<br>sumCost=" . $sum_count * 10000);
 
 
 require(dirname(__FILE__) . "/app/right-check.php");

@@ -238,7 +238,10 @@ VALUES
 INSERT INTO
   accounts(email, password, name, agent_id, right_id)
 VALUES
-  ('agent@test', sha1('teamdev'), '株式会社〇〇エージェント横山', 1, 1),
+  ('agent1@test', sha1('teamdev'), '株式会社〇〇エージェントウサギ', 1, 1),
+  ('agent2@test', sha1('teamdev'), '株式会社〇〇エージェントハチワレ', 2, 1),
+  ('agent3@test', sha1('teamdev'), '株式会社〇〇エージェントシーサー', 3, 1),
+  ('agent@test', sha1('teamdev'), '株式会社〇〇エージェント', 1, 1),
   ('boozer@test', sha1('teamdev'), '青柳', NULL, 2),
   ('admin@test', sha1('teamdev'), '田上', NULL, 3);
 
