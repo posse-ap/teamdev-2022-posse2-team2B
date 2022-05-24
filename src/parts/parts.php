@@ -41,9 +41,15 @@ function a_header_start()
   function a_hamburger()
   {
     ?>
-      <div class="phone-icon">
+
+      <button class="header__hamburger hamburger" id="js-hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <!-- <div class="phone-icon">
         <i class="fa-solid fa-bars"></i>
-      </div>
+      </div> -->
     <?php
   }
 
@@ -84,6 +90,19 @@ function a_header_start()
   function a_header_nav()
   {
   ?>
+      <nav class="header__nav nav" id="js-nav">
+        <ul class="nav__items nav-items">
+          <li class="nav-items__item"><a href="">就活サイト</a></li>
+          <li class="nav-items__item"><a href="">就活支援サービス</a></li>
+          <li class="nav-items__item"><a href="">自己分析診断ツール</a></li>
+          <li class="nav-items__item"><a href="">ES添削サービス</a></li>
+          <li class="nav-items__item"><a href="">就活.comとは</a></li>
+          <li class="nav-items__item"><a href="">就活エージェント比較</a></li>
+          <li class="nav-items__item"><a href="">お問い合わせ</a></li>
+        </ul>
+      </nav>
+
+<!--       
     <nav class="header-nav">
       <ul class="header-nav-list">
         <li>
@@ -108,7 +127,7 @@ function a_header_start()
           <a href="">お問い合わせ</a>
         </li>
       </ul>
-    </nav>
+    </nav> -->
   <?php
   }
 

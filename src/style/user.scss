@@ -10,15 +10,19 @@ body {
   // padding-bottom: 80px;
 }
 
+
 // ヘッダー
-.header {
+
+.header{
   background-color: $main-color;
-}
+  position: relative;
+}//適用
 
 .header-inner {
   padding: 10px 30px;
   display: flex;
   justify-content: space-between;
+  // justify-content: center;
   font-size: 1.5rem;
   color: $index-color;
   .page-title {
@@ -27,7 +31,7 @@ body {
     justify-content: center;
     align-items: center;
   }
-}
+}//適用 命名変
 
 .header-nav {
   display: none;
@@ -49,13 +53,183 @@ body {
   }
 }
 
+
+
+// はんばーがー　
+
+
+/* ヘッダーのナビ部分 */
+
+.header__nav {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  transform: translateX(100%);
+  background-color: $main-color;
+  transition: ease .4s;
+
+  display: none;
+
+  display: flex;
+  justify-content:center;
+  align-items: center;
+
+  .nav-items {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+
+    width: 90%;//liの変な改行解消
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &__item{
+      padding:10px 15px 15px ;
+      /* ナビのリンク */
+      a {
+        color: white;
+        width: 100%;
+        display: block;
+        text-align: center;
+      }
+    }
+
+
+    .nav-items__item:last-child a {
+      margin-bottom: 0;
+    }
+
+  }
+
+}
+
+
+
+
+/* ハンバーガーメニュー */
+
+.header__hamburger {
+  width: 30px;
+  height: 100%;
+
+}
+
+.hamburger {
+  background-color: transparent;
+  border-color: transparent;
+  z-index: 10;
+}
+
+
+/* ハンバーガーメニューの線 */
+.hamburger span {
+  width: 100%;
+  height: 1px;
+  background-color: #ffffff;
+  position: relative;
+  transition: ease .4s;
+  display: block;
+}
+.hamburger span:nth-child(1) {
+  top: 0;
+}
+.hamburger span:nth-child(2) {
+  margin: 8px 0;
+}
+.hamburger span:nth-child(3) {
+  top: 0;
+}
+
+
+/* ハンバーガーメニュークリック後のスタイル */
+.header__nav.active {
+  transform: translateX(0);
+  display: block;
+}
+.hamburger.active span:nth-child(1) {
+  top: 5px;
+  transform: rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+
+}
+.hamburger.active span:nth-child(3) {
+  top: -13px;
+  transform: rotate(-45deg);
+}
+
+
+@media screen and (min-width: 960px) {
+  .nav-items {
+
+  }
+
+  .header__nav {
+    position: static !important;
+    transform: initial;
+    background-color: inherit;
+    height: inherit;
+    // display: flex;
+    // justify-content: end;
+    width: 100%;
+    // flex-wrap: wrap;
+
+  }
+
+  .header-nav{
+    display: block;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav__items {
+    width: 100%;
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    
+    align-items: center;
+    justify-content: space-between;
+    height: initial;
+
+    position: static !important;
+    top: 0!important;
+    left: 0!important;
+    transform: translate(0,0)!important;
+
+  }
+
+  .nav-items__item a {
+    margin-bottom: 0;
+  }
+  .hamburger {
+    // display: none;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+}
+
+
+
+
+
+
+
 // Section
 // 緑長方形の見出しで囲われた部分をSectionと名付けた。
 .Section {
   width: 100%;
   margin: 30px 0px;
 
-  &__title {
+  &__title{
     padding: 15px 0px;
     background-color: $main-color;
     width: 100%;
@@ -163,7 +337,8 @@ body {
   margin-bottom: 30px;
   padding: 30px 15px;
   width: 95%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  max-width: 600px;//ピッタは520px
 
   .agent-card-agent-name {
     font-size: 2rem;
@@ -800,6 +975,7 @@ $radio-background-color: #ffffff;
 
 // 完了ページ
 .Finish {
+  margin-top: 30px;
   &__message {
     box-shadow: 0 0 10px #fff, 0 0 10px #ccc, 0 0 1px #aaa;
     padding: 20px;
@@ -955,29 +1131,138 @@ $radio-background-color: #ffffff;
   }
 }
 
-// レスポンシブ対応
-@media (min-width: 960px) {
-  // レイアウト関連
-  .Page {
-    &__container {
-      margin: 0 auto;
-      flex-direction: row-reverse;
-      justify-content: space-around;
-      max-width: 1000px;
-    }
-    &__right {
-      width: 30%;
-      &__pc {
-        display: block;
+
+
+
+
+
+
+
+
+ ///// レスポンシブ対応/////
+  @media (min-width: 960px) {
+
+    
+    // レイアウト関連
+    .Page {
+      &__container {
+        margin: 0 auto;
+        flex-direction: row-reverse;
+        justify-content:space-around;
+        max-width: 1000px;
+      }
+      &__right{
+        width: 30%;
+        &__pc{
+          display: block;
+        }
+      }
+      &__left{
+        width: 60%;
+        &__sp{
+          display: none;
+        }
       }
     }
-    &__left {
-      width: 60%;
+
+    
+    .header-inner{
+      font-size:2.5rem;
+    }
+    .phone-icon{
+      opacity: 0;
+      pointer-events: none;
+    }
+    .header-nav{
+      display: block;
+    }
+
+    .Page__container__center{
+      margin: 0 auto;
+      max-width: 1000px
+    }
+
+    .Section{
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .How-to{
+      &__cards{
+        &__four{
+          display: flex;
+        }
+
+        &__two{
+          display:flex;
+          justify-content:space-around;
+          margin: 5% 0;
+        }
+      }
+
+      &__card{
+        width: 45%;
+
+        img{
+          width: 100%;
+        }
+      }
+    }
+
+
+    .Agent-card__top {
+      display: flex;
+  
       &__sp {
         display: none;
       }
+      &__left {
+        width: 45%;
+      }
+      &__right {
+        padding-left: 50px;
+        width: 55%;
+        .agent-card-tags-area {
+          .agent-card-tag {
+            font-size: 1rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            padding: 4px 8px;
+          }
+        }
+        &-pc {
+          display: block;
+          .agent-card-agent-name {
+            font-size: 2rem;
+            margin-bottom: 10px;
+          }
+        }
+      }
     }
-  }
+  
+
+
+    .argent-card-btns {
+      flex-direction: row;
+      justify-content: space-around;
+      max-width: 1000px;
+    
+      // }
+      &__right {
+        width: 30%;
+    
+        &__pc {
+          display: block;
+        }
+      }
+    
+      &__left {
+        width: 60%;
+    
+        &__sp {
+          display: none;
+        }
+      }
+    }
 
   .header-inner {
     font-size: 2.5rem;
@@ -1021,31 +1306,7 @@ $radio-background-color: #ffffff;
     }
   }
 
-  .Agent-card__top {
-    display: flex;
 
-    &__sp {
-      display: none;
-    }
-    &__left {
-      width: 45%;
-    }
-    &__right {
-      padding-left: 50px;
-      width: 55%;
-      .agent-card-tags-area {
-        .agent-card-tag {
-          font-size: 1.5rem;
-        }
-      }
-      &-pc {
-        display: block;
-        .agent-card-agent-name {
-          font-size: 3rem;
-        }
-      }
-    }
-  }
 
   .argent-card-btns {
     flex-direction: row;
@@ -1078,12 +1339,16 @@ $radio-background-color: #ffffff;
 
   // 確認ページ
   .Check {
+    margin: 30px auto;
     width: 95%;
-    // max-width: 1000px;
+    max-width: 1000px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    margin: 0;
     padding: 30px 0px;
-
+    
+    .Application-form__back-button{
+      width: 95%;
+      margin:0 auto;
+    }
     &__message-text {
       // width: 95%;
       // margin: 30px auto;
@@ -1116,6 +1381,13 @@ $radio-background-color: #ffffff;
     }
   }
 
+
+  .Finish{
+    max-width: 1000px;
+    margin: 30px auto;
+  }
+
+
   .Box-mobile {
     display: none;
   }
@@ -1140,4 +1412,8 @@ $radio-background-color: #ffffff;
   .Show-box {
     display: none;
   }
+
 }
+
+
+
