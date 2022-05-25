@@ -10,7 +10,9 @@
 
 <?php
 if ($pgdata['page_id'] == 4) {
-  include(dirname(__FILE__) . '/../atoms/_deletebtn.php');
+  if ($_SESSION['right_id'] != 1) {
+    include(dirname(__FILE__) . '/../atoms/_deletebtn.php');
+  }
 } elseif ($pgdata['page_id'] == 7) {
   include(dirname(__FILE__) . '/../atoms/_changebtn.php');
 }
