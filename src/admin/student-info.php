@@ -7,7 +7,7 @@ require(dirname(__FILE__) . "/app/_ctrl-pages.php"); //管理画面の全ペー�
 
 $pgdata = array();
 $pgdata += array('right_id' => $_SESSION['right_id']);
-$pgdata += array('page_id' => 4,);
+$pgdata += array('page_id' => 4);
 $pgdata += array('page_title' => $pages[$pgdata['page_id']]['title']);
 $pgdata += array('table_data' => [
   'th' => ['氏名', '氏名（フリガナ）','生年月日','メールアドレス', '電話番号', '住所', '大学名', '学部', '学科', '卒業年', '問い合わせ内容', '自由記述欄']
