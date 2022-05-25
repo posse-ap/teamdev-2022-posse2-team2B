@@ -7,9 +7,10 @@ if (!isset($_POST['inq_agents'])) {
   exit();
 }
 
-$in_clause = implode(', ', explode(',', $_POST['inq_agents']));
-$agent_names = $db->prepare("SELECT agent_name FROM agents WHERE id IN (?)");
-$agent_names->execute([$in_clause]);
+$inq_agents = explode(',', $_POST['inq_agents']);
+$in_clause = substr(str_repeat(',?', count($inq_agents)), 1);
+$agent_names = $db->prepare(sprintf("SELECT agent_name FROM agents WHERE id IN (%s)", $in_clause));
+$agent_names->execute([...$inq_agents]);
 $agent_names = $agent_names->fetchAll();
 $agent_names = array_map(function ($v) {
   return $v['agent_name'];
