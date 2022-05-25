@@ -4,11 +4,11 @@
     <div class="bill_info_area">
       <div class="bill_info">
         <p>問い合わせがあった学生数</p>
-        <span><?= $sum_count; ?></span>
+        <span><?=  $month ?></span>
       </div>
       <div class="bill_info">
         <p>請求予定額</p>
-        <span>￥<?= $sum_count * 10000; ?></span>
+        <span>￥<?= $month * 10000; ?></span>
       </div>
     </div>
   </div>

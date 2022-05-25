@@ -10,33 +10,53 @@ $pgdata += array('right_id' => $_SESSION['right_id']);
 $pgdata += array('page_id' => 8);
 $pgdata += array('page_title' => $pages[$pgdata['page_id']]['title']);
 $pgdata += array('table_data' => [
-  'th' => ['請求日', '請求額', '対象月',],
+  'th' => ['請求日', '請求額', '対象月'],
   'tr' => array()
 ]);
 $agent_id = $_SESSION['agent_id'];
 $trs_stmt = $db->query(
-  "SELECT DATE_FORMAT(inquired_agents.created_at, '%Y-%m') as `created_at`,
-  COUNT(*) as count
-FROM
+  "SELECT
+    DATE_FORMAT(students.created_at, '%Y-%m') as `month`,
+    COUNT(*) as count
+  FROM
     inquired_agents
-    LEFT JOIN
-students
-    ON
-      inquired_agents.student_id=students.id
-WHERE
+  LEFT JOIN
+    students
+  ON
+    inquired_agents.student_id=students.id
+  WHERE
     inquired_agents.agent_id = $agent_id
-GROUP BY DATE_FORMAT(created_at, '%Y-%m');"
+  GROUP BY
+    `month`"
 );
 $trs = $trs_stmt->fetchAll();
-$sum_count = 0;
-foreach ($trs as $tr) :
-  $sum_count += $tr['count'];
-  $seikyu = $tr['created_at'] . '-10';
-  $date = new DateTime($seikyu);
-  $date->modify('+1 months');
 
-  array_push($pgdata['table_data']['tr'], [$date->format('Y-m-d'), $tr['count'] * 10000, $tr['created_at']]);
+foreach ($trs as $tr) :
+  $date_tmp = $tr['month'] . '-10';
+  $date = new DateTime($date_tmp);
+  $date->modify('+1 months');
+  array_push($pgdata['table_data']['tr'], [$date->format('Y-m-d'), $tr['count'] * 10000, $tr['month']]);
 endforeach;
+
+$month_stmt = $db->prepare(
+  "SELECT
+    DATE_FORMAT(students.created_at, '%Y-%m') AS `month`,
+    COUNT(*) AS count
+  FROM
+    inquired_agents
+  LEFT JOIN
+    students
+  ON
+    inquired_agents.student_id=students.id
+  WHERE
+    DATE_FORMAT(students.created_at, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m')
+    AND inquired_agents.agent_id = $agent_id
+  GROUP BY
+    `month`"
+);
+$month_stmt->execute();
+$month = $month_stmt->fetch()['count'];
+
 
 
 require(dirname(__FILE__) . "/app/right-check.php");

@@ -143,14 +143,12 @@ DROP TABLE IF EXISTS inquired_agents;
 CREATE TABLE inquired_agents(
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   student_id INT NOT NULL,
-  agent_id INT NOT NULL,
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  agent_id INT NOT NULL
 );
 INSERT INTO
-  inquired_agents(student_id, agent_id,created_at)
+  inquired_agents(student_id, agent_id)
 VALUES
-  (1,1,"2022-02-01 00:00:00"),(2,1,"2022-02-01 00:00:00"),(3,1,"2022-03-01 00:00:00"),(1,2,"2022-04-01 00:00:00"),(3,2,"2022-05-01 00:00:00"),
-(3,3, "2022-05-01 00:00:00");
+  (1,1),(2,1),(3,1),(4, 1),(1,2),(3,2),(3,3);
 
 
 -- マスタ　データ
