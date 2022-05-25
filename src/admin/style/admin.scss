@@ -184,7 +184,7 @@ $btn: #f3af55;
 
 .login__form label {
   font-size: 2rem;
-  margin:0 auto;
+  margin: 0 auto;
 }
 
 .form-wrapper {
@@ -211,12 +211,8 @@ $btn: #f3af55;
   display: flex;
   justify-content: center;
   margin: 0 auto;
-  width:200px;
+  width: 200px;
 }
-
-
-
-
 
 .link {
   color: blue;
@@ -239,3 +235,34 @@ $btn: #f3af55;
   font-size: 1rem;
 }
 
+.month_bill {
+  margin-bottom: 30px;
+  align-items: flex-start !important;
+}
+
+.month_result {
+  font-size: 1.5rem;
+  margin: 0 60px;
+}
+
+.bill_info_area {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.bill_info {
+  width: 450px;
+  background-color: #fff;
+  height: 150px;
+  margin: 30px;
+  padding: 15px;
+}
+
+.bill_info span {
+  font-size: 3rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

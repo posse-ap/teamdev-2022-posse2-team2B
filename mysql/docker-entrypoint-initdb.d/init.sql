@@ -145,6 +145,11 @@ CREATE TABLE inquired_agents(
   student_id INT NOT NULL,
   agent_id INT NOT NULL
 );
+INSERT INTO
+  inquired_agents(student_id, agent_id)
+VALUES
+  (1,1),(2,1),(3,1),(4, 1),(1,2),(3,2),(3,3);
+
 
 -- マスタ　データ
 INSERT INTO
@@ -232,7 +237,9 @@ VALUES
 INSERT INTO
   accounts(email, password, name, agent_id, right_id)
 VALUES
-  ('agent@test', sha1('teamdev'), '株式会社〇〇エージェント横山', 1, 1),
+  ('agent1@test', sha1('teamdev'), '株式会社sampleagent1ウサギ', 1, 1),
+  ('agent2@test', sha1('teamdev'), '株式会社sampleagent2ハチワレ', 2, 1),
+  ('agent3@test', sha1('teamdev'), '株式会社sampleagent3シーサー', 3, 1),
   ('boozer@test', sha1('teamdev'), '青柳', NULL, 2),
   ('admin@test', sha1('teamdev'), '田上', NULL, 3);
 

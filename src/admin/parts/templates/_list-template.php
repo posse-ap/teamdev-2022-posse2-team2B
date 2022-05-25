@@ -12,6 +12,9 @@ include(dirname(__FILE__) . '/../organisms/_header.php');
   <div class="area area_main">
     <?php
     include(dirname(__FILE__) . '/../atoms/_title.php');
+    if ($pgdata['page_id'] == 8 ){
+      include(dirname(__FILE__) . '/../molecules/_bill-table.php');
+    }
     include(dirname(__FILE__) . '/../molecules/_table.php');
     if ($pgdata['page_id'] == 2) {
       echo '<a href="./account-maint.php" class="btn detail-btn">新規作成</a>';

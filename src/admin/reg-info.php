@@ -15,7 +15,7 @@ $pgdata += array('table_data' => [
 
 $agent_id = $_GET['id'];
 // テーブルに追加するデータ
-$trs_stmt = $db->query(
+$trs_stmt = $db->prepare(
   "SELECT
       agents.agent_name,
       agent_contract.address,
@@ -33,9 +33,13 @@ $trs_stmt = $db->query(
     LEFT JOIN
       agents
     ON
-      agent_contract.agent_id=agents.id"
+      agent_contract.agent_id=agents.id
+    WHERE
+      agents.id=:agent_id "
 );
-$trs = $trs_stmt->fetch(PDO::FETCH_ASSOC);
+$trs_stmt->execute([':agent_id' => $_SESSION['agent_id']]);
+$trs = $trs_stmt->fetch();
+
 $pgdata['table_data']['tr'] = $trs;
 
 require(dirname(__FILE__) . "/app/right-check.php");
