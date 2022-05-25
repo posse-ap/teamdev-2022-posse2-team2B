@@ -2,7 +2,7 @@
 require(dirname(__FILE__) . "/dbconnect.php");
 require(dirname(__FILE__) . '/app/functions.php');
 
-if (!isset($_POST['inq_agents'])) {
+if(!isset($_POST['inq_agents'])) {
   echo 'エラー';
   exit();
 }
