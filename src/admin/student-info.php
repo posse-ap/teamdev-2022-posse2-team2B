@@ -33,7 +33,7 @@ $trs_stmt = $db->query(
     FROM
       students
       WHERE
-      id = $student_id"
+      id = '$student_id'"
 );
 $trs = $trs_stmt->fetch(PDO::FETCH_ASSOC);
 $pgdata['table_data']['tr'] = $trs;

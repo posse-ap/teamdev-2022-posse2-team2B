@@ -20,7 +20,7 @@ try {
   $db->beginTransaction();
   // テーブルに追加するデータ
   $db->query(
-    "DELETE FROM students WHERE id=$student_id;"
+    "DELETE FROM students WHERE id='$student_id';"
   );
   $db->commit();
   header('Location:/admin/students.php');
