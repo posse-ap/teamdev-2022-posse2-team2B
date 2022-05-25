@@ -2,7 +2,7 @@
 require(dirname(__FILE__) . "/dbconnect.php");
 require(dirname(__FILE__) . '/app/functions.php');
 
-if(!isset($_POST['inq_agents'])) {
+if (!isset($_POST['inq_agents'])) {
   echo 'エラー';
   exit();
 }
@@ -31,6 +31,7 @@ $pgdata += array('disp_data' => array(
   ['name' => 'プライバシーポリシーへの同意', 'value' => $_POST['inq_agree']]
 ));
 $pgdata += array('send_data' => array(
+  ['name' => 'inquired_agents', 'value' => $_POST['inq_agents']],
   ['name' => 'inquiry_option_id', 'value' => $_POST['inq_radio']],
   ['name' => 'student_name', 'value' => $_POST['inq_name']],
   ['name' => 'student_name_ruby', 'value' => $_POST['inq_nameruby']],
@@ -46,6 +47,12 @@ $pgdata += array('send_data' => array(
   ['name' => 'address', 'value' => $_POST['inq_pref'] . $_POST['inq_address'] . $_POST['inq_bldg']],
   ['name' => 'optional_comment', 'value' => $_POST['inq_free']]
 ));
+
+// トークンを生成し、sessionに保存、フォーム送信時にPOSTでthanks.phpにトークンが送られる
+$pgdata += array('token' => f_generate_token());
+
+// データ送信
+f_submit_form(['action' => 'thanks.php', 'method' => 'POST', 'id' => 'checkForm'], $pgdata['send_data'], $pgdata['token']);
 
 // ここからHTML
 include(dirname(__FILE__) . '/parts/templates/_t_check.php');

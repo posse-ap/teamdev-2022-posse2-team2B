@@ -117,6 +117,7 @@ function formSend() {
 
 // check.php->thanks.php
 function confirmBtn() {
-  const checkForm = document.getElementById('checkForm');
-  checkForm.submit();
+  document.querySelectorAll('form').forEach(form => {
+    form.submit();
+  });
 }
