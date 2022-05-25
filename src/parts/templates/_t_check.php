@@ -9,7 +9,7 @@ a_html_head($pgdata['page_title']);
 o_header();
 
 // 確認ページ
-o_check($pgdata['disp_data'], $pgdata['send_data']);
+o_check($pgdata['disp_data']);
 
 ?>
 <script src="./script/form-send.js"></script>

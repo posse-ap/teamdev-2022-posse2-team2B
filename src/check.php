@@ -7,8 +7,10 @@ if(!isset($_POST['inq_agents'])) {
   exit();
 }
 
-$agent_names = $db->prepare("SELECT agent_name FROM agents WHERE id IN (?)");
-$agent_names->execute([$_POST['inq_agents']]);
+$inq_agents = explode(',', $_POST['inq_agents']);
+$in_clause = substr(str_repeat(',?', count($inq_agents)), 1);
+$agent_names = $db->prepare(sprintf("SELECT agent_name FROM agents WHERE id IN (%s)", $in_clause));
+$agent_names->execute([...$inq_agents]);
 $agent_names = $agent_names->fetchAll();
 $agent_names = array_map(function ($v) {
   return $v['agent_name'];
@@ -31,6 +33,7 @@ $pgdata += array('disp_data' => array(
   ['name' => 'プライバシーポリシーへの同意', 'value' => $_POST['inq_agree']]
 ));
 $pgdata += array('send_data' => array(
+  ['name' => 'inquired_agents', 'value' => $_POST['inq_agents']],
   ['name' => 'inquiry_option_id', 'value' => $_POST['inq_radio']],
   ['name' => 'student_name', 'value' => $_POST['inq_name']],
   ['name' => 'student_name_ruby', 'value' => $_POST['inq_nameruby']],
@@ -46,6 +49,12 @@ $pgdata += array('send_data' => array(
   ['name' => 'address', 'value' => $_POST['inq_pref'] . $_POST['inq_address'] . $_POST['inq_bldg']],
   ['name' => 'optional_comment', 'value' => $_POST['inq_free']]
 ));
+
+// トークンを生成し、sessionに保存、フォーム送信時にPOSTでthanks.phpにトークンが送られる
+$pgdata += array('token' => f_generate_token());
+
+// データ送信
+f_submit_form(['action' => 'thanks.php', 'method' => 'POST', 'id' => 'checkForm'], $pgdata['send_data'], $pgdata['token']);
 
 // ここからHTML
 include(dirname(__FILE__) . '/parts/templates/_t_check.php');

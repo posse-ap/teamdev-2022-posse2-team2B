@@ -120,7 +120,7 @@ CREATE TABLE rights(
 DROP TABLE IF EXISTS students;
 
 CREATE TABLE students(
-  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  id VARCHAR(255) NOT NULL PRIMARY KEY,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   inquiry_option_id INT NOT NULL,
   student_name VARCHAR(50) NOT NULL,
@@ -142,7 +142,7 @@ DROP TABLE IF EXISTS inquired_agents;
 
 CREATE TABLE inquired_agents(
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  student_id INT NOT NULL,
+  student_id VARCHAR(255) NOT NULL,
   agent_id INT NOT NULL
 );
 INSERT INTO
@@ -312,6 +312,7 @@ VALUES
 
 INSERT INTO
   students(
+    id,
     inquiry_option_id,
     student_name,
     student_name_ruby,
@@ -329,6 +330,7 @@ INSERT INTO
   )
 VALUES
   (
+    'd3628cfd6b722eb',
     1,
     '青柳仁',
     'アオヤギジン',
@@ -345,6 +347,7 @@ VALUES
     '詳しく知りたいです。よろしくお願いします。'
   ),
   (
+    '5f628cfd7a5b92e',
     2,
     '横山健人',
     'ヨコヤマケント',
@@ -361,7 +364,8 @@ VALUES
     '詳しく知りたいです。よろしくお願いしまっす。'
   ),
   (
-    2,
+    'e5628cfd846cc8b',
+    3,
     '田上黎',
     'タノウエレイ',
     '2002-05-08',

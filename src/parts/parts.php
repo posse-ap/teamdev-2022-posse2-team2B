@@ -784,15 +784,6 @@ function a_header_start()
   }
 
   // $attributes = [attribute => value, attribute => value, ...]
-  function a_input($attributes)
-  {
-    $att = f_attributes_str($attributes);
-?>
-  <input <?= $att; ?>>
-<?php
-  }
-
-  // $attributes = [attribute => value, attribute => value, ...]
   // $options = [[attributes => [attribute => value, ...], text => 'text'], ...]
   function a_select($attributes, $options)
   {
@@ -896,7 +887,7 @@ function a_header_start()
       <p><?= $agent['agent_name']; ?></p>
     <?php
     }
-    a_input(['type' => 'hidden', 'name' => 'inq_agents', 'value' => $inq_agents]);
+    f_input(['type' => 'hidden', 'name' => 'inq_agents', 'value' => $inq_agents]);
 
     // お問い合わせ内容 ラジオボタン
     m_heading_required('お問い合せ内容');
@@ -904,15 +895,15 @@ function a_header_start()
 
     // 名前
     m_heading_required('名前');
-    a_input(['class' => 'Application-form__name Application-form__input__glay-border js-zen-input', 'placeholder' => '例）就活太郎', 'name' => 'inq_name', 'id' => 'inqName']);
+    f_input(['class' => 'Application-form__name Application-form__input__glay-border js-zen-input', 'placeholder' => '例）就活太郎', 'name' => 'inq_name', 'id' => 'inqName']);
 
     // 名前（フリガナ）
     m_heading_required('名前(フリガナ)');
-    a_input(['class' => 'Application-form__name Application-form__input__glay-border js-zen-input', 'placeholder' => '例）シュウカツタロウ', 'name' => 'inq_nameruby', 'id' => 'inqNameruby']);
+    f_input(['class' => 'Application-form__name Application-form__input__glay-border js-zen-input', 'placeholder' => '例）シュウカツタロウ', 'name' => 'inq_nameruby', 'id' => 'inqNameruby']);
 
     // 生年月日
     m_heading_required('生年月日');
-    a_input(['type' => 'date', 'class' => 'Application-form__input__glay-border', 'name' => 'inq_birthday']);
+    f_input(['type' => 'date', 'class' => 'Application-form__input__glay-border', 'name' => 'inq_birthday']);
 
     // 性別
     m_heading_required('性別');
@@ -920,23 +911,23 @@ function a_header_start()
 
     // メールアドレス
     m_heading_required('メールアドレス');
-    a_input(['type' => 'email', 'class' => 'Application-form__input__glay-border js-han-input', 'placeholder' => '例）shukatsu.taro123@example.com', 'name' => 'inq_email', 'id' => 'inqEmail']);
+    f_input(['type' => 'email', 'class' => 'Application-form__input__glay-border js-han-input', 'placeholder' => '例）shukatsu.taro123@example.com', 'name' => 'inq_email', 'id' => 'inqEmail']);
 
     // 電話番号（半角ハイフンなし）
     m_heading_required('電話番号(ハイフンなし)');
-    a_input(['type' => 'tel', 'class' => 'Application-form__input__glay-border js-han-input', 'placeholder' => '例）09012345678', 'name' => 'inq_tel', 'id' => 'inqTel']);
+    f_input(['type' => 'tel', 'class' => 'Application-form__input__glay-border js-han-input', 'placeholder' => '例）09012345678', 'name' => 'inq_tel', 'id' => 'inqTel']);
 
     // 大学名
     m_heading_required('大学名');
-    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border js-zen-input', 'placeholder' => '例）就活義塾大学', 'name' => 'inq_univ', 'id' => 'inqUniv']);
+    f_input(['type' => 'text', 'class' => 'Application-form__input__glay-border js-zen-input', 'placeholder' => '例）就活義塾大学', 'name' => 'inq_univ', 'id' => 'inqUniv']);
 
     // 学部名
     m_heading_required('学部名');
-    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border js-zen-input', 'placeholder' => '例）文学部', 'name' => 'inq_faculty', 'id' => 'inqFaculty']);
+    f_input(['type' => 'text', 'class' => 'Application-form__input__glay-border js-zen-input', 'placeholder' => '例）文学部', 'name' => 'inq_faculty', 'id' => 'inqFaculty']);
 
     // 学科名
     m_heading_required('学科名');
-    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border js-zen-input', 'placeholder' => '例）人間科学科', 'name' => 'inq_department', 'id' => 'inqDepartment']);
+    f_input(['type' => 'text', 'class' => 'Application-form__input__glay-border js-zen-input', 'placeholder' => '例）人間科学科', 'name' => 'inq_department', 'id' => 'inqDepartment']);
 
     // 卒業年
     m_heading_required('卒業年');
@@ -949,16 +940,16 @@ function a_header_start()
     m_heading_required('住所');
     //   郵便番号
     a_label('郵便番号', '');
-    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border p-postal-code js-han-input', 'size' => '8', 'placeholder' => '例）2220022', 'name' => 'inq_postalcode', 'id' => 'inqPostalcode']);
+    f_input(['type' => 'text', 'class' => 'Application-form__input__glay-border p-postal-code js-han-input', 'size' => '8', 'placeholder' => '例）2220022', 'name' => 'inq_postalcode', 'id' => 'inqPostalcode']);
     //   都道府県
     a_label('都道府県', '');
-    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border p-region js-zen-input', 'placeholder' => '例）東京都', 'name' => 'inq_pref', 'id' => 'inqPref']);
+    f_input(['type' => 'text', 'class' => 'Application-form__input__glay-border p-region js-zen-input', 'placeholder' => '例）東京都', 'name' => 'inq_pref', 'id' => 'inqPref']);
     //   市区町村番地
     a_label('市区町村番地', '');
-    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border p-locality p-street-address p-extended-address js-zen-input', 'placeholder' => '例）港区白金台', 'name' => 'inq_address', 'id' => 'inqAddress']);
+    f_input(['type' => 'text', 'class' => 'Application-form__input__glay-border p-locality p-street-address p-extended-address js-zen-input', 'placeholder' => '例）港区白金台', 'name' => 'inq_address', 'id' => 'inqAddress']);
     //   建物名・部屋番号
     a_label('建物名・部屋番号', '');
-    a_input(['type' => 'text', 'class' => 'Application-form__input__glay-border js-zen-input', 'placeholder' => '例）就活マンション１０５', 'name' => 'inq_bldg', 'id' => 'inqBldg']);
+    f_input(['type' => 'text', 'class' => 'Application-form__input__glay-border js-zen-input', 'placeholder' => '例）就活マンション１０５', 'name' => 'inq_bldg', 'id' => 'inqBldg']);
     // 自由記述欄
     a_heading('自由記述欄');
     a_free_textbox();
@@ -1006,21 +997,7 @@ function a_header_start()
 <?php
   }
 
-  // check.phpからthanks.phpにデータ送信するためのフォーム
-  function m_check_form($data)
-  {
-?>
-  <form action="thanks.php" method="POST" id="checkForm">
-    <?php
-    foreach ($data as $item) {
-      a_input(['type' => 'hidden', 'name' => $item['name'], 'value' => $item['value']]);
-    }
-    ?>
-  </form>
-<?php
-  }
-
-  function o_check($disp_data, $send_data)
+  function o_check($disp_data)
   {
 ?>
   <div class="Check">
@@ -1028,7 +1005,6 @@ function a_header_start()
     a_form_backbtn('戻る');
     a_check_message();
     m_check_data($disp_data);
-    m_check_form($send_data);
     a_form_send('送信する', 'confirmBtn()');
     ?>
   </div>
