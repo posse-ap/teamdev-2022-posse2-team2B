@@ -41,8 +41,7 @@ function a_header_start()
   function a_hamburger()
   {
     ?>
-
-      <button class="header__hamburger hamburger" id="js-hamburger">
+      <button class="header__hamburger hamburger phone-icon" id="js-hamburger">
         <span></span>
         <span></span>
         <span></span>
