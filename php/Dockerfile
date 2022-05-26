@@ -4,7 +4,7 @@ RUN go get -d -v github.com/mailhog/mhsendmail \
 && GOOS=linux GOARCH=arm64 go build -o mhsendmail .
 
 FROM php:8.1-fpm
-RUN docker-php-ext-install pdo_mysql
+  RUN docker-php-ext-install pdo_mysql
 
 COPY --from=builder /go/src/github.com/mailhog/mhsendmail/mhsendmail /usr/local/bin/
 RUN chmod +x /usr/local/bin/mhsendmail \
