@@ -33,21 +33,21 @@ $pgdata += array('disp_data' => array(
   ['name' => 'プライバシーポリシーへの同意', 'value' => $_POST['inq_agree']]
 ));
 $pgdata += array('send_data' => array(
-  ['name' => 'inquired_agents', 'value' => $_POST['inq_agents']],
-  ['name' => 'inquiry_option_id', 'value' => $_POST['inq_radio']],
-  ['name' => 'student_name', 'value' => $_POST['inq_name']],
-  ['name' => 'student_name_ruby', 'value' => $_POST['inq_nameruby']],
-  ['name' => 'birthday', 'value' => $_POST['inq_birthday']],
-  ['name' => 'sex', 'value' => $_POST['inq_sex']],
-  ['name' => 'email', 'value' => $_POST['inq_email']],
-  ['name' => 'tel', 'value' => $_POST['inq_tel']],
-  ['name' => 'univ', 'value' => $_POST['inq_univ']],
-  ['name' => 'faculty', 'value' => $_POST['inq_faculty']],
-  ['name' => 'department', 'value' => $_POST['inq_department']],
-  ['name' => 'graduate_year', 'value' => $_POST['inq_graduation']],
-  ['name' => 'postal_code', 'value' => $_POST['inq_postalcode']],
-  ['name' => 'address', 'value' => $_POST['inq_pref'] . $_POST['inq_address'] . $_POST['inq_bldg']],
-  ['name' => 'optional_comment', 'value' => $_POST['inq_free']]
+  'inquired_agents' => $_POST['inq_agents'],
+  'inquiry_option_id' => $_POST['inq_radio'],
+  'student_name' => $_POST['inq_name'],
+  'student_name_ruby' => $_POST['inq_nameruby'],
+  'birthday' => $_POST['inq_birthday'],
+  'sex' => $_POST['inq_sex'],
+  'email' => $_POST['inq_email'],
+  'tel' => $_POST['inq_tel'],
+  'univ' => $_POST['inq_univ'],
+  'faculty' => $_POST['inq_faculty'],
+  'department' => $_POST['inq_department'],
+  'graduate_year' => $_POST['inq_graduation'],
+  'postal_code' => $_POST['inq_postalcode'],
+  'address' => $_POST['inq_pref'] . $_POST['inq_address'] . $_POST['inq_bldg'],
+  'optional_comment' => $_POST['inq_free']
 ));
 
 // トークンを生成し、sessionに保存、フォーム送信時にPOSTでthanks.phpにトークンが送られる
