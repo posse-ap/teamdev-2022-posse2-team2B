@@ -3,7 +3,7 @@
     <?php foreach (array_map(NULL, $pgdata['table_data']['th'], $pgdata['table_data']['tr'], array_keys($pgdata['table_data']['tr'])) as $index => [$th,  $td, $key]) : ?>
       <tr>
         <th><?= $th; ?></th>
-        <td><input type="text" value="<?= $td; ?>" name="<?= $key; ?>"></td>
+        <td><input type="text" value="<?= $td; ?>" name="<?= $key; ?>" class="input_change"></td>
       </tr>
     <?php endforeach; ?>
   </table>
