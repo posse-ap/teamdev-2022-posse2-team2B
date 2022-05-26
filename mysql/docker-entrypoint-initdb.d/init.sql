@@ -53,7 +53,9 @@ CREATE TABLE agents(
   paragraph2 VARCHAR(2000),
   paragraph3 VARCHAR(2000),
   paragraph4 VARCHAR(2000),
-  url VARCHAR(100)
+  url VARCHAR(100),
+  email VARCHAR(50),
+  tel VARCHAR(20)
 );
 
 DROP TABLE IF EXISTS agent_contract;
@@ -255,7 +257,9 @@ INSERT INTO
     paragraph2,
     paragraph3,
     paragraph4,
-    url
+    url,
+    email,
+    tel
   )
 VALUES
   (
@@ -269,7 +273,9 @@ VALUES
     'いってきます',
     'ただいま',
     'おかえり',
-    'www.agent1.com'
+    'www.agent1.com',
+    'info@agent1.com',
+    '03-0000-0000'
   ),
   (
     'sample agent 2',
@@ -282,7 +288,9 @@ VALUES
     'こんばんは',
     'いただきます',
     'ごちそうさま',
-    'www.agent2.com'
+    'www.agent2.com',
+    'info@agent2.com',
+    '045-000-0000'
   ),
   (
     'sample agent 3',
@@ -295,7 +303,9 @@ VALUES
     'どういたしまして',
     'ご無沙汰しております',
     'お騒がせしました',
-    'www.agent2.com'
+    'www.agent2.com',
+    'info@agent3.com',
+    '083-000-0000'
   );
 
 INSERT INTO
