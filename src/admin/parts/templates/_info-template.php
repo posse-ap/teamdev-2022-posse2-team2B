@@ -14,7 +14,7 @@ include(dirname(__FILE__) . '/../organisms/_header.php');
     include(dirname(__FILE__) . '/../atoms/_title.php');
     include(dirname(__FILE__) . '/../molecules/_info-table.php');
     if ($pgdata['page_id'] == 6) {
-      echo '<a href="./account-maint.php" class="btn detail-btn">変更</a>';
+      echo '<a href="./account-maint.php?account_id=' . $_SESSION['account_id'] . '" class="btn detail-btn">変更</a>';
     }
     ?>
   </div>

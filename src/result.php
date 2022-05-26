@@ -28,7 +28,8 @@ $result_agents_stmt = $db->prepare(sprintf(
   FROM
     agents
   RIGHT JOIN agent_tags ON agents.id = agent_tags.agent_id
-  WHERE tag_id IN (%s)",
+  WHERE tag_id IN (%s)
+  AND expires_at > NOW() && publication = 1",
   $in_clause
 ));
 $result_agents_stmt->execute($tags);
