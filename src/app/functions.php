@@ -217,7 +217,7 @@ function f_sex_num2kanji($num)
 
 // 学生にメール送信
 // $student = ['id' => id, 'date' => 'yyyy年mm月dd日', 'name' => '名前', 'ruby' => 'フリガナ' 'birthday' => 'yyyy年mm月dd日', 'sex' => 'x性', 'email' => 'example@email.com', 'tel' => '09012345678', 'univ' => 'xx大学xx学部xx学科', 'graduation' => 'yyyy年', 'address' => '〒xxx-xxxx xx県xx市xx町xx', 'option' => 'お問い合わせ内容', 'comment' => '自由記述欄の内容']
-// $agents = [['name' => 'エージェント名', 'address' => '〒xxx-xxxx xx県xx市xx町xx', 'email' => 'example@email.com', 'tel' => '03-xxxx-xxxx', 'url' => 'https://example.com'], ...]
+// $agents = [['name' => 'エージェント名', 'address' => '〒xxx-xxxx xx県xx市xx町xx', 'email' => 'example@email.com', 'tel' => '03-xxxx-xxxx', 'url' => 'https://example.com', 'notification_email' => 'example@email.com'], ...]
 function f_mail2student($student, $agents)
 {
   $to = $student['email'];
@@ -271,5 +271,35 @@ URL: http://localhost:80
 
   $headers = "From: info@shukatsu.com";
 
+  mb_send_mail($to, $subject, $message, $headers);
+}
+
+function f_mail2agent($agent)
+{
+  $to = $agent['notification_email'];
+  $subject = "CRAFTから新しいお問い合わせがございます。";
+  $message = $agent['name'] . " 担当者様
+
+お世話になっております。株式会社boozerです。
+
+この度、学生からのお問い合わせがありました。
+CRAFT管理画面より新着のお問い合わせの確認をお願いいたします。
+お問い合わせに関して、ご不明点等ありましたら以下の連絡先までお問い合わせくださいませ。
+
+今後ともよろしくお願いいたします。
+
+※このメールは自動送信メールです。
+
+◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆
+【会社情報】
+株式会社boozer
+住所:  〒107-0062 東京都港区南青山３丁目１５−９ MINOWA表参道 3階
+メールアドレス: info@shukatsu.com
+電話番号: 03-6885-6140
+FAX: 03-6885-6140
+URL: http://localhost:80
+営業時間: 平日 9時～18時
+◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆";
+  $headers = "From: info@shukatsu.com";
   mb_send_mail($to, $subject, $message, $headers);
 }
