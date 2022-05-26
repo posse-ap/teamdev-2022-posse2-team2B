@@ -90,19 +90,19 @@ function a_header_start()
   function a_header_nav()
   {
   ?>
-      <nav class="header__nav nav" id="js-nav">
-        <ul class="nav__items nav-items">
-          <li class="nav-items__item"><a href="">就活サイト</a></li>
-          <li class="nav-items__item"><a href="">就活支援サービス</a></li>
-          <li class="nav-items__item"><a href="">自己分析診断ツール</a></li>
-          <li class="nav-items__item"><a href="">ES添削サービス</a></li>
-          <li class="nav-items__item"><a href="">就活.comとは</a></li>
-          <li class="nav-items__item"><a href="">就活エージェント比較</a></li>
-          <li class="nav-items__item"><a href="">お問い合わせ</a></li>
-        </ul>
-      </nav>
+    <nav class="header__nav nav" id="js-nav">
+      <ul class="nav__items nav-items">
+        <li class="nav-items__item"><a href="">就活サイト</a></li>
+        <li class="nav-items__item"><a href="">就活支援サービス</a></li>
+        <li class="nav-items__item"><a href="">自己分析診断ツール</a></li>
+        <li class="nav-items__item"><a href="">ES添削サービス</a></li>
+        <li class="nav-items__item"><a href="">就活.comとは</a></li>
+        <li class="nav-items__item"><a href="">就活エージェント比較</a></li>
+        <li class="nav-items__item"><a href="">お問い合わせ</a></li>
+      </ul>
+    </nav>
 
-<!--       
+    <!--
     <nav class="header-nav">
       <ul class="header-nav-list">
         <li>
@@ -766,6 +766,19 @@ function a_header_start()
 <?php
   }
 
+  function a_anchor($title, $href)
+  {
+?>
+  <div class="Application-form__submit-btn__wrapper">
+    <a href="<?= $href; ?>">
+      <div class="Application-form__submit-btn">
+        <div><?= $title; ?></div>
+      </div>
+    </a>
+  </div>
+<?php
+  }
+
   function a_form_radio_btn($index, $title)
   {
 ?>
@@ -1011,17 +1024,17 @@ function a_header_start()
 <?php
   }
 
-  function a_thanks_text()
+  function a_thanks_text($name)
   {
 ?>
   <p>
-    ○○さん
+    <?= $name; ?>様
   </p>
   <p>
-    エージェント会社への申し込みありがとうございました。
+    エージェント会社へのお問い合わせありがとうございました。
   </p>
   <p>
-    ご登録いただいているメールアドレスあてに完了メールをお送りしておりますのでご確認をお願いいたします。
+    ご登録いただいているメールアドレスあてに確認メールをお送りしましたのでご確認ください。
   </p>
   <p>
     メールが届かない場合は、正しく情報が入力されていない可能性がありますので、もう一度入力していただくか、下記問い合わせ先までご連絡をお願いいたします。
@@ -1032,24 +1045,24 @@ function a_header_start()
   <p>
     【お問い合わせはこちら】
     <br>
-    株式会社boozer CRAFT事務局
+    株式会社boozer
     <br>
-    ○○○○@gmail.com
+    info@shukatsu.com
   </p>
 <?php
   }
 
-  function o_thanks()
+  function o_thanks($name)
   {
 ?>
   <div class="Finish">
     <div class="Finish__message">
       <?php
-      a_thanks_text();
+      a_thanks_text($name);
       ?>
     </div>
     <?php
-    a_form_send('テキスト', '');
+    a_anchor('TOP', 'index.php');
     ?>
   </div>
 <?
