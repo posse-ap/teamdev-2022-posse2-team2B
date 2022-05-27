@@ -13,23 +13,26 @@ $pgdata += array('table_data' => [
   'th' => ['氏名', 'メールアドレス', '電話番号', '住所', '大学名', '学部', '学科', '卒業年', '問い合わせ内容', '自由記述欄']
 ]);
 
-$student_id = $_GET['id'];
 
+
+
+$agent_id = $_SESSION['agent_id'];
+$student_id = $_GET['id'];
 
 try {
   $db->beginTransaction();
   // テーブルに追加するデータ
   $db->query(
-    "DELETE  FROM
+    "DELETE
+    students,inquired_agents
+    FROM
     inquired_agents
   LEFT JOIN
     students
   ON
-    inquired_agents.student_id=students.id
+    inquired_agents.student_id='$student_id'
   WHERE
-    inquired_agents.agent_id = $agent_id;
-    AND
-    id = '$student_id'"
+    students.id='$student_id'"
   );
   $db->commit();
   header('Location:/admin/students.php');
