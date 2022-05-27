@@ -20,7 +20,16 @@ try {
   $db->beginTransaction();
   // テーブルに追加するデータ
   $db->query(
-    "DELETE FROM students WHERE id='$student_id';"
+    "DELETE  FROM
+    inquired_agents
+  LEFT JOIN
+    students
+  ON
+    inquired_agents.student_id=students.id
+  WHERE
+    inquired_agents.agent_id = $agent_id;
+    AND
+    id = '$student_id'"
   );
   $db->commit();
   header('Location:/admin/students.php');
