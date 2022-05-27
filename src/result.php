@@ -34,8 +34,16 @@ $result_agents_stmt = $db->prepare(sprintf(
 $result_agents_stmt->execute($tags);
 $result_agents = $result_agents_stmt->fetchAll();
 
+$tag_names = $db->prepare(sprintf("SELECT tag_name FROM tags WHERE id IN (%s)", $in_clause));
+$tag_names->execute([...$tags]);
+$tag_names = $tag_names->fetchAll();
+$tag_names = array_map(function ($v) {
+  return $v['tag_name'];
+}, $tag_names);
+
 $pgdata = array();
 $pgdata += array('page_title' => '検索結果');
 $pgdata += array('result_agents' => $result_agents);
+$pgdata += array('tag_names' => $tag_names);
 
 include(dirname(__FILE__) . '/parts/templates/_t_result.php');

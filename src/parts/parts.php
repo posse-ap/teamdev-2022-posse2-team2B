@@ -548,25 +548,28 @@ function a_header_start()
   }
 
   // 検索結果 件数
-  function a_result_amount()
+  function a_result_amount($amount)
   {
 ?>
   <div class="Search-result__message__number">
-    <p><span class="Search-result__message__figure">2</span><span class="Search-result__message__unit">件表示</span></p>
+    <p><span class="Search-result__message__figure"><?= $amount; ?></span><span class="Search-result__message__unit">件表示</span></p>
   </div>
 <?php
   }
 
-  function a_result_tags()
+  function a_result_tags($tag_names)
   {
 ?>
   <div class="Search-result__message__tags">
-    <div class="Search-result__message__tag">
-      タグ文字変数
-    </div>
-    <div class="Search-result__message__tag">
-      タグ文字変数
-    </div>
+    <?php
+    foreach ($tag_names as $tag_name) :
+    ?>
+      <div class="Search-result__message__tag">
+        <?= $tag_name; ?>
+      </div>
+    <?php
+    endforeach;
+    ?>
   </div>
 <?php
   }
@@ -585,23 +588,23 @@ function a_header_start()
   }
 
   // 検索結果　先頭
-  function m_result_head()
+  function m_result_head($tag_names, $amount)
   {
 ?>
   <div class="Search-result__message">
     <?php
-    a_result_amount();
-    a_result_tags();
+    a_result_amount($amount);
+    a_result_tags($tag_names);
     a_result_putall();
     ?>
   </div>
 <?php
   }
 
-  function o_result($agents)
+  function o_result($agents, $tag_names)
   {
     a_section_start('検索結果', false);
-    m_result_head();
+    m_result_head($tag_names, count($agents));
     o_agent_list($agents);
     a_section_end();
   }
