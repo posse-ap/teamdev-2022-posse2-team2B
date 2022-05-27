@@ -15,6 +15,8 @@ $pgdata += array('table_data' => [
 ]);
 
 
+
+
 if ($_SESSION['right_id'] != 1) {
   $trs_stmt = $db->query(
     "SELECT
@@ -22,7 +24,7 @@ if ($_SESSION['right_id'] != 1) {
   FROM
     students"
   );
-} else{
+} else {
   $agent_id = $_SESSION['agent_id'];
   $student_id = $_GET['id'];
   // テーブルに追加するデータ
@@ -34,7 +36,7 @@ if ($_SESSION['right_id'] != 1) {
   LEFT JOIN
     students
   ON
-    inquired_agents.student_id= '$student_id'
+    inquired_agents.student_id= students.id
   WHERE
     inquired_agents.agent_id = $agent_id"
   );
