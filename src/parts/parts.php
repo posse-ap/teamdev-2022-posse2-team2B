@@ -90,19 +90,19 @@ function a_header_start()
   function a_header_nav()
   {
   ?>
-      <nav class="header__nav nav" id="js-nav">
-        <ul class="nav__items nav-items">
-          <li class="nav-items__item"><a href="">就活サイト</a></li>
-          <li class="nav-items__item"><a href="">就活支援サービス</a></li>
-          <li class="nav-items__item"><a href="">自己分析診断ツール</a></li>
-          <li class="nav-items__item"><a href="">ES添削サービス</a></li>
-          <li class="nav-items__item"><a href="">就活.comとは</a></li>
-          <li class="nav-items__item"><a href="">就活エージェント比較</a></li>
-          <li class="nav-items__item"><a href="">お問い合わせ</a></li>
-        </ul>
-      </nav>
+    <nav class="header__nav nav" id="js-nav">
+      <ul class="nav__items nav-items">
+        <li class="nav-items__item"><a href="">就活サイト</a></li>
+        <li class="nav-items__item"><a href="">就活支援サービス</a></li>
+        <li class="nav-items__item"><a href="">自己分析診断ツール</a></li>
+        <li class="nav-items__item"><a href="">ES添削サービス</a></li>
+        <li class="nav-items__item"><a href="">就活.comとは</a></li>
+        <li class="nav-items__item"><a href="">就活エージェント比較</a></li>
+        <li class="nav-items__item"><a href="">お問い合わせ</a></li>
+      </ul>
+    </nav>
 
-<!--       
+    <!--
     <nav class="header-nav">
       <ul class="header-nav-list">
         <li>
@@ -486,10 +486,8 @@ function a_header_start()
   }
 
   // エージェントリスト
-  function o_agent_list($agents, $disable_title)
+  function o_agent_list($agents)
   {
-    a_section_start('掲載エージェント一覧', $disable_title);
-
     global $db;
     foreach ($agents as $agent) {
       $tags_stmt = $db->prepare("SELECT * FROM agent_tags LEFT JOIN tags ON agent_tags.tag_id = tags.id WHERE agent_tags.agent_id = ?");
@@ -499,8 +497,6 @@ function a_header_start()
       $evals = f_set_evals($agent['id']);
       o_agent_card($agent['id'], $agent['agent_name'], $agent['paragraph1'], $tags, $evals);
     }
-
-    a_section_end();
   }
 
   // 再検索 開始
@@ -552,25 +548,28 @@ function a_header_start()
   }
 
   // 検索結果 件数
-  function a_result_amount()
+  function a_result_amount($amount)
   {
 ?>
   <div class="Search-result__message__number">
-    <p><span class="Search-result__message__figure">2</span><span class="Search-result__message__unit">件表示</span></p>
+    <p><span class="Search-result__message__figure"><?= $amount; ?></span><span class="Search-result__message__unit">件表示</span></p>
   </div>
 <?php
   }
 
-  function a_result_tags()
+  function a_result_tags($tag_names)
   {
 ?>
   <div class="Search-result__message__tags">
-    <div class="Search-result__message__tag">
-      タグ文字変数
-    </div>
-    <div class="Search-result__message__tag">
-      タグ文字変数
-    </div>
+    <?php
+    foreach ($tag_names as $tag_name) :
+    ?>
+      <div class="Search-result__message__tag">
+        <?= $tag_name; ?>
+      </div>
+    <?php
+    endforeach;
+    ?>
   </div>
 <?php
   }
@@ -589,24 +588,24 @@ function a_header_start()
   }
 
   // 検索結果　先頭
-  function m_result_head()
+  function m_result_head($tag_names, $amount)
   {
 ?>
   <div class="Search-result__message">
     <?php
-    a_result_amount();
-    a_result_tags();
+    a_result_amount($amount);
+    a_result_tags($tag_names);
     a_result_putall();
     ?>
   </div>
 <?php
   }
 
-  function o_result($agents)
+  function o_result($agents, $tag_names)
   {
     a_section_start('検索結果', false);
-    m_result_head();
-    o_agent_list($agents, true);
+    m_result_head($tag_names, count($agents));
+    o_agent_list($agents);
     a_section_end();
   }
 
@@ -762,6 +761,19 @@ function a_header_start()
     <div class="Application-form__submit-btn" onclick="<?= $onclick; ?>">
       <div><?= $title; ?></div>
     </div>
+  </div>
+<?php
+  }
+
+  function a_anchor($title, $href)
+  {
+?>
+  <div class="Application-form__submit-btn__wrapper">
+    <a href="<?= $href; ?>">
+      <div class="Application-form__submit-btn">
+        <div><?= $title; ?></div>
+      </div>
+    </a>
   </div>
 <?php
   }
@@ -1011,17 +1023,17 @@ function a_header_start()
 <?php
   }
 
-  function a_thanks_text()
+  function a_thanks_text($name)
   {
 ?>
   <p>
-    ○○さん
+    <?= $name; ?>様
   </p>
   <p>
-    エージェント会社への申し込みありがとうございました。
+    エージェント会社へのお問い合わせありがとうございました。
   </p>
   <p>
-    ご登録いただいているメールアドレスあてに完了メールをお送りしておりますのでご確認をお願いいたします。
+    ご登録いただいているメールアドレスあてに確認メールをお送りしましたのでご確認ください。
   </p>
   <p>
     メールが届かない場合は、正しく情報が入力されていない可能性がありますので、もう一度入力していただくか、下記問い合わせ先までご連絡をお願いいたします。
@@ -1032,24 +1044,24 @@ function a_header_start()
   <p>
     【お問い合わせはこちら】
     <br>
-    株式会社boozer CRAFT事務局
+    株式会社boozer
     <br>
-    ○○○○@gmail.com
+    info@shukatsu.com
   </p>
 <?php
   }
 
-  function o_thanks()
+  function o_thanks($name)
   {
 ?>
   <div class="Finish">
     <div class="Finish__message">
       <?php
-      a_thanks_text();
+      a_thanks_text($name);
       ?>
     </div>
     <?php
-    a_form_send('テキスト', '');
+    a_anchor('TOP', 'index.php');
     ?>
   </div>
 <?

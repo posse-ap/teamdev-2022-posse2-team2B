@@ -9,7 +9,7 @@ a_html_head($pgdata['page_title']);
 o_header();
 
 // 完了ページ
-o_thanks();
+o_thanks($pgdata['student']['name']);
 
 // フッター
 o_footer();
