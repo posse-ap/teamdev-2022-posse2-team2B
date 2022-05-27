@@ -30,15 +30,15 @@ if ($_SESSION['right_id'] != 1) {
   // テーブルに追加するデータ
   $trs_stmt = $db->query(
     "SELECT
-    created_at, student_name, email, tel, graduate_year,students.id
-  FROM
-    inquired_agents
-  LEFT JOIN
-    students
-  ON
-    inquired_agents.student_id= students.id
-  WHERE
-    inquired_agents.agent_id = $agent_id"
+      created_at, student_name, email, tel, graduate_year,students.id
+    FROM
+      inquired_agents
+    LEFT JOIN
+      students
+    ON
+      inquired_agents.student_id= students.id
+    WHERE
+      inquired_agents.agent_id = $agent_id"
   );
 }
 $trs = $trs_stmt->fetchAll();

@@ -14,8 +14,6 @@ $pgdata += array('table_data' => [
 ]);
 
 
-
-
 $agent_id = $_SESSION['agent_id'];
 $student_id = $_GET['id'];
 
@@ -24,15 +22,15 @@ try {
   // テーブルに追加するデータ
   $db->query(
     "DELETE
-    students,inquired_agents
+      students,inquired_agents
     FROM
-    inquired_agents
-  LEFT JOIN
-    students
-  ON
-    inquired_agents.student_id='$student_id'
-  WHERE
-    students.id='$student_id'"
+      inquired_agents
+    LEFT JOIN
+      students
+    ON
+      inquired_agents.student_id='$student_id'
+    WHERE
+      students.id='$student_id'"
   );
   $db->commit();
   header('Location:/admin/students.php');
@@ -40,7 +38,7 @@ try {
 } catch (\Throwable $th) {
   //throw $th;
   $db->rollBack();
-  echo "失敗".$th->getMessage();
+  echo "失敗" . $th->getMessage();
 }
 ?>
 
