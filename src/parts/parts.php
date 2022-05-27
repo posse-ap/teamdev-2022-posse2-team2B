@@ -486,10 +486,8 @@ function a_header_start()
   }
 
   // エージェントリスト
-  function o_agent_list($agents, $disable_title)
+  function o_agent_list($agents)
   {
-    a_section_start('掲載エージェント一覧', $disable_title);
-
     global $db;
     foreach ($agents as $agent) {
       $tags_stmt = $db->prepare("SELECT * FROM agent_tags LEFT JOIN tags ON agent_tags.tag_id = tags.id WHERE agent_tags.agent_id = ?");
@@ -499,8 +497,6 @@ function a_header_start()
       $evals = f_set_evals($agent['id']);
       o_agent_card($agent['id'], $agent['agent_name'], $agent['paragraph1'], $tags, $evals);
     }
-
-    a_section_end();
   }
 
   // 再検索 開始
@@ -606,7 +602,7 @@ function a_header_start()
   {
     a_section_start('検索結果', false);
     m_result_head();
-    o_agent_list($agents, true);
+    o_agent_list($agents);
     a_section_end();
   }
 
