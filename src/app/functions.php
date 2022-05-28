@@ -68,9 +68,9 @@ function f_set_evals($agent_id)
 {
   $agent = f_select_agent($agent_id);
   $evals = array(
-    ['title' => '評価項目１', 'star' => $agent['evaluation1']],
-    ['title' => '評価項目２', 'star' => $agent['evaluation2']],
-    ['title' => '評価項目３', 'star' => $agent['evaluation3']],
+    ['title' => '求人の多さ', 'star' => $agent['evaluation1']],
+    ['title' => 'サービスの充実度', 'star' => $agent['evaluation2']],
+    ['title' => 'コンサルタントの質', 'star' => $agent['evaluation3']]
   );
   return $evals;
 }
