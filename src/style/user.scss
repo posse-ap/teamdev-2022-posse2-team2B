@@ -35,92 +35,37 @@ body{
   }
 } //適用 命名変
 
-<<<<<<< HEAD
 
 // はんばーがー　
-=======
-.header-nav {
-  display: none;
-  padding: 10px 75px;
-  &-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    li {
-      color: $index-color;
-      font-family: Helvetica;
-      padding: 10px 15px 15px;
-
-      a {
-        font-size: 1rem;
-        margin: 10px 15px 15px;
-      }
-    }
-  }
-}
-
-// はんばーがー
-
->>>>>>> ec647aa7716722b38a23d04fddca8bca388656a1
 /* ヘッダーのナビ部分 */
-.header__nav {
-  position: absolute;
-  height: 100vh;
-<<<<<<< HEAD
-  width: 100%;
-  left: -100%;
-  top: 0;
-  background: $main-color;
-  transition: .7s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  // padding: 10px 75px;
-  // ↑パソコンの時のためのものです
-  .nav-items{
-    &__item{
-      padding: 10px;
-      font-family: Helvetica;
-=======
-  transform: translateX(100%);
-  background-color: $main-color;
-  transition: ease 0.4s;
-
-  display: none;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  .nav-items {
+.header{
+  .header__nav {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    width: 90%; //liの変な改行解消
+    height: 100vh;
+    width: 100%;
+    left: -100%;
+    top: 0;
+    background: $main-color;
+    transition: .7s;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: center;
-
-    &__item {
-      padding: 10px 15px 15px;
->>>>>>> ec647aa7716722b38a23d04fddca8bca388656a1
-      /* ナビのリンク */
-      a {
-        color: $index-color;
-        width: 100%;
-        display: block;
-        text-align: center;
+    z-index: 10;
+    // padding: 10px 75px;
+    // ↑パソコンの時のためのものです
+    .nav-items{
+      &__item{
+        padding: 10px;
+        font-family: Helvetica;
+        /* ナビのリンク */
+        a {
+          color: $index-color;
+          width: 100%;
+          display: block;
+          text-align: center;
+        }
       }
     }
-<<<<<<< HEAD
-=======
-
-    .nav-items__item:last-child a {
-      margin-bottom: 0;
-    }
->>>>>>> ec647aa7716722b38a23d04fddca8bca388656a1
   }
 }
 
@@ -134,7 +79,7 @@ body{
 .hamburger {
   background-color: transparent;
   border-color: transparent;
-  z-index: 10;
+  z-index: 12;
 }
 
 /* ハンバーガーメニューの線 */
@@ -173,17 +118,10 @@ body{
 }
 
 @media screen and (min-width: 960px) {
-<<<<<<< HEAD
-=======
-  .nav-items {
-  }
-
->>>>>>> ec647aa7716722b38a23d04fddca8bca388656a1
   .header__nav {
     position: static;
     height: 100%;
     width: 100%;
-<<<<<<< HEAD
     left: 0;
     padding: 10px 75px;
     .nav-items{
@@ -193,36 +131,6 @@ body{
   }
 
 
-=======
-    // flex-wrap: wrap;
-  }
-
-  .header-nav {
-    display: block;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
-  .nav__items {
-    width: 100%;
-    flex-direction: row !important;
-    flex-wrap: wrap;
-
-    align-items: center;
-    justify-content: space-between;
-    height: initial;
-
-    position: static !important;
-    top: 0 !important;
-    left: 0 !important;
-    transform: translate(0, 0) !important;
-  }
-
-  .nav-items__item a {
-    margin-bottom: 0;
-  }
->>>>>>> ec647aa7716722b38a23d04fddca8bca388656a1
   .hamburger {
     // display: none;
     opacity: 0;
@@ -230,15 +138,12 @@ body{
   }
 }
 
-<<<<<<< HEAD
 }
 
 
 
 
 
-=======
->>>>>>> ec647aa7716722b38a23d04fddca8bca388656a1
 // Section
 // 緑長方形の見出しで囲われた部分をSectionと名付けた。
 .Section {
@@ -357,6 +262,7 @@ body{
   width: 95%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   max-width: 600px; //ピッタは520px
+  background-color: $bg-color;
 
   .agent-card-agent-name {
     font-size: 2rem;
@@ -481,6 +387,7 @@ body{
 
 // 再検索
 .Re-search {
+  z-index: 1;
   background-color:$bg-color;
   width: 100%;
   margin: 30px 0px;
@@ -527,12 +434,15 @@ body{
       // height: 1000px;
     }
   }
+  .Search__btn{
+    margin-top: 20px;
+  }
 }
 
 // 再検索のロールダウン
 .Re-search-tags__ac {
   border: solid #cccccc;
-  padding: 0px 30px;
+  padding: 0px 20px;
   &__parent {
     margin: 10px 0px;
     padding: 8px;
@@ -541,7 +451,7 @@ body{
     cursor: pointer;
 
     p {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       // font-weight: normal;
     }
   }
@@ -1065,8 +975,8 @@ $radio-background-color: #ffffff;
 }
 // フッター
 .Footer {
-  padding-top: 50px;
-  padding-bottom: 100px;
+  padding-top: 40px;
+  padding-bottom: 60px;
   background-color: $main-color;
   &__inner {
     display: flex;
@@ -1076,7 +986,6 @@ $radio-background-color: #ffffff;
     color: $index-color;
     padding: 10px 30px;
     position: relative;
-
     .page-title {
       height: 100%;
       display: flex;
@@ -1084,6 +993,35 @@ $radio-background-color: #ffffff;
       align-items: center;
       font-size: 2rem;
     }
+
+    .header__nav{
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      
+      .nav-items{
+        display: flex;
+        justify-content:center;
+        flex-wrap: wrap;
+        &__item{
+          padding: 10px;
+          font-family: Helvetica;
+          /* ナビのリンク */
+          a {
+            color: $index-color;
+            width: 100%;
+            display: block;
+            text-align: center;
+            font-size: 1rem;
+          }
+        }
+      }
+
+
+
+    }
+
+
   }
   &__copyright {
     text-align: center;
@@ -1106,62 +1044,11 @@ $radio-background-color: #ffffff;
   }
 }
 
-<<<<<<< HEAD
-
-
-
-
-
-
-
-
- ///// レスポンシブ対応/////
-  @media (min-width: 960px) {
-
-    
-    // レイアウト関連
-    .Page {
-      &__container {
-        margin: 0 auto;
-        flex-direction: row-reverse;
-        justify-content:space-around;
-        max-width: 1000px;
-      }
-      &__right{
-        width: 30%;
-        &__pc{
-          display: block;
-        }
-      }
-      &__left{
-        width: 60%;
-        &__sp{
-          display: none;
-        }
-      }
-    }
-
-    
-    .header-inner{
-      font-size:2.5rem;
-    }
-    .phone-icon{
-      opacity: 0;
-      // pointer-events: none;
-    }
-    
-    .header-nav{
-      display: block;
-    }
-
-    .Page__container__center{
-=======
 ///// レスポンシブ対応/////
 @media (min-width: 960px) {
   // レイアウト関連
   .Page {
     &__container {
->>>>>>> ec647aa7716722b38a23d04fddca8bca388656a1
       margin: 0 auto;
       flex-direction: row-reverse;
       justify-content: space-around;
@@ -1352,14 +1239,9 @@ $radio-background-color: #ffffff;
     width: 95%;
     max-width: 1000px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-<<<<<<< HEAD
-
-    .Application-form__back-button{
-=======
     padding: 30px 0px;
 
     .Application-form__back-button {
->>>>>>> ec647aa7716722b38a23d04fddca8bca388656a1
       width: 95%;
       margin: 0 auto;
     }
@@ -1424,9 +1306,5 @@ $radio-background-color: #ffffff;
   .Show-box {
     display: none;
   }
-<<<<<<< HEAD
 
 }
-=======
-}
->>>>>>> ec647aa7716722b38a23d04fddca8bca388656a1
