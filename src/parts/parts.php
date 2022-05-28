@@ -494,7 +494,7 @@ function a_header_start()
       $tags = $tags_stmt->fetchAll();
 
       $evals = f_set_evals($agent['id']);
-      o_agent_card($agent['id'], $agent['agent_name'], $agent['paragraph1'], $tags, $evals);
+      o_agent_card($agent['id'], $agent['agent_name'], $agent['intro'], $tags, $evals);
     }
   }
 

@@ -49,10 +49,14 @@ CREATE TABLE agents(
   evaluation1 INT,
   evaluation2 INT,
   evaluation3 INT,
+  intro VARCHAR(2000),
   paragraph1 VARCHAR(2000),
   paragraph2 VARCHAR(2000),
   paragraph3 VARCHAR(2000),
   paragraph4 VARCHAR(2000),
+  paragraph5 VARCHAR(2000),
+  paragraph6 VARCHAR(2000),
+  paragraph7 VARCHAR(2000),
   url VARCHAR(2000),
   email VARCHAR(255),
   tel VARCHAR(15)
@@ -147,10 +151,6 @@ CREATE TABLE inquired_agents(
   student_id VARCHAR(255) NOT NULL,
   agent_id INT NOT NULL
 );
-INSERT INTO
-  inquired_agents(student_id, agent_id)
-VALUES
-  ('d3628cfd6b722eb',1),('5f628cfd7a5b92e',1),('e5628cfd846cc8b',1),('d3628cfd6b722eb',2),('5f628cfd7a5b92e',2),('e5628cfd846cc8b',3);
 
 -- マスタ　データ
 INSERT INTO
@@ -252,10 +252,14 @@ INSERT INTO
     evaluation1,
     evaluation2,
     evaluation3,
+    intro,
     paragraph1,
     paragraph2,
     paragraph3,
     paragraph4,
+    paragraph5,
+    paragraph6,
+    paragraph7,
     url,
     email,
     tel
@@ -268,9 +272,13 @@ VALUES
     3,
     2,
     4,
+    '紹介文です',
     'いってらっしゃい',
     'いってきます',
     'ただいま',
+    'おかえり',
+    'おかえり',
+    'おかえり',
     'おかえり',
     'www.agent1.com',
     'info@agent1.com',
@@ -283,9 +291,13 @@ VALUES
     5,
     3,
     2,
+    '紹介文です',
     'こんにちは',
     'こんばんは',
     'いただきます',
+    'ごちそうさま',
+    'ごちそうさま',
+    'ごちそうさま',
     'ごちそうさま',
     'www.agent2.com',
     'info@agent2.com',
@@ -298,9 +310,13 @@ VALUES
     2,
     3,
     3,
+    '紹介文です',
     'ありがとう',
     'どういたしまして',
     'ご無沙汰しております',
+    'お騒がせしました',
+    'お騒がせしました',
+    'お騒がせしました',
     'お騒がせしました',
     'www.agent2.com',
     'info@agent3.com',
@@ -317,75 +333,8 @@ VALUES
   (2, 2),
   (2, 6),
   (2, 9),
-  (2, 13);
-
-INSERT INTO
-  students(
-    id,
-    inquiry_option_id,
-    student_name,
-    student_name_ruby,
-    birthday,
-    sex,
-    email,
-    tel,
-    univ,
-    faculty,
-    department,
-    graduate_year,
-    postal_code,
-    address,
-    optional_comment
-  )
-VALUES
-  (
-    'd3628cfd6b722eb',
-    1,
-    '青柳仁',
-    'アオヤギジン',
-    '2002-05-08',
-    '0',
-    'student@test',
-    '09012345678',
-    '慶應',
-    '理工学部',
-    '情報工学科',
-    '2026',
-    '1234567',
-    '港区南青山',
-    '詳しく知りたいです。よろしくお願いします。'
-  ),
-  (
-    '5f628cfd7a5b92e',
-    2,
-    '横山健人',
-    'ヨコヤマケント',
-    '2002-05-08',
-    '0',
-    'student2@test',
-    '09034567890',
-    '早稲田',
-    '理工学部',
-    '情報工学科',
-    '2025',
-    '1234567',
-    '港区南青山',
-    '詳しく知りたいです。よろしくお願いしまっす。'
-  ),
-  (
-    'e5628cfd846cc8b',
-    3,
-    '田上黎',
-    'タノウエレイ',
-    '2002-05-08',
-    '1',
-    'student3@test',
-    '09034567890',
-    '上智',
-    '理工学部',
-    '情報工学科',
-    '2025',
-    '1234567',
-    '港区南青山',
-    '詳しく知りたいです。よろしくお願いしまうす。'
-  );
+  (2, 13),
+  (3, 5),
+  (3, 8),
+  (3, 9),
+  (3, 10);
