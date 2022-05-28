@@ -489,9 +489,16 @@ body{
   width: 95%;
   margin: 0px auto;
 
+  &__upper{
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    // justify-content: space-between;
+
+  }
+
   &__number {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    // margin-bottom: 30px;
   }
   &__figure {
     color: $main-color;
@@ -511,7 +518,8 @@ body{
     }
   }
   &__check-all {
-    margin-top: 30px;
+    margin-left: 40px;
+    // margin-top: 30px;
     display: flex;
   }
 }
@@ -523,7 +531,7 @@ body{
     display: block;
     position: relative;
     padding-left: 30px;
-    margin-bottom: 12px;
+    // margin-bottom: 12px;
     cursor: pointer;
     user-select: none;
     font-size: 1.25rem;
@@ -792,7 +800,8 @@ $radio-background-color: #ffffff;
 
   &__submit-btn {
     width: 60%;
-    margin: 40px auto;
+    margin: 0 auto;
+    margin-top: 30px;
     background: $main-color;
     height: 50px;
     border-radius: 15px;
@@ -868,8 +877,10 @@ $radio-background-color: #ffffff;
 // 確認ページ
 .Check {
   background-color: $bg-color;
-  width: 95%;
-  margin: 0 auto;
+  width: 97%;
+  margin: 30px auto;
+  padding: 30px 10px;
+
 
   &__message-text {
     width: 95%;
@@ -904,9 +915,9 @@ $radio-background-color: #ffffff;
 
 // 完了ページ
 .Finish {
-  margin-top: 30px;
-  background-color: $bg-color;
+  margin: 30px 0px;
   &__message {
+    background-color: $bg-color;
     box-shadow: 0 0 10px #fff, 0 0 10px #ccc, 0 0 1px #aaa;
     padding: 20px;
     width: 95%;
@@ -1248,12 +1259,10 @@ $radio-background-color: #ffffff;
 
   // 確認ページ
   .Check {
-    margin: 30px auto;
     width: 95%;
     max-width: 1000px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    padding: 30px 0px;
-    
+
     .Application-form__back-button{
       width: 95%;
       margin:0 auto;

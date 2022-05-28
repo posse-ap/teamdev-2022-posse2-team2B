@@ -592,10 +592,14 @@ function a_header_start()
   {
 ?>
   <div class="Search-result__message">
+    <div class="Search-result__message__upper">
+      <?php
+        a_result_amount();
+        a_result_putall();
+      ?>
+    </div>
     <?php
-    a_result_amount();
     a_result_tags();
-    a_result_putall();
     ?>
   </div>
 <?php
