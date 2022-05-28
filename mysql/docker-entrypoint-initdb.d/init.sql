@@ -152,7 +152,6 @@ INSERT INTO
 VALUES
   ('d3628cfd6b722eb',1),('5f628cfd7a5b92e',1),('e5628cfd846cc8b',1),('d3628cfd6b722eb',2),('5f628cfd7a5b92e',2),('e5628cfd846cc8b',3);
 
-
 -- マスタ　データ
 INSERT INTO
   rights(right_name)
