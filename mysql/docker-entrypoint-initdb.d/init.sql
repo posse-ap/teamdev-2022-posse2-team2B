@@ -147,10 +147,6 @@ CREATE TABLE inquired_agents(
   student_id VARCHAR(255) NOT NULL,
   agent_id INT NOT NULL
 );
-INSERT INTO
-  inquired_agents(student_id, agent_id)
-VALUES
-  ('d3628cfd6b722eb',1),('5f628cfd7a5b92e',1),('e5628cfd846cc8b',1),('d3628cfd6b722eb',2),('5f628cfd7a5b92e',2),('e5628cfd846cc8b',3);
 
 -- マスタ　データ
 INSERT INTO
@@ -318,74 +314,3 @@ VALUES
   (2, 6),
   (2, 9),
   (2, 13);
-
-INSERT INTO
-  students(
-    id,
-    inquiry_option_id,
-    student_name,
-    student_name_ruby,
-    birthday,
-    sex,
-    email,
-    tel,
-    univ,
-    faculty,
-    department,
-    graduate_year,
-    postal_code,
-    address,
-    optional_comment
-  )
-VALUES
-  (
-    'd3628cfd6b722eb',
-    1,
-    '青柳仁',
-    'アオヤギジン',
-    '2002-05-08',
-    '0',
-    'student@test',
-    '09012345678',
-    '慶應',
-    '理工学部',
-    '情報工学科',
-    '2026',
-    '1234567',
-    '港区南青山',
-    '詳しく知りたいです。よろしくお願いします。'
-  ),
-  (
-    '5f628cfd7a5b92e',
-    2,
-    '横山健人',
-    'ヨコヤマケント',
-    '2002-05-08',
-    '0',
-    'student2@test',
-    '09034567890',
-    '早稲田',
-    '理工学部',
-    '情報工学科',
-    '2025',
-    '1234567',
-    '港区南青山',
-    '詳しく知りたいです。よろしくお願いしまっす。'
-  ),
-  (
-    'e5628cfd846cc8b',
-    3,
-    '田上黎',
-    'タノウエレイ',
-    '2002-05-08',
-    '1',
-    'student3@test',
-    '09034567890',
-    '上智',
-    '理工学部',
-    '情報工学科',
-    '2025',
-    '1234567',
-    '港区南青山',
-    '詳しく知りたいです。よろしくお願いしまうす。'
-  );
