@@ -89,11 +89,17 @@ function f_select_agent_detail($agent_id)
     evaluation1,
     evaluation2,
     evaluation3,
+    intro,
     paragraph1,
     paragraph2,
     paragraph3,
     paragraph4,
-    url
+    paragraph5,
+    paragraph6,
+    paragraph7,
+    url,
+    email,
+    tel
   FROM
     agents
   WHERE
