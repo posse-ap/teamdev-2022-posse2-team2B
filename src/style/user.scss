@@ -119,8 +119,8 @@ body{
 
 @media screen and (min-width: 960px) {
   .header__nav {
-    position: static;
-    height: 100%;
+    position: static !important;
+    height: auto !important;
     width: 100%;
     left: 0;
     padding: 10px 75px;
