@@ -104,6 +104,13 @@ function f_select_agent_detail($agent_id)
   return $agent;
 }
 
+function f_select_tags() {
+  global $db;
+  $tags = $db->query("SELECT tag_name, tag_category_name, tags.id AS tag_id, tag_category_id FROM tags LEFT JOIN tag_categories ON tag_category_id = tag_categories.id");
+  $tags =$tags->fetchAll();
+  return $tags;
+}
+
 // 各種フォーム送信時、トークンを発行し、sessionに保存
 function f_generate_token()
 {
