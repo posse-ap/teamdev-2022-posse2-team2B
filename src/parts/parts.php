@@ -617,18 +617,12 @@ function a_header_start()
   <div class="Search-result__message">
     <div class="Search-result__message__upper">
       <?php
-        a_result_amount();
+        a_result_amount($amount);
         a_result_putall();
       ?>
     </div>
     <?php
-<<<<<<< HEAD
-    a_result_tags();
-=======
-      a_result_amount($amount);
       a_result_tags($tag_names);
-      a_result_putall();
->>>>>>> ec647aa7716722b38a23d04fddca8bca388656a1
     ?>
   </div>
 <?php
