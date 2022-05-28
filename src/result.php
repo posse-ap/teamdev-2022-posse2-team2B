@@ -21,10 +21,14 @@ $result_agents_stmt = $db->prepare(sprintf(
     evaluation1,
     evaluation2,
     evaluation3,
+    intro,
     paragraph1,
     paragraph2,
     paragraph3,
-    paragraph4
+    paragraph4,
+    paragraph5,
+    paragraph6,
+    paragraph7
   FROM
     agents
   RIGHT JOIN agent_tags ON agents.id = agent_tags.agent_id
