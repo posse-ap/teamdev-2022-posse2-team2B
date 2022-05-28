@@ -1,4 +1,6 @@
 -- 学生情報サンプル
+USE shukatsu;
+
 INSERT INTO
   students(
     id,
