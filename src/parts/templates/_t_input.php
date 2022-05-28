@@ -11,7 +11,7 @@ o_header();
 ?>
 
 <!-- メインコンテンツ -->
-<div class="Page__container">
+<div class="Page__container__center">
   <?php
   // 問い合わせフォームのエリア
   o_form($pgdata['inq_agents']);
