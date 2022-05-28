@@ -363,7 +363,6 @@ body{
     border-radius: 3px;
     margin-bottom: 20px;
     padding: 15px 0px;
-
     p {
       text-align: center;
     }
@@ -493,7 +492,7 @@ body{
     margin-bottom: 20px;
     display: flex;
     align-items: center;
-    // justify-content: space-between;
+    justify-content: space-between;
 
   }
 
@@ -517,66 +516,32 @@ body{
       padding: 3px 5px;
     }
   }
-  &__check-all {
-    margin-left: 40px;
-    // margin-top: 30px;
-    display: flex;
-  }
 }
 
 // 検索結果エリアの上の方のメッセージ
 // 「すべて問い合わせボックスにいれる」
-.Search-result__check-all {
-  &__wrapper {
-    display: block;
-    position: relative;
-    padding-left: 30px;
-    // margin-bottom: 12px;
-    cursor: pointer;
-    user-select: none;
-    font-size: 1.25rem;
-  }
-
-  &__wrapper {
-    input {
-      display: none;
+.Message__box-all {
+  &__btn{
+    // margin-left: 30px;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+    padding: 10px;
+    p {
+      text-align: center;
     }
   }
-
-  &__wrapper &__checkbox-icon {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 20px;
-    width: 20px;
-    border: solid #c4c4c4;
-    border-radius: 8px;
-    background: white;
-    box-sizing: border-box;
-  }
-
-  &__wrapper &__checkbox-icon:after {
-    content: "";
-    position: absolute;
-    display: none;
-    left: 6px;
-    top: 2px;
-    width: 5px;
-    height: 10px;
-    border: 2px solid #fff;
-    border-radius: 8px;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-  }
-
-  &__wrapper input:checked + &__checkbox-icon {
-    background-color: $main-color;
-    border: solid $main-color;
-    border-radius: 8px;
-  }
-
-  &__wrapper input:checked + &__checkbox-icon:after {
+  &__in {
+    background-color: #ffab40;
+    color: white;
+    border: solid 0.5px #ffab40;
     display: block;
+  }
+  &__out {
+    background-color: white;
+    border: solid 0.5px #ffab40;
+    color: #ffab40;
+    display: none;
   }
 }
 
