@@ -44,6 +44,8 @@ o_footer();
 <script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
 <!-- フォーム送信前のチェック -->
 <script src="./script/form-send.js"></script>
+<!-- ハンバーガーメニュー -->
+<script src="./script/nav.js"></script>
 
 <?php
 

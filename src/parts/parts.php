@@ -41,8 +41,7 @@ function a_header_start()
   function a_hamburger()
   {
     ?>
-
-      <button class="header__hamburger hamburger" id="js-hamburger">
+      <button class="header__hamburger hamburger phone-icon" id="js-hamburger">
         <span></span>
         <span></span>
         <span></span>
@@ -600,13 +599,14 @@ function a_header_start()
     function a_result_putall()
     {
 ?>
-  <div class="Search-result__message__check-all">
-    <label for="allAgents" class="Search-result__check-all__wrapper">
-      <input type="checkbox" id="allAgents" class="Search-result__check-all__checkbox" name="checkbox01">
-      <span class="Search-result__check-all__checkbox-icon"></span>
-      すべて問い合わせBOXに入れる
-    </label>
+<div class="Message__box-all">
+  <div id="" class="Message__box-all__btn Message__box-all__in" onclick="">
+    <p>すべて問い合わせBOXに入れる</p>
   </div>
+  <div id="" class="Message__box-all__btn Message__box-all__out" onclick="">
+    <p>すべて問い合わせBOXから出す</p>
+  </div>
+</div>
 <?
     }
 
@@ -615,10 +615,14 @@ function a_header_start()
     {
 ?>
   <div class="Search-result__message">
+    <div class="Search-result__message__upper">
+      <?php
+        a_result_amount($amount);
+        a_result_putall();
+      ?>
+    </div>
     <?php
-      a_result_amount($amount);
       a_result_tags($tag_names);
-      a_result_putall();
     ?>
   </div>
 <?php
