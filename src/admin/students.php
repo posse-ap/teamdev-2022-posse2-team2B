@@ -14,16 +14,36 @@ $pgdata += array('table_data' => [
   'tr' => array()
 ]);
 
-// テーブルに追加するデータ
-$trs_stmt = $db->query(
-  "SELECT
+
+
+
+if ($_SESSION['right_id'] != 1) {
+  $trs_stmt = $db->query(
+    "SELECT
     created_at, student_name, email, tel, graduate_year,id
   FROM
     students"
-);
+  );
+} else {
+  $agent_id = $_SESSION['agent_id'];
+  $student_id = $_GET['id'];
+  // テーブルに追加するデータ
+  $trs_stmt = $db->query(
+    "SELECT
+      created_at, student_name, email, tel, graduate_year,students.id
+    FROM
+      inquired_agents
+    LEFT JOIN
+      students
+    ON
+      inquired_agents.student_id= students.id
+    WHERE
+      inquired_agents.agent_id = $agent_id"
+  );
+}
 $trs = $trs_stmt->fetchAll();
 foreach ($trs as $tr) :
-  array_push($pgdata['table_data']['tr'], [$tr['created_at'], $tr['student_name'], $tr['email'], $tr['tel'], $tr['graduate_year'], '<a href="student-info.php?id='.$tr["id"]. '" target="" class="link">詳細</a>']);
+  array_push($pgdata['table_data']['tr'], [$tr['created_at'], $tr['student_name'], $tr['email'], $tr['tel'], $tr['graduate_year'], '<a href="student-info.php?id=' . $tr["id"] . '" target="" class="link">詳細</a>']);
 endforeach;
 
 require(dirname(__FILE__) . "/app/right-check.php");

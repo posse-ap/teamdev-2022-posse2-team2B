@@ -53,9 +53,9 @@ CREATE TABLE agents(
   paragraph2 VARCHAR(2000),
   paragraph3 VARCHAR(2000),
   paragraph4 VARCHAR(2000),
-  url VARCHAR(100),
-  email VARCHAR(50),
-  tel VARCHAR(20)
+  url VARCHAR(2000),
+  email VARCHAR(255),
+  tel VARCHAR(15)
 );
 
 DROP TABLE IF EXISTS agent_contract;
@@ -67,12 +67,12 @@ CREATE TABLE agent_contract(
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   agent_id INT NOT NULL,
   address VARCHAR(100) NOT NULL,
-  tel VARCHAR(20) NOT NULL,
+  tel VARCHAR(15) NOT NULL,
   pres_name VARCHAR(20) NOT NULL,
   pic_name VARCHAR(20) NOT NULL,
-  pic_tel VARCHAR(20) NOT NULL,
-  pic_email VARCHAR(50) NOT NULL,
-  notification_email VARCHAR(50) NOT NULL
+  pic_tel VARCHAR(15) NOT NULL,
+  pic_email VARCHAR(255) NOT NULL,
+  notification_email VARCHAR(255) NOT NULL
 );
 
 DROP TABLE IF EXISTS tags;
@@ -102,7 +102,7 @@ DROP TABLE IF EXISTS accounts;
 
 CREATE TABLE accounts(
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  email VARCHAR(100) NOT NULL,
+  email VARCHAR(255) NOT NULL,
   password VARCHAR(50),
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -129,8 +129,8 @@ CREATE TABLE students(
   student_name_ruby VARCHAR(50) NOT NULL,
   birthday DATE NOT NULL,
   sex INT NOT NULL,
-  email VARCHAR(50) NOT NULL,
-  tel VARCHAR(11) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  tel VARCHAR(15) NOT NULL,
   univ VARCHAR(50) NOT NULL,
   faculty VARCHAR(50),
   department VARCHAR(50),
@@ -150,8 +150,7 @@ CREATE TABLE inquired_agents(
 INSERT INTO
   inquired_agents(student_id, agent_id)
 VALUES
-  (1,1),(2,1),(3,1),(4, 1),(1,2),(3,2),(3,3);
-
+  ('d3628cfd6b722eb',1),('5f628cfd7a5b92e',1),('e5628cfd846cc8b',1),('d3628cfd6b722eb',2),('5f628cfd7a5b92e',2),('e5628cfd846cc8b',3);
 
 -- マスタ　データ
 INSERT INTO

@@ -35,7 +35,7 @@ o_header();
   <div class="Page__left">
     <?php
     // 検索結果のカードが並んでいるエリア PC,SP共通
-    o_result($pgdata['result_agents']);
+    o_result($pgdata['result_agents'], $pgdata['tag_names']);
     ?>
     <div class="Page__left__sp">
       <?php
