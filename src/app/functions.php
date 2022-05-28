@@ -68,9 +68,9 @@ function f_set_evals($agent_id)
 {
   $agent = f_select_agent($agent_id);
   $evals = array(
-    ['title' => '評価項目１', 'star' => $agent['evaluation1']],
-    ['title' => '評価項目２', 'star' => $agent['evaluation2']],
-    ['title' => '評価項目３', 'star' => $agent['evaluation3']],
+    ['title' => '求人の多さ', 'star' => $agent['evaluation1']],
+    ['title' => 'サービスの充実度', 'star' => $agent['evaluation2']],
+    ['title' => 'コンサルタントの質', 'star' => $agent['evaluation3']]
   );
   return $evals;
 }
@@ -102,6 +102,13 @@ function f_select_agent_detail($agent_id)
   $agent_stmt->execute([$agent_id]);
   $agent = $agent_stmt->fetch();
   return $agent;
+}
+
+function f_select_tags() {
+  global $db;
+  $tags = $db->query("SELECT tag_name, tag_category_name, tags.id AS tag_id, tag_category_id FROM tags LEFT JOIN tag_categories ON tag_category_id = tag_categories.id");
+  $tags =$tags->fetchAll();
+  return $tags;
 }
 
 // 各種フォーム送信時、トークンを発行し、sessionに保存

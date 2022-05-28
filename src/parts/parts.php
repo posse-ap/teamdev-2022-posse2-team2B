@@ -254,7 +254,7 @@ function a_header_start()
     a_section_end();
   }
 
-  // 検索条件タグ
+  // 検索条件タグ $tag = [id => tag_id, tag_name => tag_name]
   function a_tag($tag)
   {
 ?>
@@ -510,72 +510,95 @@ function a_header_start()
       </p>
 
     </div>
-    <div class="Re-search__ac__child">
-    <?php
-  }
+    <form class="Re-search__ac__child" method="POST" action="result.php">
+      <?php
+    }
 
-  // 再検索 中身
-  function m_re_search_inner()
-  {
-    ?>
-      <div class="Re-search-tags__ac">
-        <div class="Re-search-tags__ac__parent">
-          <p class="">XXXから選ぶ</p>
+    // 再検索 中身
+    function m_re_search_inner()
+    {
+      // 全タグ情報を取得
+      $tags = f_select_tags();
+
+      // タグカテゴリ情報のみ取り出す [tag_category_id => 'tag_category_name', ...]
+      $tag_categories = array_column($tags, 'tag_category_name', 'tag_category_id');
+
+      // タグをカテゴリごとにグループ化 [tag_category_id => [tag_id => 'tag_name', ...], ...]
+      $categorized_tags = [];
+      foreach ($tags as $tag) {
+        $categorized_tags[$tag['tag_category_id']][$tag['tag_id']] = $tag['tag_name'];
+      }
+
+      // カテゴリごとにHTMLを出力
+      foreach ($tag_categories as $tag_category_id => $tag_category_name) {
+      ?>
+        <div class="Re-search-tags__ac">
+          <div class="Re-search-tags__ac__parent">
+            <p class=""><?= $tag_category_name; ?></p>
+          </div>
+          <div class="Re-search-tags__ac__child">
+            <?php
+            foreach ($categorized_tags[$tag_category_id] as $tag_id => $tag_name) {
+              $id = $tag_id;
+              $name = $tag_name;
+              $tag = ['id' => $id, 'tag_name' => $name];
+              a_tag($tag);
+            }
+            ?>
+          </div>
         </div>
+      <?php
+      }
+    }
 
-        <div class="Re-search-tags__ac__child">
-          <div>ここにタグが入る</div>
-        </div>
-      </div>
-    <?php
-  }
 
-  // 再検索　終了
-  function a_re_search_end()
-  {
-    ?>
-    </div>
+    // 再検索　終了
+    function a_re_search_end()
+    {
+      a_search_btn();
+      ?>
+    </form>
   </section>
 <?php
-  }
+    }
 
-  // 再検索　全体
-  function o_re_search()
-  {
-    a_re_search_start();
-    m_re_search_inner();
-    a_re_search_end();
-  }
+    // 再検索　全体
+    function o_re_search()
+    {
+      a_re_search_start();
+      m_re_search_inner();
+      a_re_search_end();
+    }
 
-  // 検索結果 件数
-  function a_result_amount($amount)
-  {
+    // 検索結果 件数
+    function a_result_amount($amount)
+    {
 ?>
   <div class="Search-result__message__number">
     <p><span class="Search-result__message__figure"><?= $amount; ?></span><span class="Search-result__message__unit">件表示</span></p>
   </div>
 <?php
-  }
+    }
 
-  function a_result_tags($tag_names)
-  {
+    function a_result_tags($tag_names)
+    {
 ?>
   <div class="Search-result__message__tags">
     <?php
-    foreach ($tag_names as $tag_name) :
+      foreach ($tag_names as $tag_name) :
     ?>
       <div class="Search-result__message__tag">
         <?= $tag_name; ?>
       </div>
     <?php
-    endforeach;
+      endforeach;
     ?>
   </div>
 <?php
-  }
+    }
 
-  function a_result_putall()
-  {
+    function a_result_putall()
+    {
 ?>
   <div class="Search-result__message__check-all">
     <label for="allAgents" class="Search-result__check-all__wrapper">
@@ -585,65 +608,65 @@ function a_header_start()
     </label>
   </div>
 <?
-  }
+    }
 
-  // 検索結果　先頭
-  function m_result_head($tag_names, $amount)
-  {
+    // 検索結果　先頭
+    function m_result_head($tag_names, $amount)
+    {
 ?>
   <div class="Search-result__message">
     <?php
-    a_result_amount($amount);
-    a_result_tags($tag_names);
-    a_result_putall();
+      a_result_amount($amount);
+      a_result_tags($tag_names);
+      a_result_putall();
     ?>
   </div>
 <?php
-  }
+    }
 
-  function o_result($agents, $tag_names)
-  {
-    a_section_start('検索結果', false);
-    m_result_head($tag_names, count($agents));
-    o_agent_list($agents);
-    a_section_end();
-  }
+    function o_result($agents, $tag_names)
+    {
+      a_section_start('検索結果', false);
+      m_result_head($tag_names, count($agents));
+      o_agent_list($agents);
+      a_section_end();
+    }
 
-  // 閲覧履歴
-  function m_agent_small($agent)
-  {
+    // 閲覧履歴
+    function m_agent_small($agent)
+    {
 ?>
   <article class="Agent-card__wrapper__mini">
     <?php
-    a_agent_img('/pictures/agent1.jpg');
-    a_agent_name($agent['agent_name']);
+      a_agent_img('/pictures/agent1.jpg');
+      a_agent_name($agent['agent_name']);
     ?>
   </article>
 <?php
-  }
-
-  function o_history($agents)
-  {
-    a_section_start('閲覧履歴', false);
-    foreach ($agents as $agent) {
-      m_agent_small($agent);
     }
-    a_section_end();
-  }
 
-  // エージェント詳細　最終更新
-  function a_agent_detail_updated($last_updated)
-  {
+    function o_history($agents)
+    {
+      a_section_start('閲覧履歴', false);
+      foreach ($agents as $agent) {
+        m_agent_small($agent);
+      }
+      a_section_end();
+    }
+
+    // エージェント詳細　最終更新
+    function a_agent_detail_updated($last_updated)
+    {
 ?>
   <div class="Agent-page__last-update">
     <p>最終更新日:<?= $last_updated; ?></p>
   </div>
 <?php
-  }
+    }
 
-  // エージェント詳細 説明文
-  function a_agent_detail_text($text)
-  {
+    // エージェント詳細 説明文
+    function a_agent_detail_text($text)
+    {
 ?>
   <div class="Agent-page__text">
     <p>
@@ -651,99 +674,99 @@ function a_header_start()
     </p>
   </div>
 <?php
-  }
+    }
 
-  // エージェント詳細　説明パラグラフ（見出し＋説明文）
-  function m_agent_detail_para($title, $text)
-  {
-    a_heading_in_section($title);
-    a_agent_detail_text($text);
-  }
+    // エージェント詳細　説明パラグラフ（見出し＋説明文）
+    function m_agent_detail_para($title, $text)
+    {
+      a_heading_in_section($title);
+      a_agent_detail_text($text);
+    }
 
-  // エージェント詳細　全体
-  function o_agent_detail($agent_id, $agent_name, $updated_at, $agent_picture, $evals, $paragraphs)
-  {
-    // セクションの開始
-    a_section_start($agent_name, false);
-    // 最終更新日
-    a_agent_detail_updated($updated_at);
+    // エージェント詳細　全体
+    function o_agent_detail($agent_id, $agent_name, $updated_at, $agent_picture, $evals, $paragraphs)
+    {
+      // セクションの開始
+      a_section_start($agent_name, false);
+      // 最終更新日
+      a_agent_detail_updated($updated_at);
 ?>
   <div class="Agent-page__image">
     <?php
-    // エージェントの画像
-    a_agent_img($agent_picture);
+      // エージェントの画像
+      a_agent_img($agent_picture);
 
-    // 画像切り替えボタンみたいなやつ
+      // 画像切り替えボタンみたいなやつ
     ?>
   </div>
   <?php
-    // ★評価表
-    m_agent_eval($evals);
+      // ★評価表
+      m_agent_eval($evals);
   ?>
   <div class="Agent-page__inquiry-btn">
     <?php
-    // 問い合わせボックスに追加ボタン
-    a_agent_putbox_btn($agent_id);
+      // 問い合わせボックスに追加ボタン
+      a_agent_putbox_btn($agent_id);
 
-    // 問い合わせボックスから出すボタン
-    a_agent_deletebox_btn($agent_id);
+      // 問い合わせボックスから出すボタン
+      a_agent_deletebox_btn($agent_id);
     ?>
   </div>
 
   <?php
-    // 小見出しと紹介文
-    foreach ($paragraphs as $paragraph) {
-      $title = $paragraph['title'];
-      $text = $paragraph['text'];
-      m_agent_detail_para($title, $text);
-    }
+      // 小見出しと紹介文
+      foreach ($paragraphs as $paragraph) {
+        $title = $paragraph['title'];
+        $text = $paragraph['text'];
+        m_agent_detail_para($title, $text);
+      }
   ?>
 
   <div class="Agent-page__inquiry-btn">
     <?php
-    // 問い合わせボックスに追加ボタン
-    a_agent_putbox_btn($agent_id);
+      // 問い合わせボックスに追加ボタン
+      a_agent_putbox_btn($agent_id);
 
-    // 問い合わせボックスから出すボタン
-    a_agent_deletebox_btn($agent_id);
+      // 問い合わせボックスから出すボタン
+      a_agent_deletebox_btn($agent_id);
     ?>
   </div>
 
 
   <?php
-    // セクションの終わり
-    a_section_end();
+      // セクションの終わり
+      a_section_end();
   ?>
 
 <?php
-  }
+    }
 
-  function a_box_deletebtn($agent_id)
-  {
+    function a_box_deletebtn($agent_id)
+    {
 ?>
   <div class="Application__box__trash">
     <i class="fa-solid fa-trash-can" onclick="deleteBox(<?= $agent_id; ?>)"></i>
   </div>
 <?php
-  }
+    }
 
-  function m_box_item($agent)
-  {
-    a_box_deletebtn($agent['id']);
-    m_agent_small($agent);
-  }
+    function m_box_item($agent)
+    {
+      a_box_deletebtn($agent['id']);
+      m_agent_small($agent);
+    }
 
-  function o_box()
-  {
-    a_section_start('問い合わせBOX', false);
+    function o_box()
+    {
+      a_section_start('問い合わせBOX', false);
 ?>
   <ul class="js-box"></ul>
 <?php
-    a_section_end();
-  }
+      a_section_end();
+    }
 
-  function a_form_backbtn($text)
-  {
+    function a_form_backbtn($text)
+    {
 ?>
   <a href="#" onclick="javascript:window.history.back(-1);return false;">
     <div class="Application-form__back-button">
@@ -752,10 +775,10 @@ function a_header_start()
     </div>
   </a>
 <?php
-  }
+    }
 
-  function a_form_send($title, $onclick)
-  {
+    function a_form_send($title, $onclick)
+    {
 ?>
   <div class="Application-form__submit-btn__wrapper">
     <div class="Application-form__submit-btn" onclick="<?= $onclick; ?>">
@@ -763,10 +786,10 @@ function a_header_start()
     </div>
   </div>
 <?php
-  }
+    }
 
-  function a_anchor($title, $href)
-  {
+    function a_anchor($title, $href)
+    {
 ?>
   <div class="Application-form__submit-btn__wrapper">
     <a href="<?= $href; ?>">
@@ -776,46 +799,46 @@ function a_header_start()
     </a>
   </div>
 <?php
-  }
+    }
 
-  function a_form_radio_btn($index, $title)
-  {
+    function a_form_radio_btn($index, $title)
+    {
 ?>
   <div class="Application-form__radio">
     <input id="app_radio_<?= $index; ?>" name="inq_radio" type="radio" value="<?= $index; ?>">
     <label for="app_radio_<?= $index; ?>" class="Application-form__radio__label"><?= $title; ?></label>
   </div>
 <?php
-  }
+    }
 
-  function m_form_radio()
-  {
-    a_form_radio_btn(1, '1');
-    a_form_radio_btn(2, '2');
-    a_form_radio_btn(3, '3');
-  }
+    function m_form_radio()
+    {
+      a_form_radio_btn(1, '1');
+      a_form_radio_btn(2, '2');
+      a_form_radio_btn(3, '3');
+    }
 
-  // $attributes = [attribute => value, attribute => value, ...]
-  // $options = [[attributes => [attribute => value, ...], text => 'text'], ...]
-  function a_select($attributes, $options)
-  {
-    $att = f_attributes_str($attributes);
+    // $attributes = [attribute => value, attribute => value, ...]
+    // $options = [[attributes => [attribute => value, ...], text => 'text'], ...]
+    function a_select($attributes, $options)
+    {
+      $att = f_attributes_str($attributes);
 ?>
   <select <?= $att; ?>>
     <?php
-    foreach ($options as $option) :
-      $option_att = f_attributes_str($option['attributes']);
+      foreach ($options as $option) :
+        $option_att = f_attributes_str($option['attributes']);
     ?>
       <option <?= $option_att; ?>><?= $option['text']; ?></option>
     <?php
-    endforeach;
+      endforeach;
     ?>
   </select>
 <?php
-  }
+    }
 
-  function a_select_gradu_year()
-  {
+    function a_select_gradu_year()
+    {
 ?>
   <select name="inq_graduation" id="inqGraduation" class="Application-form__input__glay-border">
     <option value="" hidden>選択してください</option>
@@ -826,25 +849,25 @@ function a_header_start()
     <option value="other">その他</option>
   </select>
 <?php
-  }
+    }
 
-  function a_label($title, $for)
-  {
+    function a_label($title, $for)
+    {
 ?>
   <label for="<?= $for; ?>"><?= $title; ?></label>
   <br>
 <?php
-  }
+    }
 
-  function a_free_textbox()
-  {
+    function a_free_textbox()
+    {
 ?>
   <textarea name="inq_free" id="inqFree" cols="30" rows="10" class="Application-form__input__glay-border" placeholder="例）面談までの流れを詳しく教えてください。"></textarea>
 <?php
-  }
+    }
 
-  function a_form_agree()
-  {
+    function a_form_agree()
+    {
 ?>
   <div class="Application-form__input__glay-border Application-form__privacy-cb">
     <label for="inqAgree" class="Application-form__privacy-cb__wrapper">
@@ -859,10 +882,10 @@ function a_header_start()
     <p>規約に同意の上チェックしてください</p>
   </div>
 <?php
-  }
+    }
 
-  function a_form_policy()
-  {
+    function a_form_policy()
+    {
 ?>
   <div class="Application-form__input__glay-border Application-form__privacy-policy">
     <p>
@@ -877,154 +900,154 @@ function a_header_start()
     </p>
   </div>
 <?php
-  }
+    }
 
-  // 問い合わせフォーム $inq_agents = 'agent_id,agent_id,...' (カンマ区切り文字列)
-  function o_form($inq_agents)
-  {
-    a_section_start('問い合わせフォーム', false);
+    // 問い合わせフォーム $inq_agents = 'agent_id,agent_id,...' (カンマ区切り文字列)
+    function o_form($inq_agents)
+    {
+      a_section_start('問い合わせフォーム', false);
 
-    // 戻るボタン
-    a_form_backbtn('戻る');
+      // 戻るボタン
+      a_form_backbtn('戻る');
 ?>
   <form class="Application-form h-adr" method="POST" action="check.php" id="inqForm">
     <?php
-    // 問い合わせ先エージェント
-    a_heading('問い合わせ先エージェント');
+      // 問い合わせ先エージェント
+      a_heading('問い合わせ先エージェント');
 
-    $inq_agents_array = explode(',', $inq_agents);
-    foreach ($inq_agents_array as $agent_id) {
-      $agent = f_select_agent($agent_id);
+      $inq_agents_array = explode(',', $inq_agents);
+      foreach ($inq_agents_array as $agent_id) {
+        $agent = f_select_agent($agent_id);
     ?>
       <p><?= $agent['agent_name']; ?></p>
     <?php
-    }
-    f_input(['type' => 'hidden', 'name' => 'inq_agents', 'value' => $inq_agents]);
+      }
+      f_input(['type' => 'hidden', 'name' => 'inq_agents', 'value' => $inq_agents]);
 
-    // お問い合わせ内容 ラジオボタン
-    m_heading_required('お問い合せ内容');
-    m_form_radio();
+      // お問い合わせ内容 ラジオボタン
+      m_heading_required('お問い合せ内容');
+      m_form_radio();
 
-    // 名前
-    m_heading_required('名前');
-    f_input(['class' => 'Application-form__name Application-form__input__glay-border js-zen-input', 'placeholder' => '例）就活太郎', 'name' => 'inq_name', 'id' => 'inqName']);
+      // 名前
+      m_heading_required('名前');
+      f_input(['class' => 'Application-form__name Application-form__input__glay-border js-zen-input', 'placeholder' => '例）就活太郎', 'name' => 'inq_name', 'id' => 'inqName']);
 
-    // 名前（フリガナ）
-    m_heading_required('名前(フリガナ)');
-    f_input(['class' => 'Application-form__name Application-form__input__glay-border js-zen-input', 'placeholder' => '例）シュウカツタロウ', 'name' => 'inq_nameruby', 'id' => 'inqNameruby']);
+      // 名前（フリガナ）
+      m_heading_required('名前(フリガナ)');
+      f_input(['class' => 'Application-form__name Application-form__input__glay-border js-zen-input', 'placeholder' => '例）シュウカツタロウ', 'name' => 'inq_nameruby', 'id' => 'inqNameruby']);
 
-    // 生年月日
-    m_heading_required('生年月日');
-    f_input(['type' => 'date', 'class' => 'Application-form__input__glay-border', 'name' => 'inq_birthday']);
+      // 生年月日
+      m_heading_required('生年月日');
+      f_input(['type' => 'date', 'class' => 'Application-form__input__glay-border', 'name' => 'inq_birthday']);
 
-    // 性別
-    m_heading_required('性別');
-    a_select(['name' => 'inq_sex', 'class' => 'Application-form__input__glay-border'], [['attributes' => ['hidden' => ''], 'text' => '選択してください'], ['attributes' => ['value' => '0'], 'text' => '男性'], ['attributes' => ['value' => '1'], 'text' => '女性'], ['attributes' => ['value' => '2'], 'text' => 'その他'], ['attributes' => ['value' => '3'], 'text' => '無回答']]);
+      // 性別
+      m_heading_required('性別');
+      a_select(['name' => 'inq_sex', 'class' => 'Application-form__input__glay-border'], [['attributes' => ['hidden' => ''], 'text' => '選択してください'], ['attributes' => ['value' => '0'], 'text' => '男性'], ['attributes' => ['value' => '1'], 'text' => '女性'], ['attributes' => ['value' => '2'], 'text' => 'その他'], ['attributes' => ['value' => '3'], 'text' => '無回答']]);
 
-    // メールアドレス
-    m_heading_required('メールアドレス');
-    f_input(['type' => 'email', 'class' => 'Application-form__input__glay-border js-han-input', 'placeholder' => '例）shukatsu.taro123@example.com', 'name' => 'inq_email', 'id' => 'inqEmail']);
+      // メールアドレス
+      m_heading_required('メールアドレス');
+      f_input(['type' => 'email', 'class' => 'Application-form__input__glay-border js-han-input', 'placeholder' => '例）shukatsu.taro123@example.com', 'name' => 'inq_email', 'id' => 'inqEmail']);
 
-    // 電話番号（半角ハイフンなし）
-    m_heading_required('電話番号(ハイフンなし)');
-    f_input(['type' => 'tel', 'class' => 'Application-form__input__glay-border js-han-input', 'placeholder' => '例）09012345678', 'name' => 'inq_tel', 'id' => 'inqTel']);
+      // 電話番号（半角ハイフンなし）
+      m_heading_required('電話番号(ハイフンなし)');
+      f_input(['type' => 'tel', 'class' => 'Application-form__input__glay-border js-han-input', 'placeholder' => '例）09012345678', 'name' => 'inq_tel', 'id' => 'inqTel']);
 
-    // 大学名
-    m_heading_required('大学名');
-    f_input(['type' => 'text', 'class' => 'Application-form__input__glay-border js-zen-input', 'placeholder' => '例）就活義塾大学', 'name' => 'inq_univ', 'id' => 'inqUniv']);
+      // 大学名
+      m_heading_required('大学名');
+      f_input(['type' => 'text', 'class' => 'Application-form__input__glay-border js-zen-input', 'placeholder' => '例）就活義塾大学', 'name' => 'inq_univ', 'id' => 'inqUniv']);
 
-    // 学部名
-    m_heading_required('学部名');
-    f_input(['type' => 'text', 'class' => 'Application-form__input__glay-border js-zen-input', 'placeholder' => '例）文学部', 'name' => 'inq_faculty', 'id' => 'inqFaculty']);
+      // 学部名
+      m_heading_required('学部名');
+      f_input(['type' => 'text', 'class' => 'Application-form__input__glay-border js-zen-input', 'placeholder' => '例）文学部', 'name' => 'inq_faculty', 'id' => 'inqFaculty']);
 
-    // 学科名
-    m_heading_required('学科名');
-    f_input(['type' => 'text', 'class' => 'Application-form__input__glay-border js-zen-input', 'placeholder' => '例）人間科学科', 'name' => 'inq_department', 'id' => 'inqDepartment']);
+      // 学科名
+      m_heading_required('学科名');
+      f_input(['type' => 'text', 'class' => 'Application-form__input__glay-border js-zen-input', 'placeholder' => '例）人間科学科', 'name' => 'inq_department', 'id' => 'inqDepartment']);
 
-    // 卒業年
-    m_heading_required('卒業年');
-    a_select_gradu_year();
+      // 卒業年
+      m_heading_required('卒業年');
+      a_select_gradu_year();
 
-    // 住所
+      // 住所
     ?>
     <span class="p-country-name" style="display:none;">Japan</span>
     <?php
-    m_heading_required('住所');
-    //   郵便番号
-    a_label('郵便番号', '');
-    f_input(['type' => 'text', 'class' => 'Application-form__input__glay-border p-postal-code js-han-input', 'size' => '8', 'placeholder' => '例）2220022', 'name' => 'inq_postalcode', 'id' => 'inqPostalcode']);
-    //   都道府県
-    a_label('都道府県', '');
-    f_input(['type' => 'text', 'class' => 'Application-form__input__glay-border p-region js-zen-input', 'placeholder' => '例）東京都', 'name' => 'inq_pref', 'id' => 'inqPref']);
-    //   市区町村番地
-    a_label('市区町村番地', '');
-    f_input(['type' => 'text', 'class' => 'Application-form__input__glay-border p-locality p-street-address p-extended-address js-zen-input', 'placeholder' => '例）港区白金台', 'name' => 'inq_address', 'id' => 'inqAddress']);
-    //   建物名・部屋番号
-    a_label('建物名・部屋番号', '');
-    f_input(['type' => 'text', 'class' => 'Application-form__input__glay-border js-zen-input', 'placeholder' => '例）就活マンション１０５', 'name' => 'inq_bldg', 'id' => 'inqBldg']);
-    // 自由記述欄
-    a_heading('自由記述欄');
-    a_free_textbox();
+      m_heading_required('住所');
+      //   郵便番号
+      a_label('郵便番号', '');
+      f_input(['type' => 'text', 'class' => 'Application-form__input__glay-border p-postal-code js-han-input', 'size' => '8', 'placeholder' => '例）2220022', 'name' => 'inq_postalcode', 'id' => 'inqPostalcode']);
+      //   都道府県
+      a_label('都道府県', '');
+      f_input(['type' => 'text', 'class' => 'Application-form__input__glay-border p-region js-zen-input', 'placeholder' => '例）東京都', 'name' => 'inq_pref', 'id' => 'inqPref']);
+      //   市区町村番地
+      a_label('市区町村番地', '');
+      f_input(['type' => 'text', 'class' => 'Application-form__input__glay-border p-locality p-street-address p-extended-address js-zen-input', 'placeholder' => '例）港区白金台', 'name' => 'inq_address', 'id' => 'inqAddress']);
+      //   建物名・部屋番号
+      a_label('建物名・部屋番号', '');
+      f_input(['type' => 'text', 'class' => 'Application-form__input__glay-border js-zen-input', 'placeholder' => '例）就活マンション１０５', 'name' => 'inq_bldg', 'id' => 'inqBldg']);
+      // 自由記述欄
+      a_heading('自由記述欄');
+      a_free_textbox();
 
-    // プライバシーポリシーの文章
-    m_heading_required('プライバシーポリシー');
-    a_form_policy();
+      // プライバシーポリシーの文章
+      m_heading_required('プライバシーポリシー');
+      a_form_policy();
 
-    // プライバシーポリシーチェックボックス
-    a_form_agree();
+      // プライバシーポリシーチェックボックス
+      a_form_agree();
 
-    //送信ボタン
-    a_form_send('確認画面に進む', 'formSend()');
+      //送信ボタン
+      a_form_send('確認画面に進む', 'formSend()');
     ?>
   </form>
 <?php
-    a_section_end();
-  }
+      a_section_end();
+    }
 
-  function a_check_message()
-  {
+    function a_check_message()
+    {
 ?>
   <div class="Check__message-text">
     <p>お問い合わせ内容はこちらでよろしいでしょうか？</P>
     <p>よろしければ「送信」ボタンを押してください。</p>
   </div>
 <?php
-  }
+    }
 
-  function m_check_data($data)
-  {
+    function m_check_data($data)
+    {
 ?>
   <div class="Check__info">
     <?php
-    foreach ($data as $item) :
+      foreach ($data as $item) :
     ?>
       <div class="Check__info__line">
         <p class="Check__info__item"><?= $item['name']; ?></p>
         <p class="Check__info__writing"><?= $item['value']; ?></p>
       </div>
     <?php
-    endforeach;
+      endforeach;
     ?>
   </div>
 <?php
-  }
+    }
 
-  function o_check($disp_data)
-  {
+    function o_check($disp_data)
+    {
 ?>
   <div class="Check">
     <?php
-    a_form_backbtn('戻る');
-    a_check_message();
-    m_check_data($disp_data);
-    a_form_send('送信する', 'confirmBtn()');
+      a_form_backbtn('戻る');
+      a_check_message();
+      m_check_data($disp_data);
+      a_form_send('送信する', 'confirmBtn()');
     ?>
   </div>
 <?php
-  }
+    }
 
-  function a_thanks_text($name)
-  {
+    function a_thanks_text($name)
+    {
 ?>
   <p>
     <?= $name; ?>様
@@ -1049,10 +1072,10 @@ function a_header_start()
     info@shukatsu.com
   </p>
 <?php
-  }
+    }
 
-  function o_thanks($name)
-  {
+    function o_thanks($name)
+    {
 ?>
   <div class="Finish">
     <div class="Finish__message">
@@ -1061,23 +1084,23 @@ function a_header_start()
       ?>
     </div>
     <?php
-    a_anchor('TOP', 'index.php');
+      a_anchor('TOP', 'index.php');
     ?>
   </div>
 <?
-  }
-  // PC版ようのメッセージ
-  function a_foot_message()
-  {
+    }
+    // PC版ようのメッセージ
+    function a_foot_message()
+    {
 ?>
   <div class="Apply-footer__message__pc">
     <p>問い合わせBOXの<span id="inBoxPc" class="Apply-footer__message__in-box"></span>社に</p>
   </div>
 <?php
-  }
+    }
 
-  function m_foot_inquirybtn()
-  {
+    function m_foot_inquirybtn()
+    {
 ?>
   <button class="Apply-footer__apply-btn" onclick="inquiryBtn()">
     <p>
@@ -1085,10 +1108,10 @@ function a_header_start()
     </p>
   </button>
 <?php
-  }
+    }
 
-  function m_foot_showboxbtn()
-  {
+    function m_foot_showboxbtn()
+    {
 ?>
   <div class="Show-box" id="show_box">
     <div class="Show-box__text">
@@ -1106,10 +1129,10 @@ function a_header_start()
     </div>
   </div>
 <?php
-  }
+    }
 
-  function o_foot()
-  {
+    function o_foot()
+    {
 ?>
   <div class="Box-and-apply-footer">
     <div class="Box-mobile" id="box_mobile">
@@ -1129,23 +1152,23 @@ function a_header_start()
     </div>
   </div>
 <?php
-  }
+    }
 
 
 
-  function a_footer_copyright()
-  {
+    function a_footer_copyright()
+    {
 ?>
   <small class="Footer__copyright">
     &copy; 2022 株式会社boozer All rights reserved
   </small>
 <?php
-  }
+    }
 
 
 
-  function o_footer()
-  {
+    function o_footer()
+    {
 ?>
   <div class="Footer">
     <div class="Footer__inner">
@@ -1157,4 +1180,4 @@ function a_header_start()
     </div>
   </div>
 <?php
-  }
+    }
