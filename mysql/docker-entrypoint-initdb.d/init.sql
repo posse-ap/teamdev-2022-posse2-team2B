@@ -53,7 +53,7 @@ CREATE TABLE agents(
   paragraph2 VARCHAR(2000),
   paragraph3 VARCHAR(2000),
   paragraph4 VARCHAR(2000),
-  url VARCHAR(100),
+  url VARCHAR(2000),
   email VARCHAR(255),
   tel VARCHAR(15)
 );
