@@ -499,7 +499,9 @@ function a_header_start()
   }
 
   function o_top_agent_list($agents) {
-    
+    a_section_start('掲載エージェント一覧', false);
+    o_agent_list($agents);
+    a_section_end();
   }
 
   // 再検索 開始
