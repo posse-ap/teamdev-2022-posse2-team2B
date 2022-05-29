@@ -56,5 +56,11 @@ $pages = array(
     'name' => 'bill.php',
     'show_nav' => true,
     'right' => [1]
+  ],
+  9 => [
+    'title' => 'エージェント会社登録',
+    'name' => 'reg-agent.php',
+    'show_nav' => true,
+    'right' => [3]
   ]
 );
