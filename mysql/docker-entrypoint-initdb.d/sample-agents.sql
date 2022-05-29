@@ -248,8 +248,8 @@ VALUES
 
 INSERT INTO
   agent_contract(
-    company_name,
     agent_id,
+    company_name,
     address,
     tel,
     pres_name,
