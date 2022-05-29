@@ -46,6 +46,14 @@ function f_select_inquiry_option($inquiry_option_id)
   return $inquiry_option;
 }
 
+function f_select_service($col_name, $version) {
+  global $db;
+  $data = $db->prepare("SELECT * FROM service WHERE id = :ver");
+  $data->execute([':ver' => $version]);
+  $data = $data->fetch()[$col_name];
+  return $data;
+}
+
 function f_student_id2inq_agent_id($student_id)
 {
   global $db;
