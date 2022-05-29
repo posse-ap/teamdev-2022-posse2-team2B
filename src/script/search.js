@@ -8,3 +8,22 @@ function tagClick(tagId) {
   }
 }
 
+// 検索ボタン押した時、チェックされているタグの数によって変える
+const searchBtn = document.getElementById('searchBtn');
+if (searchBtn !== null) {
+  searchBtn.addEventListener('click', () => {
+    // チェックされているタグを数える
+    let tagCount = 0;
+    document.querySelectorAll('.js-tag').forEach(el => {
+      if (el.checked) {
+        tagCount++;
+      }
+    });
+
+    if (tagCount === 0) {
+      alert('検索条件を指定してください');
+    } else {
+      document.getElementById('searchForm').submit();
+    }
+  });
+}

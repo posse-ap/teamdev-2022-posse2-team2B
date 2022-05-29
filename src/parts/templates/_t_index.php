@@ -48,7 +48,7 @@ o_footer();
 <script src="./script/box.js"></script>
 <!-- スマホ版 画面下固定BOX関連ボタン -->
 <script src="./script/show-box-mobile.js"></script>
-<!-- 検索エリアのタグクリック時の動作 -->
+<!-- 検索エリアの動作 -->
 <script src="./script/search.js"></script>
 <!-- ハンバーガーメニュー -->
 <script src="./script/nav.js"></script>
