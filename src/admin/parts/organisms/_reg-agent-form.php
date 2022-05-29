@@ -57,44 +57,46 @@
     <div class="account_form__sec">
       <h3 class="account_form__sec__title">タグ</h3>
       <div class="tag_container">
-
-        <input type="checkbox" id="custom1" value="1" name="tag">
+        <?php
+        $tags = $db->query("SELECT * FROM tags");
+        ?>
+        <input type="checkbox" id="custom1" value="1" name="tags[]">
         <label for="custom1" class="custom-style">文系</label>
-        <input type="checkbox" id="custom2" value="2" name="tag">
+        <input type="checkbox" id="custom2" value="2" name="tags[]">
         <label for="custom2" class="custom-style">理系</label>
-        <input type="checkbox" id="custom3" value="3" name="tag">
+        <input type="checkbox" id="custom3" value="3" name="tags[]">
         <label for="custom3" class="custom-style">その他</label>
-        <input type="checkbox" id="custom4" value="4" name="tag">
+        <input type="checkbox" id="custom4" value="4" name="tags[]">
         <label for="custom4" class="custom-style">西日本</label>
-        <input type="checkbox" id="custom5" value="5" name="tag">
+        <input type="checkbox" id="custom5" value="5" name="tags[]">
         <label for="custom5" class="custom-style">東日本</label>
-        <input type="checkbox" id="custom6" value="6" name="tag">
+        <input type="checkbox" id="custom6" value="6" name="tags[]">
         <label for="custom6" class="custom-style">事務系</label>
-        <input type="checkbox" id="custom7" value="7" name="tag">
+        <input type="checkbox" id="custom7" value="7" name="tags[]">
         <label for="custom7" class="custom-style">営業系</label>
-        <input type="checkbox" id="custom8" value="8" name="tag">
+        <input type="checkbox" id="custom8" value="8" name="tags[]">
         <label for="custom8" class="custom-style">販売系</label>
-        <input type="checkbox" id="custom9" value="9" name="tag">
+        <input type="checkbox" id="custom9" value="9" name="tags[]">
         <label for="custom9" class="custom-style">IT系</label>
-        <input type="checkbox" id="custom10" value="10" name="tag">
+        <input type="checkbox" id="custom10" value="10" name="tags[]">
         <label for="custom10" class="custom-style">技術系</label>
-        <input type="checkbox" id="custom11" value="11" name="tag">
+        <input type="checkbox" id="custom11" value="11" name="tags[]">
         <label for="custom11" class="custom-style">専門系</label>
-        <input type="checkbox" id="custom12" value="12" name="tag">
+        <input type="checkbox" id="custom12" value="12" name="tags[]">
         <label for="custom12" class="custom-style">就活イベント</label>
-        <input type="checkbox" id="custom13" value="13" name="tag">
+        <input type="checkbox" id="custom13" value="13" name="tags[]">
         <label for="custom13" class="custom-style">面接トレーニング</label>
-        <input type="checkbox" id="custom14" value="14" name="tag">
+        <input type="checkbox" id="custom14" value="14" name="tags[]">
         <label for="custom14" class="custom-style">スカウトサービス</label>
-        <input type="checkbox" id="custom15" value="15" name="tag">
+        <input type="checkbox" id="custom15" value="15" name="tags[]">
         <label for="custom15" class="custom-style">書類選考免除</label>
-        <input type="checkbox" id="custom16" value="16" name="tag">
+        <input type="checkbox" id="custom16" value="16" name="tags[]">
         <label for="custom16" class="custom-style">地方就活</label>
-        <input type="checkbox" id="custom17" value="17" name="tag">
+        <input type="checkbox" id="custom17" value="17" name="tags[]">
         <label for="custom17" class="custom-style">入社後定着率</label>
-        <input type="checkbox" id="custom18" value="18" name="tag">
+        <input type="checkbox" id="custom18" value="18" name="tags[]">
         <label for="custom18" class="custom-style">スピード内定</label>
-        <input type="checkbox" id="custom19" value="19" name="tag">
+        <input type="checkbox" id="custom19" value="19" name="tags[]">
         <label for="custom19" class="custom-style">オンライン面接</label>
       </div>
     </div>
