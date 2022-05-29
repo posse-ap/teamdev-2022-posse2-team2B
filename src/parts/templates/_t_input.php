@@ -22,7 +22,7 @@ o_header();
     <?php
 
 // 問い合わせフォームのエリア
-o_form($pgdata['inq_agents']);
+o_form($pgdata['inq_agents'], $pgdata['version']);
     ?>
   </div>
 </div>
