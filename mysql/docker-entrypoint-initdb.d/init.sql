@@ -228,7 +228,7 @@ VALUES
   ('専攻から選ぶ'),
   ('地域から選ぶ'),
   ('職種・業種から選ぶ'),
-  ('イチオシサービスから選ぶ');
+  ('サービスから選ぶ');
 
 INSERT INTO
   tags (tag_name, tag_category_id)
