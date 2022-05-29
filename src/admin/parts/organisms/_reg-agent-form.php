@@ -56,6 +56,8 @@
 
     <div class="account_form__sec">
       <h3 class="account_form__sec__title">タグ</h3>
+      <div class="tag_container">
+
         <input type="checkbox" name="tag" required value="">
         <input type="checkbox" name="tag" required value="">
         <input type="checkbox" name="tag" required value="">
@@ -75,6 +77,7 @@
         <input type="checkbox" name="tag" required value="">
         <input type="checkbox" name="tag" required value="">
         <input type="checkbox" name="tag" required value="">
+      </div>
     </div>
 
     <div class="account_form__sec">

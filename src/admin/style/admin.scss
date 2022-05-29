@@ -277,3 +277,11 @@ $btn: #f3af55;
   border: 2px solid #ddd; /*枠線*/
   box-sizing: border-box;
 }
+
+.tag_container {
+  display: grid;
+}
+
+.tag_container input[type="checkbox"] {
+  margin-top: 5px;
+}
