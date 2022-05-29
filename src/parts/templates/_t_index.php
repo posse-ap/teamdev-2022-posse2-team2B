@@ -21,7 +21,7 @@ o_header();
   o_search_area($pgdata['tag_categories']);
 
   // トップページの掲載エージェント一覧のエリア
-  o_agent_list($pgdata['agents'], false);
+  o_top_agent_list($pgdata['agents']);
 
   // 閲覧履歴のエリア
   o_history($agents);

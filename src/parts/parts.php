@@ -447,7 +447,7 @@ function a_header_start()
   }
 
   // エージェントカード全体
-  function o_agent_card($agent_id, $agent_name, $agent_intro, $tags, $evals)
+  function o_agent_card($agent_id, $agent_name, $agent_intro, $tags, $evals, $picture)
   {
 ?>
   <article class="agent-card">
@@ -459,7 +459,7 @@ function a_header_start()
       </div>
       <div class="Agent-card__top__left">
         <?php
-        a_agent_img('/pictures/agent1.jpg');
+        a_agent_img($picture);
         ?>
       </div>
       <div class="Agent-card__top__right">
@@ -492,10 +492,16 @@ function a_header_start()
       $tags_stmt = $db->prepare("SELECT * FROM agent_tags LEFT JOIN tags ON agent_tags.tag_id = tags.id WHERE agent_tags.agent_id = ?");
       $tags_stmt->execute([$agent['id']]);
       $tags = $tags_stmt->fetchAll();
-
       $evals = f_set_evals($agent['id']);
-      o_agent_card($agent['id'], $agent['agent_name'], $agent['intro'], $tags, $evals);
+      $picture = $agent['picture'];
+      o_agent_card($agent['id'], $agent['agent_name'], $agent['intro'], $tags, $evals, $picture);
     }
+  }
+
+  function o_top_agent_list($agents) {
+    a_section_start('掲載エージェント一覧', false);
+    o_agent_list($agents);
+    a_section_end();
   }
 
   // 再検索 開始
@@ -910,7 +916,7 @@ function a_header_start()
     <?php
       // 問い合わせ先エージェント
       a_heading('問い合わせ先エージェント');
-      
+
       $inq_agents_array = explode(',', $inq_agents);
       foreach ($inq_agents_array as $agent_id) {
         $agent = f_select_agent($agent_id);
