@@ -388,7 +388,7 @@ function a_header_start()
   function a_agent_deletebox_btn($agent_id)
   {
 ?>
-  <div id="put_out_of_box" class="put-out-of-inquiry-box argent-card-btn js-delete-btn js-delete-btn<?= $agent_id; ?>" onclick="deleteBox(<?= $agent_id; ?>)">
+  <div id="put_out_of_box" class="put-out-of-inquiry-box argent-card-btn js-delete-btn js-delete-btn<?= $agent_id; ?>" onclick="deleteBox('<?= $agent_id; ?>')">
     <p>問い合わせBOXから出す</p>
   </div>
 <?php
@@ -576,10 +576,10 @@ function a_header_start()
     {
 ?>
   <div class="Message__box-all">
-    <div id="" class="Message__box-all__btn Message__box-all__in js-put-btn" onclick="putBoxAll(<?= $result_agent_ids; ?>, <?= $result_agent_names; ?>, <?= $result_agent_pictures; ?>)">
+    <div id="" class="Message__box-all__btn Message__box-all__in js-put-btn" onclick="putBoxAll('<?= $result_agent_ids; ?>', '<?= $result_agent_names; ?>', '<?= $result_agent_pictures; ?>')">
       <p>すべて問い合わせBOXに入れる</p>
     </div>
-    <div id="" class="Message__box-all__btn Message__box-all__out js-delete-btn" onclick="deleteBoxAll(<?= $result_agent_ids; ?>, <?= $result_agent_names; ?>, <?= $result_agent_pictures; ?>)">
+    <div id="" class="Message__box-all__btn Message__box-all__out js-delete-btn" onclick="deleteBoxAll('<?= $result_agent_ids; ?>')">
       <p>すべて問い合わせBOXから出す</p>
     </div>
   </div>
@@ -743,7 +743,7 @@ function a_header_start()
     {
 ?>
   <div class="Application__box__trash">
-    <i class="fa-solid fa-trash-can" onclick="deleteBox(<?= $agent_id; ?>)"></i>
+    <i class="fa-solid fa-trash-can" onclick="deleteBox('<?= $agent_id; ?>')"></i>
   </div>
 <?php
     }
