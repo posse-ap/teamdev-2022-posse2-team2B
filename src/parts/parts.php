@@ -498,6 +498,10 @@ function a_header_start()
     }
   }
 
+  function o_top_agent_list($agents) {
+    
+  }
+
   // 再検索 開始
   function a_re_search_start()
   {
@@ -910,7 +914,7 @@ function a_header_start()
     <?php
       // 問い合わせ先エージェント
       a_heading('問い合わせ先エージェント');
-      
+
       $inq_agents_array = explode(',', $inq_agents);
       foreach ($inq_agents_array as $agent_id) {
         $agent = f_select_agent($agent_id);
