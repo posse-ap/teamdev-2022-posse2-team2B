@@ -1,6 +1,6 @@
 <?php
 // エージェント会社登録フォームの値を全て受け取ったら
-if (isset($_POST['agent_name']) && isset($_POST['start_at']) && isset($_POST['expires_at']) && isset($_POST['publication']) && isset($_POST['evaluation1']) && isset($_POST['evaluation2']) && isset($_POST['evaluation3']) && isset($_POST['intro']) && isset($_POST['paragraph1']) && isset($_POST['paragraph2']) && isset($_POST['paragraph3']) && isset($_POST['paragraph4']) && isset($_POST['paragraph5']) && isset($_POST['paragraph6']) && isset($_POST['paragraph7']) && isset($_POST['url']) && isset($_POST['email']) && isset($_POST['tel']) && isset($_POST['address']) && isset($_POST['agent_tel']) && isset($_POST['pres_name']) && isset($_POST['pic_name']) && isset($_POST['pic_tel']) && isset($_POST['pic_email']) && isset($_POST['notification_email']))
+if (isset($_POST['agent_name']) && isset($_POST['start_at']) && isset($_POST['expires_at']) && isset($_POST['publication']) && isset($_POST['evaluation1']) && isset($_POST['evaluation2']) && isset($_POST['evaluation3']) && isset($_POST['tag']) && isset($_POST['intro']) && isset($_POST['paragraph1']) && isset($_POST['paragraph2']) && isset($_POST['paragraph3']) && isset($_POST['paragraph4']) && isset($_POST['paragraph5']) && isset($_POST['paragraph6']) && isset($_POST['paragraph7']) && isset($_POST['url']) && isset($_POST['email']) && isset($_POST['tel']) && isset($_POST['address']) && isset($_POST['agent_tel']) && isset($_POST['pres_name']) && isset($_POST['pic_name']) && isset($_POST['pic_tel']) && isset($_POST['pic_email']) && isset($_POST['notification_email']))
 {
   $reg_agent_stmt = $db->prepare(
     "INSERT INTO
@@ -47,6 +47,21 @@ if (isset($_POST['agent_name']) && isset($_POST['start_at']) && isset($_POST['ex
     ':url' => $_POST['url'],
     ':email' => $_POST['email'],
     ':tel' => $_POST['tel']
+  ]);
+  $agentId = $db->lastInsertId();
+  $tag_stmt = $db->prepare(
+    "INSERT INTO
+      agent_tags
+      (agent_id,tag_id)
+    VALUES
+      (
+        :agent_id,
+        :tag_id
+      )"
+  );
+  $tag_stmt->execute([
+    ':agent_id' => $agentId,
+    ':tag_id' => $_POST['tag']
   ]);
   $agentId = $db->lastInsertId();
   // commit
