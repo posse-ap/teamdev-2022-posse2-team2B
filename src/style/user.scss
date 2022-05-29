@@ -963,7 +963,8 @@ $radio-background-color: #ffffff;
 }
 
 .Box-mobile__background__always {
-  background-color: blue;
+  // background: rgba(0,0,0,0.1);
+  background-color: red;
   height: 400px;
 }
 // スマホのボックス
@@ -980,7 +981,7 @@ $radio-background-color: #ffffff;
 .Apply-footer {
   width: 100%;
   height: 50px;
-  background-color: rgba(0, 0, 0, 0.65);
+  background: rgba(0, 0, 0,0.65);
 }
 
 .Apply-footer_inner {
