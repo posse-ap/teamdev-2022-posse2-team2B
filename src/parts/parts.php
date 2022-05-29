@@ -816,9 +816,12 @@ function a_header_start()
 
     function m_form_radio()
     {
-      a_form_radio_btn(1, '1');
-      a_form_radio_btn(2, '2');
-      a_form_radio_btn(3, '3');
+      global $db;
+      $inquiry_options = $db->query("SELECT * FROM inquiry_options");
+      $inquiry_options = $inquiry_options->fetchAll();
+      foreach($inquiry_options as $option) {
+        a_form_radio_btn($option['id'], $option['option']);
+      }
     }
 
     // $attributes = [attribute => value, attribute => value, ...]
