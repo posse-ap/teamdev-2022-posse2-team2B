@@ -18,6 +18,9 @@ function changeBtnDisp(agents) {
       deleteBtn.style.display = 'block';
     });
   });
+
+  // 全て追加・削除ボタン
+
 }
 
 //// ボックス追加機能 ////
@@ -121,25 +124,16 @@ function putBoxAll(ids, names, pictures) {
   const idsArray = ids.split(',');
   const namesArray = names.split(',');
   const picturesArray = pictures.split(',');
-  for (let i = 0; i < idsArray.length; i++ ) {
+  for (let i = 0; i < idsArray.length; i++) {
     putBox(idsArray[i], namesArray[i], picturesArray[i]);
   }
 }
-
-// 結果画面に出ているエージェント全て削除
 
 // エージェントをボックスから削除
 function deleteBox(agentId) {
   db.agents.delete(agentId);
   // 再表示
   showBox();
-}
-
-function deleteBoxAll(ids) {
-  const idsArray = ids.split(',');
-  for (let i = 0; i < idsArray.length; i++) {
-    deleteBox(idsArray[i]);
-  }
 }
 
 // ロード時も再表示

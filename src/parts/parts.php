@@ -576,11 +576,8 @@ function a_header_start()
     {
 ?>
   <div class="Message__box-all">
-    <div id="" class="Message__box-all__btn Message__box-all__in js-put-btn" onclick="putBoxAll('<?= $result_agent_ids; ?>', '<?= $result_agent_names; ?>', '<?= $result_agent_pictures; ?>')">
+    <div id="putAllBtn" class="Message__box-all__btn Message__box-all__in" onclick="putBoxAll('<?= $result_agent_ids; ?>', '<?= $result_agent_names; ?>', '<?= $result_agent_pictures; ?>')">
       <p>すべて問い合わせBOXに入れる</p>
-    </div>
-    <div id="" class="Message__box-all__btn Message__box-all__out js-delete-btn" onclick="deleteBoxAll('<?= $result_agent_ids; ?>')">
-      <p>すべて問い合わせBOXから出す</p>
     </div>
   </div>
 <?
