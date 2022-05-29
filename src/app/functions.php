@@ -107,7 +107,8 @@ function f_select_agent_detail($agent_id)
     paragraph7,
     url,
     email,
-    tel
+    tel,
+    picture
   FROM
     agents
   WHERE
