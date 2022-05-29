@@ -90,4 +90,5 @@ $pgdata['account'] += array('email' => $account['email']);
 $pgdata['account'] += array('right_id' => $account['right_id']);
 $pgdata['account'] += array('agent_id' => $account['agent_id']);
 
+require(dirname(__FILE__) . "/app/right-check.php");
 include(dirname(__FILE__) . '/parts/templates/_change-acc-template.php');
