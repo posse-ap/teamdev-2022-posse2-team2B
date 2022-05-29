@@ -104,6 +104,8 @@ function a_header_start()
   {
   ?>
   </header>
+  <div class="Box-mobile__background Box-mobile__background__always" id="box_mobile_bg">
+  </div>
 <?php
   }
 
@@ -1129,9 +1131,9 @@ function a_header_start()
     function o_foot()
     {
 ?>
+
   <div class="Box-and-apply-footer">
-    <!-- <div class="Box-mobile__background Box-mobile__background__always" id="box_mobile_bg">
-    </div> -->
+
     <div class="Box-mobile Box-mobile__always" id="box_mobile">
       <?php
       o_box();
