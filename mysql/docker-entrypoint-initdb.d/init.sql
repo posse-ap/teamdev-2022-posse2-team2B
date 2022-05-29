@@ -53,7 +53,8 @@ CREATE TABLE agents(
   paragraph7 TEXT(2000),
   url TEXT(2000),
   email TEXT(255),
-  tel TEXT(15)
+  tel TEXT(15),
+  picture TEXT(50)
 );
 
 DROP TABLE IF EXISTS agent_contract;
