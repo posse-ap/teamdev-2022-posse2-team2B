@@ -5,7 +5,6 @@ if (isset($_SESSION['account_id']) && isset($_SESSION['right_id']) && $_SESSION[
 } else {
   header('Location: http://' . $_SERVER['HTTP_HOST'] . '/admin/login.php');
   exit();
-  
 }
 
 // ログアウト時

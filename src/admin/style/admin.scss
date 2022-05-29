@@ -277,3 +277,48 @@ $btn: #f3af55;
   border: 2px solid #ddd; /*枠線*/
   box-sizing: border-box;
 }
+
+.tag_container {
+  display: grid;
+}
+
+/* デフォルトのチェックボックスを非表示に */
+input[type="checkbox"] {
+  display: none;
+  margin-top: 5px;
+}
+.custom-style {
+  position: relative;
+  padding: 5px 30px;
+  cursor: pointer;
+}
+.custom-style:before {
+  width: 16px; /* チェックボックスの幅 */
+  height: 16px; /* チェックボックスの高さ */
+  left: 5px;
+  border: 1px solid #ccc; /* チェックボックスの枠 */
+  border-radius: 3px;
+  margin-top: -8px;
+}
+.custom-style:after,
+.custom-style:before {
+  position: absolute;
+  content: "";
+  top: 50%;
+}
+.custom-style::after {
+  position: absolute;
+  width: 5px;
+  height: 9px;
+  top: 50%;
+  left: 10px;
+  border-right: 2px solid tomato; /* チェックマークの色 */
+  border-bottom: 3px solid tomato; /* チェックマークの色 */
+  content: "";
+  margin-top: -7px;
+  opacity: 0;
+  transform: rotate(45deg);
+}
+input[type="checkbox"]:checked + .custom-style::after {
+  opacity: 1;
+}
