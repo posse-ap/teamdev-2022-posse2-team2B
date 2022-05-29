@@ -18,7 +18,7 @@ DROP TABLE IF EXISTS service;
 
 CREATE TABLE service(
   id INT NOT NULL PRIMARY KEY,
-  privacy_policy TEXT(65535)
+  privacy_policy TEXT(10000)
 );
 
 -- マスタ 問い合わせ関連
