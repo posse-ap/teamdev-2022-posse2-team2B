@@ -1,34 +1,34 @@
 <?php
 // エージェント会社登録フォームの値を全て受け取ったら
-if (isset($_POST['acc_name']) && isset($_POST['start_at']) && isset($_POST['expires_at']) && isset($_POST['publication']) && isset($_POST['evaluation1']) && isset($_POST['evaluation2']) && isset($_POST['evaluation3']) && isset($_POST['intro']) && isset($_POST['paragraph1']) && isset($_POST['paragraph2']) && isset($_POST['paragraph3']) && isset($_POST['paragraph4']) && isset($_POST['paragraph5']) && isset($_POST['paragraph6']) && isset($_POST['paragraph7']) && isset($_POST['url']) && isset($_POST['email']) && isset($_POST['tel']) && isset($_POST['address']) && isset($_POST['tel']) && isset($_POST['pres_name']) && isset($_POST['pic_name']) && isset($_POST['pic_tel']) && isset($_POST['pic_email']) && isset($_POST['notification_email'])) {
+if (isset($_POST['agent_name']) && isset($_POST['start_at']) && isset($_POST['expires_at']) && isset($_POST['publication']) && isset($_POST['evaluation1']) && isset($_POST['evaluation2']) && isset($_POST['evaluation3']) && isset($_POST['intro']) && isset($_POST['paragraph1']) && isset($_POST['paragraph2']) && isset($_POST['paragraph3']) && isset($_POST['paragraph4']) && isset($_POST['paragraph5']) && isset($_POST['paragraph6']) && isset($_POST['paragraph7']) && isset($_POST['url']) && isset($_POST['email']) && isset($_POST['tel']) && isset($_POST['address']) && isset($_POST['tel']) && isset($_POST['pres_name']) && isset($_POST['pic_name']) && isset($_POST['pic_tel']) && isset($_POST['pic_email']) && isset($_POST['notification_email'])) {
   $reg_agent_stmt = $db->prepare(
     "INSERT INTO
       agents
-      (acc_name,start_at,expires_at,publication,evaluation1,evaluation2,evaluation3,intro,paragraph1,paragraph2,paragraph3,paragraph4,paragraph5,paragraph6,paragraph7,`url`,email,tel)
+      (agent_name,start_at,expires_at,publication,evaluation1,evaluation2,evaluation3,intro,paragraph1,paragraph2,paragraph3,paragraph4,paragraph5,paragraph6,paragraph7,`url`,email,tel)
     VALUES
       (
-      :acc_name,
-      :start_at,
-      :expires_at,
-      :publication,
-      :evaluation1,
-      :evaluation2,
-      :evaluation3,
-      :intro,
-      :paragraph1,
-      :paragraph2,
-      :paragraph3,
-      :paragraph4,
-      :paragraph5,
-      :paragraph6,
-      :paragraph7,
-      :`url`,
-      :email,
-      :tel
+        :agent_name,
+        :start_at,
+        :expires_at,
+        :publication,
+        :evaluation1,
+        :evaluation2,
+        :evaluation3,
+        :intro,
+        :paragraph1,
+        :paragraph2,
+        :paragraph3,
+        :paragraph4,
+        :paragraph5,
+        :paragraph6,
+        :paragraph7,
+        :`url`,
+        :email,
+        :tel
       )"
   );
   $reg_agent_stmt->execute([
-    ':acc_name' => $_POST['acc_name'],
+    ':agent_name' => $_POST['agent_name'],
     ':start_at' => $_POST['start_at'],
     ':expires_at' => $_POST['expires_at'],
     ':publication' => $_POST['publication'],

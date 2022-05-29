@@ -43,7 +43,7 @@
   });
 
   // エージェント登録画面
-  document.getElementById('ここに自分で作ったid入れて！ by Jin').addEventListener('click', () => {
-    document.getElementById('ここに送信したいformのid入れて！ by Jin').submit();
+  document.getElementById('regBtn').addEventListener('click', () => {
+    document.getElementById('agent_reg_form').submit();
   });
 </script>

@@ -10,7 +10,8 @@ $pgdata += array('right_id' => $_SESSION['right_id']);
 $pgdata += array('page_id' => 9);
 $pgdata += array('page_title' => $pages[$pgdata['page_id']]['title']);
 $pgdata += array('btn' => [
-  'title' => 'この内容で登録する'
+  'title' => 'この内容で登録する',
+  'id' => 'regBtn'
 ]);
 
 
