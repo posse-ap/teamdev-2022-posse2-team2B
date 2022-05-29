@@ -41,4 +41,9 @@
       document.getElementById('acc_form').submit();
     }
   });
+
+  // エージェント登録画面
+  document.getElementById('ここに自分で作ったid入れて！ by Jin').addEventListener('click', () => {
+    document.getElementById('ここに送信したいformのid入れて！ by Jin').submit();
+  });
 </script>

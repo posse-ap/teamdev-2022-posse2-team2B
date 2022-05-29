@@ -1,5 +1,15 @@
--- 学生情報サンプル
+SET
+  character_set_client = utf8mb4;
+
+SET
+  character_set_connection = utf8mb4;
+
+SET
+  character_set_results = utf8mb4;
+
 USE shukatsu;
+
+-- 学生情報サンプル
 
 INSERT INTO
   students(
