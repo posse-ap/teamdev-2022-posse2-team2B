@@ -1,13 +1,33 @@
 <?php
 // エージェント会社登録フォームの値を全て受け取ったら
-if (isset($_POST['acc_name']) && isset($_POST['start_at']) && isset($_POST['expires_at']) && isset($_POST['publication'])&& isset($_POST['evaluation1']) && isset($_POST['evaluation2']) && isset($_POST['evaluation3']) && isset($_POST['intro']) && isset($_POST['paragraph1']) && isset($_POST['paragraph2']) && isset($_POST['paragraph3']) && isset($_POST['paragraph4']) && isset($_POST['paragraph5']) && isset($_POST['paragraph6']) && isset($_POST['paragraph7']) && isset($_POST['url']) && isset($_POST['email']) && isset($_POST['tel']) && isset($_POST['agent_id']) && isset($_POST['address']) && isset($_POST['tel']) && isset($_POST['pres_name']) && isset($_POST['pic_name']) && isset($_POST['pic_tel']) && isset($_POST['pic_email']) && isset($_POST['notification_email'])) {
-  $create_acc_stmt = $db->prepare(
+if (isset($_POST['acc_name']) && isset($_POST['start_at']) && isset($_POST['expires_at']) && isset($_POST['publication']) && isset($_POST['evaluation1']) && isset($_POST['evaluation2']) && isset($_POST['evaluation3']) && isset($_POST['intro']) && isset($_POST['paragraph1']) && isset($_POST['paragraph2']) && isset($_POST['paragraph3']) && isset($_POST['paragraph4']) && isset($_POST['paragraph5']) && isset($_POST['paragraph6']) && isset($_POST['paragraph7']) && isset($_POST['url']) && isset($_POST['email']) && isset($_POST['tel']) && isset($_POST['agent_id']) && isset($_POST['address']) && isset($_POST['tel']) && isset($_POST['pres_name']) && isset($_POST['pic_name']) && isset($_POST['pic_tel']) && isset($_POST['pic_email']) && isset($_POST['notification_email'])) {
+  $reg_agent_stmt = $db->prepare(
     "INSERT INTO
-      ()
+      agents
+      (acc_name,start_at,expires_at,publication,evaluation1,evaluation2,evaluation3,intro,paragraph1,paragraph2,paragraph3,paragraph4,paragraph5,paragraph6,paragraph7,url,email,tel)
     VALUES
-      ()"
+      (
+      :acc_name,
+      :start_at,
+      :expires_at,
+      :publication,
+      :evaluation1,
+      :evaluation2,
+      :evaluation3,
+      :intro,
+      :paragraph1,
+      :paragraph2,
+      :paragraph3,
+      :paragraph4,
+      :paragraph5,
+      :paragraph6,
+      :paragraph7,
+      :url,
+      :email,
+      :tel
+      )"
   );
-  $create_acc_stmt->execute([
+  $reg_agent_stmt->execute([
     ':acc_name' => $_POST['acc_name'],
     ':start_at' => $_POST['start_at'],
     ':expires_at' => $_POST['expires_at'],
@@ -26,7 +46,28 @@ if (isset($_POST['acc_name']) && isset($_POST['start_at']) && isset($_POST['expi
     ':url' => $_POST['url'],
     ':email' => $_POST['email'],
     ':tel' => $_POST['tel'],
-    ':agent_id' => $_POST['agent_id'],
+  ]);
+  $agentId = $db->lastInsertId();
+  // commit
+  $reg_agent_contract_stmt = $db->prepare(
+    "INSERT INTO
+      agent_contract
+    (agent_id,address,tel,pres_name,pic_name,pic_tel,pic_email,notification_email)
+
+    VALUES
+      (
+        :agent_id,
+        :address,
+        :tel,
+        :pres_name,
+        :pic_name,
+        :pic_tel,
+        :pic_email,
+        :notification_email
+      )"
+  );
+  $reg_agent_contract_stmt->execute([
+    ':agent_id' => $agentId,
     ':address' => $_POST['address'],
     ':tel' => $_POST['tel'],
     ':pres_name' => $_POST['pres_name'],
@@ -35,4 +76,5 @@ if (isset($_POST['acc_name']) && isset($_POST['start_at']) && isset($_POST['expi
     ':pic_email' => $_POST['pic_email'],
     ':notification_email' => $_POST['notification_email']
   ]);
+  // commit
 }

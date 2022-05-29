@@ -34,23 +34,23 @@
     </div>
 
     <div class="account_form__sec">
-      <h3 class="account_form__sec__title">評価項目１</h3>
+      <h3 class="account_form__sec__title">求人の多さ</h3>
       <div class="account_form__sec__box">
-        <input type="number" name="evaluation1" required>
+        <input type="number" name="evaluation1" required min="1" max="5">
       </div>
     </div>
 
     <div class="account_form__sec">
-      <h3 class="account_form__sec__title">評価項目２</h3>
+      <h3 class="account_form__sec__title">サービスの充実度</h3>
       <div class="account_form__sec__box">
-        <input type="number" name="evaluation2" required>
+        <input type="number" name="evaluation2" required min="1" max="5">
       </div>
     </div>
 
     <div class="account_form__sec">
-      <h3 class="account_form__sec__title">評価項目３</h3>
+      <h3 class="account_form__sec__title">コンサルタントの質</h3>
       <div class="account_form__sec__box">
-        <input type="number" name="evaluation3" required>
+        <input type="number" name="evaluation3" required min="1" max="5">
       </div>
     </div>
 
@@ -177,8 +177,8 @@
         <input type="email" name="  notification_email" required>
       </div>
     </div>
-
   </form>
+
   <?php
   include(dirname(__FILE__) . '/../atoms/_btn.php');
   ?>

@@ -18,5 +18,4 @@ include(dirname(__FILE__) . '/../organisms/_header.php');
 </div>
 <?php
 include(dirname(__FILE__) . '/../../script/script.js.php');
-include(dirname(__FILE__) . '/../../script/acc-maint.js.php');
 include(dirname(__FILE__) . '/../atoms/_html-foot.php');

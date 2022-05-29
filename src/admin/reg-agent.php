@@ -9,9 +9,12 @@ $pgdata = array();
 $pgdata += array('right_id' => $_SESSION['right_id']);
 $pgdata += array('page_id' => 9);
 $pgdata += array('page_title' => $pages[$pgdata['page_id']]['title']);
+$pgdata += array('btn' => [
+  'title' => 'この内容で登録する'
+]);
 
 
 require(dirname(__FILE__) . "/app/right-check.php");
 require(dirname(__FILE__) . "/app/fetch-account-name.php");
 
-include(dirname(__FILE__) . "/parts/templates/_detail-template.php");
+include(dirname(__FILE__) . "/parts/templates/_reg-agent-template.php");
