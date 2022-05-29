@@ -25,7 +25,6 @@ o_footer();
 <!-- ハンバーガーメニュー -->
 <script src="./script/nav.js"></script>
 
-
 <?php
 // HTMLおわり
 a_html_foot();
