@@ -24,7 +24,7 @@ o_header();
       o_box();
 
       // 閲覧履歴のエリア PC用
-      o_history($pgdata['result_agents']);
+      o_history([['agent_name' => 'サンプル', 'agent_picture' => '/pictures/agent/agent1.jpg', 'id' => 1]]);
 
       ?>
 
@@ -40,7 +40,7 @@ o_header();
     <div class="Page__left__sp">
       <?php
       // 閲覧履歴のエリア SP用
-      o_history($pgdata['result_agents']);
+      o_history([['agent_name' => 'サンプル', 'agent_picture' => '/pictures/agent/agent1.jpg', 'id' => 1]]);
       ?>
 
     </div>

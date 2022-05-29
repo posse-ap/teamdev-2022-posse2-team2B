@@ -13,3 +13,4 @@ foreach($arg as $agent) {
   $html .= $func($agent);
 }
 echo $html;
+
