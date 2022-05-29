@@ -381,7 +381,7 @@ function a_header_start()
     $agent_picture = $agent['picture'];
 ?>
 
-  <div id="put_into_box" class="put-into-inquiry-box argent-card-btn js-put-btn js-put-btn<?= $agent_id; ?>" onclick="putBox(<?= $agent_id; ?>, '<?= $agent_name; ?>', '<?= $agent_picture; ?>')">
+  <div id="put_into_box" class="put-into-inquiry-box argent-card-btn js-put-btn js-put-btn<?= $agent_id; ?>" onclick="putBox('<?= $agent_id; ?>', '<?= $agent_name; ?>', '<?= $agent_picture; ?>')">
     <p>問い合わせBOXに入れる</p>
   </div>
 <?php
