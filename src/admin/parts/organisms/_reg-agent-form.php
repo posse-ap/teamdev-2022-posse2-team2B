@@ -1,5 +1,5 @@
 <div class="account_form">
-  <form action="" id="acc_form" method="POST" autocomplete="off">
+  <form action="" id="agent_reg_form" method="POST" autocomplete="off">
     <div class="account_form__sec">
       <h3 class="account_form__sec__title">エージェント会社名</h3>
       <div class="account_form__sec__box">
@@ -10,14 +10,14 @@
     <div class="account_form__sec">
       <h3 class="account_form__sec__title">契約開始日</h3>
       <div class="account_form__sec__box">
-        <input type="datetime-local" step="60" name="start_at" required>
+        <input type="datetime-local" step="1" name="start_at" required>
       </div>
     </div>
 
     <div class="account_form__sec">
       <h3 class="account_form__sec__title">契約終了日</h3>
       <div class="account_form__sec__box">
-        <input type="datetime-local" step="60" name="expires_at" required>
+        <input type="datetime-local" step="1" name="expires_at" required>
       </div>
     </div>
 
@@ -125,13 +125,6 @@
       <h3 class="account_form__sec__title">電話番号</h3>
       <div class="account_form__sec__box">
         <input type="tel" name="tel" required maxlength="15">
-      </div>
-    </div>
-
-    <div class="account_form__sec">
-      <h3 class="account_form__sec__title">エージェントID</h3>
-      <div class="account_form__sec__box">
-        <input type="number" name="agent_id" required>
       </div>
     </div>
 
