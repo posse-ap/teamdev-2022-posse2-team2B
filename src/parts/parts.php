@@ -376,9 +376,10 @@ function a_header_start()
   {
     $agent = f_select_agent($agent_id);
     $agent_name = $agent['agent_name'];
+    $agent_picture = $agent['picture'];
 ?>
 
-  <div id="put_into_box" class="put-into-inquiry-box argent-card-btn js-put-btn js-put-btn<?= $agent_id; ?>" onclick="putBox(<?= $agent_id; ?>, '<?= $agent_name; ?>')">
+  <div id="put_into_box" class="put-into-inquiry-box argent-card-btn js-put-btn js-put-btn<?= $agent_id; ?>" onclick="putBox(<?= $agent_id; ?>, '<?= $agent_name; ?>', '<?= $agent_picture; ?>')">
     <p>問い合わせBOXに入れる</p>
   </div>
 <?php
@@ -571,14 +572,14 @@ function a_header_start()
 <?php
     }
 
-    function a_result_putall()
+    function a_result_putall($result_agent_ids, $result_agent_names, $result_agent_pictures)
     {
 ?>
   <div class="Message__box-all">
-    <div id="" class="Message__box-all__btn Message__box-all__in" onclick="">
+    <div id="" class="Message__box-all__btn Message__box-all__in js-put-btn" onclick="putBoxAll(<?= $result_agent_ids; ?>, <?= $result_agent_names; ?>, <?= $result_agent_pictures; ?>)">
       <p>すべて問い合わせBOXに入れる</p>
     </div>
-    <div id="" class="Message__box-all__btn Message__box-all__out" onclick="">
+    <div id="" class="Message__box-all__btn Message__box-all__out js-delete-btn" onclick="deleteBoxAll(<?= $result_agent_ids; ?>, <?= $result_agent_names; ?>, <?= $result_agent_pictures; ?>)">
       <p>すべて問い合わせBOXから出す</p>
     </div>
   </div>
@@ -586,14 +587,14 @@ function a_header_start()
     }
 
     // 検索結果　先頭
-    function m_result_head($tag_names, $amount)
+    function m_result_head($tag_names, $amount, $result_agent_ids, $result_agent_names, $result_agent_pictures)
     {
 ?>
   <div class="Search-result__message">
     <div class="Search-result__message__upper">
       <?php
       a_result_amount($amount);
-      a_result_putall();
+      a_result_putall($result_agent_ids, $result_agent_names, $result_agent_pictures);
       ?>
     </div>
     <?php
@@ -605,8 +606,24 @@ function a_header_start()
 
     function o_result($agents, $tag_names)
     {
+      // 全てBOXに入れるボタンのonclickの引数に入れる文字列生成
+      $agent_id_array = array_map(function ($v) {
+        return $v['id'];
+      }, $agents);
+      $result_agent_ids = implode(',', $agent_id_array);
+
+      $agent_name_array = array_map(function ($v) {
+        return $v['agent_name'];
+      }, $agents);
+      $result_agent_names = implode(',', $agent_name_array);
+
+      $agent_picture_array = array_map(function ($v) {
+        return $v['picture'];
+      }, $agents);
+      $result_agent_pictures = implode(',', $agent_picture_array);
+
       a_section_start('検索結果', false);
-      m_result_head($tag_names, count($agents));
+      m_result_head($tag_names, count($agents), $result_agent_ids, $result_agent_names, $result_agent_pictures);
       o_agent_list($agents);
       a_section_end();
     }
@@ -615,12 +632,14 @@ function a_header_start()
     function m_agent_small($agent)
     {
 ?>
-  <article class="Agent-card__wrapper__mini">
-    <?php
-      a_agent_img('/pictures/agent1.jpg');
+  <a href="./detail.php?id=<?= $agent['id']; ?>">
+    <article class="Agent-card__wrapper__mini">
+      <?php
+      a_agent_img($agent['agent_picture']);
       a_agent_name($agent['agent_name']);
-    ?>
-  </article>
+      ?>
+    </article>
+  </a>
 <?php
     }
 

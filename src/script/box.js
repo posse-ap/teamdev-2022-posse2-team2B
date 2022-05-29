@@ -49,6 +49,10 @@ db.version(1).stores({
 db.version(2).stores({
   agents: 'id, agent_name, created_at'
 });
+// データベース更新 agent_pictureを追加
+db.version(3).stores({
+  agents: 'id, agent_name, agent_picture, created_at'
+});
 
 // ボックスの中身を表示
 function showBox() {
@@ -101,10 +105,11 @@ function showBox() {
 }
 
 // エージェントをボックスに追加
-function putBox(agentId, agentName) {
+function putBox(agentId, agentName, agentPicture) {
   db.agents.put({
     id: agentId,
     agent_name: agentName,
+    agent_picture: agentPicture,
     created_at: new Date()
   });
   // 再表示

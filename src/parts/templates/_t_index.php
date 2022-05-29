@@ -24,7 +24,7 @@ o_header();
   o_top_agent_list($pgdata['agents']);
 
   // 閲覧履歴のエリア
-  o_history($agents);
+  o_history([['agent_name' => 'サンプル', 'agent_picture' => '/pictures/agent/agent1.jpg', 'id' => 1]]);
 
   ?>
 
