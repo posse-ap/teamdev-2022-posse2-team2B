@@ -248,10 +248,13 @@ $bg-color: white; // 白背景にしたいところ
 .Search__btn {
   text-align: center;
 
-  button {
+  &__inner {
     background-color: $main-color;
     color: white;
-    padding: 10px 80px;
+    padding: 10px 40px;
+    width: 60%;
+    max-width: 250px;
+    margin: 0 auto;
     border-radius: 10px;
     border: solid 1px $main-color;
 

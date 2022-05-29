@@ -230,7 +230,7 @@ function a_header_start()
   <div class="Search__tag__wrapper">
     <div class="Search__tag">
       <label class="Search__tag__label" id="searchTagLabel<?= $tag['id']; ?>" for="searchTag<?= $tag['id']; ?>"><?= $tag['tag_name']; ?></label>
-      <input type="checkbox" name="tags[]" value="<?= $tag['id']; ?>" class=" Search__tag__input" id="searchTag<?= $tag['id']; ?>" onclick="tagClick(<?= $tag['id']; ?>)">
+      <input type="checkbox" name="tags[]" value="<?= $tag['id']; ?>" class=" Search__tag__input js-tag" id="searchTag<?= $tag['id']; ?>" onclick="tagClick(<?= $tag['id']; ?>)">
     </div>
   </div>
 <?php
@@ -250,9 +250,9 @@ function a_header_start()
   {
 ?>
   <div class="Search__btn">
-    <button name="search">
+    <div class="Search__btn__inner" name="search" id="searchBtn">
       <i class="fa-solid fa-magnifying-glass"></i><span>検索</span>
-    </button>
+    </div>
   </div>
 <?php
   }
@@ -261,7 +261,7 @@ function a_header_start()
   function o_search_area($tag_categories)
   {
 ?>
-  <form action="./result.php" method="POST">
+  <form action="./result.php" method="POST" id="searchForm">
     <?php
     a_section_start('条件絞り込み', false);
 
@@ -278,6 +278,7 @@ function a_header_start()
       m_tags_sec($tag_category, $tags);
     }
 
+    f_input(['type' => 'hidden', 'name' => 'search', 'value' => 'search']);
     a_search_btn();
 
     a_section_end();
@@ -464,7 +465,8 @@ function a_header_start()
     }
   }
 
-  function o_top_agent_list($agents) {
+  function o_top_agent_list($agents)
+  {
     a_section_start('掲載エージェント一覧', false);
     o_agent_list($agents);
     a_section_end();
@@ -481,7 +483,7 @@ function a_header_start()
       </p>
 
     </div>
-    <form class="Re-search__ac__child" method="POST" action="result.php">
+    <form class="Re-search__ac__child" method="POST" action="result.php" id="searchForm">
       <?php
     }
 
@@ -538,6 +540,7 @@ function a_header_start()
     {
       a_re_search_start();
       m_re_search_inner();
+      f_input(['type' => 'hidden', 'name' => 'search', 'value' => 'search']);
       a_re_search_end();
     }
 
@@ -824,11 +827,13 @@ function a_header_start()
 ?>
   <select name="inq_graduation" id="inqGraduation" class="Application-form__input__glay-border">
     <option value="" hidden>選択してください</option>
-    <option value="2022">22卒</option>
-    <option value="2023">23卒</option>
-    <option value="2024">24卒</option>
-    <option value="2025">25卒</option>
-    <option value="other">その他</option>
+    <option value="2022">2022</option>
+    <option value="2023">2023</option>
+    <option value="2024">2024</option>
+    <option value="2025">2025</option>
+    <option value="2026">2026</option>
+    <option value="2027">2027</option>
+    <option value="2028">2028</option>
   </select>
 <?php
     }
@@ -912,11 +917,11 @@ function a_header_start()
 
       // 生年月日
       m_heading_required('生年月日');
-      f_input(['type' => 'date', 'class' => 'Application-form__input__glay-border', 'name' => 'inq_birthday']);
+      f_input(['type' => 'date', 'class' => 'Application-form__input__glay-border', 'name' => 'inq_birthday', 'id' => 'inqBirthday']);
 
       // 性別
       m_heading_required('性別');
-      a_select(['name' => 'inq_sex', 'class' => 'Application-form__input__glay-border'], [['attributes' => ['hidden' => ''], 'text' => '選択してください'], ['attributes' => ['value' => '0'], 'text' => '男性'], ['attributes' => ['value' => '1'], 'text' => '女性'], ['attributes' => ['value' => '2'], 'text' => 'その他'], ['attributes' => ['value' => '3'], 'text' => '無回答']]);
+      a_select(['name' => 'inq_sex', 'class' => 'Application-form__input__glay-border', 'id' => 'inqSex'], [['attributes' => ['disabled' => '', 'selected' => '', 'value' => '選択してください'], 'text' => '選択してください'], ['attributes' => ['value' => '0'], 'text' => '男性'], ['attributes' => ['value' => '1'], 'text' => '女性'], ['attributes' => ['value' => '2'], 'text' => 'その他'], ['attributes' => ['value' => '3'], 'text' => '無回答']]);
 
       // メールアドレス
       m_heading_required('メールアドレス');
