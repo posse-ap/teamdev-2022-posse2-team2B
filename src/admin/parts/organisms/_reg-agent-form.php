@@ -1,7 +1,7 @@
 <div class="account_form">
   <form action="" id="agent_reg_form" method="POST" autocomplete="off">
     <div class="account_form__sec">
-      <h3 class="account_form__sec__title">エージェント会社名</h3>
+      <h3 class="account_form__sec__title">エージェントサービス名</h3>
       <div class="account_form__sec__box">
         <input type="text" name="agent_name" required>
       </div>
@@ -124,10 +124,16 @@
     <div class="account_form__sec">
       <h3 class="account_form__sec__title">電話番号</h3>
       <div class="account_form__sec__box">
-        <input type="number" name="tel" required maxlength="15">
+        <input type="tel" name="tel" required maxlength="15">
       </div>
     </div>
 
+    <div class="account_form__sec">
+      <h3 class="account_form__sec__title">会社名</h3>
+      <div class="account_form__sec__box">
+        <input type="text" name="company_name" required>
+      </div>
+    </div>
     <div class="account_form__sec">
       <h3 class="account_form__sec__title">会社所在地</h3>
       <div class="account_form__sec__box">

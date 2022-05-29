@@ -53,11 +53,12 @@ if (isset($_POST['agent_name']) && isset($_POST['start_at']) && isset($_POST['ex
   $reg_agent_contract_stmt = $db->prepare(
     "INSERT INTO
       agent_contract
-    (agent_id,address,tel,pres_name,pic_name,pic_tel,pic_email,notification_email)
+    (agent_id,company_name,address,tel,pres_name,pic_name,pic_tel,pic_email,notification_email)
 
     VALUES
       (
         :agent_id,
+        :company_name,
         :address,
         :agent_tel,
         :pres_name,
@@ -69,6 +70,7 @@ if (isset($_POST['agent_name']) && isset($_POST['start_at']) && isset($_POST['ex
   );
   $reg_agent_contract_stmt->execute([
     ':agent_id' => $agentId,
+    ':company_name' => $_POST['company_name'],
     ':address' => $_POST['address'],
     ':agent_tel' => $_POST['agent_tel'],
     ':pres_name' => $_POST['pres_name'],
@@ -77,5 +79,6 @@ if (isset($_POST['agent_name']) && isset($_POST['start_at']) && isset($_POST['ex
     ':pic_email' => $_POST['pic_email'],
     ':notification_email' => $_POST['notification_email']
   ]);
+  var_dump($agentId);
   // commit
 }
