@@ -1,9 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,500;1,900&family=Zen+Kaku+Gothic+New&display=swap");
+
+html,
+body {
+  font-family: "Roboto", sans-serif;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+}
+
 html {
   font-size: 14px;
 }
 
 body {
-  background-color: #F6F6F6;
+  background-color: #f6f6f6;
 }
 
 ////// 色定義 ここから//////
@@ -26,7 +34,8 @@ $bg-color: white; // 白背景にしたいところ
   }
 
   &__left {
-    &__sp {}
+    &__sp {
+    }
   }
 }
 
@@ -62,7 +71,7 @@ $bg-color: white; // 白背景にしたいところ
     left: -100%;
     top: 0;
     background: $main-color;
-    transition: .7s;
+    transition: 0.7s;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -277,7 +286,6 @@ $bg-color: white; // 白背景にしたいところ
 
 //エージェント名、写真、タグ
 .Agent-card__top {
-
   //エージェント名
   .agent-card-agent-name {
     font-size: 2rem;
@@ -619,7 +627,6 @@ $bg-color: white; // 白背景にしたいところ
 
 //////検索結果画面　ここから//////
 
-
 ////// エージェント詳細ページ　ここから//////
 .Agent-page__last-update {
   display: flex;
@@ -763,7 +770,7 @@ $radio-background-color: #ffffff;
     position: absolute;
     opacity: 0;
 
-    +.Application-form__radio__label {
+    + .Application-form__radio__label {
       &:before {
         content: "";
         background: $radio-background-color;
@@ -783,7 +790,7 @@ $radio-background-color: #ffffff;
     }
 
     &:checked {
-      +.Application-form__radio__label {
+      + .Application-form__radio__label {
         &:before {
           background-color: $main-color;
           box-shadow: inset 0 0 0 4px $radio-background-color;
@@ -792,7 +799,7 @@ $radio-background-color: #ffffff;
     }
 
     &:focus {
-      +.Application-form__radio__label {
+      + .Application-form__radio__label {
         &:before {
           outline: none;
           border-color: $main-color;
@@ -801,7 +808,7 @@ $radio-background-color: #ffffff;
     }
 
     &:disabled {
-      +.Application-form__radio__label {
+      + .Application-form__radio__label {
         &:before {
           box-shadow: inset 0 0 0 4px $radio-background-color;
           border-color: #c4c4c4;
@@ -810,7 +817,7 @@ $radio-background-color: #ffffff;
       }
     }
 
-    +.Application-form__radio__label {
+    + .Application-form__radio__label {
       &:empty {
         &:before {
           margin-right: 0;
@@ -866,19 +873,18 @@ $radio-background-color: #ffffff;
     transform: rotate(45deg);
   }
 
-  &__wrapper input:checked+&__checkbox-icon {
+  &__wrapper input:checked + &__checkbox-icon {
     background-color: $main-color;
     border: solid $main-color;
     border-radius: 8px;
   }
 
-  &__wrapper input:checked+&__checkbox-icon:after {
+  &__wrapper input:checked + &__checkbox-icon:after {
     display: block;
   }
 }
 
 ////// 申し込みフォームのページ　ここまで//////
-
 
 /////// 確認ページ　ここから//////
 .Check {
@@ -1011,7 +1017,8 @@ $radio-background-color: #ffffff;
   width: 43%;
 
   &__text {
-    p {}
+    p {
+    }
   }
 
   &__icon {
@@ -1074,7 +1081,6 @@ $radio-background-color: #ffffff;
         }
       }
     }
-
   }
 
   &__copyright {
@@ -1084,13 +1090,10 @@ $radio-background-color: #ffffff;
 
 /////// フッター ここまで//////
 
-
 ////////// PC対応//////////
 @media (min-width: 960px) {
-
   // レイアウト関連
   .Page {
-
     // トップと確認ページ
     &__container__center {
       margin: 0 auto;
@@ -1306,5 +1309,4 @@ $radio-background-color: #ffffff;
   }
 
   ////追従ボタン ここまで////
-
 }
