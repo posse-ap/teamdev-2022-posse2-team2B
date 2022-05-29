@@ -307,25 +307,10 @@ $bg-color: white; // 白背景にしたいところ
       border-radius: 5px;
       margin-right: 10px;
       margin-bottom: 10px;
-      padding: 8px 12px;
+      padding: 3px 4px;
     }
   }
 
-  &__sp {
-    display: block;
-  }
-
-  &__left {
-    display: block;
-  }
-
-  &__right {
-    display: block;
-
-    &-pc {
-      display: none;
-    }
-  }
 }
 
 // エージェントカードの星評価
@@ -372,6 +357,7 @@ $bg-color: white; // 白背景にしたいところ
     border-radius: 3px;
     margin-bottom: 20px;
     padding: 15px 0px;
+    cursor: pointer;
 
     p {
       text-align: center;
@@ -609,6 +595,7 @@ $bg-color: white; // 白背景にしたいところ
 // BOXの中身　ゴミ箱
 .Application {
   &__box__trash {
+    cursor: pointer;
     font-size: 1.5rem;
     margin-left: 15px;
   }
@@ -644,10 +631,18 @@ $bg-color: white; // 白背景にしたいところ
     border-radius: 3px;
     margin-bottom: 20px;
     padding: 15px 0px;
+    cursor: pointer;
 
     p {
       text-align: center;
     }
+  }
+}
+
+.Agent-page__text{
+  p{
+    line-height: 2rem;
+    letter-spacing:0.5px;
   }
 }
 
@@ -964,7 +959,7 @@ $radio-background-color: #ffffff;
 
 .Box-mobile__background__always {
   // background: rgba(0,0,0,0.1);
-  background-color: red;
+  // background-color: red;
   height: 400px;
 }
 // スマホのボックス
@@ -1199,38 +1194,23 @@ $radio-background-color: #ffffff;
 
   ////エージェントカード ここから////
   .Agent-card__top {
-    display: flex;
-
-    &__sp {
-      display: none;
+    &__flex{
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
     }
 
-    &__left {
-      width: 45%;
-    }
-
-    &__right {
-      padding-left: 50px;
-      width: 55%;
-
-      .agent-card-tags-area {
-        .agent-card-tag {
-          font-size: 1rem;
-          margin-right: 5px;
-          margin-bottom: 5px;
-          padding: 4px 8px;
-        }
-      }
-
-      &-pc {
-        display: block;
-
-        .agent-card-agent-name {
-          font-size: 2rem;
-          margin-bottom: 10px;
-        }
+    .agent-card-agent-name{
+      padding-left: 15px;
+      width: 60%;
+      h3{
+        text-align: center;
       }
     }
+    .agent-card-image{
+      width: 40%;
+    }
+    
   }
 
   .argent-card-btns {
