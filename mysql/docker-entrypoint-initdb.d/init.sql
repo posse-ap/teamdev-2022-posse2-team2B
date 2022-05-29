@@ -18,21 +18,21 @@ DROP TABLE IF EXISTS schools;
 
 CREATE TABLE schools(
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  school_name VARCHAR(50) NOT NULL
+  school_name TEXT(50) NOT NULL
 );
 
 DROP TABLE IF EXISTS prefs;
 
 CREATE TABLE prefs(
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  pref_name VARCHAR(10) NOT NULL
+  pref_name TEXT(10) NOT NULL
 );
 
 DROP TABLE IF EXISTS inquiry_options;
 
 CREATE TABLE inquiry_options(
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  `option` VARCHAR(50)
+  `option` TEXT(50)
 );
 
 -- マスタ　エージェント関連
@@ -40,7 +40,7 @@ DROP TABLE IF EXISTS agents;
 
 CREATE TABLE agents(
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  agent_name VARCHAR(50) NOT NULL,
+  agent_name TEXT(50) NOT NULL,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   start_at DATETIME NOT NULL,
@@ -49,17 +49,17 @@ CREATE TABLE agents(
   evaluation1 INT,
   evaluation2 INT,
   evaluation3 INT,
-  intro VARCHAR(2000),
-  paragraph1 VARCHAR(2000),
-  paragraph2 VARCHAR(2000),
-  paragraph3 VARCHAR(2000),
-  paragraph4 VARCHAR(2000),
-  paragraph5 VARCHAR(2000),
-  paragraph6 VARCHAR(2000),
-  paragraph7 VARCHAR(2000),
-  url VARCHAR(2000),
-  email VARCHAR(255),
-  tel VARCHAR(15)
+  intro TEXT(2000),
+  paragraph1 TEXT(2000),
+  paragraph2 TEXT(2000),
+  paragraph3 TEXT(2000),
+  paragraph4 TEXT(2000),
+  paragraph5 TEXT(2000),
+  paragraph6 TEXT(2000),
+  paragraph7 TEXT(2000),
+  url TEXT(2000),
+  email TEXT(255),
+  tel TEXT(15)
 );
 
 DROP TABLE IF EXISTS agent_contract;
@@ -70,20 +70,20 @@ CREATE TABLE agent_contract(
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   agent_id INT NOT NULL,
-  address VARCHAR(100) NOT NULL,
-  tel VARCHAR(15) NOT NULL,
-  pres_name VARCHAR(20) NOT NULL,
-  pic_name VARCHAR(20) NOT NULL,
-  pic_tel VARCHAR(15) NOT NULL,
-  pic_email VARCHAR(255) NOT NULL,
-  notification_email VARCHAR(255) NOT NULL
+  address TEXT(100) NOT NULL,
+  tel TEXT(15) NOT NULL,
+  pres_name TEXT(20) NOT NULL,
+  pic_name TEXT(20) NOT NULL,
+  pic_tel TEXT(15) NOT NULL,
+  pic_email TEXT(255) NOT NULL,
+  notification_email TEXT(255) NOT NULL
 );
 
 DROP TABLE IF EXISTS tags;
 
 CREATE TABLE tags(
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  tag_name VARCHAR(20) NOT NULL,
+  tag_name TEXT(20) NOT NULL,
   tag_category_id INT NOT NULL
 );
 
@@ -91,7 +91,7 @@ DROP TABLE IF EXISTS tag_categories;
 
 CREATE TABLE tag_categories(
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  tag_category_name VARCHAR(20) NOT NULL
+  tag_category_name TEXT(20) NOT NULL
 );
 
 DROP TABLE IF EXISTS agent_tags;
@@ -106,11 +106,11 @@ DROP TABLE IF EXISTS accounts;
 
 CREATE TABLE accounts(
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  email VARCHAR(255) NOT NULL,
-  password VARCHAR(50),
+  email TEXT(255) NOT NULL,
+  password TEXT(50),
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  name VARCHAR(50) NOT NULL,
+  name TEXT(50) NOT NULL,
   agent_id INT,
   right_id INT NOT NULL
 );
@@ -119,7 +119,7 @@ DROP TABLE IF EXISTS rights;
 
 CREATE TABLE rights(
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  right_name VARCHAR(50)
+  right_name TEXT(50)
 );
 
 -- トランザクション
@@ -129,26 +129,26 @@ CREATE TABLE students(
   id VARCHAR(255) NOT NULL PRIMARY KEY,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   inquiry_option_id INT NOT NULL,
-  student_name VARCHAR(50) NOT NULL,
-  student_name_ruby VARCHAR(50) NOT NULL,
+  student_name TEXT(50) NOT NULL,
+  student_name_ruby TEXT(50) NOT NULL,
   birthday DATE NOT NULL,
   sex INT NOT NULL,
-  email VARCHAR(255) NOT NULL,
-  tel VARCHAR(15) NOT NULL,
-  univ VARCHAR(50) NOT NULL,
-  faculty VARCHAR(50),
-  department VARCHAR(50),
+  email TEXT(255) NOT NULL,
+  tel TEXT(15) NOT NULL,
+  univ TEXT(50) NOT NULL,
+  faculty TEXT(50),
+  department TEXT(50),
   graduate_year INT NOT NULL,
-  postal_code VARCHAR(7),
-  address VARCHAR(200),
-  optional_comment VARCHAR(1000)
+  postal_code TEXT(7),
+  address TEXT(200),
+  optional_comment TEXT(1000)
 );
 
 DROP TABLE IF EXISTS inquired_agents;
 
 CREATE TABLE inquired_agents(
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  student_id VARCHAR(255) NOT NULL,
+  student_id TEXT(255) NOT NULL,
   agent_id INT NOT NULL
 );
 
@@ -238,9 +238,27 @@ VALUES
 INSERT INTO
   accounts(email, password, name, agent_id, right_id)
 VALUES
-  ('agent1@test', sha1('teamdev'), '株式会社sampleagent1ウサギ', 1, 1),
-  ('agent2@test', sha1('teamdev'), '株式会社sampleagent2ハチワレ', 2, 1),
-  ('agent3@test', sha1('teamdev'), '株式会社sampleagent3シーサー', 3, 1),
+  (
+    'agent1@test',
+    sha1('teamdev'),
+    '株式会社sampleagent1ウサギ',
+    1,
+    1
+  ),
+  (
+    'agent2@test',
+    sha1('teamdev'),
+    '株式会社sampleagent2ハチワレ',
+    2,
+    1
+  ),
+  (
+    'agent3@test',
+    sha1('teamdev'),
+    '株式会社sampleagent3シーサー',
+    3,
+    1
+  ),
   ('boozer@test', sha1('teamdev'), '青柳', NULL, 2),
   ('admin@test', sha1('teamdev'), '田上', NULL, 3);
 
