@@ -11,20 +11,11 @@ o_header();
 ?>
 
 <!-- メインコンテンツ -->
-<div class="Page__container">
-  <div class="Page__right">
-    <?php
-    // BOX
-    // o_box();
-    ?>
-  </div>
-  <div class="Page__left">
-    <?php
-
-// 問い合わせフォームのエリア
-o_form($pgdata['inq_agents']);
-    ?>
-  </div>
+<div class="Page__container__center">
+  <?php
+  // 問い合わせフォームのエリア
+  o_form($pgdata['inq_agents'], $pgdata['version']);
+  ?>
 </div>
 
 <?php

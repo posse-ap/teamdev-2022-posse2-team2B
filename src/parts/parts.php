@@ -599,14 +599,14 @@ function a_header_start()
     function a_result_putall()
     {
 ?>
-<div class="Message__box-all">
-  <div id="" class="Message__box-all__btn Message__box-all__in" onclick="">
-    <p>すべて問い合わせBOXに入れる</p>
+  <div class="Message__box-all">
+    <div id="" class="Message__box-all__btn Message__box-all__in" onclick="">
+      <p>すべて問い合わせBOXに入れる</p>
+    </div>
+    <div id="" class="Message__box-all__btn Message__box-all__out" onclick="">
+      <p>すべて問い合わせBOXから出す</p>
+    </div>
   </div>
-  <div id="" class="Message__box-all__btn Message__box-all__out" onclick="">
-    <p>すべて問い合わせBOXから出す</p>
-  </div>
-</div>
 <?
     }
 
@@ -617,8 +617,8 @@ function a_header_start()
   <div class="Search-result__message">
     <div class="Search-result__message__upper">
       <?php
-        a_result_amount($amount);
-        a_result_putall();
+      a_result_amount($amount);
+      a_result_putall();
       ?>
     </div>
     <?php
@@ -888,26 +888,18 @@ function a_header_start()
 <?php
     }
 
-    function a_form_policy()
+    function a_form_policy($version)
     {
+      $privacy_policy = nl2br(f_select_service('privacy_policy', $version));
 ?>
   <div class="Application-form__input__glay-border Application-form__privacy-policy">
-    <p>
-      これがプライバシーポリシーの文章です。このサイトでは第一項
-      これがプライバシーポリシーの文章です。このサイトでは第一項
-      これがプライバシーポリシーの文章です。このサイトでは第一項
-      これがプライバシーポリシーの文章です。このサイトでは第一項
-      これがプライバシーポリシーの文章です。このサイトでは第一項
-      これがプライバシーポリシーの文章です。このサイトでは第一項
-      これがプライバシーポリシーの文章です。このサイトでは第一項
-      項
-    </p>
+    <p><?= $privacy_policy; ?></p>
   </div>
 <?php
     }
 
     // 問い合わせフォーム $inq_agents = 'agent_id,agent_id,...' (カンマ区切り文字列)
-    function o_form($inq_agents)
+    function o_form($inq_agents, $version)
     {
       a_section_start('問い合わせフォーム', false);
 
@@ -918,7 +910,7 @@ function a_header_start()
     <?php
       // 問い合わせ先エージェント
       a_heading('問い合わせ先エージェント');
-
+      
       $inq_agents_array = explode(',', $inq_agents);
       foreach ($inq_agents_array as $agent_id) {
         $agent = f_select_agent($agent_id);
@@ -995,7 +987,7 @@ function a_header_start()
 
       // プライバシーポリシーの文章
       m_heading_required('プライバシーポリシー');
-      a_form_policy();
+      a_form_policy($version);
 
       // プライバシーポリシーチェックボックス
       a_form_agree();

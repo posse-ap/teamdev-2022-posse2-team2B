@@ -7,8 +7,9 @@ SET
 SET
   character_set_results = utf8mb4;
 
--- 学生情報サンプル
 USE shukatsu;
+
+-- 学生情報サンプル
 
 INSERT INTO
   students(
