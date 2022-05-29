@@ -824,11 +824,13 @@ function a_header_start()
 ?>
   <select name="inq_graduation" id="inqGraduation" class="Application-form__input__glay-border">
     <option value="" hidden>選択してください</option>
-    <option value="2022">22卒</option>
-    <option value="2023">23卒</option>
-    <option value="2024">24卒</option>
-    <option value="2025">25卒</option>
-    <option value="other">その他</option>
+    <option value="2022">2022</option>
+    <option value="2023">2023</option>
+    <option value="2024">2024</option>
+    <option value="2025">2025</option>
+    <option value="2026">2026</option>
+    <option value="2027">2027</option>
+    <option value="2028">2028</option>
   </select>
 <?php
     }
