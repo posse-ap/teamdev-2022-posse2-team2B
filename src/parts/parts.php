@@ -824,11 +824,13 @@ function a_header_start()
 ?>
   <select name="inq_graduation" id="inqGraduation" class="Application-form__input__glay-border">
     <option value="" hidden>選択してください</option>
-    <option value="2022">22卒</option>
-    <option value="2023">23卒</option>
-    <option value="2024">24卒</option>
-    <option value="2025">25卒</option>
-    <option value="other">その他</option>
+    <option value="2022">2022</option>
+    <option value="2023">2023</option>
+    <option value="2024">2024</option>
+    <option value="2025">2025</option>
+    <option value="2026">2026</option>
+    <option value="2027">2027</option>
+    <option value="2028">2028</option>
   </select>
 <?php
     }
@@ -912,11 +914,11 @@ function a_header_start()
 
       // 生年月日
       m_heading_required('生年月日');
-      f_input(['type' => 'date', 'class' => 'Application-form__input__glay-border', 'name' => 'inq_birthday']);
+      f_input(['type' => 'date', 'class' => 'Application-form__input__glay-border', 'name' => 'inq_birthday', 'id' => 'inqBirthday']);
 
       // 性別
       m_heading_required('性別');
-      a_select(['name' => 'inq_sex', 'class' => 'Application-form__input__glay-border'], [['attributes' => ['hidden' => ''], 'text' => '選択してください'], ['attributes' => ['value' => '0'], 'text' => '男性'], ['attributes' => ['value' => '1'], 'text' => '女性'], ['attributes' => ['value' => '2'], 'text' => 'その他'], ['attributes' => ['value' => '3'], 'text' => '無回答']]);
+      a_select(['name' => 'inq_sex', 'class' => 'Application-form__input__glay-border', 'id' => 'inqSex'], [['attributes' => ['disabled' => '', 'selected' => '', 'value' => '選択してください'], 'text' => '選択してください'], ['attributes' => ['value' => '0'], 'text' => '男性'], ['attributes' => ['value' => '1'], 'text' => '女性'], ['attributes' => ['value' => '2'], 'text' => 'その他'], ['attributes' => ['value' => '3'], 'text' => '無回答']]);
 
       // メールアドレス
       m_heading_required('メールアドレス');
