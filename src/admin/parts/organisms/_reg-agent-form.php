@@ -124,7 +124,7 @@
     <div class="account_form__sec">
       <h3 class="account_form__sec__title">電話番号</h3>
       <div class="account_form__sec__box">
-        <input type="tel" name="tel" required maxlength="15">
+        <input type="number" name="tel" required maxlength="15">
       </div>
     </div>
 
@@ -137,7 +137,7 @@
     <div class="account_form__sec">
       <h3 class="account_form__sec__title">会社電話番号</h3>
       <div class="account_form__sec__box">
-        <input type="tel" name="tel" required>
+        <input type="tel" name="agent_tel" required>
       </div>
     </div>
     <div class="account_form__sec">

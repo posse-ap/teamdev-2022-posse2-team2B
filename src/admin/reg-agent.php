@@ -17,5 +17,5 @@ $pgdata += array('btn' => [
 
 require(dirname(__FILE__) . "/app/right-check.php");
 require(dirname(__FILE__) . "/app/fetch-account-name.php");
-
 include(dirname(__FILE__) . "/parts/templates/_reg-agent-template.php");
+require(dirname(__FILE__) . "/app/_reg-agent.php");
