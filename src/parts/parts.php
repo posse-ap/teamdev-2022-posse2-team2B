@@ -726,14 +726,20 @@ function a_header_start()
 
     function m_box_item($agent)
     {
-      a_box_deletebtn($agent['id']);
+?>
+  <div class="Agent-card__wrapper__mini-outer">
+    <?php
       m_agent_small($agent);
+      a_box_deletebtn($agent['id']);
+    ?>
+  </div>
+<?php
     }
 
     function o_box()
     {
-      a_section_start('問い合わせBOX', false);
-?>
+  a_section_start('問い合わせBOX', false);
+  ?>
   <ul class="js-box"></ul>
 <?php
       a_section_end();
@@ -880,7 +886,7 @@ function a_header_start()
     <?php
       // 問い合わせ先エージェント
       a_heading('問い合わせ先エージェント');
-      
+
       $inq_agents_array = explode(',', $inq_agents);
       foreach ($inq_agents_array as $agent_id) {
         $agent = f_select_agent($agent_id);
@@ -1101,7 +1107,10 @@ function a_header_start()
     {
 ?>
   <div class="Box-and-apply-footer">
-    <div class="Box-mobile" id="box_mobile">
+    <div class="Box-mobile__background Box-mobile__background__always" id="box_mobile_bg">
+
+    </div>
+    <div class="Box-mobile Box-mobile__always" id="box_mobile">
       <?php
       o_box();
       ?>
