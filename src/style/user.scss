@@ -722,6 +722,8 @@ $bg-color: white; // 白背景にしたいところ
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+
 
     input[type="submit"],
     div {
