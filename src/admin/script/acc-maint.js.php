@@ -1,8 +1,20 @@
 <script>
   // アカウント新規作成画面 アクセス権限がエージェント会社担当者の場合のみ該当エージェントを選択するselectが表示される
-  const rightSelect = document.getElementById('right_select');
-  const agentSelect = document.getElementById('agent_select');
-  const agentSelectArea = document.getElementById('agent_select_area');
+  let rightSelect = document.getElementById('right_select');
+  let agentSelect = document.getElementById('agent_select');
+  let agentSelectArea = document.getElementById('agent_select_area');
+
+  function escNull(el) {
+    if (el === null) {
+      return document.createElement('div');
+    } else {
+      return el;
+    }
+  }
+
+  rightSelect = escNull(rightSelect);
+  agentSelect = escNull(agentSelect);
+  agentSelectArea = escNull(agentSelectArea);
 
   function agentSelectDisp() {
     if (rightSelect.value == 1) {
@@ -21,7 +33,10 @@
   });
 
   // アカウント作成ボタンの動作
-  document.getElementById('btn').addEventListener('click', () => {
+  let btn = document.getElementById('btn');
+  btn = escNull(btn);
+
+  btn.addEventListener('click', () => {
     if (document.getElementById('pw').value != document.getElementById('pw_again').value) {
       alert('パスワードが一致しません');
       return;
@@ -43,7 +58,10 @@
   });
 
   // エージェント登録画面
-  document.getElementById('regBtn').addEventListener('click', () => {
+  let regBtn = document.getElementById('regBtn');
+  regBtn = escNull(regBtn);
+
+  regBtn.addEventListener('click', () => {
     document.getElementById('agent_reg_form').submit();
   });
 </script>
