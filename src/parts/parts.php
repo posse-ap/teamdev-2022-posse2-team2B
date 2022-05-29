@@ -940,11 +940,11 @@ function a_header_start()
 
       // 生年月日
       m_heading_required('生年月日');
-      f_input(['type' => 'date', 'class' => 'Application-form__input__glay-border', 'name' => 'inq_birthday']);
+      f_input(['type' => 'date', 'class' => 'Application-form__input__glay-border', 'name' => 'inq_birthday', 'id' => 'inqBirthday']);
 
       // 性別
       m_heading_required('性別');
-      a_select(['name' => 'inq_sex', 'class' => 'Application-form__input__glay-border'], [['attributes' => ['hidden' => ''], 'text' => '選択してください'], ['attributes' => ['value' => '0'], 'text' => '男性'], ['attributes' => ['value' => '1'], 'text' => '女性'], ['attributes' => ['value' => '2'], 'text' => 'その他'], ['attributes' => ['value' => '3'], 'text' => '無回答']]);
+      a_select(['name' => 'inq_sex', 'class' => 'Application-form__input__glay-border', 'id' => 'inqSex'], [['attributes' => ['disabled' => '', 'selected' => '', 'value' => '選択してください'], 'text' => '選択してください'], ['attributes' => ['value' => '0'], 'text' => '男性'], ['attributes' => ['value' => '1'], 'text' => '女性'], ['attributes' => ['value' => '2'], 'text' => 'その他'], ['attributes' => ['value' => '3'], 'text' => '無回答']]);
 
       // メールアドレス
       m_heading_required('メールアドレス');

@@ -3,6 +3,8 @@ function regexpCheck() {
   const inputArray = new Array();
   inputArray.push({ id: 'inqName', regexp: /^[^\x20-\x7e]+$/ }); //全角文字、空文字NG
   inputArray.push({ id: 'inqNameruby', regexp: /^[ァ-ンヴー]+$/ }); //全角カタカナ、空文字NG
+  inputArray.push({ id: 'inqBirthday', regexp: /^[a-zA-Z0-9!-/:-@¥[-`{-~]+$/ }); //半角英数記号、空文字NG
+  inputArray.push({ id: 'inqSex', regexp: /^[0-3]+$/ }); //半角数値1文字0-3、空文字NG
   inputArray.push({ id: 'inqEmail', regexp: /^[a-zA-Z0-9!-/:-@¥[-`{-~]+$/ }); //半角英数記号、空文字NG
   inputArray.push({ id: 'inqTel', regexp: /^[0-9]+$/ }); //半角数値、空文字NG
   inputArray.push({ id: 'inqUniv', regexp: /^[^\x20-\x7e]+$/ }); //全角文字、空文字NG
@@ -112,6 +114,12 @@ function formSend() {
     window.onkeyup = () => {
       regexpCheck();
     }
+    // フォーカス外れた時も
+    document.querySelectorAll('#inqBirthday,#inqSex').forEach(el => {
+      el.onblur = () => {
+        regexpCheck();
+      }
+    });
   }
 }
 
