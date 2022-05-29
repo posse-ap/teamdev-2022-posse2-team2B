@@ -32,7 +32,8 @@ INSERT INTO
     paragraph7,
     url,
     email,
-    tel
+    tel,
+    picture
   )
 VALUES
   (
@@ -57,7 +58,8 @@ VALUES
     しかし、イベントの参加企業が事前にわからない、大手企業が少ないなど気になる点もありました。',
     'https://discussion.meetscompany.jp/',
     'info@agent1.com',
-    '03-1234-5678'
+    '03-1234-5678',
+    '/pictures/agent/agent1.jpg'
   ),
 (
     2,
@@ -83,7 +85,8 @@ VALUES
     '求人数が少なかったり、担当アドバイザーの当たりはずれがあるなどの評判もありますが、キャリアチケットさんはとても話を親身に聞いてくださるエージェントです。',
     'https://careerticket.jp/',
     'info@agent2.com',
-    '03-1234-5678'
+    '03-1234-5678',
+    '/pictures/agent/agent2.jpg'
   ),
   (
     3,
@@ -104,7 +107,8 @@ VALUES
     'パラグラフです',
     'https://irodas.com/irodassalon/',
     'info@agent3.com',
-    '03-1234-5678'
+    '03-1234-5678',
+    '/pictures/agent/agent3.jpg'
   ),
   (
     4,
@@ -125,7 +129,8 @@ VALUES
     'パラグラフです',
     'https://www.ap-net.co.jp/service-introduction/',
     'info@agent4.com',
-    '03-1234-5678'
+    '03-1234-5678',
+    '/pictures/agent/agent4.jpg'
   ),
   (
     5,
@@ -146,7 +151,8 @@ VALUES
     'パラグラフです',
     'https://careerstart.co.jp/',
     'info@agent5.com',
-    '03-1234-5678'
+    '03-1234-5678',
+    '/pictures/agent/agent5.jpg'
   ),
   (
     6,
@@ -167,7 +173,8 @@ VALUES
     'パラグラフです',
     'https://nas-inc.co.jp/lp/digupcareer/syukatuman.html',
     'info@agent6.com',
-    '03-1234-5678'
+    '03-1234-5678',
+    '/pictures/agent/agent6.jpg'
   ),
   (
     7,
@@ -188,7 +195,8 @@ VALUES
     'パラグラフです',
     'https://careecen-shukatsu-agent.com/lp/mendan/',
     'info@agent7.com',
-    '03-1234-5678'
+    '03-1234-5678',
+    '/pictures/agent/agent7.jpg'
   ),
   (
     8,
@@ -209,7 +217,8 @@ VALUES
     'パラグラフです',
     'https://jobspring.jp/lp/05/180',
     'info@agent8.com',
-    '03-1234-5678'
+    '03-1234-5678',
+    '/pictures/agent/agent8.jpg'
   ),
   (
     9,
@@ -230,7 +239,8 @@ VALUES
     'パラグラフです',
     'https://careerpark.jp/employ/event/2858/lps/275',
     'info@agent9.com',
-    '03-1234-5678'
+    '03-1234-5678',
+    '/pictures/agent/agent9.jpg'
   ),
   (
     10,
@@ -251,7 +261,8 @@ VALUES
     'パラグラフです',
     'https://shinsotsu.mynavi-agent.jp/',
     'info@agent10.com',
-    '03-1234-5678'
+    '03-1234-5678',
+    '/pictures/agent/agent10.jpg'
   );
 
 INSERT INTO

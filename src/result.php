@@ -28,7 +28,8 @@ $result_agents_stmt = $db->prepare(sprintf(
     paragraph4,
     paragraph5,
     paragraph6,
-    paragraph7
+    paragraph7,
+    picture
   FROM
     agents
   RIGHT JOIN agent_tags ON agents.id = agent_tags.agent_id
