@@ -46,9 +46,6 @@ function a_header_start()
         <span></span>
         <span></span>
       </button>
-      <!-- <div class="phone-icon">
-        <i class="fa-solid fa-bars"></i>
-      </div> -->
     <?php
   }
 
@@ -100,33 +97,6 @@ function a_header_start()
         <li class="nav-items__item"><a href="">お問い合わせ</a></li>
       </ul>
     </nav>
-
-    <!--
-    <nav class="header-nav">
-      <ul class="header-nav-list">
-        <li>
-          <a href="">就活サイト</a>
-        </li>
-        <li>
-          <a href="">就活支援サービス</a>
-        </li>
-        <li>
-          <a href="">自己分析診断ツール</a>
-        </li>
-        <li>
-          <a href="">ES添削サービス</a>
-        </li>
-        <li>
-          <a href="">就活.comとは</a>
-        </li>
-        <li>
-          <a href="">就活エージェント比較</a>
-        </li>
-        <li>
-          <a href="">お問い合わせ</a>
-        </li>
-      </ul>
-    </nav> -->
   <?php
   }
 
@@ -452,22 +422,18 @@ function a_header_start()
 ?>
   <article class="agent-card">
     <div class="Agent-card__top">
-      <div class="Agent-card__top__sp">
+      <div class="Agent-card__top__flex">
         <?php
         a_agent_name($agent_name);
-        ?>
-      </div>
-      <div class="Agent-card__top__left">
-        <?php
+        // a_agent_img('/pictures/agent1.jpg');
         a_agent_img($picture);
         ?>
       </div>
-      <div class="Agent-card__top__right">
-        <div class="Agent-card__top__right-pc">
-          <?php
-          a_agent_name($agent_name);
-          ?>
-        </div>
+      <!-- <div class="Agent-card__top__left">
+        <?php
+        ?>
+      </div> -->
+      <div class="Agent-card__top__tag">
         <?php
         m_agent_tags($tags);
         ?>
@@ -762,8 +728,14 @@ function a_header_start()
 
     function m_box_item($agent)
     {
-      a_box_deletebtn($agent['id']);
+?>
+  <div class="Agent-card__wrapper__mini-outer">
+    <?php
       m_agent_small($agent);
+      a_box_deletebtn($agent['id']);
+    ?>
+  </div>
+<?php
     }
 
     function o_box()
@@ -1137,7 +1109,9 @@ function a_header_start()
     {
 ?>
   <div class="Box-and-apply-footer">
-    <div class="Box-mobile" id="box_mobile">
+    <!-- <div class="Box-mobile__background Box-mobile__background__always" id="box_mobile_bg">
+    </div> -->
+    <div class="Box-mobile Box-mobile__always" id="box_mobile">
       <?php
       o_box();
       ?>
