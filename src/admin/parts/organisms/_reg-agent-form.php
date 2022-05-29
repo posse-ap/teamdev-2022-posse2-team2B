@@ -55,6 +55,29 @@
     </div>
 
     <div class="account_form__sec">
+      <h3 class="account_form__sec__title">タグ</h3>
+        <input type="checkbox" name="tag" required value="">
+        <input type="checkbox" name="tag" required value="">
+        <input type="checkbox" name="tag" required value="">
+        <input type="checkbox" name="tag" required value="">
+        <input type="checkbox" name="tag" required value="">
+        <input type="checkbox" name="tag" required value="">
+        <input type="checkbox" name="tag" required value="">
+        <input type="checkbox" name="tag" required value="">
+        <input type="checkbox" name="tag" required value="">
+        <input type="checkbox" name="tag" required value="">
+        <input type="checkbox" name="tag" required value="">
+        <input type="checkbox" name="tag" required value="">
+        <input type="checkbox" name="tag" required value="">
+        <input type="checkbox" name="tag" required value="">
+        <input type="checkbox" name="tag" required value="">
+        <input type="checkbox" name="tag" required value="">
+        <input type="checkbox" name="tag" required value="">
+        <input type="checkbox" name="tag" required value="">
+        <input type="checkbox" name="tag" required value="">
+    </div>
+
+    <div class="account_form__sec">
       <h3 class="account_form__sec__title">紹介文</h3>
       <div class="account_form__sec__box">
         <input type="text" name="intro" required maxlength="2000">
