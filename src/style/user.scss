@@ -2,43 +2,59 @@ html {
   font-size: 14px;
 }
 
-
-$main-color: #52a39a;
-$index-color: white;
-// #52A39Aの中の文字のこと
-$bg-color: white;
-
-body{
-  // padding-bottom: 80px;
-  background-color:#F6F6F6;
+body {
+  background-color: #F6F6F6;
 }
 
-// ヘッダー
+////// 色定義 ここから//////
+$main-color: #52a39a;
+$index-color: white; // #52A39Aの中の文字のこと
+$bg-color: white; // 白背景にしたいところ
+////// 色定義 ここまで//////
 
+/////// ページ全体のレイアウト関連　ここから//////
+.Page {
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__right {
+    &__pc {
+      display: none;
+    }
+  }
+
+  &__left {
+    &__sp {}
+  }
+}
+
+/////// ページ全体のレイアウト関連　ここまで//////
+
+////// ヘッダー ここから//////
 .header {
   background-color: $main-color;
   position: relative;
-} //適用
+}
 
 .header-inner {
   padding: 10px 30px;
   display: flex;
   justify-content: space-between;
-  // justify-content: center;
   font-size: 1.5rem;
   color: $index-color;
+
   .page-title {
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
   }
-} //適用 命名変
+}
 
-
-// はんばーがー　
-/* ヘッダーのナビ部分 */
-.header{
+// ヘッダーのナビ部分
+.header {
   .header__nav {
     position: absolute;
     height: 100vh;
@@ -51,13 +67,12 @@ body{
     align-items: center;
     justify-content: center;
     z-index: 10;
-    // padding: 10px 75px;
-    // ↑パソコンの時のためのものです
-    .nav-items{
-      &__item{
+
+    .nav-items {
+      &__item {
         padding: 10px;
         font-family: Helvetica;
-        /* ナビのリンク */
+
         a {
           color: $index-color;
           width: 100%;
@@ -69,8 +84,7 @@ body{
   }
 }
 
-/* ハンバーガーメニュー */
-
+////ハンバーガーメニュー////
 .header__hamburger {
   width: 30px;
   height: 100%;
@@ -82,7 +96,7 @@ body{
   z-index: 12;
 }
 
-/* ハンバーガーメニューの線 */
+// ハンバーガーメニューの線
 .hamburger span {
   width: 100%;
   height: 1px;
@@ -91,71 +105,52 @@ body{
   transition: ease 0.4s;
   display: block;
 }
+
 .hamburger span:nth-child(1) {
   top: 0;
 }
+
 .hamburger span:nth-child(2) {
   margin: 8px 0;
 }
+
 .hamburger span:nth-child(3) {
   top: 0;
 }
 
-/* ハンバーガーメニュークリック後のスタイル */
+// ハンバーガーメニュークリック後のスタイル
 .header__nav.active {
   transform: translateX(100%);
 }
+
 .hamburger.active span:nth-child(1) {
   top: 5px;
   transform: rotate(45deg);
 }
+
 .hamburger.active span:nth-child(2) {
   opacity: 0;
 }
+
 .hamburger.active span:nth-child(3) {
   top: -13px;
   transform: rotate(-45deg);
 }
 
-@media screen and (min-width: 960px) {
-  .header__nav {
-    position: static;
-    height: 100%;
-    width: 100%;
-    left: 0;
-    padding: 10px 75px;
-    .nav-items{
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-  }
+////// ヘッダー ここまで//////
 
-
-  .hamburger {
-    // display: none;
-    opacity: 0;
-    pointer-events: none;
-  }
-}
-
-}
-
-
-
-
-
-// Section
+////// Section　ここから//////
 // 緑長方形の見出しで囲われた部分をSectionと名付けた。
 .Section {
   background-color: $bg-color;
   width: 100%;
   margin: 30px 0px;
 
+  // 見出し
   &__title {
     padding: 15px 0px;
     background-color: $main-color;
     width: 100%;
-    // margin-bottom: 30px;
 
     p {
       color: $index-color;
@@ -164,6 +159,7 @@ body{
     }
   }
 
+  //　セクションの中身
   &__content {
     margin: 0 auto;
     width: 95%;
@@ -183,7 +179,10 @@ body{
   }
 }
 
-// トップページの「使い方の流れ」
+////// Section　ここまで//////
+
+////// トップページ ここから//////
+//「使い方の流れ」（セクションの中身）
 .How-to {
   &__cards {
     &__four {
@@ -196,6 +195,7 @@ body{
       margin: 5% 0;
     }
   }
+
   &__card {
     width: 45%;
 
@@ -205,7 +205,7 @@ body{
   }
 }
 
-// トップページの検索エリア
+//// 検索エリア（セクションの中身）////
 // 条件選択のためのタグ
 .Search__tag__wrapper {
   display: inline-flex;
@@ -235,10 +235,10 @@ body{
   }
 }
 
-// トップページの検索エリア
 //検索ボタン
 .Search__btn {
   text-align: center;
+
   button {
     background-color: $main-color;
     color: white;
@@ -252,7 +252,7 @@ body{
   }
 }
 
-// エージェント情報が乗っているカード
+////掲載エージェント一覧や検索結果（セクションの中身）のエージェントのカード　ここから////
 // BEM未対応
 .agent-card {
   margin: 0 auto;
@@ -264,17 +264,29 @@ body{
   max-width: 600px; //ピッタは520px
   background-color: $bg-color;
 
+  //エージェント名、写真、タグはAgent-card__top
+  //星評価はagent-card-star-evaluation-table
+
+  //説明文
+  .argent-card-info-text {
+    margin-bottom: 20px;
+  }
+
+  //ボタンはargent-card-btns
+}
+
+//エージェント名、写真、タグ
+.Agent-card__top {
+
+  //エージェント名
   .agent-card-agent-name {
     font-size: 2rem;
     color: $main-color;
     margin-bottom: 20px;
     font-weight: bold;
-
-    h3 {
-      // text-align: center;
-    }
   }
 
+  //写真
   .agent-card-image {
     width: 100%;
     margin-bottom: 20px;
@@ -284,6 +296,7 @@ body{
     }
   }
 
+  //タグ
   .agent-card-tags-area {
     display: flex;
     flex-wrap: wrap;
@@ -298,21 +311,17 @@ body{
     }
   }
 
-  .argent-card-info-text {
-    // border: solid;
-    margin-bottom: 20px;
-  }
-}
-
-.Agent-card__top {
   &__sp {
     display: block;
   }
+
   &__left {
     display: block;
   }
+
   &__right {
     display: block;
+
     &-pc {
       display: none;
     }
@@ -323,6 +332,7 @@ body{
 // BEM未対応
 .agent-card-star-evaluation-table {
   margin-bottom: 20px;
+
   table {
     border-collapse: collapse;
     width: 100%;
@@ -341,6 +351,7 @@ body{
           text-align: center;
         }
       }
+
       .star-evaluation {
         color: $main-color;
       }
@@ -354,12 +365,14 @@ body{
   display: flex;
   flex-direction: column;
   width: 100%;
+
   .argent-card-btn {
     width: 100%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     border-radius: 3px;
     margin-bottom: 20px;
     padding: 15px 0px;
+
     p {
       text-align: center;
     }
@@ -372,12 +385,14 @@ body{
   border: solid 0.5px #ffab40;
   display: block;
 }
+
 .put-out-of-inquiry-box {
   background-color: white;
   border: solid 0.5px #ffab40;
   color: #ffab40;
   display: none;
 }
+
 .view-more-info {
   background-color: $main-color;
   border: solid 0.5px $main-color;
@@ -385,14 +400,19 @@ body{
   display: block;
 }
 
+////掲載エージェント一覧や検索結果（セクションの中身）のエージェントのカード　ここまで////
+////// トップページ ここまで//////
+
+//////検索結果画面　ここから//////
 // 再検索
 .Re-search {
   z-index: 1;
-  background-color:$bg-color;
+  background-color: $bg-color;
   width: 100%;
   margin: 30px 0px;
   width: 100%;
 
+  //外側のアコーディオンメニュー
   &__ac {
     &__parent {
       padding: 15px 0px;
@@ -402,6 +422,7 @@ body{
       font-size: 2rem;
       position: relative;
       cursor: pointer;
+
       p {
         margin-left: 2.5%;
         color: $index-color;
@@ -431,18 +452,22 @@ body{
       margin: 0 auto;
       width: 95%;
       display: none;
-      // height: 1000px;
     }
+
+    //この中の白いタグが入っているアコーディオンメニューはRe-search-tags__ac
   }
-  .Search__btn{
+
+  //再検索用に特有な指定。基本はトップページの検索ボタンの使いまわし。
+  .Search__btn {
     margin-top: 20px;
   }
 }
 
-// 再検索のロールダウン
+// 白いアコーディオンメニュー
 .Re-search-tags__ac {
   border: solid #cccccc;
   padding: 0px 20px;
+
   &__parent {
     margin: 10px 0px;
     padding: 8px;
@@ -452,7 +477,6 @@ body{
 
     p {
       font-size: 1.25rem;
-      // font-weight: normal;
     }
   }
 
@@ -476,34 +500,34 @@ body{
 
   &__child {
     padding: 30px 0px;
-    // height: 150px;
     display: none;
     background-color: white;
-    // text-align: center;
   }
 }
 
-// 検索結果エリアの上の方のメッセージ
-// 表示件数やタグなど
+////検索結果エリアの上の方のメッセージ////
 .Search-result__message {
   width: 95%;
   margin: 0px auto;
 
-  &__upper{
+  //件数表示と全て追加ボタン
+  &__upper {
     margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-
   }
 
-  &__number {
-    // margin-bottom: 30px;
-  }
   &__figure {
     color: $main-color;
-    font-size: 2rem;
+    font-size: 3rem;
   }
+
+  &__unit {
+    font-size: 1.25rem;
+  }
+
+  //すべて追加ボタンは.Message__box-all
   &__tags {
     display: flex;
     flex-wrap: wrap;
@@ -519,25 +543,26 @@ body{
   }
 }
 
-// 検索結果エリアの上の方のメッセージ
-// 「すべて問い合わせボックスにいれる」
+// すべて追加ボタン
 .Message__box-all {
-  &__btn{
-    // margin-left: 30px;
+  &__btn {
     width: 100%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     border-radius: 3px;
     padding: 10px;
+
     p {
       text-align: center;
     }
   }
+
   &__in {
     background-color: #ffab40;
     color: white;
     border: solid 0.5px #ffab40;
     display: block;
   }
+
   &__out {
     background-color: white;
     border: solid 0.5px #ffab40;
@@ -546,7 +571,7 @@ body{
   }
 }
 
-// 閲覧履歴やお問い合わせボックスに表示させるための小さいエージェントのカード
+// 閲覧履歴やお問い合わせボックス用の小さいエージェントのカード
 .Agent-card__wrapper__mini {
   margin: 0 auto;
   margin-top: 30px;
@@ -568,6 +593,7 @@ body{
   .agent-card-agent-name {
     width: 75%;
     color: $main-color;
+
     h3 {
       text-align: center;
       font-weight: bold;
@@ -576,8 +602,25 @@ body{
   }
 }
 
-// エージェント詳細ページ
+// BOXの中身　ゴミ箱
+.Application {
+  &__box__trash {
+    width: 95%;
+    margin: 0 auto;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
 
+    i {
+      transform: translate(0, 100%);
+    }
+  }
+}
+
+//////検索結果画面　ここから//////
+
+
+////// エージェント詳細ページ　ここから//////
 .Agent-page__last-update {
   display: flex;
   justify-content: flex-end;
@@ -598,6 +641,7 @@ body{
 .Agent-page__inquiry-btn {
   width: 65%;
   margin: 30px auto;
+
   div {
     width: 100%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -611,126 +655,25 @@ body{
   }
 }
 
-// 申し込みフォームのページ
-// セクション内の小見出し
-// ↓検索画面でネストにしていたので、外に出すためにもう一回別のクラスをつけて持ってきた。
-.Small-heading {
-  &__heading {
-    margin: 30px 0px;
-    padding: 8px;
-    border-left: 3px solid $main-color;
+////// エージェント詳細ページ ここまで//////
 
-    p {
-      font-size: 1.25rem;
-    }
-  }
-  // セクション内の小見出しに、必須マーク付けるために
-  &__heading-essential {
-    display: flex;
-    align-items: center;
-  }
-
-  // 必須マーク
-  &__essential-mark {
-    display: flex;
-    align-items: center;
-    background: #ffab40;
-    color: white;
-    height: 30px;
-    margin-left: 30px;
-    padding: 18px 9px;
-    border-radius: 10px;
-  }
-}
-
-// 申し込みフォームのページ
-// ボックスの部分
-.Application {
-  &__box__trash {
-    width: 95%;
-    margin: 0 auto;
-    font-size: 1.5rem;
-    display: flex;
-    justify-content: flex-end;
-    i {
-      transform: translate(0, 100%);
-    }
-  }
-}
-
-// フォーム１個目のラジオボタン
-$radio-background-color: #ffffff;
-.Application-form__radio {
-  margin: 0.5rem;
-  input[type="radio"] {
-    position: absolute;
-    opacity: 0;
-    + .Application-form__radio__label {
-      &:before {
-        content: "";
-        background: $radio-background-color;
-        border-radius: 100%;
-        border: 1px solid #c4c4c4;
-        display: inline-block;
-        width: 1.4em;
-        height: 1.4em;
-        position: relative;
-        top: -0.2em;
-        margin-right: 1em;
-        vertical-align: top;
-        cursor: pointer;
-        text-align: center;
-        transition: all 250ms ease;
-      }
-    }
-    &:checked {
-      + .Application-form__radio__label {
-        &:before {
-          background-color: $main-color;
-          box-shadow: inset 0 0 0 4px $radio-background-color;
-        }
-      }
-    }
-    &:focus {
-      + .Application-form__radio__label {
-        &:before {
-          outline: none;
-          border-color: $main-color;
-        }
-      }
-    }
-    &:disabled {
-      + .Application-form__radio__label {
-        &:before {
-          box-shadow: inset 0 0 0 4px $radio-background-color;
-          border-color: #c4c4c4;
-          background: #c4c4c4;
-        }
-      }
-    }
-    + .Application-form__radio__label {
-      &:empty {
-        &:before {
-          margin-right: 0;
-        }
-      }
-    }
-  }
-}
-
-// 申し込みフォーム
+////// 申し込みフォームのページ　ここから//////
 .Application-form {
   width: 95%;
   margin: 0 auto;
 
+  //戻るボタン
   &__back-button {
     display: flex;
     color: $main-color;
     font-size: 1.5rem;
+
     i {
       margin-right: 20px;
     }
   }
+
+  // ラジオボタンは.Application-form__radio
 
   &__input__glay-border {
     border: solid #c4c4c4 2px;
@@ -749,17 +692,14 @@ $radio-background-color: #ffffff;
     margin-top: 5px;
   }
 
-  &__privacy-policy {
-    // padding: 3%;
-  }
-
-  // プライバシーのチェックボックスは長いので、べつのところに
+  // プライバシーのチェックボックスは.Application-form__privacy-cb
 
   &__privacy-message {
     color: rgba(0, 0, 0, 0.65);
     margin-top: 10px;
   }
 
+  // 確認ボタン,送信ボタン,TOPへボタン
   &__submit-btn__wrapper {
     width: 100%;
   }
@@ -782,7 +722,104 @@ $radio-background-color: #ffffff;
   }
 }
 
-// 申し込みフォーム
+// フォームの小見出し
+.Small-heading {
+  &__heading {
+    margin: 30px 0px;
+    padding: 8px;
+    border-left: 3px solid $main-color;
+
+    p {
+      font-size: 1.25rem;
+    }
+  }
+
+  // セクション内の小見出しに、必須マーク付けるために
+  &__heading-essential {
+    display: flex;
+    align-items: center;
+  }
+
+  // 必須マーク
+  &__essential-mark {
+    display: flex;
+    align-items: center;
+    background: #ffab40;
+    color: white;
+    height: 30px;
+    margin-left: 30px;
+    padding: 18px 9px;
+    border-radius: 10px;
+  }
+}
+
+// ラジオボタン
+$radio-background-color: #ffffff;
+
+.Application-form__radio {
+  margin: 0.5rem;
+
+  input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+
+    +.Application-form__radio__label {
+      &:before {
+        content: "";
+        background: $radio-background-color;
+        border-radius: 100%;
+        border: 1px solid #c4c4c4;
+        display: inline-block;
+        width: 1.4em;
+        height: 1.4em;
+        position: relative;
+        top: -0.2em;
+        margin-right: 1em;
+        vertical-align: top;
+        cursor: pointer;
+        text-align: center;
+        transition: all 250ms ease;
+      }
+    }
+
+    &:checked {
+      +.Application-form__radio__label {
+        &:before {
+          background-color: $main-color;
+          box-shadow: inset 0 0 0 4px $radio-background-color;
+        }
+      }
+    }
+
+    &:focus {
+      +.Application-form__radio__label {
+        &:before {
+          outline: none;
+          border-color: $main-color;
+        }
+      }
+    }
+
+    &:disabled {
+      +.Application-form__radio__label {
+        &:before {
+          box-shadow: inset 0 0 0 4px $radio-background-color;
+          border-color: #c4c4c4;
+          background: #c4c4c4;
+        }
+      }
+    }
+
+    +.Application-form__radio__label {
+      &:empty {
+        &:before {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
 // プライバシーポリシーに同意するのチェックボックス
 .Application-form__privacy-cb {
   margin-top: 5px;
@@ -829,28 +866,31 @@ $radio-background-color: #ffffff;
     transform: rotate(45deg);
   }
 
-  &__wrapper input:checked + &__checkbox-icon {
+  &__wrapper input:checked+&__checkbox-icon {
     background-color: $main-color;
     border: solid $main-color;
     border-radius: 8px;
   }
 
-  &__wrapper input:checked + &__checkbox-icon:after {
+  &__wrapper input:checked+&__checkbox-icon:after {
     display: block;
   }
 }
 
-// 確認ページ
+////// 申し込みフォームのページ　ここまで//////
+
+
+/////// 確認ページ　ここから//////
 .Check {
   background-color: $bg-color;
   width: 97%;
   margin: 30px auto;
   padding: 30px 10px;
 
-
   &__message-text {
     width: 95%;
     margin: 30px auto;
+
     p {
       font-size: 1rem;
     }
@@ -879,9 +919,12 @@ $radio-background-color: #ffffff;
   }
 }
 
-// 完了ページ
+/////// 確認ページ　ここまで//////
+
+/////// 完了(サンクス)ページ　ここから//////
 .Finish {
   margin: 30px 0px;
+
   &__message {
     background-color: $bg-color;
     box-shadow: 0 0 10px #fff, 0 0 10px #ccc, 0 0 1px #aaa;
@@ -896,7 +939,10 @@ $radio-background-color: #ffffff;
   }
 }
 
-// 追従ボタン
+/////// 完了(サンクス)ページ　ここまで//////
+
+/////// 追従ボタン ここから//////
+// ボックスと黒い帯
 .Box-and-apply-footer {
   width: 100%;
   position: fixed;
@@ -906,10 +952,12 @@ $radio-background-color: #ffffff;
   background: white;
 }
 
+// スマホのボックス
 .Box-mobile {
   display: none;
 }
 
+// 黒い帯
 .Apply-footer {
   width: 100%;
   height: 50px;
@@ -961,23 +1009,29 @@ $radio-background-color: #ffffff;
   text-align: center;
   padding: 0px 2%;
   width: 43%;
+
   &__text {
-    p {
-    }
+    p {}
   }
+
   &__icon {
     margin-left: 5%;
+
     &__number {
       background: red;
       border-radius: 100px;
     }
   }
 }
-// フッター
+
+/////// 追従ボタン ここまで//////
+
+/////// フッター ここから//////
 .Footer {
   padding-top: 40px;
   padding-bottom: 60px;
   background-color: $main-color;
+
   &__inner {
     display: flex;
     flex-direction: column;
@@ -986,6 +1040,7 @@ $radio-background-color: #ffffff;
     color: $index-color;
     padding: 10px 30px;
     position: relative;
+
     .page-title {
       height: 100%;
       display: flex;
@@ -994,18 +1049,20 @@ $radio-background-color: #ffffff;
       font-size: 2rem;
     }
 
-    .header__nav{
+    .header__nav {
       margin-top: 20px;
       display: flex;
       justify-content: center;
-      
-      .nav-items{
+
+      .nav-items {
         display: flex;
-        justify-content:center;
+        justify-content: center;
         flex-wrap: wrap;
-        &__item{
+
+        &__item {
           padding: 10px;
           font-family: Helvetica;
+
           /* ナビのリンク */
           a {
             color: $index-color;
@@ -1016,74 +1073,87 @@ $radio-background-color: #ffffff;
           }
         }
       }
-
-
-
     }
 
-
   }
+
   &__copyright {
     text-align: center;
   }
 }
-// レイアウト関連
-.Page {
-  &__container {
-    display: flex;
-    flex-direction: column;
-  }
-  &__right {
-    &__pc {
-      display: none;
-    }
-  }
-  &__left {
-    &__sp {
-    }
-  }
-}
 
-///// レスポンシブ対応/////
+/////// フッター ここまで//////
+
+
+////////// PC対応//////////
 @media (min-width: 960px) {
+
   // レイアウト関連
   .Page {
+
+    // トップと確認ページ
+    &__container__center {
+      margin: 0 auto;
+      max-width: 1000px;
+    }
+
+    // ２カラムのページ
     &__container {
       margin: 0 auto;
       flex-direction: row-reverse;
       justify-content: space-around;
       max-width: 1000px;
     }
+
     &__right {
       width: 30%;
+
       &__pc {
         display: block;
       }
     }
+
     &__left {
       width: 60%;
+
       &__sp {
         display: none;
       }
     }
   }
 
+  //////ヘッダー ここから//////
   .header-inner {
     font-size: 2.5rem;
   }
+
   .phone-icon {
     opacity: 0;
     pointer-events: none;
   }
-  .header-nav {
-    display: block;
+
+  .header__nav {
+    position: static !important;
+    height: auto !important;
+    width: 100%;
+    left: 0;
+    padding: 10px 75px;
+
+    .nav-items {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .hamburger {
+      opacity: 0;
+      pointer-events: none;
+    }
   }
 
-  .Page__container__center {
-    margin: 0 auto;
-    max-width: 1000px;
-  }
+  //////ヘッダー ここまで//////
 
+  // セクション
   .Section {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
@@ -1110,18 +1180,22 @@ $radio-background-color: #ffffff;
     }
   }
 
+  ////エージェントカード ここから////
   .Agent-card__top {
     display: flex;
 
     &__sp {
       display: none;
     }
+
     &__left {
       width: 45%;
     }
+
     &__right {
       padding-left: 50px;
       width: 55%;
+
       .agent-card-tags-area {
         .agent-card-tag {
           font-size: 1rem;
@@ -1130,8 +1204,10 @@ $radio-background-color: #ffffff;
           padding: 4px 8px;
         }
       }
+
       &-pc {
         display: block;
+
         .agent-card-agent-name {
           font-size: 2rem;
           margin-bottom: 10px;
@@ -1145,7 +1221,6 @@ $radio-background-color: #ffffff;
     justify-content: space-around;
     max-width: 1000px;
 
-    // }
     &__right {
       width: 30%;
 
@@ -1163,48 +1238,6 @@ $radio-background-color: #ffffff;
     }
   }
 
-  .header-inner {
-    font-size: 2.5rem;
-  }
-  .phone-icon {
-    opacity: 0;
-    pointer-events: none;
-  }
-  .header-nav {
-    display: block;
-  }
-
-  .Page__container__center {
-    margin: 0 auto;
-    max-width: 1000px;
-  }
-
-  .Section {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  }
-
-  .How-to {
-    &__cards {
-      &__four {
-        display: flex;
-      }
-
-      &__two {
-        display: flex;
-        justify-content: space-around;
-        margin: 5% 0;
-      }
-    }
-
-    &__card {
-      width: 45%;
-
-      img {
-        width: 100%;
-      }
-    }
-  }
-
   .argent-card-btns {
     flex-direction: row;
     justify-content: space-around;
@@ -1213,21 +1246,13 @@ $radio-background-color: #ffffff;
       margin: 0 5%;
     }
 
-    // .put-into-inquiry-box{
-    //   background-color:#FFAB40;
-    //   color: white;
-    // }
-    // .put-out-of-inquiry-box{
-    //   background-color: white;
-    //   color: #FFAB40;
-    //   display: none;
-    // }
-
     .view-more-info {
       background-color: $main-color;
       color: $index-color;
     }
   }
+
+  ////エージェントカード ここまで////
 
   // 再検索
   .Re-search {
@@ -1245,43 +1270,15 @@ $radio-background-color: #ffffff;
       width: 95%;
       margin: 0 auto;
     }
-    &__message-text {
-      // width: 95%;
-      // margin: 30px auto;
-      p {
-        // font-size:1rem;
-      }
-    }
-
-    &__info {
-      width: 95%;
-      // margin: 0 auto;
-      // background: #F4F4F4;
-      // border: solid #CCCCCC;
-
-      &__line {
-        // display: flex;
-        // flex-direction: column;
-        // justify-content: center;
-      }
-
-      &__item {
-        // margin:10px 30px;
-        // font-weight: bold;
-      }
-
-      &__writing {
-        // margin:10px 30px;
-        // color:#5F5F5F;
-      }
-    }
   }
 
+  // 完了（サンクス）ページ
   .Finish {
     max-width: 1000px;
     margin: 30px auto;
   }
 
+  ////追従ボタン ここから////
   .Box-mobile {
     display: none;
   }
@@ -1297,6 +1294,7 @@ $radio-background-color: #ffffff;
   .Apply-footer__apply-btn {
     p {
       font-size: 1.5em;
+
       .New-line__sp {
         display: none;
       }
@@ -1306,5 +1304,7 @@ $radio-background-color: #ffffff;
   .Show-box {
     display: none;
   }
+
+  ////追従ボタン ここまで////
 
 }
