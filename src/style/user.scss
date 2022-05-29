@@ -691,6 +691,13 @@ $bg-color: white; // 白背景にしたいところ
     color: #cccccc;
     margin-top: 5px;
   }
+  
+  // プライバシーポリシー
+  &__privacy-policy{
+    height: 300px;//高さは適当に指定しているので要調整
+    overflow-y:scroll;
+    max-width: 1000px;
+  }
 
   // プライバシーのチェックボックスは.Application-form__privacy-cb
 
