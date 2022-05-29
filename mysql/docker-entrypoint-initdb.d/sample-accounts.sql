@@ -7,6 +7,8 @@ SET
 SET
   character_set_results = utf8mb4;
 
+USE shukatsu;
+
 -- 管理者アカウント情報サンプル
 -- right_id... 1: エージェント会社担当者様, 2: 共同管理者, 3: 管理者
 INSERT INTO

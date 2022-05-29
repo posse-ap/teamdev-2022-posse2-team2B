@@ -7,9 +7,10 @@ SET
 SET
   character_set_results = utf8mb4;
 
+USE shukatsu;
+
 -- エージェント情報サンプル
 -- 8番:掲載期間外サンプル、9番:非公開設定サンプル
-USE shukatsu;
 
 INSERT INTO
   agents (
