@@ -18,7 +18,7 @@ DROP TABLE IF EXISTS service;
 
 CREATE TABLE service(
   id INT NOT NULL PRIMARY KEY,
-  privacy_policy TEXT(65535)
+  privacy_policy TEXT(10000)
 );
 
 -- マスタ 問い合わせ関連
@@ -53,7 +53,8 @@ CREATE TABLE agents(
   paragraph7 TEXT(2000),
   url TEXT(2000),
   email TEXT(255),
-  tel TEXT(15)
+  tel TEXT(15),
+  picture TEXT(50)
 );
 
 DROP TABLE IF EXISTS agent_contract;
