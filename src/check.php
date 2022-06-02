@@ -20,7 +20,7 @@ $pgdata = array();
 $pgdata += array('page_title' => '確認画面');
 $pgdata += array('disp_data' => array(
   ['name' => 'お問い合せ先エージェント', 'value' => nl2br(implode("\n", $agent_names))],
-  ['name' => 'お問い合せ内容', 'value' => $_POST['inq_radio']],
+  ['name' => 'お問い合せ内容', 'value' => f_select_inquiry_option($_POST['inq_radio'])],
   ['name' => '名前(フリガナ)', 'value' => $_POST['inq_name'] . '(' . $_POST['inq_nameruby'] . ')'],
   ['name' => '生年月日', 'value' => f_date_format_hyphen2kanji($_POST['inq_birthday'])],
   ['name' => '性別', 'value' => f_sex_num2kanji($_POST['inq_sex'])],

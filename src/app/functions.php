@@ -43,7 +43,7 @@ function f_select_inquiry_option($inquiry_option_id)
   $inquiry_option = $db->prepare("SELECT  * FROM inquiry_options WHERE id = ?");
   $inquiry_option->execute([$inquiry_option_id]);
   $inquiry_option = $inquiry_option->fetch();
-  return $inquiry_option;
+  return $inquiry_option['option'];
 }
 
 function f_select_service($col_name, $version)
