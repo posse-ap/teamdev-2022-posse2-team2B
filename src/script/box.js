@@ -80,7 +80,7 @@ function showBox() {
       // POST通信を行い、/app/func-js.phpに関数名(m_box_item)と引数(agent)が送信され、/parts/parts.phpの該当する関数が実行される
       const postAgent = $.ajax({
         type: 'post',
-        url: 'http://localhost:80/app/box-fn.php',
+        url: `http://${location.host}/app/box-fn.php`,
         data: { 'func': 'm_box_item', 'arg': jsonAgents },
         dataType: 'html',
       }).done(function (response) {
